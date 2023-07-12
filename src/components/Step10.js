@@ -244,7 +244,7 @@ function Step10() {
     data.append("qdoc7", formData.file7);
     data.append("qstatus7", yesbuttonValue7);
     data.append("qcomment7", formData.comment7);
-    data.append("adge_Id", generatedId2);
+    data.append("adge_Id", "64aced950a1318d0d5635291");
     axios
       .post(
         "http://ec2-65-2-108-172.ap-south-1.compute.amazonaws.com:5000/adda/adge-question",
