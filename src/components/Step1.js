@@ -245,7 +245,7 @@ function Step1() {
                     </button>
                     <button
                       type="button"
-                      className="btn btn-primary"
+                      className="btn btn-primary "
                       onClick={() => {
                         setYesbutton1(false);
                       }}
