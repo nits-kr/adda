@@ -69,8 +69,8 @@ function User() {
       console.log("generatedId", generatedRole);
       localStorage.setItem("generatedRole", generatedRole);
       Swal.fire({
-        title: "Form Created",
-        text: "The form has been successfully created.",
+        title: "User Created",
+        text: "The user has been successfully created.",
         icon: "success",
       }).then(() => {
         window.location.reload();
@@ -89,7 +89,7 @@ function User() {
     updateUser(editAddress).then(() => {
       Swal.fire({
         title: "Updated!",
-        text: "Your item has been updated.",
+        text: "User has been updated.",
         icon: "success",
         showCancelButton: false,
         confirmButtonColor: "#3085d6",
@@ -187,7 +187,7 @@ function User() {
                                     deleteUser(item?._id);
                                     Swal.fire(
                                       "Deleted!",
-                                      "Your item has been deleted.",
+                                      `${item?.userName}  item has been deleted.`,
                                       "success"
                                     ).then(() => {
                                       window.location.reload(); // Reload the page
