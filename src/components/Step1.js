@@ -11,7 +11,7 @@ import { faUpload, faComment } from "@fortawesome/free-solid-svg-icons";
 import { useGetAllPostGovernerQuery } from "../services/Post";
 
 function Step1() {
-  const [generatedId, setGeneratedId] = useState("");
+  const [generatedId2, setGeneratedId2] = useState("");
   const [yesbutton1, setYesbutton1] = useState();
   const [colorChange1, setColorChange1] = useState(false);
   const [colorChange2, setColorChange2] = useState(false);
@@ -105,15 +105,15 @@ function Step1() {
   }
   useEffect(() => {
     setTimeout(() => {
-      const storedId = localStorage.getItem("generatedId");
-      console.log("stored id", storedId);
-      if (storedId) {
-        setGeneratedId(storedId);
+      const storedId2 = localStorage.getItem("generatedId2");
+      console.log("stored id", storedId2);
+      if (storedId2) {
+        setGeneratedId2(storedId2);
       }
     }, 500);
   }, []);
 
-  console.log("generated id at step 1", generatedId);
+  console.log("generated id at step 1", generatedId2);
 
   useEffect(() => {
     handleYesbutton1();
@@ -243,15 +243,15 @@ function Step1() {
     data.append("doc7", formData.file7);
     data.append("status7", yesbuttonValue7);
     data.append("comment7", formData.comment7);
-    data.append("adge_Id", generatedId);
+    data.append("adge_Id", generatedId2);
     axios
-      .post("http://localhost:5000/admin/add-doc", data)
+      .post("http://ec2-65-2-108-172.ap-south-1.compute.amazonaws.com:5000/adda/adge-question", data)
       .then((response) => {
         setFormData(response?.data?.results?.data);
         console.log(response?.data?.results?.data);
         Swal.fire({
-          title: "Product Created!",
-          text: "Your new product has been created successfully.",
+          title: "Question Created!",
+          text: "Your Question has been created successfully.",
           icon: "success",
           confirmButtonColor: "#3085d6",
           confirmButtonText: "OK",

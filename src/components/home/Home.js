@@ -56,10 +56,10 @@ function Home() {
 
     try {
       const response = await createForm(editAddress);
-      const generatedId = response?.data?.results?.saveData?._id;
-      console.log("generatedId", generatedId);
+      const generatedId2 = response?.data?.results?.addUser?._id;
+      console.log("generatedId2", generatedId2);
 
-      localStorage.setItem("generatedId", generatedId);
+      localStorage.setItem("generatedId2", generatedId2);
 
       Swal.fire({
         title: "Application Created",
@@ -211,7 +211,6 @@ function Home() {
                     <option value="DMT">DMT</option>
                     <option value="SSL">SSL</option>
                     <option value="Tabreed">Tabreed</option>
-                    
                   </select>
                   <label htmlFor="floatingSelect">Select Entity Name</label>
                 </div>
@@ -225,7 +224,6 @@ function Home() {
                         className="form-check-input"
                         type="checkbox"
                         id="gridCheck1"
-                        
                       />
                     </div>
                   </div>
@@ -282,8 +280,12 @@ function Home() {
                     <option value="Yet to schedule">Yet to schedule</option>
                     <option value="scheduled">scheduled</option>
                     <option value="in progress">in progress</option>
-                    <option value="assessment in progress">assessment in progress</option>
-                    <option value="assessment completed">assessment completed</option>
+                    <option value="assessment in progress">
+                      assessment in progress
+                    </option>
+                    <option value="assessment completed">
+                      assessment completed
+                    </option>
                   </select>
                   <label htmlFor="floatingSelect">Status</label>
                 </div>
@@ -330,10 +332,10 @@ function Home() {
                       fdprocessedid="bfs61e"
                     >
                       <Link
-                        data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop"
+                        // data-bs-toggle="modal"
+                        // data-bs-target="#staticBackdrop"
                         className="comman_btn2 table_viewbtn"
-                        to=""
+                        to="/users"
                       >
                         <FontAwesomeIcon icon={faUserPlus} /> Add Application
                       </Link>
