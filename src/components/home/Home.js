@@ -271,7 +271,6 @@ console.log(responseSchedule?.isError,"ress");
                                
                                 <Link
                                   type="button"
-                                  to="question3.html"
                                   className="btn btn-sm tableBtn-blue mx-1"
                                   onClick={() => {
                                     navigate("/auditior-question")
