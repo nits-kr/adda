@@ -279,11 +279,11 @@ function Home() {
                     defaultValue=" "
                     onChange={(e) => setStatus(e.target.value)}
                   >
-                    <option value="Active">Active</option>
-                    <option value="Active">Active</option>
-                    <option value="Active">Active</option>
-                    <option value="Active">Active</option>
-                    <option value="Active">Active</option>
+                    <option value="Yet to schedule">Yet to schedule</option>
+                    <option value="scheduled">scheduled</option>
+                    <option value="in progress">in progress</option>
+                    <option value="assessment in progress">assessment in progress</option>
+                    <option value="assessment completed">assessment completed</option>
                   </select>
                   <label htmlFor="floatingSelect">Status</label>
                 </div>
