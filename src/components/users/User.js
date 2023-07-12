@@ -33,7 +33,7 @@ function User() {
   const [itemId, setItemId] = useState("");
   const [updateUser, response] = useUpdateUserMutation();
   const [selectedRoleId, setSelectedRoleId] = useState("");
-  const [status, setStatus] = useState("")
+
   const user = useUserListQuery();
   useEffect(() => {
     if (user?.data?.results) {
@@ -61,7 +61,6 @@ function User() {
       userName: userName,
       entity: entity1,
       role_Id: selectedRoleId,
-      status: status,
     };
 
     try {
@@ -309,24 +308,6 @@ function User() {
                   <label htmlFor="floatingSelect" style={{ marginTop: "10px" }}>
                     Roll
                   </label>
-                </div>
-                <div className="form-group theme-form-floating" >
-                  <select
-                    className="form-select"
-                    id="floatingSelect1"
-                    aria-label="Floating label select example"
-                    defaultValue=" "
-                    style={{marginTop:"15px"}}
-                    onChange={(e) => setStatus(e.target.value)}
-                  >
-                    <option value="Active">Active</option>
-                    <option value="Active">Active</option>
-                    <option value="Active">Active</option>
-                    <option value="Active">Active</option>
-                    <option value="Active">Active</option>
-                    
-                  </select>
-                  <label htmlFor="floatingSelect1" style={{marginTop:"15px"}} >Select Status</label>
                 </div>
                 <div className="form-group mb-0 col-auto">
                   <Link to="#">

@@ -121,7 +121,7 @@ export const PostApi = createApi({
       query: (body) => {
         console.log("update address", body);
         return {
-          url: `/adda/adda-user-add`,
+          url: `/adge/add-form`,
           method: "post",
           body,
         };

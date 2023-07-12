@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import Header from "../Header";
+import Navbar from "../Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEye,
@@ -10,14 +12,21 @@ import {
   faCalendarDays,
   faComment,
 } from "@fortawesome/free-solid-svg-icons";
-import Header from "../Header";
-import Navbar from "../Navbar";
 import { useGetAllPostHomeQuery } from "../../services/Post";
 import { useCreateFormMutation } from "../../services/Post";
 import { useViewDetailsMutation } from "../../services/Post";
 import { useUpdateDuplicateMutation } from "../../services/Post";
 import { useAddHomeScheduleMutation } from "../../services/Post";
+
+
+// import CanvasJSReact from "@canvasjs/react-charts";
+// //var CanvasJSReact = require('@canvasjs/react-charts');
+
 function Home() {
+  // var CanvasJS = CanvasJSReact.CanvasJS;
+  // var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+
+
   const [createForm] = useCreateFormMutation();
   const [viewDetails] = useViewDetailsMutation();
   const [updateDuplicate] = useUpdateDuplicateMutation();
@@ -56,10 +65,10 @@ function Home() {
 
     try {
       const response = await createForm(editAddress);
-      const generatedId2 = response?.data?.results?.addUser?._id;
-      console.log("generatedId2", generatedId2);
+      const generatedId = response?.data?.results?.saveData?._id;
+      console.log("generatedId", generatedId);
 
-      localStorage.setItem("generatedId2", generatedId2);
+      localStorage.setItem("generatedId", generatedId);
 
       Swal.fire({
         title: "Application Created",
@@ -114,7 +123,10 @@ function Home() {
   return (
     <>
       <Header />
-      <Navbar />
+      <Navbar  Dash={"home"}/>
+
+      
+
       <div className="modal fade" id="ExtralargeModal" tabIndex={-1}>
         <div className="modal-dialog modal-xl modal-dialog-centered">
           <div className="modal-content">
@@ -211,6 +223,7 @@ function Home() {
                     <option value="DMT">DMT</option>
                     <option value="SSL">SSL</option>
                     <option value="Tabreed">Tabreed</option>
+                    
                   </select>
                   <label htmlFor="floatingSelect">Select Entity Name</label>
                 </div>
@@ -224,6 +237,7 @@ function Home() {
                         className="form-check-input"
                         type="checkbox"
                         id="gridCheck1"
+                        
                       />
                     </div>
                   </div>
@@ -277,15 +291,11 @@ function Home() {
                     defaultValue=" "
                     onChange={(e) => setStatus(e.target.value)}
                   >
-                    <option value="Yet to schedule">Yet to schedule</option>
-                    <option value="scheduled">scheduled</option>
-                    <option value="in progress">in progress</option>
-                    <option value="assessment in progress">
-                      assessment in progress
-                    </option>
-                    <option value="assessment completed">
-                      assessment completed
-                    </option>
+                    <option value="Active">Active</option>
+                    <option value="Active">Active</option>
+                    <option value="Active">Active</option>
+                    <option value="Active">Active</option>
+                    <option value="Active">Active</option>
                   </select>
                   <label htmlFor="floatingSelect">Status</label>
                 </div>
@@ -300,13 +310,7 @@ function Home() {
               >
                 Schedule
               </button>
-              {/* <button
-                type="button"
-                className="btn btn-danger"
-                onClick={handleSaveChanges5}
-              >
-                Cancel
-              </button> */}
+            
             </div>
           </div>
         </div>
@@ -332,10 +336,10 @@ function Home() {
                       fdprocessedid="bfs61e"
                     >
                       <Link
-                        // data-bs-toggle="modal"
-                        // data-bs-target="#staticBackdrop"
+                        data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop"
                         className="comman_btn2 table_viewbtn"
-                        to="/users"
+                        to=""
                       >
                         <FontAwesomeIcon icon={faUserPlus} /> Add Application
                       </Link>
@@ -422,10 +426,7 @@ function Home() {
                                   data-bs-toggle="modal"
                                   data-bs-target="#ExtralargeModal2"
                                   onClick={() => setItemId2(item?._id)}
-                                  // onClick={() => {
-                                  // setItemId(item._id);
-                                  // window.location.href = "/adge-question";
-                                  //}}
+                                
                                 >
                                   <FontAwesomeIcon icon={faCalendarDays} />{" "}
                                   Schedule
@@ -434,9 +435,7 @@ function Home() {
                                   type="button"
                                   to="question3.html"
                                   className="btn btn-sm tableBtn-blue mx-1"
-                                  // onClick={() => setItemId3(item?._id)}
                                   onClick={() => {
-                                    // setItemId(item._id);
                                     window.location.href = "/adge-question";
                                   }}
                                 >
@@ -514,20 +513,10 @@ function Home() {
                               </td>
                               <td>{currentItem.status}</td>
                               <td style={{ textAlign: "end" }}>
-                                {/* <button
-                                  type="button"
-                                  className="btn btn-sm tableBtn-Gray mx-1"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#ExtralargeModal"
-                                  fdprocessedid="8wai4"
-                                  onClick={() => setItemId2(currentItem?._id)}
-                                >
-                                  <FontAwesomeIcon icon={faCopy} /> 
-                                </button> */}
+                               
                                 <button
                                   className="btn btn-sm tableBtn-Gray"
                                   fdprocessedid="nnhqma"
-                                  // onClick={() => setItemId(currentItem._id)}
                                   onClick={() => {
                                     setItemId(currentItem._id);
                                     window.location.href = "/adge-question";
