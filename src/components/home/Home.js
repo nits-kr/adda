@@ -39,6 +39,20 @@ function Home() {
 
   const [userName, setUserName] = useState("");
   const [scheduledList, setScheduledList] = useState();
+
+  const [isLink1Active, setIsLink1Active] = useState([]);
+
+  const handleLink1Click = (index) => {
+    const updateColor = [...isLink1Active]
+    updateColor[index] = !updateColor[index]
+    setIsLink1Active(updateColor);
+  };
+
+  const handleLink2Click = () => {
+    setIsLink1Active(true);
+  };
+  
+
   useEffect(() => {
     if (blog?.data?.results) {
       setScheduledList(blog?.data?.results);
@@ -46,6 +60,7 @@ function Home() {
       setScheduledList(blog?.data?.results);
     }
   }, [blog]);
+
   console.log("scheduled data list", scheduledList);
 
   const handleSaveChanges1 = async () => {
@@ -109,6 +124,7 @@ function Home() {
       Status: status,
     };
     schedule(editDuplicate);
+
   };
 
   return (
@@ -418,27 +434,24 @@ function Home() {
                                 <Link
                                   type="button"
                                   to="question3.html"
-                                  className="btn btn-sm tableBtn-blue mx-1"
+                                  className={`btn btn-sm tableBtn-blue mx-1 ${
+                                    isLink1Active ? "" : "disabled"
+                                  }`}
                                   data-bs-toggle="modal"
                                   data-bs-target="#ExtralargeModal2"
-                                  onClick={() => setItemId2(item?._id)}
-                                  // onClick={() => {
-                                  // setItemId(item._id);
-                                  // window.location.href = "/adge-question";
-                                  //}}
+                                  // onClick={handleLink1Click}
+                                  onClick={() => handleLink1Click(index)}
                                 >
                                   <FontAwesomeIcon icon={faCalendarDays} />{" "}
                                   Schedule
                                 </Link>
                                 <Link
                                   type="button"
-                                  to="question3.html"
-                                  className="btn btn-sm tableBtn-blue mx-1"
-                                  // onClick={() => setItemId3(item?._id)}
-                                  onClick={() => {
-                                    // setItemId(item._id);
-                                    window.location.href = "/adge-question";
-                                  }}
+                                  to="/auditior-question"
+                                  className={isLink1Active? `btn btn-sm tableBtn-blue mx-1` : "btn btn-sm tableBtn-secondary mx-1"
+                                }
+                                  // onClick={handleLink2Click}
+                                  onClick={() => handleLink1Click(index)}
                                 >
                                   <FontAwesomeIcon icon={faCopy} />
                                   <FontAwesomeIcon icon={faComment} />{" "}
@@ -471,7 +484,7 @@ function Home() {
                               <td>{currentItem.title}</td>
                               <td>{currentItem.createdAt?.slice(0, 10)}</td>
                               <td>{currentItem.userName}</td>
-                              <td></td>
+                              <td>{currentItem?.score} </td>
                               <td>
                                 <div className="nav-item dropdown pe-3">
                                   <Link
