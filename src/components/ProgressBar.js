@@ -30,7 +30,7 @@ function ProgressBar() {
     <>
       <div className="step-progress">
         <StepZilla steps={steps} nextTextOnFinalActionStep={"Submit"} />
-        {/* <div className="d-flex justify-content-end">
+        <div className="d-flex justify-content-end">
           <div>
             <button type="button" className="btn btn-primary mr-2 mx-2">
               Draft
@@ -39,7 +39,7 @@ function ProgressBar() {
               Submit
             </button>
           </div>
-        </div> */}
+        </div>
       </div>
     </>
   );

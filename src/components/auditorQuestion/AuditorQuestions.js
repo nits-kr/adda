@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink, faComment } from "@fortawesome/free-solid-svg-icons";
 import Header from "../Header";
 import Navbar from "../Navbar";
+import { useAddApproveMutation } from "../../services/Post";
 
 function AuditorQuestions() {
   const [activeStep, setActiveStep] = useState(1);
@@ -15,7 +16,7 @@ function AuditorQuestions() {
     <>
       <Header />
       <Navbar />
-      <div className="modal fade" id="ExtralargeModal" tabIndex={-1}>
+      <div className="modal fade" id="ExtralargeModal">
         <div className="modal-dialog modal-xl modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">

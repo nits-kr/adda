@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Header from "../Header";
+import Navbar from "../Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEye,
@@ -10,18 +12,24 @@ import {
   faCalendarDays,
   faComment,
 } from "@fortawesome/free-solid-svg-icons";
-import Header from "../Header";
-import Navbar from "../Navbar";
 import { useGetAllPostHomeQuery } from "../../services/Post";
 import { useCreateFormMutation } from "../../services/Post";
 import { useViewDetailsMutation } from "../../services/Post";
 import { useUpdateDuplicateMutation } from "../../services/Post";
 import { useAddHomeScheduleMutation } from "../../services/Post";
+
+
+// import CanvasJSReact from "@canvasjs/react-charts";
+// //var CanvasJSReact = require('@canvasjs/react-charts');
+
 function Home() {
+  const navigate = useNavigate()
+  // var CanvasJS = CanvasJSReact.CanvasJS;
+  // var CanvasJSChart = CanvasJSReact.CanvasJSChart;
   const [createForm] = useCreateFormMutation();
   const [viewDetails] = useViewDetailsMutation();
   const [updateDuplicate] = useUpdateDuplicateMutation();
-  const [schedule] = useAddHomeScheduleMutation();
+  const [schedule,responseSchedule] = useAddHomeScheduleMutation();
   // console.log("useViewDetailsMutation", useViewDetailsMutation);
   console.log("create form", createForm);
   console.log("create form details", createForm?.data?.results?.saveData);
@@ -36,22 +44,9 @@ function Home() {
   const [status, setStatus] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-
   const [userName, setUserName] = useState("");
   const [scheduledList, setScheduledList] = useState();
-
-  const [isLink1Active, setIsLink1Active] = useState([]);
-
-  const handleLink1Click = (index) => {
-    const updateColor = [...isLink1Active]
-    updateColor[index] = !updateColor[index]
-    setIsLink1Active(updateColor);
-  };
-
-  const handleLink2Click = () => {
-    setIsLink1Active(true);
-  };
-  
+   const [change,setChange] = useState(false)
 
   useEffect(() => {
     if (blog?.data?.results) {
@@ -59,7 +54,7 @@ function Home() {
     } else {
       setScheduledList(blog?.data?.results);
     }
-  }, [blog]);
+  }, [blog,change]);
 
   console.log("scheduled data list", scheduledList);
 
@@ -71,10 +66,10 @@ function Home() {
 
     try {
       const response = await createForm(editAddress);
-      const generatedId2 = response?.data?.results?.addUser?._id;
-      console.log("generatedId2", generatedId2);
+      const generatedId = response?.data?.results?.saveData?._id;
+      console.log("generatedId", generatedId);
 
-      localStorage.setItem("generatedId2", generatedId2);
+      localStorage.setItem("generatedId", generatedId);
 
       Swal.fire({
         title: "Application Created",
@@ -95,9 +90,9 @@ function Home() {
 
     return () => clearTimeout(timer);
   }, [itemId]);
-  // useEffect(() => {
-  //   handleSaveChanges2()
-  // },[itemId])
+
+
+
   const handleSaveChanges2 = () => {
     const editAddress = {
       id: itemId,
@@ -114,23 +109,402 @@ function Home() {
     };
     updateDuplicate(editDuplicate);
   };
+
   const handleSaveChanges5 = () => {
     console.log("handleSaveChanges1", itemId2);
+
     const editDuplicate = {
       id: itemId2,
       type: "External",
       to: endDate,
       from: startDate,
       Status: status,
+       schedule:true
     };
-    schedule(editDuplicate);
 
+    schedule(editDuplicate);
+    !responseSchedule?.isError && setScheduledList(blog?.data?.results);
+console.log(responseSchedule?.isError,"ress");
   };
 
   return (
     <>
       <Header />
-      <Navbar />
+      <Navbar  Dash={"home"}/>
+
+      <main id="main" className="main">
+        <div className="container p-0">
+          <section className="section">
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="card StaticCard">
+                  <div className="card-body" style={{ flex: "1" }}>
+                    <h5 className="card-title float-start">Home</h5>
+                    <button
+                      type="button"
+                      className="btn btn-sm DefaultBtn float-end mt-4"
+                      fdprocessedid="bfs61e"
+                    >
+                      <FontAwesomeIcon icon={faDownload} /> Download
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-sm DefaultBtn float-end mt-4 me-2"
+                      fdprocessedid="bfs61e"
+                    >
+                      <Link
+                        // data-bs-toggle="modal"
+                        // data-bs-target="#staticBackdrop"
+                        className="comman_btn2 table_viewbtn"
+                        to="/users"
+                      >
+                        <FontAwesomeIcon icon={faUserPlus} /> Add Application
+                      </Link>
+                    </button>
+                    <table
+                      className="table  table-hover table-striped CustomTable mt-2  "
+                      id="UserTable"
+                      style={{
+                        marginTop:"1rem"
+                      }}
+                    >
+                      <thead>
+                        <tr >
+                          <th scope="col">ID</th>
+                          <th scope="col">Title</th>
+                          <th scope="col">Date</th>
+                          <th scope="col">User</th>
+                          <th scope="col">Score</th>
+                          <th scope="col"></th>
+                          <th scope="col">Scheduled</th>
+                          <th scope="col">Status</th>
+                          <th
+                            scope="col"
+                            align="center"
+                            className="text-center"
+                            style={{
+                              textAlign: "center !important",
+                              width: 280,
+                            }}
+                          >
+                            Action
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        
+                        {scheduledList?.list?.map((item, index) => {
+                          return (
+                            <tr className="yellow" key={index}>
+                              <th scope="row">AUD45461</th>
+                              <td> {item?.title} </td>
+                              <td>{item?.createdAt?.slice(0, 10)}</td>
+                              <td>{item?.userName}</td>
+                              <td></td>
+                              <td></td>
+                              <td>
+                                <div className="nav-item dropdown pe-3">
+                                  <Link
+                                    className=""
+                                    to="#"
+                                    data-bs-toggle="dropdown"
+                                  >
+                                    {" "}
+                                  </Link>
+
+                                  <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile text-start">
+                                    <li className="dropdown-header">
+                                      <div className="form-group text-start">
+                                        <small>Scheduled to</small>
+                                        <h6 className="text-black">
+                                          Mohammed bin Ibrahim
+                                        </h6>
+                                      </div>
+                                      <div className="form-group text-start">
+                                        <small>Scheduled date</small>
+                                        <h6 className="text-black">
+                                          25-06-2023 to 30-06-2023
+                                        </h6>
+                                      </div>
+                                      <div className="form-group text-start">
+                                        <small>Owner</small>
+                                        <h6 className="text-black">
+                                          ADGE Name
+                                        </h6>
+                                      </div>
+                                      <div className="form-group text-start">
+                                        <small>User</small>
+                                        <h6 className="text-black">POC Name</h6>
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </td>
+                              <td>{item?.status}</td>
+                              <td style={{ textAlign: "center" }}>
+                               {
+                                item?.schedule ?
+                                <Link
+                                type="button"
+                                className="btn btn-sm  mx-1"
+                                style={{cursor:"not-allowed"}}
+                              
+                              >
+                                <FontAwesomeIcon icon={faCalendarDays} />{" "}
+                                Scheduled
+                              </Link>
+                                :
+                                <Link
+                                type="button"
+                                to="question3.html"
+                                className="btn btn-sm tableBtn-blue mx-1"
+                                data-bs-toggle="modal"
+                                data-bs-target="#ExtralargeModal2"
+                                onClick={() => setItemId2(item?._id)}
+                              
+                              >
+                                <FontAwesomeIcon icon={faCalendarDays} />{" "}
+                                Schedule
+                              </Link>
+
+                               }
+                               
+                                <Link
+                                to="/auditior-question"
+                                  type=""
+                                  className="btn btn-sm tableBtn-blue mx-1"
+                                  onClick={() => {
+                                    navigate("/auditior-question")
+                                  }}
+                                >
+                                  <FontAwesomeIcon icon={faCopy} />
+                                  <FontAwesomeIcon icon={faComment} />{" "}
+                                  Review
+                                </Link>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                      <thead>
+                        <tr className="head2">
+                          <th scope="col" colSpan={8}>
+                            <th scope="col" colSpan={8}>
+                              History
+                            </th>
+                          </th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {scheduledList?.listdata?.flatMap((item, index) => {
+                          if (item.length === 0) {
+                            return null;
+                          }
+                          const currentItem = item;
+                          return (
+                            <tr key={index}>
+                              <th scope="row">AUD45461</th>
+                              <td>{currentItem.title}</td>
+                              <td>{currentItem.createdAt?.slice(0, 10)}</td>
+                              <td>{currentItem.userName}</td>
+                              <td>{currentItem.score}</td>
+                              <td></td>
+                              <td>
+                                <div className="nav-item dropdown pe-3">
+                                  <Link
+                                    className=""
+                                    to="#"
+                                    data-bs-toggle="dropdown"
+                                  >
+                                    {currentItem.to?.slice(0, 10)} to{" "}
+                                    {currentItem.from?.slice(0, 10)}
+                                  </Link>
+
+                                  <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile text-start">
+                                    <li className="dropdown-header">
+                                      <div className="form-group text-start">
+                                        <small>Scheduled to</small>
+                                        <h6 className="text-black">
+                                          Mohammed bin Ibrahim
+                                        </h6>
+                                      </div>
+                                      <div className="form-group text-start">
+                                        <small>Scheduled date</small>
+                                        <h6 className="text-black">
+                                          {currentItem.from?.slice(0, 10)} to{" "}
+                                          {currentItem.to?.slice(0, 10)}
+                                        </h6>
+                                      </div>
+                                      <div className="form-group text-start">
+                                        <small>Owner</small>
+                                        <h6 className="text-black">
+                                          ADGE Name
+                                        </h6>
+                                      </div>
+                                      <div className="form-group text-start">
+                                        <small>User</small>
+                                        <h6 className="text-black">POC Name</h6>
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </td>
+                              <td>{currentItem.status}</td>
+                              <td style={{ textAlign: "end" }}>
+                               
+                                <button
+                                  className="btn btn-sm tableBtn-Gray"
+                                  fdprocessedid="nnhqma"
+                                  onClick={() => {
+                                    setItemId(currentItem._id);
+                                    window.location.href = "/adge-question";
+                                  }}
+                                >
+                                  <FontAwesomeIcon icon={faEye} /> View
+                                </button>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <Link
+        to="#"
+        className="back-to-top d-flex align-items-center justify-content-center"
+      >
+        <i className="bi bi-arrow-up-short" />
+      </Link>
+
+
+      <div className="modal fade" id="ExtralargeModal2" tabIndex={-1}>
+        <div className="modal-dialog modal-xl modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">Schedule</h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              />
+            </div>
+            <div className="modal-body">
+              <form>
+                <div className="form-floating theme-form-floating">
+                  <select
+                    className="form-select"
+                    id="floatingSelect1"
+                    aria-label="Floating label select example"
+                    defaultValue=" "
+                    onChange={(e) => setEntity(e.target.value)}
+                  >
+                    <option value="Adda">Adda</option>
+                    <option value="ADNOC">ADNOC</option>
+                    <option value="DMT">DMT</option>
+                    <option value="SSL">SSL</option>
+                    <option value="Tabreed">Tabreed</option>
+                    
+                  </select>
+                  <label htmlFor="floatingSelect">Select Entity Name</label>
+                </div>
+                <legend className="col-form-label col-sm-1 pt-0">
+                  External
+                </legend>
+                <span>
+                  <div className="col-sm-6">
+                    <div className="form-check-inline">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="gridCheck1"
+                        
+                      />
+                    </div>
+                  </div>
+                </span>
+                <legend className="col-form-label col-sm-1 pt-0">
+                  Internal
+                </legend>
+                <span>
+                  <div className="col-sm-6">
+                    <div className="form-check-inline">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        id="gridCheck1"
+                        onChange={(e) => setInternal(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </span>
+              </form>
+
+              <form
+                className="form-design py-4 px-3 help-support-form row align-items-end justify-content-between"
+                action=""
+              >
+                <div className="form-group mb-0 col-6">
+                  <label htmlFor="">From</label>
+                  <input
+                    type="date"
+                    className="form-control"
+                    id="startDate"
+                    onChange={(e) => setStartDate(e.target.value)}
+                  />
+                </div>
+                <div className="form-group mb-0 col-6">
+                  <label htmlFor="">To</label>
+                  <input
+                    type="date"
+                    className="form-control"
+                    id="endDate"
+                    onChange={(e) => setEndDate(e.target.value)}
+                  />
+                </div>
+              </form>
+              <form>
+                <div className="form-floating theme-form-floating">
+                  <select
+                    className="form-select"
+                    id="floatingSelect1"
+                    aria-label="Floating label select example"
+                    defaultValue=" "
+                    onChange={(e) => setStatus(e.target.value)}
+                  >
+                    <option value="Active">Active</option>
+                    <option value="Active">Active</option>
+                    <option value="Active">Active</option>
+                    <option value="Active">Active</option>
+                    <option value="Active">Active</option>
+                  </select>
+                  <label htmlFor="floatingSelect">Status</label>
+                </div>
+              </form>
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-bs-dismiss="modal"
+                onClick={handleSaveChanges5}
+              >
+                Schedule
+              </button>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="modal fade" id="ExtralargeModal" tabIndex={-1}>
         <div className="modal-dialog modal-xl modal-dialog-centered">
           <div className="modal-content">
@@ -200,374 +574,6 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="modal fade" id="ExtralargeModal2" tabIndex={-1}>
-        <div className="modal-dialog modal-xl modal-dialog-centered">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title">Schedule</h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              />
-            </div>
-            <div className="modal-body">
-              <form>
-                <div className="form-floating theme-form-floating">
-                  <select
-                    className="form-select"
-                    id="floatingSelect1"
-                    aria-label="Floating label select example"
-                    defaultValue=" "
-                    onChange={(e) => setEntity(e.target.value)}
-                  >
-                    <option value="Adda">Adda</option>
-                    <option value="ADNOC">ADNOC</option>
-                    <option value="DMT">DMT</option>
-                    <option value="SSL">SSL</option>
-                    <option value="Tabreed">Tabreed</option>
-                  </select>
-                  <label htmlFor="floatingSelect">Select Entity Name</label>
-                </div>
-                <legend className="col-form-label col-sm-1 pt-0">
-                  External
-                </legend>
-                <span>
-                  <div className="col-sm-6">
-                    <div className="form-check-inline">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="gridCheck1"
-                      />
-                    </div>
-                  </div>
-                </span>
-                <legend className="col-form-label col-sm-1 pt-0">
-                  Internal
-                </legend>
-                <span>
-                  <div className="col-sm-6">
-                    <div className="form-check-inline">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="gridCheck1"
-                        onChange={(e) => setInternal(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                </span>
-              </form>
-
-              <form
-                className="form-design py-4 px-3 help-support-form row align-items-end justify-content-between"
-                action=""
-              >
-                <div className="form-group mb-0 col-6">
-                  <label htmlFor="">From</label>
-                  <input
-                    type="date"
-                    className="form-control"
-                    id="startDate"
-                    onChange={(e) => setStartDate(e.target.value)}
-                  />
-                </div>
-                <div className="form-group mb-0 col-6">
-                  <label htmlFor="">To</label>
-                  <input
-                    type="date"
-                    className="form-control"
-                    id="endDate"
-                    onChange={(e) => setEndDate(e.target.value)}
-                  />
-                </div>
-              </form>
-              <form>
-                <div className="form-floating theme-form-floating">
-                  <select
-                    className="form-select"
-                    id="floatingSelect1"
-                    aria-label="Floating label select example"
-                    defaultValue=" "
-                    onChange={(e) => setStatus(e.target.value)}
-                  >
-                    <option value="Yet to schedule">Yet to schedule</option>
-                    <option value="scheduled">scheduled</option>
-                    <option value="in progress">in progress</option>
-                    <option value="assessment in progress">
-                      assessment in progress
-                    </option>
-                    <option value="assessment completed">
-                      assessment completed
-                    </option>
-                  </select>
-                  <label htmlFor="floatingSelect">Status</label>
-                </div>
-              </form>
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-primary"
-                data-bs-dismiss="modal"
-                onClick={handleSaveChanges5}
-              >
-                Schedule
-              </button>
-              {/* <button
-                type="button"
-                className="btn btn-danger"
-                onClick={handleSaveChanges5}
-              >
-                Cancel
-              </button> */}
-            </div>
-          </div>
-        </div>
-      </div>
-      <main id="main" className="main">
-        <div className="container p-0">
-          <section className="section">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="card StaticCard">
-                  <div className="card-body" style={{ flex: "1" }}>
-                    <h5 className="card-title float-start">Home</h5>
-                    <button
-                      type="button"
-                      className="btn btn-sm DefaultBtn float-end mt-4"
-                      fdprocessedid="bfs61e"
-                    >
-                      <FontAwesomeIcon icon={faDownload} /> Download
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-sm DefaultBtn float-end mt-4 me-2"
-                      fdprocessedid="bfs61e"
-                    >
-                      <Link
-                        // data-bs-toggle="modal"
-                        // data-bs-target="#staticBackdrop"
-                        className="comman_btn2 table_viewbtn"
-                        to="/users"
-                      >
-                        <FontAwesomeIcon icon={faUserPlus} /> Add Application
-                      </Link>
-                    </button>
-                    <table
-                      className="table table-sm table-hover table-striped CustomTable"
-                      id="UserTable"
-                    >
-                      <thead>
-                        <tr>
-                          <th scope="col">ID</th>
-                          <th scope="col">Title</th>
-                          <th scope="col">Date</th>
-                          <th scope="col">User</th>
-                          <th scope="col">Score</th>
-                          <th scope="col">Scheduled</th>
-                          <th scope="col">Status</th>
-                          <th
-                            scope="col"
-                            align="center"
-                            className="text-center"
-                            style={{
-                              textAlign: "center !important",
-                              width: 280,
-                            }}
-                          >
-                            Action
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {scheduledList?.list?.map((item, index) => {
-                          return (
-                            <tr className="yellow" key={index}>
-                              <th scope="row">AUD45461</th>
-                              <td> {item?.title} </td>
-                              <td>{item?.createdAt?.slice(0, 10)}</td>
-                              <td>{item?.userName}</td>
-                              <td></td>
-                              <td>
-                                <div className="nav-item dropdown pe-3">
-                                  <Link
-                                    className=""
-                                    to="#"
-                                    data-bs-toggle="dropdown"
-                                  >
-                                    {" "}
-                                  </Link>
-
-                                  <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile text-start">
-                                    <li className="dropdown-header">
-                                      <div className="form-group text-start">
-                                        <small>Scheduled to</small>
-                                        <h6 className="text-black">
-                                          Mohammed bin Ibrahim
-                                        </h6>
-                                      </div>
-                                      <div className="form-group text-start">
-                                        <small>Scheduled date</small>
-                                        <h6 className="text-black">
-                                          25-06-2023 to 30-06-2023
-                                        </h6>
-                                      </div>
-                                      <div className="form-group text-start">
-                                        <small>Owner</small>
-                                        <h6 className="text-black">
-                                          ADGE Name
-                                        </h6>
-                                      </div>
-                                      <div className="form-group text-start">
-                                        <small>User</small>
-                                        <h6 className="text-black">POC Name</h6>
-                                      </div>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </td>
-                              <td>{item?.status}</td>
-                              <td style={{ textAlign: "center" }}>
-                                <Link
-                                  type="button"
-                                  to="question3.html"
-                                  className={`btn btn-sm tableBtn-blue mx-1 ${
-                                    isLink1Active ? "" : "disabled"
-                                  }`}
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#ExtralargeModal2"
-                                  // onClick={handleLink1Click}
-                                  onClick={() => handleLink1Click(index)}
-                                >
-                                  <FontAwesomeIcon icon={faCalendarDays} />{" "}
-                                  Schedule
-                                </Link>
-                                <Link
-                                  type="button"
-                                  to="/auditior-question"
-                                  className={isLink1Active? `btn btn-sm tableBtn-blue mx-1` : "btn btn-sm tableBtn-secondary mx-1"
-                                }
-                                  // onClick={handleLink2Click}
-                                  onClick={() => handleLink1Click(index)}
-                                >
-                                  <FontAwesomeIcon icon={faCopy} />
-                                  <FontAwesomeIcon icon={faComment} />{" "}
-                                  Review/Approve
-                                </Link>
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                      <thead>
-                        <tr className="head2">
-                          <th scope="col" colSpan={8}>
-                            <th scope="col" colSpan={8}>
-                              History
-                            </th>
-                          </th>
-                        </tr>
-                      </thead>
-
-                      <tbody>
-                        {scheduledList?.listdata?.flatMap((item, index) => {
-                          if (item.length === 0) {
-                            return null;
-                          }
-                          const currentItem = item;
-                          return (
-                            <tr key={index}>
-                              <th scope="row">AUD45461</th>
-                              <td>{currentItem.title}</td>
-                              <td>{currentItem.createdAt?.slice(0, 10)}</td>
-                              <td>{currentItem.userName}</td>
-                              <td>{currentItem?.score} </td>
-                              <td>
-                                <div className="nav-item dropdown pe-3">
-                                  <Link
-                                    className=""
-                                    to="#"
-                                    data-bs-toggle="dropdown"
-                                  >
-                                    {currentItem.to?.slice(0, 10)} to{" "}
-                                    {currentItem.from?.slice(0, 10)}
-                                  </Link>
-
-                                  <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile text-start">
-                                    <li className="dropdown-header">
-                                      <div className="form-group text-start">
-                                        <small>Scheduled to</small>
-                                        <h6 className="text-black">
-                                          Mohammed bin Ibrahim
-                                        </h6>
-                                      </div>
-                                      <div className="form-group text-start">
-                                        <small>Scheduled date</small>
-                                        <h6 className="text-black">
-                                          {currentItem.from?.slice(0, 10)} to{" "}
-                                          {currentItem.to?.slice(0, 10)}
-                                        </h6>
-                                      </div>
-                                      <div className="form-group text-start">
-                                        <small>Owner</small>
-                                        <h6 className="text-black">
-                                          ADGE Name
-                                        </h6>
-                                      </div>
-                                      <div className="form-group text-start">
-                                        <small>User</small>
-                                        <h6 className="text-black">POC Name</h6>
-                                      </div>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </td>
-                              <td>{currentItem.status}</td>
-                              <td style={{ textAlign: "end" }}>
-                                {/* <button
-                                  type="button"
-                                  className="btn btn-sm tableBtn-Gray mx-1"
-                                  data-bs-toggle="modal"
-                                  data-bs-target="#ExtralargeModal"
-                                  fdprocessedid="8wai4"
-                                  onClick={() => setItemId2(currentItem?._id)}
-                                >
-                                  <FontAwesomeIcon icon={faCopy} /> 
-                                </button> */}
-                                <button
-                                  className="btn btn-sm tableBtn-Gray"
-                                  fdprocessedid="nnhqma"
-                                  // onClick={() => setItemId(currentItem._id)}
-                                  onClick={() => {
-                                    setItemId(currentItem._id);
-                                    window.location.href = "/adge-question";
-                                  }}
-                                >
-                                  <FontAwesomeIcon icon={faEye} /> View
-                                </button>
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-      </main>
-
-      <Link
-        to="#"
-        className="back-to-top d-flex align-items-center justify-content-center"
-      >
-        <i className="bi bi-arrow-up-short" />
-      </Link>
 
       <svg
         id="SvgjsSvg1001"

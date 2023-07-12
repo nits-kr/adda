@@ -61,6 +61,18 @@ export const PostApi = createApi({
         };
       },
     }),
+    addApprove: builder.mutation({
+      query: (body) => {
+        console.log("update address", body);
+        const { id, ...data } = body;
+        console.log("update address body data", data);
+        return {
+          url: `/adda/adda-aproved-in/${id}`,
+          method: "post",
+          body: data,
+        };
+      },
+    }),
     rolesList: builder.query({
       query: (body) => {
         return {
@@ -121,7 +133,7 @@ export const PostApi = createApi({
       query: (body) => {
         console.log("update address", body);
         return {
-          url: `/adda/adda-user-add`,
+          url: `/adge/add-form`,
           method: "post",
           body,
         };
@@ -209,4 +221,5 @@ export const {
   useDeleteUserMutation,
   useUpdateUserMutation,
   useAddUserMutation,
+  useAddApproveMutation,
 } = PostApi;

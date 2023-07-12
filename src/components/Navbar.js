@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar({Dash}) {
+
+  console.log(Dash);
   return (
     <>
       <nav className="navbar navbar-expand-md  mb-4 header fixed-top d-flex align-items-center">
@@ -9,17 +11,17 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="navbarCollapse">
             <ul className="navbar-nav ">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/home">
+                <Link className={Dash === "home" ? "nav-link active" : "nav-link" }  aria-current="page" to="/home">
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/dashboard">
+                <Link className={Dash === "dash" ? "nav-link active" : "nav-link" }  to="/dashboard">
                   Dashboard
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/audit-report">
+                <Link className={Dash === "Report" ? "nav-link active" : "nav-link" } to="/audit-report">
                   Reports
                 </Link>
               </li>
