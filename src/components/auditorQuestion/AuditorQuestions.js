@@ -15,7 +15,7 @@ function AuditorQuestions() {
     <>
       <Header />
       <Navbar />
-      <div className="modal fade" id="ExtralargeModal" tabIndex={-1}>
+      <div className="modal fade" id="ExtralargeModal">
         <div className="modal-dialog modal-xl modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">

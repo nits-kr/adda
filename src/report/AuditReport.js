@@ -25,7 +25,7 @@ function AuditReport() {
                       {" "}
                       <strong>Auditor Reports</strong>{" "}
                     </h5>
-                    <button
+                    {/* <button
                       type="button"
                       className="btn btn-sm DefaultBtn float-end mt-1"
                       fdprocessedid="bfs61e"
@@ -255,7 +255,7 @@ function AuditReport() {
                           <td> 70%</td>
                         </tr>
                       </tbody>
-                    </table>
+                    </table> */}
                   </div>
                 </div>
               </div>

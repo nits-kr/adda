@@ -1544,7 +1544,10 @@ h6 {
 }
 
 .CustomTable {
+  position: relative;
   font-size: 12px;
+  align-items: center;
+  width: 100% !important;
 }
 
 .CustomTable .btn {
