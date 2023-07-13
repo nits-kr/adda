@@ -1624,7 +1624,7 @@ h6 {
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) > * {
-  background-color: #ffffff;
+  background-color: #fff7cc !important;
   -bs-table-bg-type: none !important;
 }
 

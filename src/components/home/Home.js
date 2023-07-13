@@ -17,19 +17,19 @@ import { useCreateFormMutation } from "../../services/Post";
 import { useViewDetailsMutation } from "../../services/Post";
 import { useUpdateDuplicateMutation } from "../../services/Post";
 import { useAddHomeScheduleMutation } from "../../services/Post";
-
+import { useQuestionListMutation } from "../../services/Post";
 
 // import CanvasJSReact from "@canvasjs/react-charts";
 // //var CanvasJSReact = require('@canvasjs/react-charts');
 
 function Home() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   // var CanvasJS = CanvasJSReact.CanvasJS;
   // var CanvasJSChart = CanvasJSReact.CanvasJSChart;
   const [createForm] = useCreateFormMutation();
   const [viewDetails] = useViewDetailsMutation();
   const [updateDuplicate] = useUpdateDuplicateMutation();
-  const [schedule,responseSchedule] = useAddHomeScheduleMutation();
+  const [schedule, responseSchedule] = useAddHomeScheduleMutation();
   // console.log("useViewDetailsMutation", useViewDetailsMutation);
   console.log("create form", createForm);
   console.log("create form details", createForm?.data?.results?.saveData);
@@ -46,15 +46,32 @@ function Home() {
   const [endDate, setEndDate] = useState("");
   const [userName, setUserName] = useState("");
   const [scheduledList, setScheduledList] = useState();
-   const [change,setChange] = useState(false)
-
+  const [questionList, re] = useQuestionListMutation();
+  const [change, setChange] = useState(false);
+  const review = (_id) => {
+    const editAddress = {
+      id: _id,
+    };
+    questionList(editAddress);
+    console.log("viewAgent", _id);
+    localStorage.setItem("reviewId", _id);
+  };
+  // useEffect(() => {
+  //   handleSaveChanges4();
+  // }, [])
+  // const handleSaveChanges4 = () => {
+  //   const editAddress = {
+  //     id: id,
+  //   };
+  //   questionList(editAddress);
+  // };
   useEffect(() => {
     if (blog?.data?.results) {
       setScheduledList(blog?.data?.results);
     } else {
       setScheduledList(blog?.data?.results);
     }
-  }, [blog,change]);
+  }, [blog, change]);
 
   console.log("scheduled data list", scheduledList);
 
@@ -91,8 +108,6 @@ function Home() {
     return () => clearTimeout(timer);
   }, [itemId]);
 
-
-
   const handleSaveChanges2 = () => {
     const editAddress = {
       id: itemId,
@@ -119,18 +134,18 @@ function Home() {
       to: endDate,
       from: startDate,
       Status: status,
-       schedule:true
+      schedule: true,
     };
 
     schedule(editDuplicate);
     !responseSchedule?.isError && setScheduledList(blog?.data?.results);
-console.log(responseSchedule?.isError,"ress");
+    console.log(responseSchedule?.isError, "ress");
   };
 
   return (
     <>
       <Header />
-      <Navbar  Dash={"home"}/>
+      <Navbar Dash={"home"} />
 
       <main id="main" className="main">
         <div className="container p-0">
@@ -143,21 +158,18 @@ console.log(responseSchedule?.isError,"ress");
                     <button
                       type="button"
                       className="btn btn-sm DefaultBtn float-end mt-4"
-                      fdprocessedid="bfs61e"
-                    >
+                      fdprocessedid="bfs61e">
                       <FontAwesomeIcon icon={faDownload} /> Download
                     </button>
                     <button
                       type="button"
                       className="btn btn-sm DefaultBtn float-end mt-4 me-2"
-                      fdprocessedid="bfs61e"
-                    >
+                      fdprocessedid="bfs61e">
                       <Link
-                        data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop"
+                        // data-bs-toggle="modal"
+                        // data-bs-target="#staticBackdrop"
                         className="comman_btn2 table_viewbtn"
-                        to=""
-                      >
+                        to="/users">
                         <FontAwesomeIcon icon={faUserPlus} /> Add Application
                       </Link>
                     </button>
@@ -165,19 +177,18 @@ console.log(responseSchedule?.isError,"ress");
                       className="table  table-hover table-striped CustomTable mt-2  "
                       id="UserTable"
                       style={{
-                        marginTop:"1rem"
-                      }}
-                    >
+                        marginTop: "1rem",
+                      }}>
                       <thead>
-                        <tr >
+                        <tr>
                           <th scope="col">ID</th>
                           <th scope="col">Title</th>
                           <th scope="col">Date</th>
                           <th scope="col">User</th>
                           <th scope="col">Score</th>
+                          <th scope="col"></th>
                           <th scope="col">Scheduled</th>
                           <th scope="col">Status</th>
-                          <th scope="col">Score</th>
                           <th
                             scope="col"
                             align="center"
@@ -185,14 +196,12 @@ console.log(responseSchedule?.isError,"ress");
                             style={{
                               textAlign: "center !important",
                               width: 280,
-                            }}
-                          >
+                            }}>
                             Action
                           </th>
                         </tr>
                       </thead>
                       <tbody>
-                        
                         {scheduledList?.list?.map((item, index) => {
                           return (
                             <tr className="yellow" key={index}>
@@ -207,8 +216,7 @@ console.log(responseSchedule?.isError,"ress");
                                   <Link
                                     className=""
                                     to="#"
-                                    data-bs-toggle="dropdown"
-                                  >
+                                    data-bs-toggle="dropdown">
                                     {" "}
                                   </Link>
 
@@ -242,42 +250,33 @@ console.log(responseSchedule?.isError,"ress");
                               </td>
                               <td>{item?.status}</td>
                               <td style={{ textAlign: "center" }}>
-                               {
-                                item?.schedule ?
-                                <Link
-                                type="button"
-                                className="btn btn-sm  mx-1"
-                                style={{cursor:"not-allowed"}}
-                              
-                              >
-                                <FontAwesomeIcon icon={faCalendarDays} />{" "}
-                                Scheduled
-                              </Link>
-                                :
-                                <Link
-                                type="button"
-                                to="question3.html"
-                                className="btn btn-sm tableBtn-blue mx-1"
-                                data-bs-toggle="modal"
-                                data-bs-target="#ExtralargeModal2"
-                                onClick={() => setItemId2(item?._id)}
-                              
-                              >
-                                <FontAwesomeIcon icon={faCalendarDays} />{" "}
-                                Schedule
-                              </Link>
+                                {item?.schedule ? (
+                                  <Link
+                                    type="button"
+                                    className="btn btn-sm  mx-1"
+                                    style={{ cursor: "not-allowed" }}>
+                                    <FontAwesomeIcon icon={faCalendarDays} />{" "}
+                                    Scheduled
+                                  </Link>
+                                ) : (
+                                  <Link
+                                    type="button"
+                                    to="question3.html"
+                                    className="btn btn-sm tableBtn-blue mx-1"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModal2"
+                                    onClick={() => setItemId2(item?._id)}>
+                                    <FontAwesomeIcon icon={faCalendarDays} />{" "}
+                                    Schedule
+                                  </Link>
+                                )}
 
-                               }
-                               
                                 <Link
-                                  type="button"
-                                  to="/auditior-question"
+                                  to={`/auditior-question/${item._id}`}
                                   className="btn btn-sm tableBtn-blue mx-1"
-                                 
-                                >
+                                  onClick={() => review(item._id)}>
                                   <FontAwesomeIcon icon={faCopy} />
-                                  <FontAwesomeIcon icon={faComment} />{" "}
-                                  Review
+                                  <FontAwesomeIcon icon={faComment} /> Review
                                 </Link>
                               </td>
                             </tr>
@@ -313,8 +312,7 @@ console.log(responseSchedule?.isError,"ress");
                                   <Link
                                     className=""
                                     to="#"
-                                    data-bs-toggle="dropdown"
-                                  >
+                                    data-bs-toggle="dropdown">
                                     {currentItem.to?.slice(0, 10)} to{" "}
                                     {currentItem.from?.slice(0, 10)}
                                   </Link>
@@ -350,15 +348,13 @@ console.log(responseSchedule?.isError,"ress");
                               </td>
                               <td>{currentItem.status}</td>
                               <td style={{ textAlign: "end" }}>
-                               
                                 <button
                                   className="btn btn-sm tableBtn-Gray"
                                   fdprocessedid="nnhqma"
                                   onClick={() => {
                                     setItemId(currentItem._id);
                                     window.location.href = "/adge-question";
-                                  }}
-                                >
+                                  }}>
                                   <FontAwesomeIcon icon={faEye} /> View
                                 </button>
                               </td>
@@ -377,11 +373,9 @@ console.log(responseSchedule?.isError,"ress");
 
       <Link
         to="#"
-        className="back-to-top d-flex align-items-center justify-content-center"
-      >
+        className="back-to-top d-flex align-items-center justify-content-center">
         <i className="bi bi-arrow-up-short" />
       </Link>
-
 
       <div className="modal fade" id="ExtralargeModal2" tabIndex={-1}>
         <div className="modal-dialog modal-xl modal-dialog-centered">
@@ -403,14 +397,12 @@ console.log(responseSchedule?.isError,"ress");
                     id="floatingSelect1"
                     aria-label="Floating label select example"
                     defaultValue=" "
-                    onChange={(e) => setEntity(e.target.value)}
-                  >
+                    onChange={(e) => setEntity(e.target.value)}>
                     <option value="Adda">Adda</option>
                     <option value="ADNOC">ADNOC</option>
                     <option value="DMT">DMT</option>
                     <option value="SSL">SSL</option>
                     <option value="Tabreed">Tabreed</option>
-                    
                   </select>
                   <label htmlFor="floatingSelect">Select Entity Name</label>
                 </div>
@@ -424,7 +416,6 @@ console.log(responseSchedule?.isError,"ress");
                         className="form-check-input"
                         type="checkbox"
                         id="gridCheck1"
-                        
                       />
                     </div>
                   </div>
@@ -448,8 +439,7 @@ console.log(responseSchedule?.isError,"ress");
 
               <form
                 className="form-design py-4 px-3 help-support-form row align-items-end justify-content-between"
-                action=""
-              >
+                action="">
                 <div className="form-group mb-0 col-6">
                   <label htmlFor="">From</label>
                   <input
@@ -476,8 +466,7 @@ console.log(responseSchedule?.isError,"ress");
                     id="floatingSelect1"
                     aria-label="Floating label select example"
                     defaultValue=" "
-                    onChange={(e) => setStatus(e.target.value)}
-                  >
+                    onChange={(e) => setStatus(e.target.value)}>
                     <option value="Active">Active</option>
                     <option value="Active">Active</option>
                     <option value="Active">Active</option>
@@ -493,11 +482,9 @@ console.log(responseSchedule?.isError,"ress");
                 type="button"
                 className="btn btn-primary"
                 data-bs-dismiss="modal"
-                onClick={handleSaveChanges5}
-              >
+                onClick={handleSaveChanges5}>
                 Schedule
               </button>
-            
             </div>
           </div>
         </div>
@@ -520,8 +507,7 @@ console.log(responseSchedule?.isError,"ress");
                 <div className="row mb-3">
                   <label
                     htmlFor="inputEmail3"
-                    className="col-sm-3 col-form-label"
-                  >
+                    className="col-sm-3 col-form-label">
                     Title
                   </label>
                   <div className="col-sm-6">
@@ -557,15 +543,13 @@ console.log(responseSchedule?.isError,"ress");
               <button
                 type="button"
                 className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
+                data-bs-dismiss="modal">
                 Close
               </button>
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={handleSaveChanges3}
-              >
+                onClick={handleSaveChanges3}>
                 Save changes
               </button>
             </div>
@@ -586,8 +570,7 @@ console.log(responseSchedule?.isError,"ress");
           left: "-100%",
           position: "absolute",
           opacity: 0,
-        }}
-      >
+        }}>
         <defs id="SvgjsDefs1002" />
         <polyline id="SvgjsPolyline1003" points="0,0" />
         <path id="SvgjsPath1004" d="M0 0 " />
@@ -599,8 +582,7 @@ console.log(responseSchedule?.isError,"ress");
         data-bs-keyboard="false"
         tabIndex="-1"
         aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
-      >
+        aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
@@ -611,14 +593,12 @@ console.log(responseSchedule?.isError,"ress");
                 type="button"
                 className="btn-close"
                 data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+                aria-label="Close"></button>
             </div>
             <div className="modal-body">
               <form
                 className="form-design p-3 help-support-form row align-items-end justify-content-center"
-                action=""
-              >
+                action="">
                 <div className="form-group col-12">
                   <label htmlFor="nameEn">Title</label>
                   <input
@@ -652,8 +632,7 @@ console.log(responseSchedule?.isError,"ress");
                         height: "40px",
                         backgroundColor: "#5058DD",
                       }}
-                      onClick={handleSaveChanges1}
-                    >
+                      onClick={handleSaveChanges1}>
                       Continue
                     </button>
                   </Link>

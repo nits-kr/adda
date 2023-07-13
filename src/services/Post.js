@@ -61,6 +61,26 @@ export const PostApi = createApi({
         };
       },
     }),
+    addApprove: builder.mutation({
+      query: (body) => {
+        const { id } = body;
+        console.log("viewDetails id", id);
+        return {
+          url: `/adda/adda-aproved-in/${id}`,
+          method: "post",
+        };
+      },
+    }),
+    questionList: builder.mutation({
+      query: (body) => {
+        const { id } = body;
+        console.log("viewDetails id question list", id);
+        return {
+          url: `/adda/adge-questionList/${id}`,
+          method: "post",
+        };
+      },
+    }),
     rolesList: builder.query({
       query: (body) => {
         return {
@@ -209,4 +229,6 @@ export const {
   useDeleteUserMutation,
   useUpdateUserMutation,
   useAddUserMutation,
+  useAddApproveMutation,
+  useQuestionListMutation,
 } = PostApi;

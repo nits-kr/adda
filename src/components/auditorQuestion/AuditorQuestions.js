@@ -1,12 +1,49 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink, faComment } from "@fortawesome/free-solid-svg-icons";
 import Header from "../Header";
 import Navbar from "../Navbar";
+import Swal from "sweetalert2";
+
+import { useAddApproveMutation } from "../../services/Post";
+import { useQuestionListMutation } from "../../services/Post";
 
 function AuditorQuestions() {
+  const { id } = useParams();
+  const [approveIn, response] = useAddApproveMutation();
+  const [questionList, re] = useQuestionListMutation();
+  const [generatedId, setGeneratedId] = useState("");
   const [activeStep, setActiveStep] = useState(1);
+  console.log("question list", re?.data?.results?.listData);
+  console.log("question list response", re);
+
+  // useEffect(() => {
+  //   handleSaveChanges3();
+  // }, [])
+  // const handleSaveChanges3 = () => {
+  //   const editAddress = {
+  //     id: id,
+  //   };
+  //   questionList(editAddress);
+  // };
+
+  const handleSaveChanges2 = () => {
+    const editAddress = {
+      id: id,
+    };
+    approveIn(editAddress);
+  
+    Swal.fire({
+      icon: 'success',
+      title: 'Approved',
+      text: 'Your have been Approved In.',
+      timer: 3000,
+      timerProgressBar: true,
+    });
+  };
+  console.log(generatedId);
+
 
   const handleStepClick = (step) => {
     setActiveStep(step);
@@ -4542,7 +4579,7 @@ function AuditorQuestions() {
                     >
                       Prev
                     </button>
-                    <button type="button" className="active" name="next">
+                    <button type="button" className="active" name="next" onClick={handleSaveChanges2}>
                       Next
                     </button>
                     <button type="button" className="active out" name="finish">
