@@ -154,28 +154,44 @@ function Home() {
               <div className="col-lg-12">
                 <div className="card StaticCard">
                   <div className="card-body" style={{ flex: "1" }}>
-                    <h5 className="card-title float-start">Home</h5>
-                    <button
-                      type="button"
-                      className="btn btn-sm DefaultBtn float-end mt-4"
-                      fdprocessedid="bfs61e"
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                      }}
                     >
-                      <FontAwesomeIcon icon={faDownload} /> Download
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-sm DefaultBtn float-end mt-4 me-2"
-                      fdprocessedid="bfs61e"
-                    >
-                      <Link
-                        // data-bs-toggle="modal"
-                        // data-bs-target="#staticBackdrop"
-                        className="comman_btn2 table_viewbtn"
-                        to="/users"
+                      <h5
+                        className="card-title float-start"
+                        style={{ marginBottom: "0px", padding: "0px" }}
                       >
-                        <FontAwesomeIcon icon={faUserPlus} /> Add Application
-                      </Link>
-                    </button>
+                        Home
+                      </h5>
+                      <div>
+                        <button
+                          type="button"
+                          className="btn btn-sm DefaultBtn float-end"
+                          fdprocessedid="bfs61e"
+                        >
+                          <FontAwesomeIcon icon={faDownload} /> Download
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-sm DefaultBtn float-end me-2"
+                          fdprocessedid="bfs61e"
+                        >
+                          <Link
+                            // data-bs-toggle="modal"
+                            // data-bs-target="#staticBackdrop"
+                            className="comman_btn2 table_viewbtn"
+                            to="/users"
+                          >
+                            <FontAwesomeIcon icon={faUserPlus} /> Add
+                            Application
+                          </Link>
+                        </button>
+                      </div>
+                    </div>
                     <table
                       className="table  table-hover table-striped CustomTable mt-2  "
                       id="UserTable"
@@ -187,12 +203,22 @@ function Home() {
                         <tr>
                           <th scope="col">ID</th>
                           <th scope="col">Title</th>
-                          <th scope="col">Date</th>
-                          <th scope="col">User</th>
-                          <th scope="col">Score</th>
+                          <th scope="col" style={{ textAlign: "center" }}>
+                            Date
+                          </th>
+                          <th scope="col" style={{ textAlign: "center" }}>
+                            User
+                          </th>
+                          <th scope="col" style={{ textAlign: "center" }}>
+                            Score
+                          </th>
                           <th scope="col"></th>
-                          <th scope="col">Scheduled</th>
-                          <th scope="col">Status</th>
+                          <th scope="col" style={{ textAlign: "center" }}>
+                            Scheduled
+                          </th>
+                          <th scope="col" style={{ textAlign: "center" }}>
+                            Status
+                          </th>
                           <th
                             scope="col"
                             align="center"
@@ -209,14 +235,29 @@ function Home() {
                       <tbody>
                         {scheduledList?.list?.map((item, index) => {
                           return (
-                            <tr className="yellow" key={index}>
-                              <th scope="row"> {item?.uniQ_Id} </th>
-                              <td> {item?.title} </td>
-                              <td>{item?.createdAt?.slice(0, 10)}</td>
-                              <td>{item?.userName}</td>
+                            <tr className="heading10" key={index}>
+                              <th
+                                scope="row"
+                                style={{ backgroundColor: "yellow !important" }}
+                              >
+                                {" "}
+                                {item?.uniQ_Id}{" "}
+                              </th>
+                              <td
+                                style={{ backgroundColor: "yellow !important" }}
+                              >
+                                {" "}
+                                {item?.title}{" "}
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                                {item?.createdAt?.slice(0, 10)}
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                                {item?.userName}
+                              </td>
                               <td></td>
                               <td></td>
-                              <td>
+                              <td style={{ textAlign: "center" }}>
                                 <div className="nav-item dropdown pe-3">
                                   <Link
                                     className=""
@@ -254,8 +295,10 @@ function Home() {
                                   </ul>
                                 </div>
                               </td>
-                              <td>{item?.status}</td>
                               <td style={{ textAlign: "center" }}>
+                                {item?.status}
+                              </td>
+                              <td style={{ textAlign: "end" }}>
                                 {item?.schedule ? (
                                   <Link
                                     type="button"
@@ -283,10 +326,11 @@ function Home() {
                                   // to="/auditior-question"
                                   to={`/auditior-question/${item._id}`}
                                   type=""
-                                  className="btn btn-sm tableBtn-blue mx-1"
+                                  className="btn btn-sm tableBtn-blue"
                                   // onClick={() => {
                                   //   navigate("/auditior-question")
                                   // }}
+
                                   onClick={() => review(item._id)}
                                 >
                                   <FontAwesomeIcon icon={faCopy} />
@@ -298,12 +342,22 @@ function Home() {
                         })}
                       </tbody>
                       <thead>
-                        <tr className="head2">
-                          <th scope="col" colSpan={8}>
-                            <th scope="col" colSpan={8}>
-                              History
-                            </th>
+                        <tr className="bg-primary">
+                          <th
+                            scope="col"
+                            colSpan={12}
+                            style={{
+                              padding: "40px 0px 0px 0px !important",
+                              fontWeight: "bold !important",
+                              fontSize: "15px",
+                              backgroundColor: "#5058dd !important",
+                            }}
+                          >
+                            History
                           </th>
+                          {/* <th scope="col" colSpan={8}>
+                            
+                          </th> */}
                         </tr>
                       </thead>
 
@@ -317,11 +371,17 @@ function Home() {
                             <tr key={index}>
                               <th scope="row">AUD45461</th>
                               <td>{currentItem.title}</td>
-                              <td>{currentItem.createdAt?.slice(0, 10)}</td>
-                              <td>{currentItem.userName}</td>
-                              <td>{currentItem.score}</td>
+                              <td style={{ textAlign: "center" }}>
+                                {currentItem.createdAt?.slice(0, 10)}
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                                {currentItem.userName}
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                                {currentItem.score}
+                              </td>
                               <td></td>
-                              <td>
+                              <td style={{ textAlign: "center" }}>
                                 <div className="nav-item dropdown pe-3">
                                   <Link
                                     className=""
@@ -373,18 +433,21 @@ function Home() {
                                 </div>
                               </td>
 
-                              <td>{currentItem.status}</td>
+                              <td style={{ textAlign: "center" }}>
+                                {currentItem.status}
+                              </td>
                               <td style={{ textAlign: "end" }}>
-                                <button
+                                <Link
+                                  to="/auditior-question/:id"
                                   className="btn btn-sm tableBtn-Gray"
                                   fdprocessedid="nnhqma"
                                   onClick={() => {
                                     setItemId(currentItem._id);
-                                    window.location.href = "/adge-question";
+                                    // window.location.href = "/adge-question";
                                   }}
                                 >
                                   <FontAwesomeIcon icon={faEye} /> View
-                                </button>
+                                </Link>
                               </td>
                             </tr>
                           );

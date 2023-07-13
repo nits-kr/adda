@@ -26,7 +26,7 @@ function Navbar({Dash}) {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/auditior-question">
+                <Link className="nav-link" to="#">
                   History
                 </Link>
               </li>

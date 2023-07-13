@@ -8,7 +8,7 @@ function Header() {
         <div className="container-fluid ">
           <div className="d-flex">
             <div className="col-lg-3">
-              <img src="img/logo.svg" alt="" />
+              <img src="../img/logo.svg" alt="" />
             </div>
             <div className="col-lg-9 ">
               <nav className="header-nav ms-auto float-end">
@@ -101,7 +101,7 @@ function Header() {
                       data-bs-toggle="dropdown"
                     >
                       <img
-                        src="assets/img/profile-img.jpg"
+                        src="../assets/img/profile-img.jpg"
                         alt="Profile"
                         className="rounded-circle"
                       />

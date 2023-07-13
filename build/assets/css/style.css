@@ -9,6 +9,56 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+body {
+  font-family: 'Circular Std' !important;
+}
+th{
+  font-weight: bold !important;
+}
+td{
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Circular Std';
+  src: url('../CircularSpotifyText-Light.woff2') format('woff2'),
+      url('../CircularSpotifyText-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Circular Std';
+  src: url('../fonts/CircularStd-Medium.woff2') format('woff2'),
+      url('../fonts/CircularStd-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Circular Std';
+  src: url('../fonts/CircularStd-Black.woff2') format('woff2'),
+      url('../fonts/CircularStd-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Circula';
+  src: url('../fonts/Circula-Medium.woff2') format('woff2'),
+      url('../fonts/Circula-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Circular Std';
+  src: url('../fonts/CircularStd-Bold.woff2') format('woff2'),
+      url('../fonts/CircularStd-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   scroll-behavior: smooth;
 }
@@ -178,10 +228,10 @@
  
   color: #444444;
 } */
-body {
+/* body {
   font-family: "Roboto", sans-serif !important;
   font-size: 14px !important;
-}
+} */
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
@@ -211,7 +261,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Circular Std' !important;
 }
 
 /*--------------------------------------------------------------
@@ -421,7 +471,7 @@ h6 {
   font-size: 16px;
   font-weight: 500;
   color: #707070;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Circular Std' !important;
   border-bottom: 1px solid #e9e9e9;
 }
 
@@ -433,7 +483,7 @@ h6 {
 
 .card-body {
   padding: 0 20px 10px 20px;
-  font-family: "Roboto";
+  font-family: 'Circular Std' !important;
 }
 
 .card-img-overlay {
@@ -443,7 +493,7 @@ h6 {
 /* Alerts */
 .alert-heading {
   font-weight: 500;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Circular Std' !important;
   font-size: 20px;
 }
 
@@ -492,7 +542,7 @@ h6 {
 /* Breadcrumbs */
 .breadcrumb {
   font-size: 14px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Circular Std' !important;
   color: #899bbd;
   font-weight: 600;
 }
@@ -559,7 +609,7 @@ h6 {
   font-size: 26px;
   font-weight: 700;
   color: #012970;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Circular Std' !important;
 }
 
 .header {
@@ -1185,6 +1235,7 @@ h6 {
 
 .dashboard .recent-sales .table thead th {
   border: 0;
+  font-weight: bold;
 }
 
 .dashboard .recent-sales .dataTable-top {
@@ -1624,7 +1675,7 @@ h6 {
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) > * {
-  background-color: #fff7cc !important;
+  background-color: #ffffff;
   -bs-table-bg-type: none !important;
 }
 
@@ -2771,4 +2822,53 @@ p {
   position: absolute;
   right: 20px;
   top: 5px;
+}
+.main {
+  margin-top: 120px;
+  padding: 20px 30px;
+  transition: all 0.3s;
+}
+.AdminCustomCardAll p.nopad {
+  font-size: 55px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 45px !important;
+  margin: 0px;
+  padding: 0px;
+}
+.AdminCustomCardAll  prev {
+  font-size: 15px !important;
+  font-weight: 400;
+  text-align: center;
+  line-height: 18px !important;
+  margin: 0px;
+  padding: 0px;
+}
+.AdminCustomCardAll small {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.obs-bg {
+  background-color: #F6F7FF !important;
+} 
+.obs-bg {
+  background-color: #F6F7FF;
+}
+ul.RecObs {
+  font-size: 14px;
+}
+
+dl, ol, ul {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.rec-bg {
+  background-color: #FCEFFF;
+}
+
+.table-striped > tbody .heading10 td {
+  background-color: #fff7cc !important
+}
+.table-striped > tbody .heading10 th {
+  background-color:#fff7cc !important
 }

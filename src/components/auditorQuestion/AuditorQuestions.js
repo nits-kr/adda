@@ -13,6 +13,7 @@ import { useQuestionListMutation } from "../../services/Post";
 
 function AuditorQuestions() {
   const { id } = useParams();
+  const [page, setPage] = useState(1);
   const [approveIn, response] = useAddApproveMutation();
   const [questionList, re] = useQuestionListMutation();
   const [generatedId, setGeneratedId] = useState("");
@@ -20,25 +21,6 @@ function AuditorQuestions() {
   const [agentDetails, setAgentDetails] = useState("");
   console.log("question list", re?.data?.results?.listData);
   console.log("question list response", re);
-  useEffect(() => {
-    userDetails();
-  }, []);
-  const userDetails = async () => {
-    const { data } = await axios.post(
-      `http://ec2-65-2-108-172.ap-south-1.compute.amazonaws.com:5000/adda/adge-questionList/${id}`
-    );
-    setAgentDetails(data.results.userDetail);
-    console.log("Question Details", data.results.listData);
-  };
-  // useEffect(() => {
-  //   handleSaveChanges3();
-  // }, [])
-  // const handleSaveChanges3 = () => {
-  //   const editAddress = {
-  //     id: id,
-  //   };
-  //   questionList(editAddress);
-  // };
 
   const handleSaveChanges2 = () => {
     const editAddress = {
@@ -53,6 +35,7 @@ function AuditorQuestions() {
       timer: 3000,
       timerProgressBar: true,
     });
+    window.location.href = "/home"
   };
   console.log(generatedId);
 
@@ -148,6 +131,7 @@ function AuditorQuestions() {
           <p>You</p>
         </div>
       </aside>
+
       <main id="main" className="main mainNew">
         <div className="container">
           <div className="card  StaticCard">
@@ -155,2274 +139,2829 @@ function AuditorQuestions() {
               <div className="step-progress">
                 <div className="StepsHeader">
                   <div className="step-slider">
-                    <div data-id="step1" className="step-slider-item">
+                    <div
+                      data-id="step1"
+                      className={
+                        page >= 1
+                          ? "step-slider-item active"
+                          : "step-slider-item"
+                      }
+                    >
                       <div className="Title">Data Governance</div>
                     </div>
-                    <div data-id="step2" className="step-slider-item">
+                    <div
+                      data-id="step2"
+                      className={
+                        page >= 2
+                          ? "step-slider-item active"
+                          : "step-slider-item"
+                      }
+                    >
                       <div className="Title">Data Management </div>
                     </div>
-                    <div data-id="step3" className="step-slider-item">
+                    <div
+                      data-id="step3"
+                      className={
+                        page >= 3
+                          ? "step-slider-item active"
+                          : "step-slider-item"
+                      }
+                    >
                       <div className="Title">Data Catalogue</div>
                     </div>
-                    <div data-id="step4" className="step-slider-item">
+                    <div
+                      data-id="step4"
+                      className={
+                        page >= 4
+                          ? "step-slider-item active"
+                          : "step-slider-item"
+                      }
+                    >
                       <div className="Title">Data Modelling and Design</div>
                     </div>
-                    <div data-id="step5" className="step-slider-item">
+                    <div
+                      data-id="step5"
+                      className={
+                        page >= 5
+                          ? "step-slider-item active"
+                          : "step-slider-item"
+                      }
+                    >
                       <div className="Title">Data Architecture</div>
                     </div>
-                    <div data-id="step6" className="step-slider-item">
+                    <div
+                      data-id="step6"
+                      className={
+                        page >= 6
+                          ? "step-slider-item active"
+                          : "step-slider-item"
+                      }
+                    >
                       <div className="Title">Data Security and Privacy</div>
                     </div>
-                    <div data-id="step7" className="step-slider-item">
+                    <div
+                      data-id="step7"
+                      className={
+                        page >= 7
+                          ? "step-slider-item active"
+                          : "step-slider-item"
+                      }
+                    >
                       <div className="Title">Data Storage</div>
                     </div>
-                    <div data-id="step8" className="step-slider-item">
+                    <div
+                      data-id="step8"
+                      className={
+                        page >= 8
+                          ? "step-slider-item active"
+                          : "step-slider-item"
+                      }
+                    >
                       <div className="Title">
                         Data Integration and Interoperability
                       </div>
                     </div>
-                    <div data-id="step9" className="step-slider-item">
+                    <div
+                      data-id="step9"
+                      className={
+                        page >= 9
+                          ? "step-slider-item active"
+                          : "step-slider-item"
+                      }
+                    >
                       <div className="Title">Open Data</div>
                     </div>
-                    <div data-id="step10" className="step-slider-item">
+                    <div
+                      data-id="step10"
+                      className={
+                        page >= 10
+                          ? "step-slider-item active"
+                          : "step-slider-item"
+                      }
+                    >
                       <div className="Title">Data Quality</div>
                     </div>
                   </div>
                 </div>
                 <div className="step-content">
-                  <div id="step1" className="step-content-body">
-                    <div className="pagetitle">
-                      <h2>Data Governance</h2>
-                    </div>
-                    <div className="QuestionsStrip">
-                      <div className="QuestionDiv">
-                        <div className="heading">
-                          <div className="NumberDiv">DG.1.1</div>
-                          <div className="float-start">
-                            The Entity shall establish an organisational
-                            structure to support the Data Management Programme.{" "}
-                            <span className="badge bg-danger">
-                              High Priority
-                            </span>{" "}
-                            <span className="badge bg-secondary">Optional</span>
-                            <ul>
-                              <li>
-                                The organisation shall be positioned in the
-                                Entity with sufficient authority such that it is
-                                empowered to do its job effectively
-                              </li>
-                              <li>
-                                The organisation will take responsibility and
-                                accountability for Data Management
-                              </li>
-                              <li>
-                                The organisation will take responsibility and
-                                accountability for Data Management
-                              </li>
-                            </ul>
-                          </div>
-                          <div className="row" style={{ clear: "both" }}>
-                            <div className="col-lg-2 mt-4 offset-1">
-                              <div
-                                className="btn-group CustomBtnGroup"
-                                role="group"
-                                aria-label="Basic example"
-                              >
-                                {/* <h4 className="text-success"> {agentDetails?.qstatus1} </h4> */}
-                                <h4 className="text-danger">
-                                  {agentDetails?.qstatus1
-                                    ? agentDetails.qstatus1
-                                    : "No"}
-                                </h4>
-                              </div>
+                  {(() => {
+                    switch (page) {
+                      case 1:
+                        return (
+                          <div id="step1" className="step-content-body">
+                            <div className="pagetitle">
+                              <h2>Data Governance</h2>
                             </div>
-                            <div className="col-lg-6 mt-4">
-                              {" "}
-                              <Link
-                                className="AttachBut2"
-                                data-bs-toggle="collapse"
-                                to="#collapseExample"
-                                role="button"
-                                aria-expanded="false"
-                                aria-controls="collapseExample"
-                              >
-                                {" "}
-                                <FontAwesomeIcon
-                                  icon={faLink}
-                                  style={{ color: "#0058f0" }}
-                                />{" "}
-                                <span className="badge badge-number"> 4</span>{" "}
-                              </Link>{" "}
-                              <Link
-                                className="AttachBut2"
-                                data-bs-toggle="collapse"
-                                to="#collapseExample"
-                                role="button"
-                                aria-expanded="false"
-                                aria-controls="collapseExample"
-                              >
-                                {" "}
-                                <FontAwesomeIcon
-                                  icon={faComment}
-                                  style={{ color: "#005cfa" }}
-                                />{" "}
-                                <span className="badge badge-number">4</span>{" "}
-                              </Link>{" "}
-                            </div>
-                            <div className="col-lg-3 mt-4 text-end">
-                              <div
-                                className="btn-group CustomBtnGroup2"
-                                role="group"
-                                aria-label="Basic example"
-                              >
-                                <button
-                                  type="button"
-                                  className="btn btn-primary"
-                                >
-                                  Accept
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-danger"
-                                >
-                                  Reject
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            className="collapse AttachDiv"
-                            id="collapseExample"
-                          >
-                            <form action="">
-                              <div className="form">
-                                <input
-                                  name="file"
-                                  id="entry_value"
-                                  type="file"
-                                />
-                                <div>
-                                  {" "}
-                                  <img
-                                    src="upload.png"
-                                    alt="upload"
-                                    width="4%"
-                                    className=""
-                                  />{" "}
-                                  Upload your files here or
-                                  <button className="btn bg-color-dblue btn-primary">
-                                    Browse
-                                  </button>
-                                </div>
-                                <span id="fileName" className="text-primary ">
-                                  {" "}
-                                </span>{" "}
-                              </div>
-                            </form>
-                            <div className="SmallHead">Comments</div>
-                            <div className="container">
-                              <div className="col-md-12" id="fbcomment">
-                                <div className="header_comment">
-                                  <div className="">
-                                    <div className="float-start">
-                                      {" "}
-                                      <span className="count_comment">
-                                        264235 Comments
-                                      </span>{" "}
+                            <div className="QuestionsStrip">
+                              <div className="QuestionDiv">
+                                <div className="heading">
+                                  <div className="NumberDiv">DG.1.1</div>
+                                  <div className="float-start">
+                                    The Entity shall establish an organisational
+                                    structure to support the Data Management
+                                    Programme.{" "}
+                                    <span className="badge bg-danger">
+                                      High Priority
+                                    </span>{" "}
+                                    <span className="badge bg-secondary">
+                                      Optional
+                                    </span>
+                                    <ul>
+                                      <li>
+                                        The organisation shall be positioned in
+                                        the Entity with sufficient authority
+                                        such that it is empowered to do its job
+                                        effectively
+                                      </li>
+                                      <li>
+                                        The organisation will take
+                                        responsibility and accountability for
+                                        Data Management
+                                      </li>
+                                      <li>
+                                        The organisation will take
+                                        responsibility and accountability for
+                                        Data Management
+                                      </li>
+                                    </ul>
+                                  </div>
+                                  <div
+                                    className="row"
+                                    style={{ clear: "both" }}
+                                  >
+                                    <div className="col-lg-2 mt-4 offset-1">
+                                      <div
+                                        className="btn-group CustomBtnGroup"
+                                        role="group"
+                                        aria-label="Basic example"
+                                      >
+                                        <h4 className="text-success">
+                                          {agentDetails?.qstatus1
+                                            ? agentDetails.qstatus1
+                                            : "no"}
+                                        </h4>
+                                      </div>
                                     </div>
-                                    <div className="float-end">
+                                    <div className="col-lg-6 mt-4">
                                       {" "}
-                                      <span className="sort_title">
-                                        Sort by
-                                      </span>
-                                      <select className="sort_by">
-                                        <option>Top</option>
-                                        <option>Newest</option>
-                                        <option>Oldest</option>
-                                      </select>
+                                      <Link
+                                        className="AttachBut2"
+                                        data-bs-toggle="collapse"
+                                        to="#collapseExample1"
+                                        role="button"
+                                        aria-expanded="false"
+                                        aria-controls="collapseExample1"
+                                      >
+                                        {" "}
+                                        <FontAwesomeIcon
+                                          icon={faLink}
+                                          style={{ color: "#0058f0" }}
+                                        />{" "}
+                                        <span className="badge badge-number">
+                                          {" "}
+                                          4
+                                        </span>{" "}
+                                      </Link>{" "}
+                                      <Link
+                                        className="AttachBut2"
+                                        data-bs-toggle="collapse"
+                                        to="#collapseExample1"
+                                        role="button"
+                                        aria-expanded="false"
+                                        aria-controls="collapseExample1"
+                                      >
+                                        {" "}
+                                        <FontAwesomeIcon
+                                          icon={faComment}
+                                          style={{ color: "#005cfa" }}
+                                        />{" "}
+                                        <span className="badge badge-number">
+                                          4
+                                        </span>{" "}
+                                      </Link>{" "}
+                                    </div>
+                                    <div className="col-lg-3 mt-4 text-end">
+                                      <div
+                                        className="btn-group CustomBtnGroup2"
+                                        role="group"
+                                        aria-label="Basic example"
+                                      >
+                                        <button
+                                          type="button"
+                                          className="btn btn-primary"
+                                        >
+                                          Accept
+                                        </button>
+                                        <button
+                                          type="button"
+                                          className="btn btn-danger"
+                                        >
+                                          Reject
+                                        </button>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                                <div className="body_comment">
-                                  <div className="row">
-                                    <div className="avatar_comment col-md-1">
-                                      {" "}
-                                      <img
-                                        src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                        alt="avatar"
-                                      />{" "}
-                                    </div>
-                                    <div className="box_comment col-md-11">
-                                      <textarea
-                                        className="commentar"
-                                        placeholder="Add a comment..."
-                                        defaultValue={""}
-                                      />
-                                      <div className="box_post">
-                                        <div className="pull-right">
+                                  <div
+                                    className="collapse AttachDiv"
+                                    id="collapseExample1"
+                                  >
+                                    <form action="">
+                                      <div className="form">
+                                        <input
+                                          name="file"
+                                          id="entry_value1"
+                                          type="file"
+                                        />
+                                        <div>
                                           {" "}
-                                          <span>
-                                            {" "}
-                                            <img
-                                              src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                              alt="avatar"
-                                            />{" "}
-                                            <i className="fa fa-caret-down" />{" "}
-                                          </span>
-                                          <button
-                                            // onClick="submit_comment()"
-                                            type="button"
-                                            value={1}
-                                          >
-                                            Post
+                                          <img
+                                            src="upload.png"
+                                            alt="upload"
+                                            width="4%"
+                                            className=""
+                                          />{" "}
+                                          Upload your files here or
+                                          <button className="btn bg-color-dblue btn-primary">
+                                            Browse
                                           </button>
+                                        </div>
+                                        <span
+                                          id="fileName1"
+                                          className="text-primary "
+                                        >
+                                          {" "}
+                                        </span>{" "}
+                                      </div>
+                                    </form>
+                                    <div className="SmallHead">Comments</div>
+                                    <div className="container">
+                                      <div className="col-md-12" id="fbcomment">
+                                        <div className="header_comment">
+                                          <div className="">
+                                            <div className="float-start">
+                                              {" "}
+                                              <span className="count_comment">
+                                                264235 Comments
+                                              </span>{" "}
+                                            </div>
+                                            <div className="float-end">
+                                              {" "}
+                                              <span className="sort_title">
+                                                Sort by
+                                              </span>
+                                              <select className="sort_by">
+                                                <option>Top</option>
+                                                <option>Newest</option>
+                                                <option>Oldest</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div className="body_comment">
+                                          <div className="row">
+                                            <div className="avatar_comment col-md-1">
+                                              {" "}
+                                              <img
+                                                src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                alt="avatar"
+                                              />{" "}
+                                            </div>
+                                            <div className="box_comment col-md-11">
+                                              <textarea
+                                                className="commentar"
+                                                placeholder="Add a comment..."
+                                                defaultValue={""}
+                                              />
+                                              <div className="box_post">
+                                                <div className="pull-right">
+                                                  {" "}
+                                                  <span>
+                                                    {" "}
+                                                    <img
+                                                      src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                      alt="avatar"
+                                                    />{" "}
+                                                    <i className="fa fa-caret-down" />{" "}
+                                                  </span>
+                                                  <button
+                                                    // onClick="submit_comment()"
+                                                    type="button"
+                                                    value={1}
+                                                  >
+                                                    Post
+                                                  </button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div className="row">
+                                            <ul
+                                              id="list_comment"
+                                              className="col-md-12"
+                                            >
+                                              <li className="box_result row">
+                                                {/* <div className="avatar_comment col-md-1">
+                                                  {" "}
+                                                  <img
+                                                    src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                    alt="avatar"
+                                                  />{" "}
+                                                </div> */}
+                                                <div className="result_comment col-md-11">
+                                                  {/* <h4>Nath Ryuzaki</h4> */}
+                                                  <p>
+                                                    {agentDetails?.qcomment1}
+                                                  </p>
+                                                  {/* <div className="tools_comment">
+                                                    {" "}
+                                                    <Link
+                                                      className="like"
+                                                      to="#">
+                                                      Like
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <Link
+                                                      className="replay"
+                                                      to="#">
+                                                      Reply
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <i className="fa fa-thumbs-o-up" />{" "}
+                                                    <span className="count">
+                                                      1
+                                                    </span>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <span>26m</span>{" "}
+                                                  </div>
+                                                  <ul className="child_replay">
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>Sugito</h4>
+                                                        <p>
+                                                          Lorem Ipsum is simply
+                                                          dummy text of the
+                                                          printing and
+                                                          typesetting industry.
+                                                          Lorem Ipsum has been
+                                                          the industry's.
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#">
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#">
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                  </ul> */}
+                                                </div>
+                                              </li>
+
+                                              {/* <li className="box_result row">
+                                                <div className="avatar_comment col-md-1">
+                                                  {" "}
+                                                  <img
+                                                    src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                    alt="avatar"
+                                                  />{" "}
+                                                </div>
+                                                <div className="result_comment col-md-11">
+                                                  <h4>Gung Wah</h4>
+                                                  <p>
+                                                    Lorem Ipsum is simply dummy
+                                                    text of the printing and
+                                                    typesetting industry. Lorem
+                                                    Ipsum has been the
+                                                    industry's.
+                                                  </p>
+                                                  <div className="tools_comment">
+                                                    {" "}
+                                                    <Link
+                                                      className="like"
+                                                      to="#">
+                                                      Like
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <Link
+                                                      className="replay"
+                                                      to="#">
+                                                      Reply
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <i className="fa fa-thumbs-o-up" />{" "}
+                                                    <span className="count">
+                                                      1
+                                                    </span>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <span>26m</span>{" "}
+                                                  </div>
+                                                  <ul className="child_replay"></ul>
+                                                </div>
+                                              </li> */}
+                                            </ul>
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
-                                  <div className="row">
-                                    <ul id="list_comment" className="col-md-12">
-                                      <li className="box_result row">
-                                        <div className="avatar_comment col-md-1">
-                                          {" "}
-                                          <img
-                                            src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                            alt="avatar"
-                                          />{" "}
-                                        </div>
-                                        <div className="result_comment col-md-11">
-                                          <h4>Nath Ryuzaki</h4>
-                                          <p>
-                                            Lorem Ipsum is simply dummy text of
-                                            the printing and typesetting
-                                            industry. Lorem Ipsum has been the
-                                            industry's.
-                                          </p>
-                                          <div className="tools_comment">
-                                            {" "}
-                                            <Link className="like" to="#">
-                                              Like
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <Link className="replay" to="#">
-                                              Reply
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <i className="fa fa-thumbs-o-up" />{" "}
-                                            <span className="count">1</span>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <span>26m</span>{" "}
-                                          </div>
-                                          <ul className="child_replay">
-                                            <li className="box_reply row">
-                                              <div className="avatar_comment col-md-1">
-                                                {" "}
-                                                <img
-                                                  src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                                  alt="avatar"
-                                                />{" "}
-                                              </div>
-                                              <div className="result_comment col-md-11">
-                                                <h4>Sugito</h4>
-                                                <p>
-                                                  Lorem Ipsum is simply dummy
-                                                  text of the printing and
-                                                  typesetting industry. Lorem
-                                                  Ipsum has been the industry's.
-                                                </p>
-                                                <div className="tools_comment">
-                                                  {" "}
-                                                  <Link className="like" to="#">
-                                                    Like
-                                                  </Link>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <Link
-                                                    className="replay"
-                                                    to="#"
-                                                  >
-                                                    Reply
-                                                  </Link>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <i className="fa fa-thumbs-o-up" />{" "}
-                                                  <span className="count">
-                                                    1
-                                                  </span>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <span>26m</span>{" "}
-                                                </div>
-                                                <ul className="child_replay"></ul>
-                                              </div>
-                                            </li>
-                                          </ul>
-                                        </div>
+                                </div>
+                              </div>
+                              <div className="QuestionDiv">
+                                <div className="heading">
+                                  <div className="NumberDiv">DG.1.2</div>
+                                  <div className="float-start col-11">
+                                    The Entity shall convene the Data Governance
+                                    Board to manage delegated authority and
+                                    responsibility within the Entity. The Board
+                                    will be the final arbiter within the Entity
+                                    for all matters relating to data management.{" "}
+                                    <span className="badge bg-danger">
+                                      High Priority
+                                    </span>{" "}
+                                    <span className="badge bg-secondary">
+                                      Optional
+                                    </span>
+                                    <ul>
+                                      <li>
+                                        This Board should have representatives
+                                        from each area affected by data
+                                        management initiatives, with the Data
+                                        Manager responsible for the execution of
+                                        the Boards actions through the programme
+                                        management function of the Entit
                                       </li>
-
-                                      <li className="box_result row">
-                                        <div className="avatar_comment col-md-1">
-                                          {" "}
-                                          <img
-                                            src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                            alt="avatar"
-                                          />{" "}
-                                        </div>
-                                        <div className="result_comment col-md-11">
-                                          <h4>Gung Wah</h4>
-                                          <p>
-                                            Lorem Ipsum is simply dummy text of
-                                            the printing and typesetting
-                                            industry. Lorem Ipsum has been the
-                                            industry's.
-                                          </p>
-                                          <div className="tools_comment">
-                                            {" "}
-                                            <Link className="like" to="#">
-                                              Like
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <Link className="replay" to="#">
-                                              Reply
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <i className="fa fa-thumbs-o-up" />{" "}
-                                            <span className="count">1</span>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <span>26m</span>{" "}
-                                          </div>
-                                          <ul className="child_replay"></ul>
-                                        </div>
+                                      <li>
+                                        The Data Governance Board shall meet
+                                        regularly (weekly, initially) to provide
+                                        independent oversight and support for
+                                        the Data Management initiatives being
+                                        undertaken by the Entity
                                       </li>
                                     </ul>
                                   </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="QuestionDiv">
-                        <div className="heading">
-                          <div className="NumberDiv">DG.1.2</div>
-                          <div className="float-start col-11">
-                            The Entity shall convene the Data Governance Board
-                            to manage delegated authority and responsibility
-                            within the Entity. The Board will be the final
-                            arbiter within the Entity for all matters relating
-                            to data management.{" "}
-                            <span className="badge bg-danger">
-                              High Priority
-                            </span>{" "}
-                            <span className="badge bg-secondary">Optional</span>
-                            <ul>
-                              <li>
-                                This Board should have representatives from each
-                                area affected by data management initiatives,
-                                with the Data Manager responsible for the
-                                execution of the Boards actions through the
-                                programme management function of the Entit
-                              </li>
-                              <li>
-                                The Data Governance Board shall meet regularly
-                                (weekly, initially) to provide independent
-                                oversight and support for the Data Management
-                                initiatives being undertaken by the Entity
-                              </li>
-                            </ul>
-                          </div>
-                          <div className="row" style={{ clear: "both" }}>
-                            <div className="col-lg-2 mt-4 offset-1">
-                              <div
-                                className="btn-group CustomBtnGroup"
-                                role="group"
-                                aria-label="Basic example"
-                              >
-                                <h4 className="text-danger">
-                                  {agentDetails?.qstatus2
-                                    ? agentDetails.qstatus2
-                                    : "No"}
-                                </h4>
-                              </div>
-                            </div>
-                            <div className="col-lg-6 mt-4">
-                              {" "}
-                              <Link
-                                className="AttachBut2"
-                                data-bs-toggle="collapse"
-                                to="#collapseExample"
-                                role="button"
-                                aria-expanded="false"
-                                aria-controls="collapseExample"
-                              >
-                                {" "}
-                                <FontAwesomeIcon
-                                  icon={faLink}
-                                  style={{ color: "#0058f0" }}
-                                />{" "}
-                                <span className="badge badge-number"> 4</span>{" "}
-                              </Link>{" "}
-                              <Link
-                                className="AttachBut2"
-                                data-bs-toggle="collapse"
-                                to="#collapseExample"
-                                role="button"
-                                aria-expanded="false"
-                                aria-controls="collapseExample"
-                              >
-                                {" "}
-                                <FontAwesomeIcon
-                                  icon={faComment}
-                                  style={{ color: "#005cfa" }}
-                                />{" "}
-                                <span className="badge badge-number">4</span>{" "}
-                              </Link>{" "}
-                            </div>
-                            <div className="col-lg-3 mt-4 text-end">
-                              <div
-                                className="btn-group CustomBtnGroup2"
-                                role="group"
-                                aria-label="Basic example"
-                              >
-                                <button
-                                  type="button"
-                                  className="btn btn-primary"
-                                >
-                                  Accept
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-danger"
-                                >
-                                  Reject
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            className="collapse AttachDiv"
-                            id="collapseExample2"
-                          >
-                            <form action="">
-                              <div className="form">
-                                <input
-                                  name="file"
-                                  id="entry_value2"
-                                  //   ref="fileInput"
-                                  type="file"
-                                  //   onchange="getFileName()"
-                                />
-                                <div>
-                                  {" "}
-                                  <img
-                                    src="upload.png"
-                                    alt="upload"
-                                    width="4%"
-                                    className=""
-                                  />{" "}
-                                  Upload your files here or
-                                  <button className="btn bg-color-dblue btn-primary">
-                                    Browse
-                                  </button>
-                                </div>
-                                <span id="fileName" className="text-primary ">
-                                  {" "}
-                                </span>{" "}
-                              </div>
-                            </form>
-                            <div className="SmallHead">Comments</div>
-
-                            <div className="container">
-                              <div className="col-md-12" id="fbcomment">
-                                <div className="header_comment">
-                                  <div className="">
-                                    <div className="float-start">
-                                      {" "}
-                                      <span className="count_comment">
-                                        264235 Comments
-                                      </span>{" "}
+                                  <div
+                                    className="row"
+                                    style={{ clear: "both" }}
+                                  >
+                                    <div className="col-lg-2 mt-4 offset-1">
+                                      <div
+                                        className="btn-group CustomBtnGroup"
+                                        role="group"
+                                        aria-label="Basic example"
+                                      >
+                                        <h4 className="text-success">
+                                          {agentDetails?.qstatus2
+                                            ? agentDetails.qstatus2
+                                            : "no"}
+                                        </h4>
+                                      </div>
                                     </div>
-                                    <div className="float-end">
+                                    <div className="col-lg-6 mt-4">
                                       {" "}
-                                      <span className="sort_title">
-                                        Sort by
-                                      </span>
-                                      <select className="sort_by">
-                                        <option>Top</option>
-                                        <option>Newest</option>
-                                        <option>Oldest</option>
-                                      </select>
+                                      <Link
+                                        className="AttachBut2"
+                                        data-bs-toggle="collapse"
+                                        to="#collapseExample2"
+                                        role="button"
+                                        aria-expanded="false"
+                                        aria-controls="collapseExample2"
+                                      >
+                                        {" "}
+                                        <FontAwesomeIcon
+                                          icon={faLink}
+                                          style={{ color: "#0058f0" }}
+                                        />{" "}
+                                        <span className="badge badge-number">
+                                          {" "}
+                                          4
+                                        </span>{" "}
+                                      </Link>{" "}
+                                      <Link
+                                        className="AttachBut2"
+                                        data-bs-toggle="collapse"
+                                        to="#collapseExample2"
+                                        role="button"
+                                        aria-expanded="false"
+                                        aria-controls="collapseExample2"
+                                      >
+                                        {" "}
+                                        <FontAwesomeIcon
+                                          icon={faComment}
+                                          style={{ color: "#005cfa" }}
+                                        />{" "}
+                                        <span className="badge badge-number">
+                                          4
+                                        </span>{" "}
+                                      </Link>{" "}
+                                    </div>
+                                    <div className="col-lg-3 mt-4 text-end">
+                                      <div
+                                        className="btn-group CustomBtnGroup2"
+                                        role="group"
+                                        aria-label="Basic example"
+                                      >
+                                        <button
+                                          type="button"
+                                          className="btn btn-primary"
+                                        >
+                                          Accept
+                                        </button>
+                                        <button
+                                          type="button"
+                                          className="btn btn-danger"
+                                        >
+                                          Reject
+                                        </button>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                                <div className="body_comment">
-                                  <div className="row">
-                                    <div className="avatar_comment col-md-1">
-                                      {" "}
-                                      <img
-                                        src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                        alt="avatar"
-                                      />{" "}
-                                    </div>
-                                    <div className="box_comment col-md-11">
-                                      <textarea
-                                        className="commentar"
-                                        placeholder="Add a comment..."
-                                        defaultValue={""}
-                                      />
-                                      <div className="box_post">
-                                        <div className="pull-right">
+                                  <div
+                                    className="collapse AttachDiv"
+                                    id="collapseExample2"
+                                  >
+                                    <form action="">
+                                      <div className="form">
+                                        <input
+                                          name="file"
+                                          id="entry_value2"
+                                          //   ref="fileInput"
+                                          type="file"
+                                          //   onchange="getFileName()"
+                                        />
+                                        <div>
                                           {" "}
-                                          <span>
-                                            {" "}
-                                            <img
-                                              src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                              alt="avatar"
-                                            />{" "}
-                                            <i className="fa fa-caret-down" />{" "}
-                                          </span>
-                                          <button
-                                            // onClick="submit_comment()"
-                                            type="button"
-                                            value={1}
-                                          >
-                                            Post
+                                          <img
+                                            src="upload.png"
+                                            alt=""
+                                            width="4%"
+                                            className=""
+                                          />{" "}
+                                          Upload your files here or
+                                          <button className="btn bg-color-dblue btn-primary" style={{marginLeft:"5px"}}>
+                                            Browse
                                           </button>
+                                        </div>
+                                        <span
+                                          id="fileName2"
+                                          className="text-primary "
+                                        >
+                                          {" "}
+                                        </span>{" "}
+                                      </div>
+                                    </form>
+                                    <div className="SmallHead">Comments</div>
+
+                                    <div className="container">
+                                      <div className="col-md-12" id="fbcomment">
+                                        <div className="header_comment">
+                                          <div className="">
+                                            <div className="float-start">
+                                              {" "}
+                                              <span className="count_comment">
+                                                264235 Comments
+                                              </span>{" "}
+                                            </div>
+                                            <div className="float-end">
+                                              {" "}
+                                              <span className="sort_title">
+                                                Sort by
+                                              </span>
+                                              <select className="sort_by">
+                                                <option>Top</option>
+                                                <option>Newest</option>
+                                                <option>Oldest</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div className="body_comment">
+                                          <div className="row">
+                                            <div className="avatar_comment col-md-1">
+                                              {" "}
+                                              <img
+                                                src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                alt="avatar"
+                                              />{" "}
+                                            </div>
+                                            <div className="box_comment col-md-11">
+                                              <textarea
+                                                className="commentar"
+                                                placeholder="Add a comment..."
+                                                defaultValue={""}
+                                              />
+                                              <div className="box_post">
+                                                <div className="pull-right">
+                                                  {" "}
+                                                  <span>
+                                                    {" "}
+                                                    <img
+                                                      src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                      alt="avatar"
+                                                    />{" "}
+                                                    <i className="fa fa-caret-down" />{" "}
+                                                  </span>
+                                                  <button
+                                                    // onClick="submit_comment()"
+                                                    type="button"
+                                                    value={1}
+                                                  >
+                                                    Post
+                                                  </button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div className="row">
+                                            <ul
+                                              id="list_comment"
+                                              className="col-md-12"
+                                            >
+                                              <li className="box_result row">
+                                                {/* <div className="avatar_comment col-md-1">
+                                                  {" "}
+                                                  <img
+                                                    src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                    alt="avatar"
+                                                  />{" "}
+                                                </div> */}
+                                                <div className="result_comment col-md-11">
+                                                  {/* <h4>Nath Ryuzaki</h4> */}
+                                                  <p>
+                                                  {agentDetails?.qcomment2}
+                                                  </p>
+                                                  {/* <div className="tools_comment">
+                                                    {" "}
+                                                    <Link
+                                                      className="like"
+                                                      to="#"
+                                                    >
+                                                      Like
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <Link
+                                                      className="replay"
+                                                      to="#"
+                                                    >
+                                                      Reply
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <i className="fa fa-thumbs-o-up" />{" "}
+                                                    <span className="count">
+                                                      1
+                                                    </span>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <span>26m</span>{" "}
+                                                  </div> */}
+                                                  {/* <ul className="child_replay">
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>Sugito</h4>
+                                                        <p>
+                                                          Lorem Ipsum is simply
+                                                          dummy text of the
+                                                          printing and
+                                                          typesetting industry.
+                                                          Lorem Ipsum has been
+                                                          the industry's.
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#"
+                                                          >
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#"
+                                                          >
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                  </ul> */}
+                                                </div>
+                                              </li>
+
+                                              {/* <li className="box_result row">
+                                                <div className="avatar_comment col-md-1">
+                                                  {" "}
+                                                  <img
+                                                    src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                    alt="avatar"
+                                                  />{" "}
+                                                </div>
+                                                <div className="result_comment col-md-11">
+                                                  <h4>Gung Wah</h4>
+                                                  <p>
+                                                    Lorem Ipsum is simply dummy
+                                                    text of the printing and
+                                                    typesetting industry. Lorem
+                                                    Ipsum has been the
+                                                    industry's.
+                                                  </p>
+                                                  <div className="tools_comment">
+                                                    {" "}
+                                                    <Link
+                                                      className="like"
+                                                      to="#"
+                                                    >
+                                                      Like
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <Link
+                                                      className="replay"
+                                                      to="#"
+                                                    >
+                                                      Reply
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <i className="fa fa-thumbs-o-up" />{" "}
+                                                    <span className="count">
+                                                      1
+                                                    </span>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <span>26m</span>{" "}
+                                                  </div>
+                                                  <ul className="child_replay"></ul>
+                                                </div>
+                                              </li> */}
+                                            </ul>
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
-                                  <div className="row">
-                                    <ul id="list_comment" className="col-md-12">
-                                      <li className="box_result row">
-                                        <div className="avatar_comment col-md-1">
-                                          {" "}
-                                          <img
-                                            src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                            alt="avatar"
-                                          />{" "}
-                                        </div>
-                                        <div className="result_comment col-md-11">
-                                          <h4>Nath Ryuzaki</h4>
-                                          <p>
-                                            Lorem Ipsum is simply dummy text of
-                                            the printing and typesetting
-                                            industry. Lorem Ipsum has been the
-                                            industry's.
-                                          </p>
-                                          <div className="tools_comment">
-                                            {" "}
-                                            <Link className="like" to="#">
-                                              Like
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <Link className="replay" to="#">
-                                              Reply
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <i className="fa fa-thumbs-o-up" />{" "}
-                                            <span className="count">1</span>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <span>26m</span>{" "}
-                                          </div>
-                                          <ul className="child_replay">
-                                            <li className="box_reply row">
-                                              <div className="avatar_comment col-md-1">
-                                                {" "}
-                                                <img
-                                                  src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                                  alt="avatar"
-                                                />{" "}
-                                              </div>
-                                              <div className="result_comment col-md-11">
-                                                <h4>Sugito</h4>
-                                                <p>
-                                                  Lorem Ipsum is simply dummy
-                                                  text of the printing and
-                                                  typesetting industry. Lorem
-                                                  Ipsum has been the industry's.
-                                                </p>
-                                                <div className="tools_comment">
-                                                  {" "}
-                                                  <Link className="like" to="#">
-                                                    Like
-                                                  </Link>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <Link
-                                                    className="replay"
-                                                    to="#"
-                                                  >
-                                                    Reply
-                                                  </Link>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <i className="fa fa-thumbs-o-up" />{" "}
-                                                  <span className="count">
-                                                    1
-                                                  </span>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <span>26m</span>{" "}
-                                                </div>
-                                                <ul className="child_replay"></ul>
-                                              </div>
-                                            </li>
-                                          </ul>
-                                        </div>
+                                </div>
+                              </div>
+                              <div className="QuestionDiv">
+                                <div className="heading">
+                                  <div className="NumberDiv">DG.1.3</div>
+                                  <div className="float-start col-11">
+                                    The Entity shall appoint a Data Manager. The
+                                    Data Manager shall have delegated authority
+                                    from the Data Governance Board.{" "}
+                                    <span className="badge bg-danger">
+                                      High Priority
+                                    </span>{" "}
+                                    <span className="badge bg-secondary">
+                                      Optional
+                                    </span>
+                                    <ul>
+                                      The Data Manager shall:
+                                      <li>
+                                        Oversee the implementation of change
                                       </li>
-
-                                      <li className="box_result row">
-                                        <div className="avatar_comment col-md-1">
-                                          {" "}
-                                          <img
-                                            src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                            alt="avatar"
-                                          />{" "}
-                                        </div>
-                                        <div className="result_comment col-md-11">
-                                          <h4>Gung Wah</h4>
-                                          <p>
-                                            Lorem Ipsum is simply dummy text of
-                                            the printing and typesetting
-                                            industry. Lorem Ipsum has been the
-                                            industry's.
-                                          </p>
-                                          <div className="tools_comment">
-                                            {" "}
-                                            <Link className="like" to="#">
-                                              Like
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <Link className="replay" to="#">
-                                              Reply
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <i className="fa fa-thumbs-o-up" />{" "}
-                                            <span className="count">1</span>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <span>26m</span>{" "}
-                                          </div>
-                                          <ul className="child_replay"></ul>
-                                        </div>
+                                      <li>
+                                        Ensure compliance with governance,
+                                        policy and standards
+                                      </li>
+                                      <li>
+                                        Ensure the coordinated training and
+                                        awareness programmes are executed within
+                                        the Entity
+                                      </li>
+                                      <li>
+                                        Ensure the coordinated training and
+                                        awareness programmes are executed within
+                                        the Entity
                                       </li>
                                     </ul>
                                   </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="QuestionDiv">
-                        <div className="heading">
-                          <div className="NumberDiv">DG.1.3</div>
-                          <div className="float-start col-11">
-                            The Entity shall appoint a Data Manager. The Data
-                            Manager shall have delegated authority from the Data
-                            Governance Board.{" "}
-                            <span className="badge bg-danger">
-                              High Priority
-                            </span>{" "}
-                            <span className="badge bg-secondary">Optional</span>
-                            <ul>
-                              The Data Manager shall:
-                              <li>Oversee the implementation of change</li>
-                              <li>
-                                Ensure compliance with governance, policy and
-                                standards
-                              </li>
-                              <li>
-                                Ensure the coordinated training and awareness
-                                programmes are executed within the Entity
-                              </li>
-                              <li>
-                                Ensure the coordinated training and awareness
-                                programmes are executed within the Entity
-                              </li>
-                            </ul>
-                          </div>
-                          <div className="row" style={{ clear: "both" }}>
-                            <div className="col-lg-2 mt-4 offset-1">
-                              <div
-                                className="btn-group CustomBtnGroup"
-                                role="group"
-                                aria-label="Basic example"
-                              >
-                                <h4 className="text-danger">
-                                  {agentDetails?.qstatus3
-                                    ? agentDetails.qstatus3
-                                    : "No"}
-                                </h4>
-                              </div>
-                            </div>
-                            <div className="col-lg-6 mt-4">
-                              {" "}
-                              <Link
-                                className="AttachBut2"
-                                data-bs-toggle="collapse"
-                                to="#collapseExample"
-                                role="button"
-                                aria-expanded="false"
-                                aria-controls="collapseExample"
-                              >
-                                {" "}
-                                <FontAwesomeIcon
-                                  icon={faLink}
-                                  style={{ color: "#0058f0" }}
-                                />{" "}
-                                <span className="badge badge-number"> 4</span>{" "}
-                              </Link>{" "}
-                              <Link
-                                className="AttachBut2"
-                                data-bs-toggle="collapse"
-                                to="#collapseExample"
-                                role="button"
-                                aria-expanded="false"
-                                aria-controls="collapseExample"
-                              >
-                                {" "}
-                                <FontAwesomeIcon
-                                  icon={faComment}
-                                  style={{ color: "#005cfa" }}
-                                />{" "}
-                                <span className="badge badge-number">4</span>{" "}
-                              </Link>{" "}
-                            </div>
-                            <div className="col-lg-3 mt-4 text-end">
-                              <div
-                                className="btn-group CustomBtnGroup2"
-                                role="group"
-                                aria-label="Basic example"
-                              >
-                                <button
-                                  type="button"
-                                  className="btn btn-primary"
-                                >
-                                  Accept
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-danger"
-                                >
-                                  Reject
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            className="collapse AttachDiv"
-                            id="collapseExample3"
-                          >
-                            <form action="">
-                              <div className="form">
-                                <input
-                                  name="file"
-                                  id="entry_value"
-                                  //   ref="fileInput"
-                                  type="file"
-                                  //   onchange="getFileName()"
-                                />
-                                <div>
-                                  {" "}
-                                  <img
-                                    src="upload.png"
-                                    alt="upload"
-                                    width="4%"
-                                    className=""
-                                  />{" "}
-                                  Upload your files here or
-                                  <button className="btn bg-color-dblue btn-primary">
-                                    Browse
-                                  </button>
-                                </div>
-                                <span id="fileName" className="text-primary ">
-                                  {" "}
-                                </span>{" "}
-                              </div>
-                            </form>
-                            <div className="SmallHead">Comments</div>
-
-                            <div className="container">
-                              <div className="col-md-12" id="fbcomment">
-                                <div className="header_comment">
-                                  <div className="">
-                                    <div className="float-start">
-                                      {" "}
-                                      <span className="count_comment">
-                                        264235 Comments
-                                      </span>{" "}
+                                  <div
+                                    className="row"
+                                    style={{ clear: "both" }}
+                                  >
+                                    <div className="col-lg-2 mt-4 offset-1">
+                                      <div
+                                        className="btn-group CustomBtnGroup"
+                                        role="group"
+                                        aria-label="Basic example"
+                                      >
+                                        <h4 className="text-success">
+                                          {agentDetails?.qstatus3
+                                            ? agentDetails.qstatus3
+                                            : "no"}
+                                        </h4>
+                                      </div>
                                     </div>
-                                    <div className="float-end">
+                                    <div className="col-lg-6 mt-4">
                                       {" "}
-                                      <span className="sort_title">
-                                        Sort by
-                                      </span>
-                                      <select className="sort_by">
-                                        <option>Top</option>
-                                        <option>Newest</option>
-                                        <option>Oldest</option>
-                                      </select>
+                                      <Link
+                                        className="AttachBut2"
+                                        data-bs-toggle="collapse"
+                                        to="#collapseExample3"
+                                        role="button"
+                                        aria-expanded="false"
+                                        aria-controls="collapseExample3"
+                                      >
+                                        {" "}
+                                        <FontAwesomeIcon
+                                          icon={faLink}
+                                          style={{ color: "#0058f0" }}
+                                        />{" "}
+                                        <span className="badge badge-number">
+                                          {" "}
+                                          4
+                                        </span>{" "}
+                                      </Link>{" "}
+                                      <Link
+                                        className="AttachBut2"
+                                        data-bs-toggle="collapse"
+                                        to="#collapseExample3"
+                                        role="button"
+                                        aria-expanded="false"
+                                        aria-controls="collapseExample3"
+                                      >
+                                        {" "}
+                                        <FontAwesomeIcon
+                                          icon={faComment}
+                                          style={{ color: "#005cfa" }}
+                                        />{" "}
+                                        <span className="badge badge-number">
+                                          4
+                                        </span>{" "}
+                                      </Link>{" "}
+                                    </div>
+                                    <div className="col-lg-3 mt-4 text-end">
+                                      <div
+                                        className="btn-group CustomBtnGroup2"
+                                        role="group"
+                                        aria-label="Basic example"
+                                      >
+                                        <button
+                                          type="button"
+                                          className="btn btn-primary"
+                                        >
+                                          Accept
+                                        </button>
+                                        <button
+                                          type="button"
+                                          className="btn btn-danger"
+                                        >
+                                          Reject
+                                        </button>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                                <div className="body_comment">
-                                  <div className="row">
-                                    <div className="avatar_comment col-md-1">
-                                      {" "}
-                                      <img
-                                        src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                        alt="avatar"
-                                      />{" "}
-                                    </div>
-                                    <div className="box_comment col-md-11">
-                                      <textarea
-                                        className="commentar"
-                                        placeholder="Add a comment..."
-                                        defaultValue={""}
-                                      />
-                                      <div className="box_post">
-                                        <div className="pull-right">
+                                  <div
+                                    className="collapse AttachDiv"
+                                    id="collapseExample3"
+                                  >
+                                    <form action="">
+                                      <div className="form">
+                                        <input
+                                          name="file"
+                                          id="entry_value3"
+                                          //   ref="fileInput"
+                                          type="file"
+                                          //   onchange="getFileName()"
+                                        />
+                                        <div>
                                           {" "}
-                                          <span>
-                                            {" "}
-                                            <img
-                                              src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                              alt="avatar"
-                                            />{" "}
-                                            <i className="fa fa-caret-down" />{" "}
-                                          </span>
-                                          <button
-                                            // onClick="submit_comment()"
-                                            type="button"
-                                            value={1}
-                                          >
-                                            Post
+                                          <img
+                                            src="upload.png"
+                                            alt=""
+                                            width="4%"
+                                            className=""
+                                          />{" "}
+                                          Upload your files here or
+                                          <button className="btn bg-color-dblue btn-primary" style={{marginLeft:"5px"}}>
+                                            Browse
                                           </button>
+                                        </div>
+                                        <span
+                                          id="fileName3"
+                                          className="text-primary "
+                                        >
+                                          {" "}
+                                        </span>{" "}
+                                      </div>
+                                    </form>
+                                    <div className="SmallHead">Comments</div>
+
+                                    <div className="container">
+                                      <div className="col-md-12" id="fbcomment">
+                                        <div className="header_comment">
+                                          <div className="">
+                                            <div className="float-start">
+                                              {" "}
+                                              <span className="count_comment">
+                                                264235 Comments
+                                              </span>{" "}
+                                            </div>
+                                            <div className="float-end">
+                                              {" "}
+                                              <span className="sort_title">
+                                                Sort by
+                                              </span>
+                                              <select className="sort_by">
+                                                <option>Top</option>
+                                                <option>Newest</option>
+                                                <option>Oldest</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div className="body_comment">
+                                          <div className="row">
+                                            <div className="avatar_comment col-md-1">
+                                              {" "}
+                                              <img
+                                                src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                alt="avatar"
+                                              />{" "}
+                                            </div>
+                                            <div className="box_comment col-md-11">
+                                              <textarea
+                                                className="commentar"
+                                                placeholder="Add a comment..."
+                                                defaultValue={""}
+                                              />
+                                              <div className="box_post">
+                                                <div className="pull-right">
+                                                  {" "}
+                                                  <span>
+                                                    {" "}
+                                                    <img
+                                                      src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                      alt="avatar"
+                                                    />{" "}
+                                                    <i className="fa fa-caret-down" />{" "}
+                                                  </span>
+                                                  <button
+                                                    // onClick="submit_comment()"
+                                                    type="button"
+                                                    value={1}
+                                                  >
+                                                    Post
+                                                  </button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div className="row">
+                                            <ul
+                                              id="list_comment"
+                                              className="col-md-12"
+                                            >
+                                              <li className="box_result row">
+                                                {/* <div className="avatar_comment col-md-1">
+                                                  {" "}
+                                                  <img
+                                                    src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                    alt="avatar"
+                                                  />{" "}
+                                                </div> */}
+                                                <div className="result_comment col-md-11">
+                                                  {/* <h4>Nath Ryuzaki</h4> */}
+                                                  <p>
+                                                  {agentDetails?.qcomment3}
+                                                  </p>
+                                                  {/* <div className="tools_comment">
+                                                    {" "}
+                                                    <Link
+                                                      className="like"
+                                                      to="#"
+                                                    >
+                                                      Like
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <Link
+                                                      className="replay"
+                                                      to="#"
+                                                    >
+                                                      Reply
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <i className="fa fa-thumbs-o-up" />{" "}
+                                                    <span className="count">
+                                                      1
+                                                    </span>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <span>26m</span>{" "}
+                                                  </div>
+                                                  <ul className="child_replay">
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>Sugito</h4>
+                                                        <p>
+                                                          Lorem Ipsum is simply
+                                                          dummy text of the
+                                                          printing and
+                                                          typesetting industry.
+                                                          Lorem Ipsum has been
+                                                          the industry's.
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#"
+                                                          >
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#"
+                                                          >
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                  </ul> */}
+                                                </div>
+                                              </li>
+
+                                              {/* <li className="box_result row">
+                                                <div className="avatar_comment col-md-1">
+                                                  {" "}
+                                                  <img
+                                                    src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                    alt="avatar"
+                                                  />{" "}
+                                                </div>
+                                                <div className="result_comment col-md-11">
+                                                  <h4>Gung Wah</h4>
+                                                  <p>
+                                                    Lorem Ipsum is simply dummy
+                                                    text of the printing and
+                                                    typesetting industry. Lorem
+                                                    Ipsum has been the
+                                                    industry's.
+                                                  </p>
+                                                  <div className="tools_comment">
+                                                    {" "}
+                                                    <Link
+                                                      className="like"
+                                                      to="#"
+                                                    >
+                                                      Like
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <Link
+                                                      className="replay"
+                                                      to="#"
+                                                    >
+                                                      Reply
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <i className="fa fa-thumbs-o-up" />{" "}
+                                                    <span className="count">
+                                                      1
+                                                    </span>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <span>26m</span>{" "}
+                                                  </div>
+                                                  <ul className="child_replay"></ul>
+                                                </div>
+                                              </li> */}
+                                            </ul>
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
-                                  <div className="row">
-                                    <ul id="list_comment" className="col-md-12">
-                                      <li className="box_result row">
-                                        <div className="avatar_comment col-md-1">
-                                          {" "}
-                                          <img
-                                            src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                            alt="avatar"
-                                          />{" "}
-                                        </div>
-                                        <div className="result_comment col-md-11">
-                                          <h4>Nath Ryuzaki</h4>
-                                          <p>
-                                            Lorem Ipsum is simply dummy text of
-                                            the printing and typesetting
-                                            industry. Lorem Ipsum has been the
-                                            industry's.
-                                          </p>
-                                          <div className="tools_comment">
-                                            {" "}
-                                            <Link className="like" to="#">
-                                              Like
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <Link className="replay" to="#">
-                                              Reply
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <i className="fa fa-thumbs-o-up" />{" "}
-                                            <span className="count">1</span>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <span>26m</span>{" "}
-                                          </div>
-                                          <ul className="child_replay">
-                                            <li className="box_reply row">
-                                              <div className="avatar_comment col-md-1">
-                                                {" "}
-                                                <img
-                                                  src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                                  alt="avatar"
-                                                />{" "}
-                                              </div>
-                                              <div className="result_comment col-md-11">
-                                                <h4>Sugito</h4>
-                                                <p>
-                                                  Lorem Ipsum is simply dummy
-                                                  text of the printing and
-                                                  typesetting industry. Lorem
-                                                  Ipsum has been the industry's.
-                                                </p>
-                                                <div className="tools_comment">
-                                                  {" "}
-                                                  <Link className="like" to="#">
-                                                    Like
-                                                  </Link>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <Link
-                                                    className="replay"
-                                                    to="#"
-                                                  >
-                                                    Reply
-                                                  </Link>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <i className="fa fa-thumbs-o-up" />{" "}
-                                                  <span className="count">
-                                                    1
-                                                  </span>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <span>26m</span>{" "}
-                                                </div>
-                                                <ul className="child_replay"></ul>
-                                              </div>
-                                            </li>
-                                          </ul>
-                                        </div>
+                                </div>
+                              </div>
+                              <div className="QuestionDiv">
+                                <div className="heading">
+                                  <div className="NumberDiv">DG.1.4</div>
+                                  <div className="float-start col-11">
+                                    The Entity shall identify and appoint Data
+                                    Architects to support the Data Manager.{" "}
+                                    <span className="badge bg-danger">
+                                      High Priority
+                                    </span>{" "}
+                                    <span className="badge bg-secondary">
+                                      Optional
+                                    </span>
+                                    <ul>
+                                      The Data Architects shall:
+                                      <li>
+                                        TWork with the Data Manager and the Data
+                                        Governance Board to ensure the
+                                        implementation of the Data Management
+                                        Standards in all designs across the
+                                        Entit
                                       </li>
-
-                                      <li className="box_result row">
-                                        <div className="avatar_comment col-md-1">
-                                          {" "}
-                                          <img
-                                            src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                            alt="avatar"
-                                          />{" "}
-                                        </div>
-                                        <div className="result_comment col-md-11">
-                                          <h4>Gung Wah</h4>
-                                          <p>
-                                            Lorem Ipsum is simply dummy text of
-                                            the printing and typesetting
-                                            industry. Lorem Ipsum has been the
-                                            industry's.
-                                          </p>
-                                          <div className="tools_comment">
-                                            {" "}
-                                            <Link className="like" to="#">
-                                              Like
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <Link className="replay" to="#">
-                                              Reply
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <i className="fa fa-thumbs-o-up" />{" "}
-                                            <span className="count">1</span>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <span>26m</span>{" "}
-                                          </div>
-                                          <ul className="child_replay"></ul>
-                                        </div>
+                                      <li>
+                                        Establish a clearly defined target state
+                                        for all data sources
+                                      </li>
+                                      <li>
+                                        Establish a clearly defined roadmap to
+                                        achieve the target state for all data
+                                        sources
+                                      </li>
+                                      <li>
+                                        Be responsible for developing and
+                                        maintaining a formal description of the
+                                        data and data structures within the
+                                        Entity, including
+                                        <ol>
+                                          <li>
+                                            Data designs and design artefacts
+                                          </li>
+                                          <li>
+                                            Data designs and design artefact
+                                          </li>
+                                          <li>
+                                            Data flows throughout the Entity
+                                          </li>
+                                        </ol>
                                       </li>
                                     </ul>
                                   </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="QuestionDiv">
-                        <div className="heading">
-                          <div className="NumberDiv">DG.1.4</div>
-                          <div className="float-start col-11">
-                            The Entity shall identify and appoint Data
-                            Architects to support the Data Manager.{" "}
-                            <span className="badge bg-danger">
-                              High Priority
-                            </span>{" "}
-                            <span className="badge bg-secondary">Optional</span>
-                            <ul>
-                              The Data Architects shall:
-                              <li>
-                                TWork with the Data Manager and the Data
-                                Governance Board to ensure the implementation of
-                                the Data Management Standards in all designs
-                                across the Entit
-                              </li>
-                              <li>
-                                Establish a clearly defined target state for all
-                                data sources
-                              </li>
-                              <li>
-                                Establish a clearly defined roadmap to achieve
-                                the target state for all data sources
-                              </li>
-                              <li>
-                                Be responsible for developing and maintaining a
-                                formal description of the data and data
-                                structures within the Entity, including
-                                <ol>
-                                  <li>Data designs and design artefacts</li>
-                                  <li>Data designs and design artefact</li>
-                                  <li>Data flows throughout the Entity</li>
-                                </ol>
-                              </li>
-                            </ul>
-                          </div>
-                          <div className="row" style={{ clear: "both" }}>
-                            <div className="col-lg-2 mt-4 offset-1">
-                              <div
-                                className="btn-group CustomBtnGroup"
-                                role="group"
-                                aria-label="Basic example"
-                              >
-                                <h4 className="text-danger">
-                                  {agentDetails?.qstatus4
-                                    ? agentDetails.qstatus4
-                                    : "No"}
-                                </h4>
-                              </div>
-                            </div>
-                            <div className="col-lg-6 mt-4">
-                              {" "}
-                              <Link
-                                className="AttachBut2"
-                                data-bs-toggle="collapse"
-                                to="#collapseExample"
-                                role="button"
-                                aria-expanded="false"
-                                aria-controls="collapseExample"
-                              >
-                                {" "}
-                                <FontAwesomeIcon
-                                  icon={faLink}
-                                  style={{ color: "#0058f0" }}
-                                />{" "}
-                                <span className="badge badge-number"> 4</span>{" "}
-                              </Link>{" "}
-                              <Link
-                                className="AttachBut2"
-                                data-bs-toggle="collapse"
-                                to="#collapseExample"
-                                role="button"
-                                aria-expanded="false"
-                                aria-controls="collapseExample"
-                              >
-                                {" "}
-                                <FontAwesomeIcon
-                                  icon={faComment}
-                                  style={{ color: "#005cfa" }}
-                                />{" "}
-                                <span className="badge badge-number">4</span>{" "}
-                              </Link>{" "}
-                            </div>
-                            <div className="col-lg-3 mt-4 text-end">
-                              <div
-                                className="btn-group CustomBtnGroup2"
-                                role="group"
-                                aria-label="Basic example"
-                              >
-                                <button
-                                  type="button"
-                                  className="btn btn-primary"
-                                >
-                                  Accept
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-danger"
-                                >
-                                  Reject
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            className="collapse AttachDiv"
-                            id="collapseExample4"
-                          >
-                            <form action="">
-                              <div className="form">
-                                <input
-                                  name="file"
-                                  id="entry_value"
-                                  //   ref="fileInput"
-                                  type="file"
-                                  //   onchange="getFileName()"
-                                />
-                                <div>
-                                  {" "}
-                                  <img
-                                    src="upload.png"
-                                    alt="upload"
-                                    width="4%"
-                                    className=""
-                                  />{" "}
-                                  Upload your files here or
-                                  <button className="btn bg-color-dblue btn-primary">
-                                    Browse
-                                  </button>
-                                </div>
-                                <span id="fileName" className="text-primary ">
-                                  {" "}
-                                </span>{" "}
-                              </div>
-                            </form>
-                            <div className="SmallHead">Comments</div>
-
-                            <div className="container">
-                              <div className="col-md-12" id="fbcomment">
-                                <div className="header_comment">
-                                  <div className="">
-                                    <div className="float-start">
-                                      {" "}
-                                      <span className="count_comment">
-                                        264235 Comments
-                                      </span>{" "}
+                                  <div
+                                    className="row"
+                                    style={{ clear: "both" }}
+                                  >
+                                    <div className="col-lg-2 mt-4 offset-1">
+                                      <div
+                                        className="btn-group CustomBtnGroup"
+                                        role="group"
+                                        aria-label="Basic example"
+                                      >
+                                        <h4 className="text-success">
+                                          {agentDetails?.qstatus4
+                                            ? agentDetails.qstatus4
+                                            : "no"}
+                                        </h4>
+                                      </div>
                                     </div>
-                                    <div className="float-end">
+                                    <div className="col-lg-6 mt-4">
                                       {" "}
-                                      <span className="sort_title">
-                                        Sort by
-                                      </span>
-                                      <select className="sort_by">
-                                        <option>Top</option>
-                                        <option>Newest</option>
-                                        <option>Oldest</option>
-                                      </select>
+                                      <Link
+                                        className="AttachBut2"
+                                        data-bs-toggle="collapse"
+                                        to="#collapseExample4"
+                                        role="button"
+                                        aria-expanded="false"
+                                        aria-controls="collapseExample4"
+                                      >
+                                        {" "}
+                                        <FontAwesomeIcon
+                                          icon={faLink}
+                                          style={{ color: "#0058f0" }}
+                                        />{" "}
+                                        <span className="badge badge-number">
+                                          {" "}
+                                          4
+                                        </span>{" "}
+                                      </Link>{" "}
+                                      <Link
+                                        className="AttachBut2"
+                                        data-bs-toggle="collapse"
+                                        to="#collapseExample4"
+                                        role="button"
+                                        aria-expanded="false"
+                                        aria-controls="collapseExample4"
+                                      >
+                                        {" "}
+                                        <FontAwesomeIcon
+                                          icon={faComment}
+                                          style={{ color: "#005cfa" }}
+                                        />{" "}
+                                        <span className="badge badge-number">
+                                          4
+                                        </span>{" "}
+                                      </Link>{" "}
+                                    </div>
+                                    <div className="col-lg-3 mt-4 text-end">
+                                      <div
+                                        className="btn-group CustomBtnGroup2"
+                                        role="group"
+                                        aria-label="Basic example"
+                                      >
+                                        <button
+                                          type="button"
+                                          className="btn btn-primary"
+                                        >
+                                          Accept
+                                        </button>
+                                        <button
+                                          type="button"
+                                          className="btn btn-danger"
+                                        >
+                                          Reject
+                                        </button>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                                <div className="body_comment">
-                                  <div className="row">
-                                    <div className="avatar_comment col-md-1">
-                                      {" "}
-                                      <img
-                                        src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                        alt="avatar"
-                                      />{" "}
-                                    </div>
-                                    <div className="box_comment col-md-11">
-                                      <textarea
-                                        className="commentar"
-                                        placeholder="Add a comment..."
-                                        defaultValue={""}
-                                      />
-                                      <div className="box_post">
-                                        <div className="pull-right">
+                                  <div
+                                    className="collapse AttachDiv"
+                                    id="collapseExample4"
+                                  >
+                                    <form action="">
+                                      <div className="form">
+                                        <input
+                                          name="file"
+                                          id="entry_value4"
+                                          //   ref="fileInput"
+                                          type="file"
+                                          //   onchange="getFileName()"
+                                        />
+                                        <div>
                                           {" "}
-                                          <span>
-                                            {" "}
-                                            <img
-                                              src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                              alt="avatar"
-                                            />{" "}
-                                            <i className="fa fa-caret-down" />{" "}
-                                          </span>
-                                          <button
-                                            // onClick="submit_comment()"
-                                            type="button"
-                                            value={1}
-                                          >
-                                            Post
+                                          <img
+                                            src="upload.png"
+                                            alt=""
+                                            width="4%"
+                                            className=""
+                                          />{" "}
+                                          Upload your files here or
+                                          <button className="btn bg-color-dblue btn-primary" style={{marginLeft:"5px"}}>
+                                            Browse
                                           </button>
+                                        </div>
+                                        <span
+                                          id="fileName4"
+                                          className="text-primary "
+                                        >
+                                          {" "}
+                                        </span>{" "}
+                                      </div>
+                                    </form>
+                                    <div className="SmallHead">Comments</div>
+
+                                    <div className="container">
+                                      <div className="col-md-12" id="fbcomment">
+                                        <div className="header_comment">
+                                          <div className="">
+                                            <div className="float-start">
+                                              {" "}
+                                              <span className="count_comment">
+                                                264235 Comments
+                                              </span>{" "}
+                                            </div>
+                                            <div className="float-end">
+                                              {" "}
+                                              <span className="sort_title">
+                                                Sort by
+                                              </span>
+                                              <select className="sort_by">
+                                                <option>Top</option>
+                                                <option>Newest</option>
+                                                <option>Oldest</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div className="body_comment">
+                                          <div className="row">
+                                            <div className="avatar_comment col-md-1">
+                                              {" "}
+                                              <img
+                                                src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                alt="avatar"
+                                              />{" "}
+                                            </div>
+                                            <div className="box_comment col-md-11">
+                                              <textarea
+                                                className="commentar"
+                                                placeholder="Add a comment..."
+                                                defaultValue={""}
+                                              />
+                                              <div className="box_post">
+                                                <div className="pull-right">
+                                                  {" "}
+                                                  <span>
+                                                    {" "}
+                                                    <img
+                                                      src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                      alt="avatar"
+                                                    />{" "}
+                                                    <i className="fa fa-caret-down" />{" "}
+                                                  </span>
+                                                  <button
+                                                    // onClick="submit_comment()"
+                                                    type="button"
+                                                    value={1}
+                                                  >
+                                                    Post
+                                                  </button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div className="row">
+                                            <ul
+                                              id="list_comment"
+                                              className="col-md-12"
+                                            >
+                                              <li className="box_result row">
+                                                {/* <div className="avatar_comment col-md-1">
+                                                  {" "}
+                                                  <img
+                                                    src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                    alt="avatar"
+                                                  />{" "}
+                                                </div> */}
+                                                <div className="result_comment col-md-11">
+                                                  {/* <h4>Nath Ryuzaki</h4> */}
+                                                  <p>
+                                                  {agentDetails?.qcomment4}
+                                                  </p>
+                                                  {/* <div className="tools_comment">
+                                                    {" "}
+                                                    <Link
+                                                      className="like"
+                                                      to="#"
+                                                    >
+                                                      Like
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <Link
+                                                      className="replay"
+                                                      to="#"
+                                                    >
+                                                      Reply
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <i className="fa fa-thumbs-o-up" />{" "}
+                                                    <span className="count">
+                                                      1
+                                                    </span>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <span>26m</span>{" "}
+                                                  </div>
+                                                  <ul className="child_replay">
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>Sugito</h4>
+                                                        <p>
+                                                          Lorem Ipsum is simply
+                                                          dummy text of the
+                                                          printing and
+                                                          typesetting industry.
+                                                          Lorem Ipsum has been
+                                                          the industry's.
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#"
+                                                          >
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#"
+                                                          >
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                  </ul> */}
+                                                </div>
+                                              </li>
+
+                                              {/* <li className="box_result row">
+                                                <div className="avatar_comment col-md-1">
+                                                  {" "}
+                                                  <img
+                                                    src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                    alt="avatar"
+                                                  />{" "}
+                                                </div>
+                                                <div className="result_comment col-md-11">
+                                                  <h4>Gung Wah</h4>
+                                                  <p>
+                                                    Lorem Ipsum is simply dummy
+                                                    text of the printing and
+                                                    typesetting industry. Lorem
+                                                    Ipsum has been the
+                                                    industry's.
+                                                  </p>
+                                                  <div className="tools_comment">
+                                                    {" "}
+                                                    <Link
+                                                      className="like"
+                                                      to="#"
+                                                    >
+                                                      Like
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <Link
+                                                      className="replay"
+                                                      to="#"
+                                                    >
+                                                      Reply
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <i className="fa fa-thumbs-o-up" />{" "}
+                                                    <span className="count">
+                                                      1
+                                                    </span>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <span>26m</span>{" "}
+                                                  </div>
+                                                  <ul className="child_replay"></ul>
+                                                </div>
+                                              </li> */}
+                                            </ul>
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
-                                  <div className="row">
-                                    <ul id="list_comment" className="col-md-12">
-                                      <li className="box_result row">
-                                        <div className="avatar_comment col-md-1">
-                                          {" "}
-                                          <img
-                                            src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                            alt="avatar"
-                                          />{" "}
-                                        </div>
-                                        <div className="result_comment col-md-11">
-                                          <h4>Nath Ryuzaki</h4>
-                                          <p>
-                                            Lorem Ipsum is simply dummy text of
-                                            the printing and typesetting
-                                            industry. Lorem Ipsum has been the
-                                            industry's.
-                                          </p>
-                                          <div className="tools_comment">
-                                            {" "}
-                                            <Link className="like" to="#">
-                                              Like
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <Link className="replay" to="#">
-                                              Reply
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <i className="fa fa-thumbs-o-up" />{" "}
-                                            <span className="count">1</span>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <span>26m</span>{" "}
-                                          </div>
-                                          <ul className="child_replay">
-                                            <li className="box_reply row">
-                                              <div className="avatar_comment col-md-1">
-                                                {" "}
-                                                <img
-                                                  src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                                  alt="avatar"
-                                                />{" "}
-                                              </div>
-                                              <div className="result_comment col-md-11">
-                                                <h4>Sugito</h4>
-                                                <p>
-                                                  Lorem Ipsum is simply dummy
-                                                  text of the printing and
-                                                  typesetting industry. Lorem
-                                                  Ipsum has been the industry's.
-                                                </p>
-                                                <div className="tools_comment">
-                                                  {" "}
-                                                  <Link className="like" to="#">
-                                                    Like
-                                                  </Link>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <Link
-                                                    className="replay"
-                                                    to="#"
-                                                  >
-                                                    Reply
-                                                  </Link>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <i className="fa fa-thumbs-o-up" />{" "}
-                                                  <span className="count">
-                                                    1
-                                                  </span>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <span>26m</span>{" "}
-                                                </div>
-                                                <ul className="child_replay"></ul>
-                                              </div>
-                                            </li>
-                                          </ul>
-                                        </div>
+                                </div>
+                              </div>
+                              <div className="QuestionDiv">
+                                <div className="heading">
+                                  <div className="NumberDiv">DG.1.5</div>
+                                  <div className="float-start col-11">
+                                    The Entity shall identify and appoint Data
+                                    Stewards to support the Data Manager in both
+                                    the business and technical areas of the
+                                    organisation{" "}
+                                    <span className="badge bg-danger">
+                                      High Priority
+                                    </span>{" "}
+                                    <span className="badge bg-secondary">
+                                      Optional
+                                    </span>
+                                    <ul>
+                                      <li>
+                                        The Data Stewards will take
+                                        responsibility for the lifecycle of the
+                                        data as it passes through information
+                                        systems and ownership boundaries
                                       </li>
-
-                                      <li className="box_result row">
-                                        <div className="avatar_comment col-md-1">
-                                          {" "}
-                                          <img
-                                            src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                            alt="avatar"
-                                          />{" "}
-                                        </div>
-                                        <div className="result_comment col-md-11">
-                                          <h4>Gung Wah</h4>
-                                          <p>
-                                            Lorem Ipsum is simply dummy text of
-                                            the printing and typesetting
-                                            industry. Lorem Ipsum has been the
-                                            industry's.
-                                          </p>
-                                          <div className="tools_comment">
-                                            {" "}
-                                            <Link className="like" to="#">
-                                              Like
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <Link className="replay" to="#">
-                                              Reply
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <i className="fa fa-thumbs-o-up" />{" "}
-                                            <span className="count">1</span>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <span>26m</span>{" "}
-                                          </div>
-                                          <ul className="child_replay"></ul>
-                                        </div>
+                                      <li>
+                                        The Data Stewards will take
+                                        responsibility for the lifecycle of the
+                                        data as it passes through information
+                                        systems and ownership boundaries
                                       </li>
                                     </ul>
                                   </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="QuestionDiv">
-                        <div className="heading">
-                          <div className="NumberDiv">DG.1.5</div>
-                          <div className="float-start col-11">
-                            The Entity shall identify and appoint Data Stewards
-                            to support the Data Manager in both the business and
-                            technical areas of the organisation{" "}
-                            <span className="badge bg-danger">
-                              High Priority
-                            </span>{" "}
-                            <span className="badge bg-secondary">Optional</span>
-                            <ul>
-                              <li>
-                                The Data Stewards will take responsibility for
-                                the lifecycle of the data as it passes through
-                                information systems and ownership boundaries
-                              </li>
-                              <li>
-                                The Data Stewards will take responsibility for
-                                the lifecycle of the data as it passes through
-                                information systems and ownership boundaries
-                              </li>
-                            </ul>
-                          </div>
-                          <div className="row" style={{ clear: "both" }}>
-                            <div className="col-lg-2 mt-4 offset-1">
-                              <div
-                                className="btn-group CustomBtnGroup"
-                                role="group"
-                                aria-label="Basic example"
-                              >
-                                <h4 className="text-danger">
-                                  {agentDetails?.qstatus5
-                                    ? agentDetails.qstatus5
-                                    : "No"}
-                                </h4>
-                              </div>
-                            </div>
-                            <div className="col-lg-6 mt-4">
-                              {" "}
-                              <Link
-                                className="AttachBut2"
-                                data-bs-toggle="collapse"
-                                to="#collapseExample"
-                                role="button"
-                                aria-expanded="false"
-                                aria-controls="collapseExample"
-                              >
-                                {" "}
-                                <FontAwesomeIcon
-                                  icon={faLink}
-                                  style={{ color: "#0058f0" }}
-                                />{" "}
-                                <span className="badge badge-number"> 4</span>{" "}
-                              </Link>{" "}
-                              <Link
-                                className="AttachBut2"
-                                data-bs-toggle="collapse"
-                                to="#collapseExample"
-                                role="button"
-                                aria-expanded="false"
-                                aria-controls="collapseExample"
-                              >
-                                {" "}
-                                <FontAwesomeIcon
-                                  icon={faComment}
-                                  style={{ color: "#005cfa" }}
-                                />{" "}
-                                <span className="badge badge-number">4</span>{" "}
-                              </Link>{" "}
-                            </div>
-                            <div className="col-lg-3 mt-4 text-end">
-                              <div
-                                className="btn-group CustomBtnGroup2"
-                                role="group"
-                                aria-label="Basic example"
-                              >
-                                <button
-                                  type="button"
-                                  className="btn btn-primary"
-                                >
-                                  Accept
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-danger"
-                                >
-                                  Reject
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            className="collapse AttachDiv"
-                            id="collapseExample5"
-                          >
-                            <form action="">
-                              <div className="form">
-                                <input
-                                  name="file"
-                                  id="entry_value"
-                                  //   ref="fileInput"
-                                  type="file"
-                                  //   onchange="getFileName()"
-                                />
-                                <div>
-                                  {" "}
-                                  <img
-                                    src="upload.png"
-                                    alt="upload"
-                                    width="4%"
-                                    className=""
-                                  />{" "}
-                                  Upload your files here or
-                                  <button className="btn bg-color-dblue btn-primary">
-                                    Browse
-                                  </button>
-                                </div>
-                                <span id="fileName" className="text-primary ">
-                                  {" "}
-                                </span>{" "}
-                              </div>
-                            </form>
-                            <div className="SmallHead">Comments</div>
-
-                            <div className="container">
-                              <div className="col-md-12" id="fbcomment">
-                                <div className="header_comment">
-                                  <div className="">
-                                    <div className="float-start">
-                                      {" "}
-                                      <span className="count_comment">
-                                        264235 Comments
-                                      </span>{" "}
+                                  <div
+                                    className="row"
+                                    style={{ clear: "both" }}
+                                  >
+                                    <div className="col-lg-2 mt-4 offset-1">
+                                      <div
+                                        className="btn-group CustomBtnGroup"
+                                        role="group"
+                                        aria-label="Basic example"
+                                      >
+                                        <h4 className="text-success">
+                                          {agentDetails?.qstatus5
+                                            ? agentDetails.qstatus5
+                                            : "no"}
+                                        </h4>
+                                      </div>
                                     </div>
-                                    <div className="float-end">
+                                    <div className="col-lg-6 mt-4">
                                       {" "}
-                                      <span className="sort_title">
-                                        Sort by
-                                      </span>
-                                      <select className="sort_by">
-                                        <option>Top</option>
-                                        <option>Newest</option>
-                                        <option>Oldest</option>
-                                      </select>
+                                      <Link
+                                        className="AttachBut2"
+                                        data-bs-toggle="collapse"
+                                        to="#collapseExample5"
+                                        role="button"
+                                        aria-expanded="false"
+                                        aria-controls="collapseExample5"
+                                      >
+                                        {" "}
+                                        <FontAwesomeIcon
+                                          icon={faLink}
+                                          style={{ color: "#0058f0" }}
+                                        />{" "}
+                                        <span className="badge badge-number">
+                                          {" "}
+                                          4
+                                        </span>{" "}
+                                      </Link>{" "}
+                                      <Link
+                                        className="AttachBut2"
+                                        data-bs-toggle="collapse"
+                                        to="#collapseExample5"
+                                        role="button"
+                                        aria-expanded="false"
+                                        aria-controls="collapseExample5"
+                                      >
+                                        {" "}
+                                        <FontAwesomeIcon
+                                          icon={faComment}
+                                          style={{ color: "#005cfa" }}
+                                        />{" "}
+                                        <span className="badge badge-number">
+                                          4
+                                        </span>{" "}
+                                      </Link>{" "}
+                                    </div>
+                                    <div className="col-lg-3 mt-4 text-end">
+                                      <div
+                                        className="btn-group CustomBtnGroup2"
+                                        role="group"
+                                        aria-label="Basic example"
+                                      >
+                                        <button
+                                          type="button"
+                                          className="btn btn-primary"
+                                        >
+                                          Accept
+                                        </button>
+                                        <button
+                                          type="button"
+                                          className="btn btn-danger"
+                                        >
+                                          Reject
+                                        </button>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                                <div className="body_comment">
-                                  <div className="row">
-                                    <div className="avatar_comment col-md-1">
-                                      {" "}
-                                      <img
-                                        src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                        alt="avatar"
-                                      />{" "}
-                                    </div>
-                                    <div className="box_comment col-md-11">
-                                      <textarea
-                                        className="commentar"
-                                        placeholder="Add a comment..."
-                                        defaultValue={""}
-                                      />
-                                      <div className="box_post">
-                                        <div className="pull-right">
+                                  <div
+                                    className="collapse AttachDiv"
+                                    id="collapseExample5"
+                                  >
+                                    <form action="">
+                                      <div className="form">
+                                        <input
+                                          name="file"
+                                          id="entry_value5"
+                                          //   ref="fileInput"
+                                          type="file"
+                                          //   onchange="getFileName()"
+                                        />
+                                        <div>
                                           {" "}
-                                          <span>
-                                            {" "}
-                                            <img
-                                              src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                              alt="avatar"
-                                            />{" "}
-                                            <i className="fa fa-caret-down" />{" "}
-                                          </span>
-                                          <button
-                                            // onClick="submit_comment()"
-                                            type="button"
-                                            value={1}
-                                          >
-                                            Post
+                                          <img
+                                            src="upload.png"
+                                            alt=""
+                                            width="4%"
+                                            className=""
+                                          />{" "}
+                                          Upload your files here or
+                                          <button className="btn bg-color-dblue btn-primary" style={{marginLeft:"5px"}}>
+                                            Browse
                                           </button>
+                                        </div>
+                                        <span
+                                          id="fileName5"
+                                          className="text-primary "
+                                        >
+                                          {" "}
+                                        </span>{" "}
+                                      </div>
+                                    </form>
+                                    <div className="SmallHead">Comments</div>
+
+                                    <div className="container">
+                                      <div className="col-md-12" id="fbcomment">
+                                        <div className="header_comment">
+                                          <div className="">
+                                            <div className="float-start">
+                                              {" "}
+                                              <span className="count_comment">
+                                                264235 Comments
+                                              </span>{" "}
+                                            </div>
+                                            <div className="float-end">
+                                              {" "}
+                                              <span className="sort_title">
+                                                Sort by
+                                              </span>
+                                              <select className="sort_by">
+                                                <option>Top</option>
+                                                <option>Newest</option>
+                                                <option>Oldest</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div className="body_comment">
+                                          <div className="row">
+                                            <div className="avatar_comment col-md-1">
+                                              {" "}
+                                              <img
+                                                src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                alt="avatar"
+                                              />{" "}
+                                            </div>
+                                            <div className="box_comment col-md-11">
+                                              <textarea
+                                                className="commentar"
+                                                placeholder="Add a comment..."
+                                                defaultValue={""}
+                                              />
+                                              <div className="box_post">
+                                                <div className="pull-right">
+                                                  {" "}
+                                                  <span>
+                                                    {" "}
+                                                    <img
+                                                      src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                      alt="avatar"
+                                                    />{" "}
+                                                    <i className="fa fa-caret-down" />{" "}
+                                                  </span>
+                                                  <button
+                                                    // onClick="submit_comment()"
+                                                    type="button"
+                                                    value={1}
+                                                  >
+                                                    Post
+                                                  </button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div className="row">
+                                            <ul
+                                              id="list_comment"
+                                              className="col-md-12"
+                                            >
+                                              <li className="box_result row">
+                                                {/* <div className="avatar_comment col-md-1">
+                                                  {" "}
+                                                  <img
+                                                    src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                    alt="avatar"
+                                                  />{" "}
+                                                </div> */}
+                                                <div className="result_comment col-md-11">
+                                                  {/* <h4>Nath Ryuzaki</h4> */}
+                                                  <p>
+                                                  {agentDetails?.qcomment5}
+                                                  </p>
+                                                  {/* <div className="tools_comment">
+                                                    {" "}
+                                                    <Link
+                                                      className="like"
+                                                      to="#"
+                                                    >
+                                                      Like
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <Link
+                                                      className="replay"
+                                                      to="#"
+                                                    >
+                                                      Reply
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <i className="fa fa-thumbs-o-up" />{" "}
+                                                    <span className="count">
+                                                      1
+                                                    </span>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <span>26m</span>{" "}
+                                                  </div>
+                                                  <ul className="child_replay">
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>Sugito</h4>
+                                                        <p>
+                                                          Lorem Ipsum is simply
+                                                          dummy text of the
+                                                          printing and
+                                                          typesetting industry.
+                                                          Lorem Ipsum has been
+                                                          the industry's.
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#"
+                                                          >
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#"
+                                                          >
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                  </ul> */}
+                                                </div>
+                                              </li>
+
+                                              {/* <li className="box_result row">
+                                                <div className="avatar_comment col-md-1">
+                                                  {" "}
+                                                  <img
+                                                    src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                    alt="avatar"
+                                                  />{" "}
+                                                </div>
+                                                <div className="result_comment col-md-11">
+                                                  <h4>Gung Wah</h4>
+                                                  <p>
+                                                    Lorem Ipsum is simply dummy
+                                                    text of the printing and
+                                                    typesetting industry. Lorem
+                                                    Ipsum has been the
+                                                    industry's.
+                                                  </p>
+                                                  <div className="tools_comment">
+                                                    {" "}
+                                                    <Link
+                                                      className="like"
+                                                      to="#"
+                                                    >
+                                                      Like
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <Link
+                                                      className="replay"
+                                                      to="#"
+                                                    >
+                                                      Reply
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <i className="fa fa-thumbs-o-up" />{" "}
+                                                    <span className="count">
+                                                      1
+                                                    </span>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <span>26m</span>{" "}
+                                                  </div>
+                                                  <ul className="child_replay"></ul>
+                                                </div>
+                                              </li> */}
+                                            </ul>
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
-                                  <div className="row">
-                                    <ul id="list_comment" className="col-md-12">
-                                      <li className="box_result row">
-                                        <div className="avatar_comment col-md-1">
-                                          {" "}
-                                          <img
-                                            src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                            alt="avatar"
-                                          />{" "}
-                                        </div>
-                                        <div className="result_comment col-md-11">
-                                          <h4>Nath Ryuzaki</h4>
-                                          <p>
-                                            Lorem Ipsum is simply dummy text of
-                                            the printing and typesetting
-                                            industry. Lorem Ipsum has been the
-                                            industry's.
-                                          </p>
-                                          <div className="tools_comment">
-                                            {" "}
-                                            <Link className="like" to="#">
-                                              Like
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <Link className="replay" to="#">
-                                              Reply
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <i className="fa fa-thumbs-o-up" />{" "}
-                                            <span className="count">1</span>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <span>26m</span>{" "}
-                                          </div>
-                                          <ul className="child_replay">
-                                            <li className="box_reply row">
-                                              <div className="avatar_comment col-md-1">
-                                                {" "}
-                                                <img
-                                                  src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                                  alt="avatar"
-                                                />{" "}
-                                              </div>
-                                              <div className="result_comment col-md-11">
-                                                <h4>Sugito</h4>
-                                                <p>
-                                                  Lorem Ipsum is simply dummy
-                                                  text of the printing and
-                                                  typesetting industry. Lorem
-                                                  Ipsum has been the industry's.
-                                                </p>
-                                                <div className="tools_comment">
-                                                  {" "}
-                                                  <Link className="like" to="#">
-                                                    Like
-                                                  </Link>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <Link
-                                                    className="replay"
-                                                    to="#"
-                                                  >
-                                                    Reply
-                                                  </Link>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <i className="fa fa-thumbs-o-up" />{" "}
-                                                  <span className="count">
-                                                    1
-                                                  </span>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <span>26m</span>{" "}
-                                                </div>
-                                                <ul className="child_replay"></ul>
-                                              </div>
-                                            </li>
-                                          </ul>
-                                        </div>
+                                </div>
+                              </div>
+                              <div className="QuestionDiv">
+                                <div className="heading">
+                                  <div className="NumberDiv">DG.1.6</div>
+                                  <div className="float-start col-11">
+                                    The Entity shall identify and appoint Data
+                                    Owners (who are responsible for a particular
+                                    dataset) to support the Data Stewards. Data
+                                    Owners will be drawn from both the business
+                                    and technical areas of the organisation.{" "}
+                                    <span className="badge bg-danger">
+                                      High Priority
+                                    </span>{" "}
+                                    <span className="badge bg-secondary">
+                                      Optional
+                                    </span>
+                                    <ul>
+                                      <li>
+                                        The Data Owners will take responsibility
+                                        for a particular dataset throughout the
+                                        lifecycle across systems
                                       </li>
-
-                                      <li className="box_result row">
-                                        <div className="avatar_comment col-md-1">
-                                          {" "}
-                                          <img
-                                            src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                            alt="avatar"
-                                          />{" "}
-                                        </div>
-                                        <div className="result_comment col-md-11">
-                                          <h4>Gung Wah</h4>
-                                          <p>
-                                            Lorem Ipsum is simply dummy text of
-                                            the printing and typesetting
-                                            industry. Lorem Ipsum has been the
-                                            industry's.
-                                          </p>
-                                          <div className="tools_comment">
-                                            {" "}
-                                            <Link className="like" to="#">
-                                              Like
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <Link className="replay" to="#">
-                                              Reply
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <i className="fa fa-thumbs-o-up" />{" "}
-                                            <span className="count">1</span>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <span>26m</span>{" "}
-                                          </div>
-                                          <ul className="child_replay"></ul>
-                                        </div>
+                                      <li>
+                                        The Data Owners will ensure the quality
+                                        standards for their dataset are met
+                                      </li>
+                                      <li>
+                                        The Data Owners will liaise between the
+                                        business and technical stakeholders to
+                                        ensure that their dataset is maintained
+                                        to the highest standards possible
                                       </li>
                                     </ul>
                                   </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="QuestionDiv">
-                        <div className="heading">
-                          <div className="NumberDiv">DG.1.6</div>
-                          <div className="float-start col-11">
-                            The Entity shall identify and appoint Data Owners
-                            (who are responsible for a particular dataset) to
-                            support the Data Stewards. Data Owners will be drawn
-                            from both the business and technical areas of the
-                            organisation.{" "}
-                            <span className="badge bg-danger">
-                              High Priority
-                            </span>{" "}
-                            <span className="badge bg-secondary">Optional</span>
-                            <ul>
-                              <li>
-                                The Data Owners will take responsibility for a
-                                particular dataset throughout the lifecycle
-                                across systems
-                              </li>
-                              <li>
-                                The Data Owners will ensure the quality
-                                standards for their dataset are met
-                              </li>
-                              <li>
-                                The Data Owners will liaise between the business
-                                and technical stakeholders to ensure that their
-                                dataset is maintained to the highest standards
-                                possible
-                              </li>
-                            </ul>
-                          </div>
-                          <div className="row" style={{ clear: "both" }}>
-                            <div className="col-lg-2 mt-4 offset-1">
-                              <div
-                                className="btn-group CustomBtnGroup"
-                                role="group"
-                                aria-label="Basic example"
-                              >
-                                <h4 className="text-danger">
-                                  {agentDetails?.qstatus6
-                                    ? agentDetails.qstatus6
-                                    : "No"}
-                                </h4>
-                              </div>
-                            </div>
-                            <div className="col-lg-6 mt-4">
-                              {" "}
-                              <Link
-                                className="AttachBut2"
-                                data-bs-toggle="collapse"
-                                to="#collapseExample"
-                                role="button"
-                                aria-expanded="false"
-                                aria-controls="collapseExample"
-                              >
-                                {" "}
-                                <FontAwesomeIcon
-                                  icon={faLink}
-                                  style={{ color: "#0058f0" }}
-                                />{" "}
-                                <span className="badge badge-number"> 4</span>{" "}
-                              </Link>{" "}
-                              <Link
-                                className="AttachBut2"
-                                data-bs-toggle="collapse"
-                                to="#collapseExample"
-                                role="button"
-                                aria-expanded="false"
-                                aria-controls="collapseExample"
-                              >
-                                {" "}
-                                <FontAwesomeIcon
-                                  icon={faComment}
-                                  style={{ color: "#005cfa" }}
-                                />{" "}
-                                <span className="badge badge-number">4</span>{" "}
-                              </Link>{" "}
-                            </div>
-                            <div className="col-lg-3 mt-4 text-end">
-                              <div
-                                className="btn-group CustomBtnGroup2"
-                                role="group"
-                                aria-label="Basic example"
-                              >
-                                <button
-                                  type="button"
-                                  className="btn btn-primary"
-                                >
-                                  Accept
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-danger"
-                                >
-                                  Reject
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            className="collapse AttachDiv"
-                            id="collapseExample6"
-                          >
-                            <form action="">
-                              <div className="form">
-                                <input
-                                  name="file"
-                                  id="entry_value"
-                                  //   ref="fileInput"
-                                  type="file"
-                                  //   onchange="getFileName()"
-                                />
-                                <div>
-                                  {" "}
-                                  <img
-                                    src="upload.png"
-                                    alt="upload"
-                                    width="4%"
-                                    className=""
-                                  />{" "}
-                                  Upload your files here or
-                                  <button className="btn bg-color-dblue btn-primary">
-                                    Browse
-                                  </button>
-                                </div>
-                                <span id="fileName" className="text-primary ">
-                                  {" "}
-                                </span>{" "}
-                              </div>
-                            </form>
-                            <div className="SmallHead">Comments</div>
-
-                            <div className="container">
-                              <div className="col-md-12" id="fbcomment">
-                                <div className="header_comment">
-                                  <div className="">
-                                    <div className="float-start">
-                                      {" "}
-                                      <span className="count_comment">
-                                        264235 Comments
-                                      </span>{" "}
+                                  <div
+                                    className="row"
+                                    style={{ clear: "both" }}
+                                  >
+                                    <div className="col-lg-2 mt-4 offset-1">
+                                      <div
+                                        className="btn-group CustomBtnGroup"
+                                        role="group"
+                                        aria-label="Basic example"
+                                      >
+                                        <h4 className="text-success">
+                                          {agentDetails?.qstatus6
+                                            ? agentDetails.qstatus6
+                                            : "no"}
+                                        </h4>
+                                      </div>
                                     </div>
-                                    <div className="float-end">
+                                    <div className="col-lg-6 mt-4">
                                       {" "}
-                                      <span className="sort_title">
-                                        Sort by
-                                      </span>
-                                      <select className="sort_by">
-                                        <option>Top</option>
-                                        <option>Newest</option>
-                                        <option>Oldest</option>
-                                      </select>
+                                      <Link
+                                        className="AttachBut2"
+                                        data-bs-toggle="collapse"
+                                        to="#collapseExample6"
+                                        role="button"
+                                        aria-expanded="false"
+                                        aria-controls="collapseExample6"
+                                      >
+                                        {" "}
+                                        <FontAwesomeIcon
+                                          icon={faLink}
+                                          style={{ color: "#0058f0" }}
+                                        />{" "}
+                                        <span className="badge badge-number">
+                                          {" "}
+                                          4
+                                        </span>{" "}
+                                      </Link>{" "}
+                                      <Link
+                                        className="AttachBut2"
+                                        data-bs-toggle="collapse"
+                                        to="#collapseExample6"
+                                        role="button"
+                                        aria-expanded="false"
+                                        aria-controls="collapseExample6"
+                                      >
+                                        {" "}
+                                        <FontAwesomeIcon
+                                          icon={faComment}
+                                          style={{ color: "#005cfa" }}
+                                        />{" "}
+                                        <span className="badge badge-number">
+                                          4
+                                        </span>{" "}
+                                      </Link>{" "}
+                                    </div>
+                                    <div className="col-lg-3 mt-4 text-end">
+                                      <div
+                                        className="btn-group CustomBtnGroup2"
+                                        role="group"
+                                        aria-label="Basic example"
+                                      >
+                                        <button
+                                          type="button"
+                                          className="btn btn-primary"
+                                        >
+                                          Accept
+                                        </button>
+                                        <button
+                                          type="button"
+                                          className="btn btn-danger"
+                                        >
+                                          Reject
+                                        </button>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                                <div className="body_comment">
-                                  <div className="row">
-                                    <div className="avatar_comment col-md-1">
-                                      {" "}
-                                      <img
-                                        src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                        alt="avatar"
-                                      />{" "}
-                                    </div>
-                                    <div className="box_comment col-md-11">
-                                      <textarea
-                                        className="commentar"
-                                        placeholder="Add a comment..."
-                                        defaultValue={""}
-                                      />
-                                      <div className="box_post">
-                                        <div className="pull-right">
+                                  <div
+                                    className="collapse AttachDiv"
+                                    id="collapseExample6"
+                                  >
+                                    <form action="">
+                                      <div className="form">
+                                        <input
+                                          name="file"
+                                          id="entry_value6"
+                                          //   ref="fileInput"
+                                          type="file"
+                                          //   onchange="getFileName()"
+                                        />
+                                        <div>
                                           {" "}
-                                          <span>
-                                            {" "}
-                                            <img
-                                              src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                              alt="avatar"
-                                            />{" "}
-                                            <i className="fa fa-caret-down" />{" "}
-                                          </span>
-                                          <button
-                                            // onClick="submit_comment()"
-                                            type="button"
-                                            value={1}
-                                          >
-                                            Post
+                                          <img
+                                            src="upload.png"
+                                            alt=""
+                                            width="4%"
+                                            className=""
+                                          />{" "}
+                                          Upload your files here or
+                                          <button className="btn bg-color-dblue btn-primary" style={{marginLeft:"5px"}}>
+                                            Browse
                                           </button>
+                                        </div>
+                                        <span
+                                          id="fileName6"
+                                          className="text-primary "
+                                        >
+                                          {" "}
+                                        </span>{" "}
+                                      </div>
+                                    </form>
+                                    <div className="SmallHead">Comments</div>
+
+                                    <div className="container">
+                                      <div className="col-md-12" id="fbcomment">
+                                        <div className="header_comment">
+                                          <div className="">
+                                            <div className="float-start">
+                                              {" "}
+                                              <span className="count_comment">
+                                                264235 Comments
+                                              </span>{" "}
+                                            </div>
+                                            <div className="float-end">
+                                              {" "}
+                                              <span className="sort_title">
+                                                Sort by
+                                              </span>
+                                              <select className="sort_by">
+                                                <option>Top</option>
+                                                <option>Newest</option>
+                                                <option>Oldest</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div className="body_comment">
+                                          <div className="row">
+                                            <div className="avatar_comment col-md-1">
+                                              {" "}
+                                              <img
+                                                src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                alt="avatar"
+                                              />{" "}
+                                            </div>
+                                            <div className="box_comment col-md-11">
+                                              <textarea
+                                                className="commentar"
+                                                placeholder="Add a comment..."
+                                                defaultValue={""}
+                                              />
+                                              <div className="box_post">
+                                                <div className="pull-right">
+                                                  {" "}
+                                                  <span>
+                                                    {" "}
+                                                    <img
+                                                      src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                      alt="avatar"
+                                                    />{" "}
+                                                    <i className="fa fa-caret-down" />{" "}
+                                                  </span>
+                                                  <button
+                                                    // onClick="submit_comment()"
+                                                    type="button"
+                                                    value={1}
+                                                  >
+                                                    Post
+                                                  </button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div className="row">
+                                            <ul
+                                              id="list_comment"
+                                              className="col-md-12"
+                                            >
+                                              <li className="box_result row">
+                                                {/* <div className="avatar_comment col-md-1">
+                                                  {" "}
+                                                  <img
+                                                    src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                    alt="avatar"
+                                                  />{" "}
+                                                </div> */}
+                                                <div className="result_comment col-md-11">
+                                                  {/* <h4>Nath Ryuzaki</h4> */}
+                                                  <p>
+                                                  {agentDetails?.qcomment6}
+                                                  </p>
+                                                  {/* <div className="tools_comment">
+                                                    {" "}
+                                                    <Link
+                                                      className="like"
+                                                      to="#"
+                                                    >
+                                                      Like
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <Link
+                                                      className="replay"
+                                                      to="#"
+                                                    >
+                                                      Reply
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <i className="fa fa-thumbs-o-up" />{" "}
+                                                    <span className="count">
+                                                      1
+                                                    </span>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <span>26m</span>{" "}
+                                                  </div>
+                                                  <ul className="child_replay">
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>Sugito</h4>
+                                                        <p>
+                                                          Lorem Ipsum is simply
+                                                          dummy text of the
+                                                          printing and
+                                                          typesetting industry.
+                                                          Lorem Ipsum has been
+                                                          the industry's.
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#"
+                                                          >
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#"
+                                                          >
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                  </ul> */}
+                                                </div>
+                                              </li>
+
+                                              {/* <li className="box_result row">
+                                                <div className="avatar_comment col-md-1">
+                                                  {" "}
+                                                  <img
+                                                    src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                    alt="avatar"
+                                                  />{" "}
+                                                </div>
+                                                <div className="result_comment col-md-11">
+                                                  <h4>Gung Wah</h4>
+                                                  <p>
+                                                    Lorem Ipsum is simply dummy
+                                                    text of the printing and
+                                                    typesetting industry. Lorem
+                                                    Ipsum has been the
+                                                    industry's.
+                                                  </p>
+                                                  <div className="tools_comment">
+                                                    {" "}
+                                                    <Link
+                                                      className="like"
+                                                      to="#"
+                                                    >
+                                                      Like
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <Link
+                                                      className="replay"
+                                                      to="#"
+                                                    >
+                                                      Reply
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <i className="fa fa-thumbs-o-up" />{" "}
+                                                    <span className="count">
+                                                      1
+                                                    </span>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <span>26m</span>{" "}
+                                                  </div>
+                                                  <ul className="child_replay"></ul>
+                                                </div>
+                                              </li> */}
+                                            </ul>
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
-                                  <div className="row">
-                                    <ul id="list_comment" className="col-md-12">
-                                      <li className="box_result row">
-                                        <div className="avatar_comment col-md-1">
-                                          {" "}
-                                          <img
-                                            src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                            alt="avatar"
-                                          />{" "}
-                                        </div>
-                                        <div className="result_comment col-md-11">
-                                          <h4>Nath Ryuzaki</h4>
-                                          <p>
-                                            Lorem Ipsum is simply dummy text of
-                                            the printing and typesetting
-                                            industry. Lorem Ipsum has been the
-                                            industry's.
-                                          </p>
-                                          <div className="tools_comment">
-                                            {" "}
-                                            <Link className="like" to="#">
-                                              Like
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <Link className="replay" to="#">
-                                              Reply
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <i className="fa fa-thumbs-o-up" />{" "}
-                                            <span className="count">1</span>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <span>26m</span>{" "}
-                                          </div>
-                                          <ul className="child_replay">
-                                            <li className="box_reply row">
-                                              <div className="avatar_comment col-md-1">
-                                                {" "}
-                                                <img
-                                                  src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                                  alt="avatar"
-                                                />{" "}
-                                              </div>
-                                              <div className="result_comment col-md-11">
-                                                <h4>Sugito</h4>
-                                                <p>
-                                                  Lorem Ipsum is simply dummy
-                                                  text of the printing and
-                                                  typesetting industry. Lorem
-                                                  Ipsum has been the industry's.
-                                                </p>
-                                                <div className="tools_comment">
-                                                  {" "}
-                                                  <Link className="like" to="#">
-                                                    Like
-                                                  </Link>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <Link
-                                                    className="replay"
-                                                    to="#"
-                                                  >
-                                                    Reply
-                                                  </Link>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <i className="fa fa-thumbs-o-up" />{" "}
-                                                  <span className="count">
-                                                    1
-                                                  </span>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <span>26m</span>{" "}
-                                                </div>
-                                                <ul className="child_replay"></ul>
-                                              </div>
-                                            </li>
-                                          </ul>
-                                        </div>
+                                </div>
+                              </div>
+                              <div className="QuestionDiv">
+                                <div className="heading">
+                                  <div className="NumberDiv">DG.1.7</div>
+                                  <div className="float-start col-11">
+                                    The Entity shall regularly undertake
+                                    monitoring and compliance checking to ensure
+                                    that information systems and data related
+                                    processes are implemented in accordance with
+                                    established policy, standards and best
+                                    practices
+                                    <span className="badge bg-danger">
+                                      High Priority
+                                    </span>{" "}
+                                    <span className="badge bg-secondary">
+                                      Optional
+                                    </span>
+                                    <ul>
+                                      Such reviews should include coverage of:
+                                      <li>
+                                        Such reviews should include coverage of
                                       </li>
-
-                                      <li className="box_result row">
-                                        <div className="avatar_comment col-md-1">
-                                          {" "}
-                                          <img
-                                            src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                            alt="avatar"
-                                          />{" "}
-                                        </div>
-                                        <div className="result_comment col-md-11">
-                                          <h4>Gung Wah</h4>
-                                          <p>
-                                            Lorem Ipsum is simply dummy text of
-                                            the printing and typesetting
-                                            industry. Lorem Ipsum has been the
-                                            industry's.
-                                          </p>
-                                          <div className="tools_comment">
-                                            {" "}
-                                            <Link className="like" to="#">
-                                              Like
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <Link className="replay" to="#">
-                                              Reply
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <i className="fa fa-thumbs-o-up" />{" "}
-                                            <span className="count">1</span>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <span>26m</span>{" "}
-                                          </div>
-                                          <ul className="child_replay"></ul>
-                                        </div>
+                                      <li>
+                                        The organisation will take
+                                        responsibility and accountability for
+                                        Data Management
+                                      </li>
+                                      <li>
+                                        Such reviews should include coverage of
                                       </li>
                                     </ul>
                                   </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="QuestionDiv">
-                        <div className="heading">
-                          <div className="NumberDiv">DG.1.7</div>
-                          <div className="float-start col-11">
-                            The Entity shall regularly undertake monitoring and
-                            compliance checking to ensure that information
-                            systems and data related processes are implemented
-                            in accordance with established policy, standards and
-                            best practices
-                            <span className="badge bg-danger">
-                              High Priority
-                            </span>{" "}
-                            <span className="badge bg-secondary">Optional</span>
-                            <ul>
-                              Such reviews should include coverage of:
-                              <li>Such reviews should include coverage of</li>
-                              <li>
-                                The organisation will take responsibility and
-                                accountability for Data Management
-                              </li>
-                              <li>Such reviews should include coverage of</li>
-                            </ul>
-                          </div>
-                          <div className="row" style={{ clear: "both" }}>
-                            <div className="col-lg-2 mt-4 offset-1">
-                              <div
-                                className="btn-group CustomBtnGroup"
-                                role="group"
-                                aria-label="Basic example"
-                              >
-                                <h4 className="text-danger">
-                                  {agentDetails?.qstatus7
-                                    ? agentDetails.qstatus7
-                                    : "No"}
-                                </h4>
-                              </div>
-                            </div>
-                            <div className="col-lg-6 mt-4">
-                              {" "}
-                              <Link
-                                className="AttachBut2"
-                                data-bs-toggle="collapse"
-                                to="#collapseExample"
-                                role="button"
-                                aria-expanded="false"
-                                aria-controls="collapseExample"
-                              >
-                                {" "}
-                                <FontAwesomeIcon
-                                  icon={faLink}
-                                  style={{ color: "#0058f0" }}
-                                />{" "}
-                                <span className="badge badge-number"> 4</span>{" "}
-                              </Link>{" "}
-                              <Link
-                                className="AttachBut2"
-                                data-bs-toggle="collapse"
-                                to="#collapseExample"
-                                role="button"
-                                aria-expanded="false"
-                                aria-controls="collapseExample"
-                              >
-                                {" "}
-                                <FontAwesomeIcon
-                                  icon={faComment}
-                                  style={{ color: "#005cfa" }}
-                                />{" "}
-                                <span className="badge badge-number">4</span>{" "}
-                              </Link>{" "}
-                            </div>
-                            <div className="col-lg-3 mt-4 text-end">
-                              <div
-                                className="btn-group CustomBtnGroup2"
-                                role="group"
-                                aria-label="Basic example"
-                              >
-                                <button
-                                  type="button"
-                                  className="btn btn-primary"
-                                >
-                                  Accept
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-danger"
-                                >
-                                  Reject
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            className="collapse AttachDiv"
-                            id="collapseExample7"
-                          >
-                            <form action="">
-                              <div className="form">
-                                <input
-                                  name="file"
-                                  id="entry_value"
-                                  //   ref="fileInput"
-                                  type="file"
-                                  //   onchange="getFileName()"
-                                />
-                                <div>
-                                  {" "}
-                                  <img
-                                    src="upload.png"
-                                    alt="upload"
-                                    width="4%"
-                                    className=""
-                                  />{" "}
-                                  Upload your files here or
-                                  <button className="btn bg-color-dblue btn-primary">
-                                    Browse
-                                  </button>
-                                </div>
-                                <span id="fileName" className="text-primary ">
-                                  {" "}
-                                </span>{" "}
-                              </div>
-                            </form>
-                            <div className="SmallHead">Comments</div>
-
-                            <div className="container">
-                              <div className="col-md-12" id="fbcomment">
-                                <div className="header_comment">
-                                  <div className="">
-                                    <div className="float-start">
-                                      {" "}
-                                      <span className="count_comment">
-                                        264235 Comments
-                                      </span>{" "}
+                                  <div
+                                    className="row"
+                                    style={{ clear: "both" }}
+                                  >
+                                    <div className="col-lg-2 mt-4 offset-1">
+                                      <div
+                                        className="btn-group CustomBtnGroup"
+                                        role="group"
+                                        aria-label="Basic example"
+                                      >
+                                        <h4 className="text-success">
+                                          {agentDetails?.qstatus7
+                                            ? agentDetails.qstatus7
+                                            : "no"}
+                                        </h4>
+                                      </div>
                                     </div>
-                                    <div className="float-end">
+                                    <div className="col-lg-6 mt-4">
                                       {" "}
-                                      <span className="sort_title">
-                                        Sort by
-                                      </span>
-                                      <select className="sort_by">
-                                        <option>Top</option>
-                                        <option>Newest</option>
-                                        <option>Oldest</option>
-                                      </select>
+                                      <Link
+                                        className="AttachBut2"
+                                        data-bs-toggle="collapse"
+                                        to="#collapseExample7"
+                                        role="button"
+                                        aria-expanded="false"
+                                        aria-controls="collapseExample7"
+                                      >
+                                        {" "}
+                                        <FontAwesomeIcon
+                                          icon={faLink}
+                                          style={{ color: "#0058f0" }}
+                                        />{" "}
+                                        <span className="badge badge-number">
+                                          {" "}
+                                          4
+                                        </span>{" "}
+                                      </Link>{" "}
+                                      <Link
+                                        className="AttachBut2"
+                                        data-bs-toggle="collapse"
+                                        to="#collapseExample7"
+                                        role="button"
+                                        aria-expanded="false"
+                                        aria-controls="collapseExample7"
+                                      >
+                                        {" "}
+                                        <FontAwesomeIcon
+                                          icon={faComment}
+                                          style={{ color: "#005cfa" }}
+                                        />{" "}
+                                        <span className="badge badge-number">
+                                          4
+                                        </span>{" "}
+                                      </Link>{" "}
+                                    </div>
+                                    <div className="col-lg-3 mt-4 text-end">
+                                      <div
+                                        className="btn-group CustomBtnGroup2"
+                                        role="group"
+                                        aria-label="Basic example"
+                                      >
+                                        <button
+                                          type="button"
+                                          className="btn btn-primary"
+                                        >
+                                          Accept
+                                        </button>
+                                        <button
+                                          type="button"
+                                          className="btn btn-danger"
+                                        >
+                                          Reject
+                                        </button>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                                <div className="body_comment">
-                                  <div className="row">
-                                    <div className="avatar_comment col-md-1">
-                                      {" "}
-                                      <img
-                                        src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                        alt="avatar"
-                                      />{" "}
-                                    </div>
-                                    <div className="box_comment col-md-11">
-                                      <textarea
-                                        className="commentar"
-                                        placeholder="Add a comment..."
-                                        defaultValue={""}
-                                      />
-                                      <div className="box_post">
-                                        <div className="pull-right">
+                                  <div
+                                    className="collapse AttachDiv"
+                                    id="collapseExample7"
+                                  >
+                                    <form action="">
+                                      <div className="form">
+                                        <input
+                                          name="file"
+                                          id="entry_value7"
+                                          //   ref="fileInput"
+                                          type="file"
+                                          //   onchange="getFileName()"
+                                        />
+                                        <div>
                                           {" "}
-                                          <span>
-                                            {" "}
-                                            <img
-                                              src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                              alt="avatar"
-                                            />{" "}
-                                            <i className="fa fa-caret-down" />{" "}
-                                          </span>
-                                          <button
-                                            // onClick="submit_comment()"
-                                            type="button"
-                                            value={1}
-                                          >
-                                            Post
+                                          <img
+                                            src="upload.png"
+                                            alt=""
+                                            width="4%"
+                                            className=""
+                                          />{" "}
+                                          Upload your files here or
+                                          <button className="btn bg-color-dblue btn-primary" style={{marginLeft:"5px"}}>
+                                            Browse
                                           </button>
+                                        </div>
+                                        <span
+                                          id="fileName7"
+                                          className="text-primary "
+                                        >
+                                          {" "}
+                                        </span>{" "}
+                                      </div>
+                                    </form>
+                                    <div className="SmallHead">Comments</div>
+
+                                    <div className="container">
+                                      <div className="col-md-12" id="fbcomment">
+                                        <div className="header_comment">
+                                          <div className="">
+                                            <div className="float-start">
+                                              {" "}
+                                              <span className="count_comment">
+                                                264235 Comments
+                                              </span>{" "}
+                                            </div>
+                                            <div className="float-end">
+                                              {" "}
+                                              <span className="sort_title">
+                                                Sort by
+                                              </span>
+                                              <select className="sort_by">
+                                                <option>Top</option>
+                                                <option>Newest</option>
+                                                <option>Oldest</option>
+                                              </select>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div className="body_comment">
+                                          <div className="row">
+                                            <div className="avatar_comment col-md-1">
+                                              {" "}
+                                              <img
+                                                src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                alt="avatar"
+                                              />{" "}
+                                            </div>
+                                            <div className="box_comment col-md-11">
+                                              <textarea
+                                                className="commentar"
+                                                placeholder="Add a comment..."
+                                                defaultValue={""}
+                                              />
+                                              <div className="box_post">
+                                                <div className="pull-right">
+                                                  {" "}
+                                                  <span>
+                                                    {" "}
+                                                    <img
+                                                      src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                      alt="avatar"
+                                                    />{" "}
+                                                    <i className="fa fa-caret-down" />{" "}
+                                                  </span>
+                                                  <button
+                                                    // onClick="submit_comment()"
+                                                    type="button"
+                                                    value={1}
+                                                  >
+                                                    Post
+                                                  </button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div className="row">
+                                            <ul
+                                              id="list_comment"
+                                              className="col-md-12"
+                                            >
+                                              <li className="box_result row">
+                                                <div className="avatar_comment col-md-1">
+                                                  {" "}
+                                                  <img
+                                                    src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                    alt="avatar"
+                                                  />{" "}
+                                                </div>
+                                                <div className="result_comment col-md-11">
+                                                  {/* <h4>Nath Ryuzaki</h4> */}
+                                                  <p>
+                                                  {agentDetails?.qcomment7}
+                                                  </p>
+                                                  {/* <div className="tools_comment">
+                                                    {" "}
+                                                    <Link
+                                                      className="like"
+                                                      to="#"
+                                                    >
+                                                      Like
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <Link
+                                                      className="replay"
+                                                      to="#"
+                                                    >
+                                                      Reply
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <i className="fa fa-thumbs-o-up" />{" "}
+                                                    <span className="count">
+                                                      1
+                                                    </span>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <span>26m</span>{" "}
+                                                  </div>
+                                                  <ul className="child_replay">
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>Sugito</h4>
+                                                        <p>
+                                                          Lorem Ipsum is simply
+                                                          dummy text of the
+                                                          printing and
+                                                          typesetting industry.
+                                                          Lorem Ipsum has been
+                                                          the industry's.
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#"
+                                                          >
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#"
+                                                          >
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                  </ul> */}
+                                                </div>
+                                              </li>
+
+                                              {/* <li className="box_result row">
+                                                <div className="avatar_comment col-md-1">
+                                                  {" "}
+                                                  <img
+                                                    src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                    alt="avatar"
+                                                  />{" "}
+                                                </div>
+                                                <div className="result_comment col-md-11">
+                                                  <h4>Gung Wah</h4>
+                                                  <p>
+                                                    Lorem Ipsum is simply dummy
+                                                    text of the printing and
+                                                    typesetting industry. Lorem
+                                                    Ipsum has been the
+                                                    industry's.
+                                                  </p>
+                                                  <div className="tools_comment">
+                                                    {" "}
+                                                    <Link
+                                                      className="like"
+                                                      to="#"
+                                                    >
+                                                      Like
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <Link
+                                                      className="replay"
+                                                      to="#"
+                                                    >
+                                                      Reply
+                                                    </Link>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <i className="fa fa-thumbs-o-up" />{" "}
+                                                    <span className="count">
+                                                      1
+                                                    </span>{" "}
+                                                    <span aria-hidden="true">
+                                                      {" "}
+                                                      ·{" "}
+                                                    </span>{" "}
+                                                    <span>26m</span>{" "}
+                                                  </div>
+                                                  <ul className="child_replay"></ul>
+                                                </div>
+                                              </li> */}
+                                            </ul>
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
-                                  <div className="row">
-                                    <ul id="list_comment" className="col-md-12">
-                                      <li className="box_result row">
-                                        <div className="avatar_comment col-md-1">
-                                          {" "}
-                                          <img
-                                            src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                            alt="avatar"
-                                          />{" "}
-                                        </div>
-                                        <div className="result_comment col-md-11">
-                                          <h4>Nath Ryuzaki</h4>
-                                          <p>
-                                            Lorem Ipsum is simply dummy text of
-                                            the printing and typesetting
-                                            industry. Lorem Ipsum has been the
-                                            industry's.
-                                          </p>
-                                          <div className="tools_comment">
-                                            {" "}
-                                            <Link className="like" to="#">
-                                              Like
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <Link className="replay" to="#">
-                                              Reply
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <i className="fa fa-thumbs-o-up" />{" "}
-                                            <span className="count">1</span>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <span>26m</span>{" "}
-                                          </div>
-                                          <ul className="child_replay">
-                                            <li className="box_reply row">
-                                              <div className="avatar_comment col-md-1">
-                                                {" "}
-                                                <img
-                                                  src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                                  alt="avatar"
-                                                />{" "}
-                                              </div>
-                                              <div className="result_comment col-md-11">
-                                                <h4>Sugito</h4>
-                                                <p>
-                                                  Lorem Ipsum is simply dummy
-                                                  text of the printing and
-                                                  typesetting industry. Lorem
-                                                  Ipsum has been the industry's.
-                                                </p>
-                                                <div className="tools_comment">
-                                                  {" "}
-                                                  <Link className="like" to="#">
-                                                    Like
-                                                  </Link>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <Link
-                                                    className="replay"
-                                                    to="#"
-                                                  >
-                                                    Reply
-                                                  </Link>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <i className="fa fa-thumbs-o-up" />{" "}
-                                                  <span className="count">
-                                                    1
-                                                  </span>{" "}
-                                                  <span aria-hidden="true">
-                                                    {" "}
-                                                    ·{" "}
-                                                  </span>{" "}
-                                                  <span>26m</span>{" "}
-                                                </div>
-                                                <ul className="child_replay"></ul>
-                                              </div>
-                                            </li>
-                                          </ul>
-                                        </div>
-                                      </li>
-
-                                      <li className="box_result row">
-                                        <div className="avatar_comment col-md-1">
-                                          {" "}
-                                          <img
-                                            src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
-                                            alt="avatar"
-                                          />{" "}
-                                        </div>
-                                        <div className="result_comment col-md-11">
-                                          <h4>Gung Wah</h4>
-                                          <p>
-                                            Lorem Ipsum is simply dummy text of
-                                            the printing and typesetting
-                                            industry. Lorem Ipsum has been the
-                                            industry's.
-                                          </p>
-                                          <div className="tools_comment">
-                                            {" "}
-                                            <Link className="like" to="#">
-                                              Like
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <Link className="replay" to="#">
-                                              Reply
-                                            </Link>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <i className="fa fa-thumbs-o-up" />{" "}
-                                            <span className="count">1</span>{" "}
-                                            <span aria-hidden="true"> · </span>{" "}
-                                            <span>26m</span>{" "}
-                                          </div>
-                                          <ul className="child_replay"></ul>
-                                        </div>
-                                      </li>
-                                    </ul>
-                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="step2" className="step-content-body out">
-                    <div className="pagetitle">
-                      <h2>Data Management</h2>
-                    </div>
-                    <div className="QuestionsStrip"> </div>
-                  </div>
+                        );
+                      case 2:
+                        return (
+                          <div id="step2" className="step-content-body">
+                            <div className="pagetitle">
+                              <h2>Data Management</h2>
+                            </div>
+                            <div className="QuestionsStrip"> </div>
+                          </div>
+                        );
+                      case 3:
+                        return (
+                          <div id="step2" className="step-content-body ">
+                            <div className="pagetitle">
+                              <h2>Data Categlogue</h2>
+                            </div>
+                            <div className="QuestionsStrip"> </div>
+                          </div>
+                        );
+                      case 4:
+                        return (
+                          <div id="step2" className="step-content-body">
+                            <div className="pagetitle">
+                              <h2>Data Modeling</h2>
+                            </div>
+                            <div className="QuestionsStrip"> </div>
+                          </div>
+                        );
+                      case 5:
+                        return (
+                          <div id="step2" className="step-content-body">
+                            <div className="pagetitle">
+                              <h2>Data Architecture</h2>
+                            </div>
+                            <div className="QuestionsStrip"> </div>
+                          </div>
+                        );
+                      case 6:
+                        return (
+                          <div id="step2" className="step-content-body">
+                            <div className="pagetitle">
+                              <h2>Data Security & Privacy</h2>
+                            </div>
+                            <div className="QuestionsStrip"> </div>
+                          </div>
+                        );
+                      case 7:
+                        return (
+                          <div id="step2" className="step-content-body">
+                            <div className="pagetitle">
+                              <h2>Data Security & Privacy</h2>
+                            </div>
+                            <div className="QuestionsStrip"> </div>
+                          </div>
+                        );
+
+                      case 8:
+                        return (
+                          <div id="step2" className="step-content-body">
+                            <div className="pagetitle">
+                              <h2>Data Security & Privacy</h2>
+                            </div>
+                            <div className="QuestionsStrip"> </div>
+                          </div>
+                        );
+                      case 9:
+                        return (
+                          <div id="step2" className="step-content-body">
+                            <div className="pagetitle">
+                              <h2>Data Security & Privacy</h2>
+                            </div>
+                            <div className="QuestionsStrip"> </div>
+                          </div>
+                        );
+                      case 10:
+                        return (
+                          <div id="step2" className="step-content-body">
+                            <div className="pagetitle">
+                              <h2>Data Security & Privacy</h2>
+                            </div>
+                            <div className="QuestionsStrip"> </div>
+                          </div>
+                        );
+                      default:
+                        return (
+                          <div id="step2" className="step-content-body ">
+                            <div className="pagetitle">
+                              <h2>Data Management</h2>
+                            </div>
+                            <div className="QuestionsStrip"> </div>
+                          </div>
+                        );
+                    }
+                  })()}
+
                   <div id="step3" className="step-content-body out">
                     <div className="pagetitle">
                       <h2>Data Catalogue</h2>
@@ -4615,18 +5154,39 @@ function AuditorQuestions() {
                     <button
                       type="button "
                       className="float-start active"
+                      onClick={() => {
+                        page <= 1 ? setPage(1) : setPage(page - 1);
+                      }}
                       name="prev"
                     >
                       Prev
                     </button>
-                    <button
-                      type="button"
-                      className="active"
-                      name="next"
-                      onClick={handleSaveChanges2}
-                    >
-                      Next
-                    </button>
+                    {page === 10 ? (
+                      <button
+                        type="button"
+                        className="active"
+                        name="next"
+                        onClick={() => {
+                          page === 10 ? setPage(10) : setPage(page + 1);
+                          handleSaveChanges2();
+                        }}
+                      >
+                        Submit
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        className="active"
+                        name="next"
+                        onClick={() => {
+                          page === 10 ? setPage(10) : setPage(page + 1);
+                          // handleSaveChanges2();
+                        }}
+                      >
+                        Next
+                      </button>
+                    )}
+
                     <button type="button" className="active out" name="finish">
                       Submit
                     </button>
