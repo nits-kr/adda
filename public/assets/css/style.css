@@ -2388,7 +2388,7 @@ input:focus ~ .highlight {
   background-color: #5058dd;
   color: white;
   font-size: 14px;
-  padding: 10px 30px;
+  padding: 10px 20px;
 }
 
 .step-content .step-content-body {

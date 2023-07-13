@@ -36,7 +36,7 @@ function Navbar({Dash}) {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/users">
+                <Link className="nav-link" to="#">
                   Action Plan
                 </Link>
               </li>

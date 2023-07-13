@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink, faComment } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+
 import Header from "../Header";
 import Navbar from "../Navbar";
 import Swal from "sweetalert2";
@@ -15,9 +17,19 @@ function AuditorQuestions() {
   const [questionList, re] = useQuestionListMutation();
   const [generatedId, setGeneratedId] = useState("");
   const [activeStep, setActiveStep] = useState(1);
+  const [agentDetails, setAgentDetails] = useState("");
   console.log("question list", re?.data?.results?.listData);
   console.log("question list response", re);
-
+  useEffect(() => {
+    userDetails();
+  }, []);
+  const userDetails = async () => {
+    const { data } = await axios.post(
+      `http://ec2-65-2-108-172.ap-south-1.compute.amazonaws.com:5000/adda/adge-questionList/${id}`
+    );
+    setAgentDetails(data.results.userDetail);
+    console.log("Question Details", data.results.listData);
+  };
   // useEffect(() => {
   //   handleSaveChanges3();
   // }, [])
@@ -33,17 +45,16 @@ function AuditorQuestions() {
       id: id,
     };
     approveIn(editAddress);
-  
+
     Swal.fire({
-      icon: 'success',
-      title: 'Approved',
-      text: 'Your have been Approved In.',
+      icon: "success",
+      title: "Approved",
+      text: "Your have been Approved In.",
       timer: 3000,
       timerProgressBar: true,
     });
   };
   console.log(generatedId);
-
 
   const handleStepClick = (step) => {
     setActiveStep(step);
@@ -217,7 +228,12 @@ function AuditorQuestions() {
                                 role="group"
                                 aria-label="Basic example"
                               >
-                                <h4 className="text-success">YES</h4>
+                                {/* <h4 className="text-success"> {agentDetails?.qstatus1} </h4> */}
+                                <h4 className="text-danger">
+                                  {agentDetails?.qstatus1
+                                    ? agentDetails.qstatus1
+                                    : "No"}
+                                </h4>
                               </div>
                             </div>
                             <div className="col-lg-6 mt-4">
@@ -528,7 +544,11 @@ function AuditorQuestions() {
                                 role="group"
                                 aria-label="Basic example"
                               >
-                                <h4 className="text-danger">NO</h4>
+                                <h4 className="text-danger">
+                                  {agentDetails?.qstatus2
+                                    ? agentDetails.qstatus2
+                                    : "No"}
+                                </h4>
                               </div>
                             </div>
                             <div className="col-lg-6 mt-4">
@@ -593,7 +613,7 @@ function AuditorQuestions() {
                               <div className="form">
                                 <input
                                   name="file"
-                                  id="entry_value"
+                                  id="entry_value2"
                                   //   ref="fileInput"
                                   type="file"
                                   //   onchange="getFileName()"
@@ -841,7 +861,11 @@ function AuditorQuestions() {
                                 role="group"
                                 aria-label="Basic example"
                               >
-                                <h4 className="text-success">YES</h4>
+                                <h4 className="text-danger">
+                                  {agentDetails?.qstatus3
+                                    ? agentDetails.qstatus3
+                                    : "No"}
+                                </h4>
                               </div>
                             </div>
                             <div className="col-lg-6 mt-4">
@@ -1164,7 +1188,11 @@ function AuditorQuestions() {
                                 role="group"
                                 aria-label="Basic example"
                               >
-                                <h4 className="text-success">YES</h4>
+                                <h4 className="text-danger">
+                                  {agentDetails?.qstatus4
+                                    ? agentDetails.qstatus4
+                                    : "No"}
+                                </h4>
                               </div>
                             </div>
                             <div className="col-lg-6 mt-4">
@@ -1473,7 +1501,11 @@ function AuditorQuestions() {
                                 role="group"
                                 aria-label="Basic example"
                               >
-                                <h4 className="text-danger">NO</h4>
+                                <h4 className="text-danger">
+                                  {agentDetails?.qstatus5
+                                    ? agentDetails.qstatus5
+                                    : "No"}
+                                </h4>
                               </div>
                             </div>
                             <div className="col-lg-6 mt-4">
@@ -1789,7 +1821,11 @@ function AuditorQuestions() {
                                 role="group"
                                 aria-label="Basic example"
                               >
-                                <h4 className="text-success">YES</h4>
+                                <h4 className="text-danger">
+                                  {agentDetails?.qstatus6
+                                    ? agentDetails.qstatus6
+                                    : "No"}
+                                </h4>
                               </div>
                             </div>
                             <div className="col-lg-6 mt-4">
@@ -2097,7 +2133,11 @@ function AuditorQuestions() {
                                 role="group"
                                 aria-label="Basic example"
                               >
-                                <h4 className="text-success">YES</h4>
+                                <h4 className="text-danger">
+                                  {agentDetails?.qstatus7
+                                    ? agentDetails.qstatus7
+                                    : "No"}
+                                </h4>
                               </div>
                             </div>
                             <div className="col-lg-6 mt-4">
@@ -4579,7 +4619,12 @@ function AuditorQuestions() {
                     >
                       Prev
                     </button>
-                    <button type="button" className="active" name="next" onClick={handleSaveChanges2}>
+                    <button
+                      type="button"
+                      className="active"
+                      name="next"
+                      onClick={handleSaveChanges2}
+                    >
                       Next
                     </button>
                     <button type="button" className="active out" name="finish">

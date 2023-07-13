@@ -23,13 +23,13 @@ import { useQuestionListMutation } from "../../services/Post";
 // //var CanvasJSReact = require('@canvasjs/react-charts');
 
 function Home() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   // var CanvasJS = CanvasJSReact.CanvasJS;
   // var CanvasJSChart = CanvasJSReact.CanvasJSChart;
   const [createForm] = useCreateFormMutation();
   const [viewDetails] = useViewDetailsMutation();
   const [updateDuplicate] = useUpdateDuplicateMutation();
-  const [schedule,responseSchedule] = useAddHomeScheduleMutation();
+  const [schedule, responseSchedule] = useAddHomeScheduleMutation();
   // console.log("useViewDetailsMutation", useViewDetailsMutation);
   console.log("create form", createForm);
   console.log("create form details", createForm?.data?.results?.saveData);
@@ -47,14 +47,14 @@ function Home() {
   const [userName, setUserName] = useState("");
   const [scheduledList, setScheduledList] = useState();
   const [questionList, re] = useQuestionListMutation();
-   const [change,setChange] = useState(false)
-   const review = (_id) => {
+  const [change, setChange] = useState(false);
+  const review = (_id) => {
     const editAddress = {
       id: _id,
     };
     questionList(editAddress);
     console.log("viewAgent", _id);
-    localStorage.setItem('reviewId', _id);
+    localStorage.setItem("reviewId", _id);
   };
   // useEffect(() => {
   //   handleSaveChanges4();
@@ -71,7 +71,7 @@ function Home() {
     } else {
       setScheduledList(blog?.data?.results);
     }
-  }, [blog,change]);
+  }, [blog, change]);
 
   console.log("scheduled data list", scheduledList);
 
@@ -108,8 +108,6 @@ function Home() {
     return () => clearTimeout(timer);
   }, [itemId]);
 
-
-
   const handleSaveChanges2 = () => {
     const editAddress = {
       id: itemId,
@@ -136,18 +134,18 @@ function Home() {
       to: endDate,
       from: startDate,
       Status: status,
-       schedule:true
+      schedule: true,
     };
 
     schedule(editDuplicate);
     !responseSchedule?.isError && setScheduledList(blog?.data?.results);
-console.log(responseSchedule?.isError,"ress");
+    console.log(responseSchedule?.isError, "ress");
   };
 
   return (
     <>
       <Header />
-      <Navbar  Dash={"home"}/>
+      <Navbar Dash={"home"} />
 
       <main id="main" className="main">
         <div className="container p-0">
@@ -182,11 +180,11 @@ console.log(responseSchedule?.isError,"ress");
                       className="table  table-hover table-striped CustomTable mt-2  "
                       id="UserTable"
                       style={{
-                        marginTop:"1rem"
+                        marginTop: "1rem",
                       }}
                     >
                       <thead>
-                        <tr >
+                        <tr>
                           <th scope="col">ID</th>
                           <th scope="col">Title</th>
                           <th scope="col">Date</th>
@@ -209,11 +207,10 @@ console.log(responseSchedule?.isError,"ress");
                         </tr>
                       </thead>
                       <tbody>
-                        
                         {scheduledList?.list?.map((item, index) => {
                           return (
                             <tr className="yellow" key={index}>
-                              <th scope="row">AUD45461</th>
+                              <th scope="row"> {item?.uniQ_Id} </th>
                               <td> {item?.title} </td>
                               <td>{item?.createdAt?.slice(0, 10)}</td>
                               <td>{item?.userName}</td>
@@ -259,48 +256,41 @@ console.log(responseSchedule?.isError,"ress");
                               </td>
                               <td>{item?.status}</td>
                               <td style={{ textAlign: "center" }}>
-                               {
-                                item?.schedule ?
-                                <Link
-                                type="button"
-                                className="btn btn-sm  mx-1"
-                                style={{cursor:"not-allowed"}}
-                              
-                              >
-                                <FontAwesomeIcon icon={faCalendarDays} />{" "}
-                                Scheduled
-                              </Link>
-                                :
-                                <Link
-                                type="button"
-                                to="question3.html"
-                                className="btn btn-sm tableBtn-blue mx-1"
-                                data-bs-toggle="modal"
-                                data-bs-target="#ExtralargeModal2"
-                                onClick={() => setItemId2(item?._id)}
-                              
-                              >
-                                <FontAwesomeIcon icon={faCalendarDays} />{" "}
-                                Schedule
-                              </Link>
+                                {item?.schedule ? (
+                                  <Link
+                                    type="button"
+                                    className="btn btn-sm  mx-1"
+                                    style={{ cursor: "not-allowed" }}
+                                  >
+                                    <FontAwesomeIcon icon={faCalendarDays} />{" "}
+                                    Scheduled
+                                  </Link>
+                                ) : (
+                                  <Link
+                                    type="button"
+                                    to="question3.html"
+                                    className="btn btn-sm tableBtn-blue mx-1"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#ExtralargeModal2"
+                                    onClick={() => setItemId2(item?._id)}
+                                  >
+                                    <FontAwesomeIcon icon={faCalendarDays} />{" "}
+                                    Schedule
+                                  </Link>
+                                )}
 
-                               }
-                               
                                 <Link
-                                // to="/auditior-question"
-                                to={`/auditior-question/${item._id}`}
+                                  // to="/auditior-question"
+                                  to={`/auditior-question/${item._id}`}
                                   type=""
                                   className="btn btn-sm tableBtn-blue mx-1"
                                   // onClick={() => {
                                   //   navigate("/auditior-question")
                                   // }}
-                                  onClick={() =>
-                                    review(item._id)
-                                  }
+                                  onClick={() => review(item._id)}
                                 >
                                   <FontAwesomeIcon icon={faCopy} />
-                                  <FontAwesomeIcon icon={faComment} />{" "}
-                                  Review
+                                  <FontAwesomeIcon icon={faComment} /> Review
                                 </Link>
                               </td>
                             </tr>
@@ -338,8 +328,12 @@ console.log(responseSchedule?.isError,"ress");
                                     to="#"
                                     data-bs-toggle="dropdown"
                                   >
-                                    {currentItem.to?.slice(0, 10)} to{" "}
-                                    {currentItem.from?.slice(0, 10)}
+                                    {currentItem.to && currentItem.from
+                                      ? `${currentItem.to.slice(
+                                          0,
+                                          10
+                                        )} to ${currentItem.from.slice(0, 10)}`
+                                      : ""}
                                   </Link>
 
                                   <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile text-start">
@@ -353,8 +347,15 @@ console.log(responseSchedule?.isError,"ress");
                                       <div className="form-group text-start">
                                         <small>Scheduled date</small>
                                         <h6 className="text-black">
-                                          {currentItem.from?.slice(0, 10)} to{" "}
-                                          {currentItem.to?.slice(0, 10)}
+                                          {currentItem.from && currentItem.to
+                                            ? `${currentItem.from.slice(
+                                                0,
+                                                10
+                                              )} to ${currentItem.to.slice(
+                                                0,
+                                                10
+                                              )}`
+                                            : ""}
                                         </h6>
                                       </div>
                                       <div className="form-group text-start">
@@ -371,9 +372,9 @@ console.log(responseSchedule?.isError,"ress");
                                   </ul>
                                 </div>
                               </td>
+
                               <td>{currentItem.status}</td>
                               <td style={{ textAlign: "end" }}>
-                               
                                 <button
                                   className="btn btn-sm tableBtn-Gray"
                                   fdprocessedid="nnhqma"
@@ -405,7 +406,6 @@ console.log(responseSchedule?.isError,"ress");
         <i className="bi bi-arrow-up-short" />
       </Link>
 
-
       <div className="modal fade" id="ExtralargeModal2" tabIndex={-1}>
         <div className="modal-dialog modal-xl modal-dialog-centered">
           <div className="modal-content">
@@ -433,7 +433,6 @@ console.log(responseSchedule?.isError,"ress");
                     <option value="DMT">DMT</option>
                     <option value="SSL">SSL</option>
                     <option value="Tabreed">Tabreed</option>
-                    
                   </select>
                   <label htmlFor="floatingSelect">Select Entity Name</label>
                 </div>
@@ -447,7 +446,6 @@ console.log(responseSchedule?.isError,"ress");
                         className="form-check-input"
                         type="checkbox"
                         id="gridCheck1"
-                        
                       />
                     </div>
                   </div>
@@ -520,7 +518,6 @@ console.log(responseSchedule?.isError,"ress");
               >
                 Schedule
               </button>
-            
             </div>
           </div>
         </div>
