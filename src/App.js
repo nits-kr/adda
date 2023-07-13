@@ -39,7 +39,7 @@ function App() {
           <Route
             exact
             className="active"
-            path="/auditior-question"
+            path="/auditior-question/:id"
             element={<AuditorQuestions />}
           />
           <Route

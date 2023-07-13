@@ -64,22 +64,21 @@ function DashboardUser() {
       price: 3589.99,
     },
   ];
-  
-  const [infoBar ,setInfoBar] = useState(false)
-  ChartJS.register(BarElement, Tooltip, Legend, CategoryScale,
-  LinearScale);
+
+  const [infoBar, setInfoBar] = useState(false);
+  ChartJS.register(BarElement, Tooltip, Legend, CategoryScale, LinearScale);
 
   const charRef = useRef();
   const onClick = (e) => {
     console.log(e);
-    setInfoBar(true)
+    setInfoBar(true);
   };
   const onClickInfo = (e) => {
     console.log(e);
   };
-  const back = (e)=>{
-    setInfoBar(false)
-  }
+  const back = (e) => {
+    setInfoBar(false);
+  };
   const data = {
     labels: ["DS", "DM", "DC", "DS&P", "DA", "DM$D", "DG"],
     datasets: [
@@ -115,7 +114,7 @@ function DashboardUser() {
     ],
     datasets: [
       {
-        label:"Data",
+        label: "Data",
         data: [5, 3, 2],
         fill: true,
         backgroundColor: "rgba(125,132,248,1)",
@@ -128,17 +127,11 @@ function DashboardUser() {
     ],
   };
   const dataBarInfo = {
-    labels: [
-      "2019",
-      "2020",
-      "2021",
-      "2022","2023","2024"
-    ],
+    labels: ["2019", "2020", "2021", "2022", "2023", "2024"],
     datasets: [
-    
       {
-        label:"Data",
-        data: [30, 10, 90,50,45,10],
+        label: "Data",
+        data: [30, 10, 90, 50, 45, 10],
         fill: true,
         backgroundColor: "rgba(125,132,248,1)",
         borderColor: "rgb(255, 99, 132)",
@@ -150,13 +143,11 @@ function DashboardUser() {
     ],
   };
 
-
-
   return (
     <>
       <Header />
-      <Navbar  Dash ="dash" />
-      
+      <Navbar Dash="dash" />
+
       <div>
         <div className="container adda_main">
           <div className="pagetitle">
@@ -165,7 +156,8 @@ function DashboardUser() {
               <select
                 className="form-select form-select-sm mb-1"
                 aria-label="Default select example"
-                style={{ zIndex: 9999 }}>
+                style={{ zIndex: 9999 }}
+              >
                 <option selected="">Select The ADGE</option>
                 <option value={1}>Abu Dhabi Housing Authority</option>
                 <option value={2}>Family Care Authority</option>
@@ -176,7 +168,8 @@ function DashboardUser() {
               <select
                 className="form-select form-select-sm mb-1"
                 aria-label="Default select example"
-                style={{ zIndex: 9999 }}>
+                style={{ zIndex: 9999 }}
+              >
                 <option selected="">Year</option>
                 <option value={1}>202</option>
                 <option value={2}>2022</option>
@@ -187,7 +180,8 @@ function DashboardUser() {
               <select
                 className="form-select form-select-sm mb-1"
                 aria-label="Default select example"
-                style={{ zIndex: 9999 }}>
+                style={{ zIndex: 9999 }}
+              >
                 <option selected="">Year</option>
                 <option value={1}>202</option>
                 <option value={2}>2022</option>
@@ -203,13 +197,22 @@ function DashboardUser() {
                     <div className="card">
                       <div className="card-body">
                         <h5 className="card-title">Scores</h5>
-                        {!infoBar ? "" :
-                          <button className="text-white fw-bold bg-dark border rounded" onClick={back}> Go Back</button>
-                        
-                        }
-                        <Bar data={infoBar ? dataBarInfo : dataBar} onClick={infoBar ? onClickInfo : onClick} ref={charRef} />
-
-                     
+                        {!infoBar ? (
+                          ""
+                        ) : (
+                          <button
+                            className="text-white fw-bold bg-dark border rounded"
+                            onClick={back}
+                          >
+                            {" "}
+                            Go Back
+                          </button>
+                        )}
+                        <Bar
+                          data={infoBar ? dataBarInfo : dataBar}
+                          onClick={infoBar ? onClickInfo : onClick}
+                          ref={charRef}
+                        />
                       </div>
                     </div>
                     <div className="px-1 mb-5">
@@ -270,7 +273,6 @@ function DashboardUser() {
                                         <div className="Icon">
                                           <img
                                             src={require("../../assets/img/Group 2.png")}
-
                                             alt=""
                                             className="img-fluid"
                                           />
@@ -286,7 +288,6 @@ function DashboardUser() {
                                         <div className="Icon">
                                           <img
                                             src={require("../../assets/img/Group 4.png")}
-                                            
                                             alt=""
                                             className="img-fluid"
                                           />
@@ -302,7 +303,6 @@ function DashboardUser() {
                                         <div className="Icon">
                                           <img
                                             src={require("../../assets/img/Group 9.png")}
-                                          
                                             alt=""
                                             className="img-fluid"
                                           />
@@ -348,7 +348,6 @@ function DashboardUser() {
                                         <div className="Icon">
                                           <img
                                             src={require("../../assets/img/Group 10.png")}
-                                          
                                             alt=""
                                             className="img-fluid"
                                           />
@@ -364,7 +363,6 @@ function DashboardUser() {
                                         <div className="Icon">
                                           <img
                                             src={require("../../assets/img/Group 8.png")}
-                                            
                                             alt=""
                                             className="img-fluid"
                                           />
@@ -381,7 +379,6 @@ function DashboardUser() {
                                         <div className="Icon">
                                           <img
                                             src={require("../../assets/img/Group 7.png")}
-                                            
                                             alt=""
                                             className="img-fluid"
                                           />
@@ -407,7 +404,8 @@ function DashboardUser() {
                             <select
                               className="form-select form-select-sm "
                               aria-label="Default select example"
-                              style={{ zIndex: 9999 }}>
+                              style={{ zIndex: 9999 }}
+                            >
                               <option selected="">Selct Domain</option>
                               <option value={1}>Data Governance</option>
                               <option value={2}>Data Quality</option>
@@ -439,7 +437,8 @@ function DashboardUser() {
                             <ul
                               className="nav nav-tabs nav-tabs-bordered"
                               id="myTab"
-                              role="tablist">
+                              role="tablist"
+                            >
                               <li className="nav-item" role="presentation">
                                 <button
                                   className="nav-link active"
@@ -449,7 +448,8 @@ function DashboardUser() {
                                   type="button"
                                   role="tab"
                                   aria-controls="home"
-                                  aria-selected="true">
+                                  aria-selected="true"
+                                >
                                   Top 5 ADGEs
                                 </button>
                               </li>
@@ -463,7 +463,8 @@ function DashboardUser() {
                                   role="tab"
                                   aria-controls="profile"
                                   aria-selected="false"
-                                  tabIndex={-1}>
+                                  tabIndex={-1}
+                                >
                                   Bottom 5 ADGEs
                                 </button>
                               </li>
@@ -474,13 +475,15 @@ function DashboardUser() {
                                 id="home"
                                 role="tabpanel"
                                 aria-labelledby="home-tab"
-                                style={{ height: 210, overflowY: "auto" }}>
+                                style={{ height: 210, overflowY: "auto" }}
+                              >
                                 {/* List group With Icons */}
                                 <ul className="list-group border-0">
                                   <li className="list-group-item ">
                                     <a
                                       href="dashboard-Admin-inside.html"
-                                      className="Text">
+                                      className="Text"
+                                    >
                                       <div className="Icon">
                                         <img
                                           src={require("../../assets/img/noimage.jpg")}
@@ -495,7 +498,8 @@ function DashboardUser() {
                                   <li className="list-group-item ">
                                     <a
                                       href="dashboard-Admin-inside.html"
-                                      className="Text">
+                                      className="Text"
+                                    >
                                       {" "}
                                       <div className="Icon">
                                         <img
@@ -511,7 +515,8 @@ function DashboardUser() {
                                   <li className="list-group-item ">
                                     <a
                                       href="dashboard-Admin-inside.html"
-                                      className="Text">
+                                      className="Text"
+                                    >
                                       {" "}
                                       <div className="Icon">
                                         <img
@@ -527,7 +532,8 @@ function DashboardUser() {
                                   <li className="list-group-item ">
                                     <a
                                       href="dashboard-Admin-inside.html"
-                                      className="Text">
+                                      className="Text"
+                                    >
                                       {" "}
                                       <div className="Icon">
                                         <img
@@ -544,7 +550,8 @@ function DashboardUser() {
                                   <li className="list-group-item ">
                                     <a
                                       href="dashboard-Admin-inside.html"
-                                      className="Text">
+                                      className="Text"
+                                    >
                                       {" "}
                                       <div className="Icon">
                                         <img
@@ -564,12 +571,14 @@ function DashboardUser() {
                                 className="tab-pane fade"
                                 id="profile"
                                 role="tabpanel"
-                                aria-labelledby="profile-tab">
+                                aria-labelledby="profile-tab"
+                              >
                                 <ul className="list-group border-0">
                                   <li className="list-group-item ">
                                     <a
                                       href="dashboard-Admin-inside.html"
-                                      className="Text">
+                                      className="Text"
+                                    >
                                       <div className="Icon">
                                         <img
                                           src={require("../../assets/img/noimage.jpg")}
@@ -584,7 +593,8 @@ function DashboardUser() {
                                   <li className="list-group-item ">
                                     <a
                                       href="dashboard-Admin-inside.html"
-                                      className="Text">
+                                      className="Text"
+                                    >
                                       {" "}
                                       <div className="Icon">
                                         <img
@@ -600,7 +610,8 @@ function DashboardUser() {
                                   <li className="list-group-item ">
                                     <a
                                       href="dashboard-Admin-inside.html"
-                                      className="Text">
+                                      className="Text"
+                                    >
                                       {" "}
                                       <div className="Icon">
                                         <img
@@ -616,7 +627,8 @@ function DashboardUser() {
                                   <li className="list-group-item ">
                                     <a
                                       href="dashboard-Admin-inside.html"
-                                      className="Text">
+                                      className="Text"
+                                    >
                                       {" "}
                                       <div className="Icon">
                                         <img
@@ -633,7 +645,8 @@ function DashboardUser() {
                                   <li className="list-group-item ">
                                     <a
                                       href="dashboard-Admin-inside.html"
-                                      className="Text">
+                                      className="Text"
+                                    >
                                       {" "}
                                       <div className="Icon">
                                         <img
@@ -669,7 +682,6 @@ function DashboardUser() {
           </section>
         </div>
       </div>
-
     </>
   );
 }

@@ -17,7 +17,7 @@ import { useCreateFormMutation } from "../../services/Post";
 import { useViewDetailsMutation } from "../../services/Post";
 import { useUpdateDuplicateMutation } from "../../services/Post";
 import { useAddHomeScheduleMutation } from "../../services/Post";
-
+import { useQuestionListMutation } from "../../services/Post";
 
 // import CanvasJSReact from "@canvasjs/react-charts";
 // //var CanvasJSReact = require('@canvasjs/react-charts');
@@ -46,8 +46,25 @@ function Home() {
   const [endDate, setEndDate] = useState("");
   const [userName, setUserName] = useState("");
   const [scheduledList, setScheduledList] = useState();
+  const [questionList, re] = useQuestionListMutation();
    const [change,setChange] = useState(false)
-
+   const review = (_id) => {
+    const editAddress = {
+      id: _id,
+    };
+    questionList(editAddress);
+    console.log("viewAgent", _id);
+    localStorage.setItem('reviewId', _id);
+  };
+  // useEffect(() => {
+  //   handleSaveChanges4();
+  // }, [])
+  // const handleSaveChanges4 = () => {
+  //   const editAddress = {
+  //     id: id,
+  //   };
+  //   questionList(editAddress);
+  // };
   useEffect(() => {
     if (blog?.data?.results) {
       setScheduledList(blog?.data?.results);
@@ -270,12 +287,16 @@ console.log(responseSchedule?.isError,"ress");
                                }
                                
                                 <Link
-                                to="/auditior-question"
+                                // to="/auditior-question"
+                                to={`/auditior-question/${item._id}`}
                                   type=""
                                   className="btn btn-sm tableBtn-blue mx-1"
-                                  onClick={() => {
-                                    navigate("/auditior-question")
-                                  }}
+                                  // onClick={() => {
+                                  //   navigate("/auditior-question")
+                                  // }}
+                                  onClick={() =>
+                                    review(item._id)
+                                  }
                                 >
                                   <FontAwesomeIcon icon={faCopy} />
                                   <FontAwesomeIcon icon={faComment} />{" "}
