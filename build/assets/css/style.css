@@ -2772,3 +2772,45 @@ p {
   right: 20px;
   top: 5px;
 }
+.main {
+  margin-top: 120px;
+  padding: 20px 30px;
+  transition: all 0.3s;
+}
+.AdminCustomCardAll p.nopad {
+  font-size: 55px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 45px !important;
+  margin: 0px;
+  padding: 0px;
+}
+.AdminCustomCardAll  prev {
+  font-size: 15px !important;
+  font-weight: 400;
+  text-align: center;
+  line-height: 18px !important;
+  margin: 0px;
+  padding: 0px;
+}
+.AdminCustomCardAll small {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.obs-bg {
+  background-color: #F6F7FF !important;
+} 
+.obs-bg {
+  background-color: #F6F7FF;
+}
+ul.RecObs {
+  font-size: 14px;
+}
+
+dl, ol, ul {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.rec-bg {
+  background-color: #FCEFFF;
+}
