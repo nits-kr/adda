@@ -271,10 +271,9 @@ console.log(responseSchedule?.isError,"ress");
                                
                                 <Link
                                   type="button"
+                                  to="/auditior-question"
                                   className="btn btn-sm tableBtn-blue mx-1"
-                                  onClick={() => {
-                                    navigate("/auditior-question")
-                                  }}
+                                 
                                 >
                                   <FontAwesomeIcon icon={faCopy} />
                                   <FontAwesomeIcon icon={faComment} />{" "}
