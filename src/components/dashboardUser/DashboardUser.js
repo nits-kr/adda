@@ -112,8 +112,10 @@ function DashboardUser() {
       "Family Care Authority",
       "Family Development Foundation",
     ],
+     
     datasets: [
       {
+        
         label: "Data",
         data: [5, 3, 2],
         fill: true,
@@ -128,6 +130,10 @@ function DashboardUser() {
   };
   const dataBarInfo = {
     labels: ["2019", "2020", "2021", "2022", "2023", "2024"],
+    options: {
+    legend: {
+    	display: false
+    }},
     datasets: [
       {
         label: "Data",
@@ -140,7 +146,9 @@ function DashboardUser() {
         pointHoverBackgroundColor: "#fff",
         pointHoverBorderColor: "rgb(255, 99, 132)",
       },
+      
     ],
+    
   };
 
   return (
