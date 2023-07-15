@@ -193,7 +193,7 @@ function Home() {
                       </div>
                     </div>
                     <table
-                      className="table  table-hover table-striped CustomTable mt-2  "
+                      className="table  table-hover table-striped CustomTable mt-2"
                       id="UserTable"
                       style={{
                         marginTop: "1rem",
