@@ -43,38 +43,33 @@ function UserLogin() {
             </div>
             <div className="LoginTitle">Login</div>
             <form>
-              <div className="group mt-5">
-                {/* <input type="text" /> */}
+              <div class="form-floating mb-4 mt-4">
                 <input
                   type="text"
-                  // className="form-control"
+                  class="form-control"
                   id="userName"
-                  // placeholder="Email Address"
+                  placeholder="User Name"
                   value={userName}
                   onChange={(e) => setUserName(e.target.value)}
                 />
-                <span className="highlight" />
-                <span className="bar" />
-                <label>User Name</label>
+                <label for="userName">User Name</label>
               </div>
-              <div className="group">
+              <div class="form-floating mb-4" >
                 <input
                   type="password"
-                  // className="form-control"
-                  id="password"
-                  // placeholder="Password"
+                  class="form-control"
+                  id="floatingPassword"
+                  placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <span className="highlight" />
-                <span className="bar" />
-                <label htmlFor="password">Password</label>
+                <label for="floatingPassword">Password</label>
               </div>
+           
               <button
                 type="button"
                 className="btn  btn-primary"
-                onClick={handleSaveChanges}
-              >
+                onClick={handleSaveChanges}>
                 Login
               </button>
               <button type="button" className=" btn  btn-danger ms-2">

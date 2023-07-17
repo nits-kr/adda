@@ -193,6 +193,18 @@ export const PostApi = createApi({
         };
       },
     }),
+    updateQuestionList: builder.mutation({
+      query: (body) => {
+        console.log("update address", body);
+        const { id, ...data } = body;
+        console.log("update address body data", data);
+        return {
+          url: `/adda/update-question/${id}`,
+          method: "post",
+          body: data,
+        };
+      },
+    }),
     updateUser: builder.mutation({
       query: (body) => {
         console.log("update address", body);
@@ -231,4 +243,5 @@ export const {
   useAddUserMutation,
   useAddApproveMutation,
   useQuestionListMutation,
+  useUpdateQuestionListMutation,
 } = PostApi;

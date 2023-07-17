@@ -33,7 +33,7 @@ function User() {
   const [itemId, setItemId] = useState("");
   const [updateUser, response] = useUpdateUserMutation();
   const [selectedRoleId, setSelectedRoleId] = useState("");
-  const [status, setStatus] = useState("")
+  const [status, setStatus] = useState("");
   const user = useUserListQuery();
   useEffect(() => {
     if (user?.data?.results) {
@@ -69,6 +69,7 @@ function User() {
       const generatedRole = response?.data?.results?.addUser?._id;
       console.log("generatedId", generatedRole);
       localStorage.setItem("generatedRole", generatedRole);
+      document.getElementById("modalOne").click()
       Swal.fire({
         title: "User Created",
         text: "The user has been successfully created.",
@@ -88,6 +89,7 @@ function User() {
       name: name,
     };
     updateUser(editAddress).then(() => {
+      document.getElementById("modalTwo").click()
       Swal.fire({
         title: "Updated!",
         text: "User has been updated.",
@@ -113,29 +115,45 @@ function User() {
               <div className="col-lg-12">
                 <div className="card StaticCard">
                   <div className="card-body" style={{ flex: "1" }}>
-                    <h5 className="card-title float-start">Users</h5>
-                    <button
-                      type="button"
-                      className="btn btn-sm DefaultBtn float-end mt-4"
-                      fdprocessedid="bfs61e"
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        marginBottom: "10px",
+                      }}
                     >
-                      <FontAwesomeIcon icon={faDownload} /> Download
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-sm DefaultBtn float-end mt-4 me-2"
-                      fdprocessedid="bfs61e"
-                    >
-                      <Link
-                        data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop"
-                        className="comman_btn2 table_viewbtn"
-                        to=""
-                        // onClick={handleSaveChanges3}
+                      <h5
+                        className="card-title float-start"
+                        style={{ marginBottom: "0px", padding: "0px" }}
                       >
-                        <FontAwesomeIcon icon={faUserPlus} /> Add User
-                      </Link>
-                    </button>
+                        Users
+                      </h5>
+                      <div>
+                        <button
+                          type="button"
+                          className="btn btn-sm DefaultBtn float-end"
+                          fdprocessedid="bfs61e"
+                        >
+                          <FontAwesomeIcon icon={faDownload} /> Download
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-sm DefaultBtn float-end me-2"
+                          fdprocessedid="bfs61e"
+                        >
+                          <Link
+                            data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop"
+                            className="comman_btn2 table_viewbtn"
+                            to=""
+                            // onClick={handleSaveChanges3}
+                          >
+                            <FontAwesomeIcon icon={faUserPlus} /> Add User
+                          </Link>
+                        </button>
+                      </div>
+                    </div>
                     <table
                       className="table table-sm table-hover table-striped CustomTable"
                       id="UserTable"
@@ -143,69 +161,98 @@ function User() {
                       <thead>
                         <tr>
                           <th scope="col">User Name</th>
-                          <th scope="col">Name</th>
-                          <th scope="col">Entity Name</th>
-                          <th scope="col">Role</th>
-                          <th scope="col">Modified Date</th>
-                          <th scope="col">Status</th>
-
+                          <th scope="col" style={{ textAlign: "center" }}>
+                            Name
+                          </th>
+                          <th scope="col" style={{ textAlign: "center" }}>
+                            Entity Name
+                          </th>
+                          <th scope="col" style={{ textAlign: "center" }}>
+                            Role
+                          </th>
+                          <th scope="col" style={{ textAlign: "center" }}>
+                            Modified Date
+                          </th>
+                          <th scope="col" style={{ textAlign: "center" }}>
+                            Status
+                          </th>
+                          {/* <th></th> */}
                           <th
                             scope="col"
                             align="center"
-                            className="text-center"
+                            className="text-end"
                             style={{
-                              textAlign: "center !important",
-                              width: "50px",
+                              textAlign: "end !important",
+                              // width: "50px",
                             }}
                           >
                             Action
                           </th>
-                          <th></th>
                         </tr>
                       </thead>
                       <tbody>
                         {(userList?.ListData || [])?.map((item, index) => (
                           <tr className="yellow" key={index}>
                             <th scope="row"> {item?.userName} </th>
-                            <td> {item?.name} </td>
-                            <td> {item?.entity} </td>
-                            <td> {item?.role_Id?.roleName} </td>
-                            <td> {item?.updatedAt?.slice(0, 10)} </td>
-                            <td> {item?.status} </td>
+                            <td style={{ textAlign: "center" }}>
+                              {" "}
+                              {item?.name}{" "}
+                            </td>
+                            <td style={{ textAlign: "center" }}>
+                              {" "}
+                              {item?.entity}{" "}
+                            </td>
+                            <td style={{ textAlign: "center" }}>
+                              {" "}
+                              {item?.role_Id?.roleName}{" "}
+                            </td>
+                            <td style={{ textAlign: "center" }}>
+                              {" "}
+                              {item?.updatedAt?.slice(0, 10)}{" "}
+                            </td>
+                            <td style={{ textAlign: "center" }}>
+                              {" "}
+                              {item?.status}{" "}
+                            </td>
                             <td
-                              style={{ textAlign: "center", width: "50px" }}
-                              onClick={() => {
-                                Swal.fire({
-                                  title: "Are you sure?",
-                                  text: "You won't be able to revert this!",
-                                  icon: "warning",
-                                  showCancelButton: true,
-                                  confirmButtonColor: "#3085d6",
-                                  cancelButtonColor: "#d33",
-                                  confirmButtonText: "Yes, delete it!",
-                                }).then((result) => {
-                                  if (result.isConfirmed) {
-                                    deleteUser(item?._id);
-                                    Swal.fire(
-                                      "Deleted!",
-                                      `${item?.userName}  item has been deleted.`,
-                                      "success"
-                                    ).then(() => {
-                                      window.location.reload(); // Reload the page
-                                    });
-                                  }
-                                });
+                              style={{
+                                display: "flex",
+                                justifyContent: "end",
+                                textAlign: "end",
                               }}
                             >
-                              <FontAwesomeIcon
-                                icon={faTrash}
-                                style={{
-                                  color: "#eb0f0f",
-                                  marginLeft: "20px",
+                              <Link
+                                onClick={() => {
+                                  Swal.fire({
+                                    title: "Are you sure?",
+                                    text: "You won't be able to revert this!",
+                                    icon: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#3085d6",
+                                    cancelButtonColor: "#d33",
+                                    confirmButtonText: "Yes, delete it!",
+                                  }).then((result) => {
+                                    if (result.isConfirmed) {
+                                      deleteUser(item?._id);
+                                      Swal.fire(
+                                        "Deleted!",
+                                        `${item?.userName}  item has been deleted.`,
+                                        "success"
+                                      ).then(() => {
+                                        window.location.reload(); // Reload the page
+                                      });
+                                    }
+                                  });
                                 }}
-                              />
-                            </td>
-                            <td>
+                              >
+                                <FontAwesomeIcon
+                                  icon={faTrash}
+                                  style={{
+                                    color: "#eb0f0f",
+                                    marginRight: "20px",
+                                  }}
+                                />
+                              </Link>
                               <Link
                                 data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop5"
@@ -247,6 +294,7 @@ function User() {
                 className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                id="modalOne"
               ></button>
             </div>
             <div className="modal-body">
@@ -307,26 +355,27 @@ function User() {
                     })}
                   </select>
                   <label htmlFor="floatingSelect" style={{ marginTop: "10px" }}>
-                    Roll
+                    Role
                   </label>
                 </div>
-                <div className="form-group theme-form-floating" >
+                <div className="form-group theme-form-floating">
                   <select
                     className="form-select"
                     id="floatingSelect1"
                     aria-label="Floating label select example"
                     defaultValue=" "
-                    style={{marginTop:"15px"}}
+                    style={{ marginTop: "15px" }}
                     onChange={(e) => setStatus(e.target.value)}
                   >
                     <option value="Active">Active</option>
-                    <option value="Active">Active</option>
-                    <option value="Active">Active</option>
-                    <option value="Active">Active</option>
-                    <option value="Active">Active</option>
-                    
+                    <option value="Active">De-active</option>
                   </select>
-                  <label htmlFor="floatingSelect1" style={{marginTop:"15px"}} >Select Status</label>
+                  <label
+                    htmlFor="floatingSelect1"
+                    style={{ marginTop: "15px" }}
+                  >
+                    Select Status
+                  </label>
                 </div>
                 <div className="form-group mb-0 col-auto">
                   <Link to="#">
@@ -359,7 +408,7 @@ function User() {
         aria-labelledby="staticBackdropLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog modal-dialog-centered">
+      <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="staticBackdropLabel">
@@ -370,6 +419,7 @@ function User() {
                 className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                id="modalTwo"
               ></button>
             </div>
             <div className="modal-body">
@@ -378,28 +428,75 @@ function User() {
                 action=""
               >
                 <div className="form-group col-12">
-                  <label htmlFor="nameEn">User Name</label>
+                  <label htmlFor="nameEn"> Name</label>
                   <input
                     type="text"
                     className="form-control mt-2"
-                    name="title"
-                    id="title"
-                    value={userName1}
-                    onChange={(e) => setUserName1(e.target.value)}
+                    name="titleEdit"
+                    id="titleE"
+                    defaultValue="Testuser"
+                    // onChange={(e) => setName1(e.target.value)}
                   />
                 </div>
-                <div className="form-group col-12">
-                  <label htmlFor="nameEn">Name</label>
+                <div className="form-group col-12 my-2">
+                  <label htmlFor="nameAr"> User Name</label>
                   <input
                     type="text"
                     className="form-control mt-2"
-                    name="name"
-                    id="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    name="userName"
+                    id="userName"
+                    defaultValue={"TestName"}
+                    // onChange={(e) => setUserName(e.target.value)}
                   />
                 </div>
+                <div className="form-group col-12 my-2">
+                  <label htmlFor="nameAr" style={{ marginTop: "10px" }}>
+                    {" "}
+                    Entity
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control mt-2"
+                    name="entity1"
+                    id="entity1"
 
+                    defaultValue={"TestEntity"}
+                    // onChange={(e) => setEntity1(e.target.value)}
+                  />
+                </div>
+                <div className="form-group col-12 my-2">
+                  <select
+                    className="form-select mt-2"
+                    id="floatingSelect"
+                    defaultValue=""
+                  >
+                   <option selected=""> 
+                          ADGE 
+                        </option>
+                  </select>
+                  <label htmlFor="floatingSelect" style={{ marginTop: "10px" }}>
+                    Role
+                  </label>
+                </div>
+                <div className="form-group theme-form-floating">
+                  <select
+                    className="form-select"
+                    id="floatingSelect1"
+                    aria-label="Floating label select example"
+                    defaultValue=" "
+                    style={{ marginTop: "15px" }}
+                    onChange={(e) => setStatus(e.target.value)}
+                  >
+                    <option value="Active">Active</option>
+                    <option value="Active">De-active</option>
+                  </select>
+                  <label
+                    htmlFor="floatingSelect1"
+                    style={{ marginTop: "15px" }}
+                  >
+                    Select Status
+                  </label>
+                </div>
                 <div className="form-group mb-0 col-auto">
                   <Link to="#">
                     <button
@@ -413,7 +510,7 @@ function User() {
                       }}
                       onClick={handleSaveChanges2}
                     >
-                      update
+                      Continue
                     </button>
                   </Link>
                 </div>
