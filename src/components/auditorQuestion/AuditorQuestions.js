@@ -732,7 +732,7 @@ function AuditorQuestions() {
                                             // handleSaveChanges3();
                                           }}
                                         >
-                                          Accept
+                                           <i class="fa fa-check" aria-hidden="true"></i> Accept
                                         </button>
                                         <button
                                           type="button"
@@ -747,7 +747,7 @@ function AuditorQuestions() {
                                             // handleSaveChanges3();
                                           }}
                                         >
-                                          Reject
+                                       <i class="fa fa-close"></i> Reject
                                         </button>
                                       </div>
                                     </div>
@@ -1113,7 +1113,7 @@ function AuditorQuestions() {
                                             handlecolorchange3();
                                           }}
                                         >
-                                          Accept
+                                       <i class="fa fa-check" aria-hidden="true"></i> Accept
                                         </button>
                                         <button
                                           type="button"
@@ -1127,7 +1127,7 @@ function AuditorQuestions() {
                                             handlecolorchange4();
                                           }}
                                         >
-                                          Reject
+                                       <i class="fa fa-close"></i> Reject
                                         </button>
                                       </div>
                                     </div>
@@ -1506,7 +1506,7 @@ function AuditorQuestions() {
                                             handlecolorchange5();
                                           }}
                                         >
-                                          Accept
+                                       <i class="fa fa-check" aria-hidden="true"></i> Accept
                                         </button>
                                         <button
                                           type="button"
@@ -1520,7 +1520,7 @@ function AuditorQuestions() {
                                             handlecolorchange6();
                                           }}
                                         >
-                                          Reject
+                                       <i class="fa fa-close"></i> Reject
                                         </button>
                                       </div>
                                     </div>
@@ -1914,7 +1914,7 @@ function AuditorQuestions() {
                                             handlecolorchange7();
                                           }}
                                         >
-                                          Accept
+                                       <i class="fa fa-check" aria-hidden="true"></i> Accept
                                         </button>
                                         <button
                                           type="button"
@@ -1928,7 +1928,7 @@ function AuditorQuestions() {
                                             handlecolorchange8();
                                           }}
                                         >
-                                          Reject
+                                       <i class="fa fa-close"></i> Reject
                                         </button>
                                       </div>
                                     </div>
@@ -2302,7 +2302,7 @@ function AuditorQuestions() {
                                             handlecolorchange9();
                                           }}
                                         >
-                                          Accept
+                                       <i class="fa fa-check" aria-hidden="true"></i> Accept
                                         </button>
                                         <button
                                           type="button"
@@ -2316,7 +2316,7 @@ function AuditorQuestions() {
                                             handlecolorchange10();
                                           }}
                                         >
-                                          Reject
+                                       <i class="fa fa-close"></i> Reject
                                         </button>
                                       </div>
                                     </div>
@@ -2694,7 +2694,7 @@ function AuditorQuestions() {
                                             handlecolorchange11();
                                           }}
                                         >
-                                          Accept
+                                       <i class="fa fa-check" aria-hidden="true"></i> Accept
                                         </button>
                                         <button
                                           type="button"
@@ -2708,7 +2708,7 @@ function AuditorQuestions() {
                                             handlecolorchange12();
                                           }}
                                         >
-                                          Reject
+                                       <i class="fa fa-close"></i> Reject
                                         </button>
                                       </div>
                                     </div>
@@ -3084,7 +3084,7 @@ function AuditorQuestions() {
                                             handlecolorchange13();
                                           }}
                                         >
-                                          Accept
+                                       <i class="fa fa-check" aria-hidden="true"></i> Accept
                                         </button>
                                         <button
                                           type="button"
@@ -3098,7 +3098,7 @@ function AuditorQuestions() {
                                             handlecolorchange14();
                                           }}
                                         >
-                                          Reject
+                                       <i class="fa fa-close"></i> Reject
                                         </button>
                                       </div>
                                     </div>
@@ -3596,7 +3596,7 @@ function AuditorQuestions() {
                                             qhandlecolorchange1();
                                           }}
                                         >
-                                          Accept
+                                       <i class="fa fa-check" aria-hidden="true"></i> Accept
                                         </button>
                                         <button
                                           type="button"
@@ -3610,7 +3610,7 @@ function AuditorQuestions() {
                                             qhandlecolorchange2();
                                           }}
                                         >
-                                          Reject
+                                       <i class="fa fa-close"></i> Reject
                                         </button>
                                       </div>
                                     </div>
@@ -4050,7 +4050,7 @@ function AuditorQuestions() {
                                             qhandlecolorchange3();
                                           }}
                                         >
-                                          Accept
+                                       <i class="fa fa-check" aria-hidden="true"></i> Accept
                                         </button>
                                         <button
                                           type="button"
@@ -4064,7 +4064,7 @@ function AuditorQuestions() {
                                             qhandlecolorchange4();
                                           }}
                                         >
-                                          Reject
+                                       <i class="fa fa-close"></i> Reject
                                         </button>
                                       </div>
                                     </div>
@@ -4443,7 +4443,7 @@ function AuditorQuestions() {
                                             qhandlecolorchange5();
                                           }}
                                         >
-                                          Accept
+                                       <i class="fa fa-check" aria-hidden="true"></i> Accept
                                         </button>
                                         <button
                                           type="button"
@@ -4457,7 +4457,7 @@ function AuditorQuestions() {
                                             qhandlecolorchange6();
                                           }}
                                         >
-                                          Reject
+                                       <i class="fa fa-close"></i> Reject
                                         </button>
                                       </div>
                                     </div>
@@ -4851,7 +4851,7 @@ function AuditorQuestions() {
                                             qhandlecolorchange7();
                                           }}
                                         >
-                                          Accept
+                                       <i class="fa fa-check" aria-hidden="true"></i> Accept
                                         </button>
                                         <button
                                           type="button"
@@ -4865,7 +4865,7 @@ function AuditorQuestions() {
                                             qhandlecolorchange8();
                                           }}
                                         >
-                                          Reject
+                                       <i class="fa fa-close"></i> Reject
                                         </button>
                                       </div>
                                     </div>
@@ -5239,7 +5239,7 @@ function AuditorQuestions() {
                                             qhandlecolorchange9();
                                           }}
                                         >
-                                          Accept
+                                       <i class="fa fa-check" aria-hidden="true"></i> Accept
                                         </button>
                                         <button
                                           type="button"
@@ -5631,7 +5631,7 @@ function AuditorQuestions() {
                                             qhandlecolorchange11();
                                           }}
                                         >
-                                          Accept
+                                       <i class="fa fa-check" aria-hidden="true"></i> Accept
                                         </button>
                                         <button
                                           type="button"
@@ -5645,7 +5645,7 @@ function AuditorQuestions() {
                                             qhandlecolorchange12();
                                           }}
                                         >
-                                          Reject
+                                       <i class="fa fa-close"></i> Reject
                                         </button>
                                       </div>
                                     </div>
@@ -6035,7 +6035,7 @@ function AuditorQuestions() {
                                             qhandlecolorchange14();
                                           }}
                                         >
-                                          Reject
+                                       <i class="fa fa-close"></i> Reject
                                         </button>
                                       </div>
                                     </div>
@@ -6345,7 +6345,7 @@ function AuditorQuestions() {
                             handleSaveChanges3();
                           }}
                         >
-                          Submit
+                          Approve
                         </button>
                         <button
                           type="button"
@@ -6356,7 +6356,7 @@ function AuditorQuestions() {
                             // handleSaveChanges2();
                           }}
                         >
-                          Reject
+                     Reject
                         </button>
                       </div>
                     ) : (
@@ -6374,14 +6374,14 @@ function AuditorQuestions() {
                     )}
 
                     <button type="button" className="active out" name="finish">
-                      Submit
+                      Approve
                     </button>
                     <button
                       type="button"
                       className="active out bg-danger"
                       name="finish"
                     >
-                      Reject
+                    Reject
                     </button>
                   </div>
                 </div>

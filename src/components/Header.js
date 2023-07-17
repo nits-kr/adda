@@ -157,7 +157,7 @@ function Header() {
                       <li>
                         <Link
                           className="dropdown-item d-flex align-items-center"
-                          to="#"
+                          to="/"
                         >
                           <i className="bi bi-box-arrow-right" />
                           <span>Sign Out</span>

@@ -1,10 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import Header from "../Header";
 import Navbar from "../Navbar";
-
 import { useGetDashboardUserTotalQuery } from "../../services/Post";
 
 import {
@@ -112,6 +108,7 @@ function DashboardUser() {
       "Family Care Authority",
       "Family Development Foundation",
     ],
+     
     datasets: [
       {
         label: "Score",
@@ -128,6 +125,10 @@ function DashboardUser() {
   };
   const dataBarInfo = {
     labels: ["2019", "2020", "2021", "2022", "2023", "2024"],
+    options: {
+    legend: {
+    	display: false
+    }},
     datasets: [
       {
         label: "Data",
@@ -140,7 +141,9 @@ function DashboardUser() {
         pointHoverBackgroundColor: "#fff",
         pointHoverBorderColor: "rgb(255, 99, 132)",
       },
+      
     ],
+    
   };
 
   return (
@@ -220,7 +223,7 @@ function DashboardUser() {
                         />
                       </div>
                     </div>
-                    <div className="px-1 mb-5">
+                    <div className="px-2 mb-5">
                       <div className="row">
                         <section className="p-0">
                           <div className="container">
@@ -239,174 +242,175 @@ function DashboardUser() {
                                 </div>
                                 <div className="col-lg-9">
                                   <div className="row ps-1">
-                                    <div className="col-4 ">
+                                    <div className="col-2 m-1 ">
                                       <div className="card AdminCustomCard">
-                                        <div className="card-body">
-                                          <h7 className="card-title">
-                                            Data Governance
+                                        <div className="card-body p-1">
+                                          <h7 className="card-title mb-0">
+                                            Data <br/> Governance
                                           </h7>
-                                          <p className="Number">17.5%</p>
-                                          <div className="Icon">
+                                          <p className="Number ">17.5%</p>
+                                          {/* <div className="Icon">
                                             <img
                                               src={require("../../assets/img/Group 1.png")}
                                               alt=""
                                               className="img-fluid"
                                             />
-                                          </div>
+                                          </div> */}
                                         </div>
                                       </div>
                                     </div>
-                                    <div className=" col-4 ">
+                                    <div className=" col-2 m-1 ">
                                       <div className=" card AdminCustomCard">
-                                        <div className="card-body">
-                                          <h7 className="card-title">
-                                            Data Management
+                                        <div className="card-body p-1" >
+                                          <h7 className="card-title mb-0">
+                                            Data <br/> Management
                                           </h7>
                                           <p className="Number">27.5%</p>
-                                          <div className="Icon">
+                                          {/* <div className="Icon">
                                             <img
                                               src={require("../../assets/img/Group 3.png")}
                                               alt=""
                                               className="img-fluid"
                                             />
-                                          </div>
+                                          </div> */}
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="col-4 ">
+                                    <div className="col-2 m-1 ">
                                       <div className=" card AdminCustomCard">
-                                        <div className="card-body">
-                                          <h7 className="card-title">
-                                            Data Categlogue
+                                        <div className="card-body p-1">
+                                          <h7 className="card-title mb-0">
+                                            Data <br/> Categlogue
                                           </h7>
                                           <p className="Number">15.5%</p>
-                                          <div className="Icon">
+                                          {/* <div className="Icon">
                                             <img
                                               src={require("../../assets/img/Group 2.png")}
                                               alt=""
                                               className="img-fluid"
                                             />
-                                          </div>
+                                          </div> */}
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="col-4 ">
+                                    <div className="col-2 m-1 ">
                                       <div className=" card AdminCustomCard">
-                                        <div className="card-body">
-                                          <h7 className="card-title">
-                                            Open Data
+                                        <div className="card-body p-1">
+                                          <h7 className="card-title mb-0">
+                                            Open <br/> Data
                                           </h7>
                                           <p className="Number">43.5%</p>
-                                          <div className="Icon">
+                                          {/* <div className="Icon">
                                             <img
                                               src={require("../../assets/img/Group 4.png")}
                                               alt=""
                                               className="img-fluid"
                                             />
-                                          </div>
+                                          </div> */}
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="col-4 ">
+                                    <div className="col-2 m-1 ">
                                       <div className="card AdminCustomCard">
-                                        <div className="card-body">
-                                          <h7 className="card-title">
+                                        <div className="card-body p-1">
+                                          <h7 className="card-title mb-0">
                                             Data Modelling & Design
                                           </h7>
                                           <p className="Number">18.0%</p>
-                                          <div className="Icon">
+                                          {/* <div className="Icon">
                                             <img
                                               src={require("../../assets/img/Group 9.png")}
                                               alt=""
                                               className="img-fluid"
                                             />
-                                          </div>
+                                          </div> */}
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="col-4 ">
+
+                                    <div className="col-2 m-1 ">
                                       <div className=" card AdminCustomCard">
-                                        <div className="card-body">
-                                          <h7 className="card-title">
-                                            Data Architecture
+                                        <div className="card-body p-1">
+                                          <h7 className="card-title mb-0">
+                                            Data <br/> Architecture
                                           </h7>
                                           <p className="Number">17.5%</p>
-                                          <div className="Icon">
+                                          {/* <div className="Icon">
                                             <img
                                               src={require("../../assets/img/Group 5.png")}
                                               alt=""
                                               className="img-fluid"
                                             />
-                                          </div>
+                                          </div> */}
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="col-4  ">
+                                    <div className="col-2 m-1 ">
                                       <div className="card AdminCustomCard">
-                                        <div className="card-body">
-                                          <h7 className="card-title">
+                                        <div className="card-body p-1">
+                                          <h7 className="card-title mb-0">
                                             Data Security & Privacy
                                           </h7>
                                           <p className="Number">34.5%</p>
-                                          <div className="Icon">
+                                          {/* <div className="Icon">
                                             <img
                                               src={require("../../assets/img/Group 10.png")}
                                               alt=""
                                               className="img-fluid"
                                             />
-                                          </div>
+                                          </div> */}
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="col-4 ">
+                                    <div className="col-2 m-1 ">
                                       <div className=" card AdminCustomCard">
-                                        <div className="card-body">
-                                          <h7 className="card-title">
-                                            Data Storage
+                                        <div className="card-body p-1">
+                                          <h7 className="card-title mb-0">
+                                            Data <br/>Storage
                                           </h7>
                                           <p className="Number">24.5%</p>
-                                          <div className="Icon">
+                                          {/* <div className="Icon">
                                             <img
                                               src={require("../../assets/img/Group 10.png")}
                                               alt=""
                                               className="img-fluid"
                                             />
-                                          </div>
+                                          </div> */}
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="col-4">
+                                    <div className="col-2 m-1">
                                       <div className="  card AdminCustomCard">
-                                        <div className="card-body">
-                                          <h7 className="card-title">
-                                            Data Integration & Interoperability
+                                        <div className="card-body p-1">
+                                          <h7 className="card-title mb-0">
+                                            Data <br/> Integration
                                           </h7>
-                                          <p className="Number">66.5%</p>
-                                          <div className="Icon">
+                                          <p className="Number mb-0">66.5%</p>
+                                          {/* <div className="Icon">
                                             <img
                                               src={require("../../assets/img/Group 8.png")}
                                               alt=""
                                               className="img-fluid"
                                             />
-                                          </div>
+                                          </div> */}
                                         </div>
                                       </div>
                                     </div>
 
-                                    <div className="col-4 ">
+                                    <div className="col-2 m-1">
                                       <div className=" card AdminCustomCard">
-                                        <div className="card-body">
+                                        <div className="card-body p-1">
                                           <h7 className="card-title">
                                             Data Quality
                                           </h7>
                                           <p className="Number">43.5%</p>
-                                          <div className="Icon">
+                                          {/* <div className="Icon">
                                             <img
                                               src={require("../../assets/img/Group 7.png")}
                                               alt=""
                                               className="img-fluid"
                                             />
-                                          </div>
+                                          </div> */}
                                         </div>
                                       </div>
                                     </div>

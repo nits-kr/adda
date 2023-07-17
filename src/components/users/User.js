@@ -69,6 +69,7 @@ function User() {
       const generatedRole = response?.data?.results?.addUser?._id;
       console.log("generatedId", generatedRole);
       localStorage.setItem("generatedRole", generatedRole);
+      document.getElementById("modalOne").click()
       Swal.fire({
         title: "User Created",
         text: "The user has been successfully created.",
@@ -88,6 +89,7 @@ function User() {
       name: name,
     };
     updateUser(editAddress).then(() => {
+      document.getElementById("modalTwo").click()
       Swal.fire({
         title: "Updated!",
         text: "User has been updated.",
@@ -292,6 +294,7 @@ function User() {
                 className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                id="modalOne"
               ></button>
             </div>
             <div className="modal-body">
@@ -365,10 +368,7 @@ function User() {
                     onChange={(e) => setStatus(e.target.value)}
                   >
                     <option value="Active">Active</option>
-                    <option value="Active">Active</option>
-                    <option value="Active">Active</option>
-                    <option value="Active">Active</option>
-                    <option value="Active">Active</option>
+                    <option value="Active">De-active</option>
                   </select>
                   <label
                     htmlFor="floatingSelect1"
@@ -408,7 +408,7 @@ function User() {
         aria-labelledby="staticBackdropLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog modal-dialog-centered">
+      <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="staticBackdropLabel">
@@ -419,6 +419,7 @@ function User() {
                 className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                id="modalTwo"
               ></button>
             </div>
             <div className="modal-body">
@@ -427,28 +428,75 @@ function User() {
                 action=""
               >
                 <div className="form-group col-12">
-                  <label htmlFor="nameEn">User Name</label>
+                  <label htmlFor="nameEn"> Name</label>
                   <input
                     type="text"
                     className="form-control mt-2"
-                    name="title"
-                    id="title"
-                    value={userName1}
-                    onChange={(e) => setUserName1(e.target.value)}
+                    name="titleEdit"
+                    id="titleE"
+                    defaultValue="Testuser"
+                    // onChange={(e) => setName1(e.target.value)}
                   />
                 </div>
-                <div className="form-group col-12">
-                  <label htmlFor="nameEn">Name</label>
+                <div className="form-group col-12 my-2">
+                  <label htmlFor="nameAr"> User Name</label>
                   <input
                     type="text"
                     className="form-control mt-2"
-                    name="name"
-                    id="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    name="userName"
+                    id="userName"
+                    defaultValue={"TestName"}
+                    // onChange={(e) => setUserName(e.target.value)}
                   />
                 </div>
+                <div className="form-group col-12 my-2">
+                  <label htmlFor="nameAr" style={{ marginTop: "10px" }}>
+                    {" "}
+                    Entity
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control mt-2"
+                    name="entity1"
+                    id="entity1"
 
+                    defaultValue={"TestEntity"}
+                    // onChange={(e) => setEntity1(e.target.value)}
+                  />
+                </div>
+                <div className="form-group col-12 my-2">
+                  <select
+                    className="form-select mt-2"
+                    id="floatingSelect"
+                    defaultValue=""
+                  >
+                   <option selected=""> 
+                          ADGE 
+                        </option>
+                  </select>
+                  <label htmlFor="floatingSelect" style={{ marginTop: "10px" }}>
+                    Role
+                  </label>
+                </div>
+                <div className="form-group theme-form-floating">
+                  <select
+                    className="form-select"
+                    id="floatingSelect1"
+                    aria-label="Floating label select example"
+                    defaultValue=" "
+                    style={{ marginTop: "15px" }}
+                    onChange={(e) => setStatus(e.target.value)}
+                  >
+                    <option value="Active">Active</option>
+                    <option value="Active">De-active</option>
+                  </select>
+                  <label
+                    htmlFor="floatingSelect1"
+                    style={{ marginTop: "15px" }}
+                  >
+                    Select Status
+                  </label>
+                </div>
                 <div className="form-group mb-0 col-auto">
                   <Link to="#">
                     <button
@@ -462,7 +510,7 @@ function User() {
                       }}
                       onClick={handleSaveChanges2}
                     >
-                      update
+                      Continue
                     </button>
                   </Link>
                 </div>
