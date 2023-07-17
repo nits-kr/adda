@@ -24,6 +24,7 @@ import { useQuestionListMutation } from "../../services/Post";
 
 function Home() {
   const navigate = useNavigate();
+  const [currentItem, setCurrentItem] = useState({ _id: '' });
   // var CanvasJS = CanvasJSReact.CanvasJS;
   // var CanvasJSChart = CanvasJSReact.CanvasJSChart;
   const [createForm] = useCreateFormMutation();
@@ -65,6 +66,7 @@ function Home() {
   //   };
   //   questionList(editAddress);
   // };
+  
   useEffect(() => {
     if (blog?.data?.results) {
       setScheduledList(blog?.data?.results);
@@ -141,7 +143,11 @@ function Home() {
     !responseSchedule?.isError && setScheduledList(blog?.data?.results);
     console.log(responseSchedule?.isError, "ress");
   };
-
+  const handleViewClick = (currentItemId) => {
+    // Store the currentItem._id in local storage
+    localStorage.setItem("currentItemId", currentItemId);
+    console.log("currentItemId", currentItemId);
+  };
   return (
     <>
       <Header />
@@ -220,12 +226,20 @@ function Home() {
                             Status
                           </th>
                           <th
+                            // scope="col"
+                            // align="center"
+                            // className="text-center"
+                            // style={{
+                            //   textAlign: "center !important",
+                            //   width: 280,
+                            // }}
                             scope="col"
-                            align="center"
-                            className="text-center"
+                            // align="end"
+                            className="text-end"
                             style={{
-                              textAlign: "center !important",
-                              width: 280,
+                              textAlign: "end !important",
+                              padding: "3px 35px !important",
+                              // width: 200,
                             }}
                           >
                             Action
@@ -443,6 +457,7 @@ function Home() {
                                   fdprocessedid="nnhqma"
                                   onClick={() => {
                                     setItemId(currentItem._id);
+                                    handleViewClick(currentItem._id);
                                     // window.location.href = "/adge-question";
                                   }}
                                 >

@@ -103,29 +103,45 @@ function Rles() {
               <div className="col-lg-12">
                 <div className="card StaticCard">
                   <div className="card-body" style={{ flex: "1" }}>
-                    <h5 className="card-title float-start">Roles</h5>
-                    <button
-                      type="button"
-                      className="btn btn-sm DefaultBtn float-end mt-4"
-                      fdprocessedid="bfs61e"
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        marginBottom: "10px",
+                      }}
                     >
-                      <FontAwesomeIcon icon={faDownload} /> Download
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-sm DefaultBtn float-end mt-4 me-2"
-                      fdprocessedid="bfs61e"
-                    >
-                      <Link
-                        data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop"
-                        className="comman_btn2 table_viewbtn"
-                        to=""
-                        // onClick={handleSaveChanges3}
+                      <h5
+                        className="card-title float-start"
+                        style={{ marginBottom: "0px", padding: "0px" }}
                       >
-                        <FontAwesomeIcon icon={faUserPlus} /> Add Role
-                      </Link>
-                    </button>
+                        Roles
+                      </h5>
+                      <div>
+                        <button
+                          type="button"
+                          className="btn btn-sm DefaultBtn float-end"
+                          fdprocessedid="bfs61e"
+                        >
+                          <FontAwesomeIcon icon={faDownload} /> Download
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-sm DefaultBtn float-end me-2"
+                          fdprocessedid="bfs61e"
+                        >
+                          <Link
+                            data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop"
+                            className="comman_btn2 table_viewbtn"
+                            to=""
+                            // onClick={handleSaveChanges3}
+                          >
+                            <FontAwesomeIcon icon={faUserPlus} /> Add Role
+                          </Link>
+                        </button>
+                      </div>
+                    </div>
                     <table
                       className="table table-sm table-hover table-striped CustomTable"
                       id="UserTable"
@@ -133,13 +149,12 @@ function Rles() {
                       <thead>
                         <tr>
                           <th scope="col">Roles Name</th>
-                          <th scope="col"></th>
-                          <th scope="col"></th>
-                          <th scope="col">Modified Date</th>
-                          <th scope="col">Status</th>
-                          <th scope="col"></th>
-                          <th scope="col"></th>
-                          <th scope="col"></th>
+                          <th scope="col" style={{ textAlign: "center" }}>
+                            Modified Date
+                          </th>
+                          <th scope="col" style={{ textAlign: "center" }}>
+                            Status
+                          </th>
                           <th
                             scope="col"
                             align="center"
@@ -158,46 +173,53 @@ function Rles() {
                           return (
                             <tr className="yellow" key={index}>
                               <th scope="row"> {item?.roleName} </th>
-                              <td></td>
-                              <td></td>
-                              <td> {item?.updatedAt?.slice(0, 10)} </td>
-                              <td> {item?.status} </td>
-                              <td></td>
-                              <td></td>
+                              <td style={{ textAlign: "center" }}>
+                                {" "}
+                                {item?.updatedAt?.slice(0, 10)}{" "}
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                                {" "}
+                                {item?.status}{" "}
+                              </td>
                               <td
-                                style={{ textAlign: "center", width: "50px" }}
-                                onClick={() => {
-                                  Swal.fire({
-                                    title: "Are you sure?",
-                                    text: "You won't be able to revert this!",
-                                    icon: "warning",
-                                    showCancelButton: true,
-                                    confirmButtonColor: "#3085d6",
-                                    cancelButtonColor: "#d33",
-                                    confirmButtonText: "Yes, delete it!",
-                                  }).then((result) => {
-                                    if (result.isConfirmed) {
-                                      deleteRole(item?._id);
-                                      Swal.fire(
-                                        "Deleted!",
-                                        "Your item has been deleted.",
-                                        "success"
-                                      ).then(() => {
-                                        window.location.reload(); // Reload the page
-                                      });
-                                    }
-                                  });
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "end",
+                                  textAlign: "end",
                                 }}
                               >
-                                <FontAwesomeIcon
-                                  icon={faTrash}
-                                  style={{
-                                    color: "#eb0f0f",
-                                    marginLeft: "20px",
+                                <Link
+                                  onClick={() => {
+                                    Swal.fire({
+                                      title: "Are you sure?",
+                                      text: "You won't be able to revert this!",
+                                      icon: "warning",
+                                      showCancelButton: true,
+                                      confirmButtonColor: "#3085d6",
+                                      cancelButtonColor: "#d33",
+                                      confirmButtonText: "Yes, delete it!",
+                                    }).then((result) => {
+                                      if (result.isConfirmed) {
+                                        deleteRole(item?._id);
+                                        Swal.fire(
+                                          "Deleted!",
+                                          "Your item has been deleted.",
+                                          "success"
+                                        ).then(() => {
+                                          window.location.reload(); // Reload the page
+                                        });
+                                      }
+                                    });
                                   }}
-                                />
-                              </td>
-                              <td>
+                                >
+                                  <FontAwesomeIcon
+                                    icon={faTrash}
+                                    style={{
+                                      color: "#eb0f0f",
+                                      marginRight: "20px",
+                                    }}
+                                  />
+                                </Link>
                                 <Link
                                   data-bs-toggle="modal"
                                   data-bs-target="#staticBackdrop5"

@@ -1606,7 +1606,7 @@ h6 {
 .CustomTable th {
   background-color: #5058dd;
   color: #ffffff;
-  padding: 4px 10px !important;
+  padding: 4px 20px !important;
   vertical-align: middle !important;
   height: 50px;
   
@@ -1675,12 +1675,13 @@ h6 {
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) > * {
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
+  background: #fff7cc !important;
   -bs-table-bg-type: none !important;
 }
 
 .table-striped > tbody > tr:nth-of-type(even) > * {
-  background-color: #dcdcdc;
+  background-color: #fff7cc !important;
   -bs-table-bg-type: none !important;
 }
 
