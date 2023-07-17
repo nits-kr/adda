@@ -192,8 +192,7 @@ function Home() {
                             className="comman_btn2 table_viewbtn"
                             to="/users"
                           >
-                            <FontAwesomeIcon icon={faUserPlus} /> Add
-                            Application
+                            <FontAwesomeIcon icon={faUserPlus} /> Create New User
                           </Link>
                         </button>
                       </div>

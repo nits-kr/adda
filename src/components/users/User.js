@@ -352,7 +352,7 @@ function User() {
                     })}
                   </select>
                   <label htmlFor="floatingSelect" style={{ marginTop: "10px" }}>
-                    Roll
+                    Role
                   </label>
                 </div>
                 <div className="form-group theme-form-floating">

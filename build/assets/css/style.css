@@ -2188,7 +2188,7 @@ label {
   position: absolute;
   pointer-events: none;
   left: 5px;
-  top: 10px;
+  top: -15px;
   transition: all 0.2s ease;
 }
 
