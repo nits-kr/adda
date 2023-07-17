@@ -154,41 +154,71 @@ function Home() {
               <div className="col-lg-12">
                 <div className="card StaticCard">
                   <div className="card-body" style={{ flex: "1" }}>
-                    <h5 className="card-title float-start">Home</h5>
-                    <button
-                      type="button"
-                      className="btn btn-sm DefaultBtn float-end mt-4"
-                      fdprocessedid="bfs61e">
-                      <FontAwesomeIcon icon={faDownload} /> Download
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-sm DefaultBtn float-end mt-4 me-2"
-                      fdprocessedid="bfs61e">
-                      <Link
-                        // data-bs-toggle="modal"
-                        // data-bs-target="#staticBackdrop"
-                        className="comman_btn2 table_viewbtn"
-                        to="/users">
-                        <FontAwesomeIcon icon={faUserPlus} /> Add Application
-                      </Link>
-                    </button>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <h5
+                        className="card-title float-start"
+                        style={{ marginBottom: "0px", padding: "0px" }}
+                      >
+                        Home
+                      </h5>
+                      <div>
+                        <button
+                          type="button"
+                          className="btn btn-sm DefaultBtn float-end"
+                          fdprocessedid="bfs61e"
+                        >
+                          <FontAwesomeIcon icon={faDownload} /> Download
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-sm DefaultBtn float-end me-2"
+                          fdprocessedid="bfs61e"
+                        >
+                          <Link
+                            // data-bs-toggle="modal"
+                            // data-bs-target="#staticBackdrop"
+                            className="comman_btn2 table_viewbtn"
+                            to="/users"
+                          >
+                            <FontAwesomeIcon icon={faUserPlus} /> Add
+                            Application
+                          </Link>
+                        </button>
+                      </div>
+                    </div>
                     <table
                       className="table  table-hover table-striped CustomTable mt-2  "
                       id="UserTable"
                       style={{
                         marginTop: "1rem",
-                      }}>
+                      }}
+                    >
                       <thead>
                         <tr>
                           <th scope="col">ID</th>
                           <th scope="col">Title</th>
-                          <th scope="col">Date</th>
-                          <th scope="col">User</th>
-                          <th scope="col">Score</th>
+                          <th scope="col" style={{ textAlign: "center" }}>
+                            Date
+                          </th>
+                          <th scope="col" style={{ textAlign: "center" }}>
+                            User
+                          </th>
+                          <th scope="col" style={{ textAlign: "center" }}>
+                            Score
+                          </th>
                           <th scope="col"></th>
-                          <th scope="col">Scheduled</th>
-                          <th scope="col">Status</th>
+                          <th scope="col" style={{ textAlign: "center" }}>
+                            Scheduled
+                          </th>
+                          <th scope="col" style={{ textAlign: "center" }}>
+                            Status
+                          </th>
                           <th
                             scope="col"
                             align="center"
@@ -196,7 +226,8 @@ function Home() {
                             style={{
                               textAlign: "center !important",
                               width: 280,
-                            }}>
+                            }}
+                          >
                             Action
                           </th>
                         </tr>
@@ -204,19 +235,35 @@ function Home() {
                       <tbody>
                         {scheduledList?.list?.map((item, index) => {
                           return (
-                            <tr className="yellow" key={index}>
-                              <th scope="row">AUD45461</th>
-                              <td> {item?.title} </td>
-                              <td>{item?.createdAt?.slice(0, 10)}</td>
-                              <td>{item?.userName}</td>
+                            <tr className="heading10" key={index}>
+                              <th
+                                scope="row"
+                                style={{ backgroundColor: "yellow !important" }}
+                              >
+                                {" "}
+                                {item?.uniQ_Id}{" "}
+                              </th>
+                              <td
+                                style={{ backgroundColor: "yellow !important" }}
+                              >
+                                {" "}
+                                {item?.title}{" "}
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                                {item?.createdAt?.slice(0, 10)}
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                                {item?.userName}
+                              </td>
                               <td></td>
                               <td></td>
-                              <td>
+                              <td style={{ textAlign: "center" }}>
                                 <div className="nav-item dropdown pe-3">
                                   <Link
                                     className=""
                                     to="#"
-                                    data-bs-toggle="dropdown">
+                                    data-bs-toggle="dropdown"
+                                  >
                                     {" "}
                                   </Link>
 
@@ -248,13 +295,16 @@ function Home() {
                                   </ul>
                                 </div>
                               </td>
-                              <td>{item?.status}</td>
                               <td style={{ textAlign: "center" }}>
+                                {item?.status}
+                              </td>
+                              <td style={{ textAlign: "end" }}>
                                 {item?.schedule ? (
                                   <Link
                                     type="button"
                                     className="btn btn-sm  mx-1"
-                                    style={{ cursor: "not-allowed" }}>
+                                    style={{ cursor: "not-allowed" }}
+                                  >
                                     <FontAwesomeIcon icon={faCalendarDays} />{" "}
                                     Scheduled
                                   </Link>
@@ -265,16 +315,24 @@ function Home() {
                                     className="btn btn-sm tableBtn-blue mx-1"
                                     data-bs-toggle="modal"
                                     data-bs-target="#ExtralargeModal2"
-                                    onClick={() => setItemId2(item?._id)}>
+                                    onClick={() => setItemId2(item?._id)}
+                                  >
                                     <FontAwesomeIcon icon={faCalendarDays} />{" "}
                                     Schedule
                                   </Link>
                                 )}
 
                                 <Link
+                                  // to="/auditior-question"
                                   to={`/auditior-question/${item._id}`}
-                                  className="btn btn-sm tableBtn-blue mx-1"
-                                  onClick={() => review(item._id)}>
+                                  type=""
+                                  className="btn btn-sm tableBtn-blue"
+                                  // onClick={() => {
+                                  //   navigate("/auditior-question")
+                                  // }}
+
+                                  onClick={() => review(item._id)}
+                                >
                                   <FontAwesomeIcon icon={faCopy} />
                                   <FontAwesomeIcon icon={faComment} /> Review
                                 </Link>
@@ -284,12 +342,22 @@ function Home() {
                         })}
                       </tbody>
                       <thead>
-                        <tr className="head2">
-                          <th scope="col" colSpan={8}>
-                            <th scope="col" colSpan={8}>
-                              History
-                            </th>
+                        <tr className="bg-primary">
+                          <th
+                            scope="col"
+                            colSpan={12}
+                            style={{
+                              padding: "40px 0px 0px 0px !important",
+                              fontWeight: "bold !important",
+                              fontSize: "15px",
+                              backgroundColor: "#5058dd !important",
+                            }}
+                          >
+                            History
                           </th>
+                          {/* <th scope="col" colSpan={8}>
+                            
+                          </th> */}
                         </tr>
                       </thead>
 
@@ -303,18 +371,29 @@ function Home() {
                             <tr key={index}>
                               <th scope="row">AUD45461</th>
                               <td>{currentItem.title}</td>
-                              <td>{currentItem.createdAt?.slice(0, 10)}</td>
-                              <td>{currentItem.userName}</td>
-                              <td>{currentItem.score}</td>
+                              <td style={{ textAlign: "center" }}>
+                                {currentItem.createdAt?.slice(0, 10)}
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                                {currentItem.userName}
+                              </td>
+                              <td style={{ textAlign: "center" }}>
+                                {currentItem.score}
+                              </td>
                               <td></td>
-                              <td>
+                              <td style={{ textAlign: "center" }}>
                                 <div className="nav-item dropdown pe-3">
                                   <Link
                                     className=""
                                     to="#"
-                                    data-bs-toggle="dropdown">
-                                    {currentItem.to?.slice(0, 10)} to{" "}
-                                    {currentItem.from?.slice(0, 10)}
+                                    data-bs-toggle="dropdown"
+                                  >
+                                    {currentItem.to && currentItem.from
+                                      ? `${currentItem.to.slice(
+                                          0,
+                                          10
+                                        )} to ${currentItem.from.slice(0, 10)}`
+                                      : ""}
                                   </Link>
 
                                   <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile text-start">
@@ -328,8 +407,15 @@ function Home() {
                                       <div className="form-group text-start">
                                         <small>Scheduled date</small>
                                         <h6 className="text-black">
-                                          {currentItem.from?.slice(0, 10)} to{" "}
-                                          {currentItem.to?.slice(0, 10)}
+                                          {currentItem.from && currentItem.to
+                                            ? `${currentItem.from.slice(
+                                                0,
+                                                10
+                                              )} to ${currentItem.to.slice(
+                                                0,
+                                                10
+                                              )}`
+                                            : ""}
                                         </h6>
                                       </div>
                                       <div className="form-group text-start">
@@ -346,17 +432,22 @@ function Home() {
                                   </ul>
                                 </div>
                               </td>
-                              <td>{currentItem.status}</td>
+
+                              <td style={{ textAlign: "center" }}>
+                                {currentItem.status}
+                              </td>
                               <td style={{ textAlign: "end" }}>
-                                <button
+                                <Link
+                                  to="/auditior-question/:id"
                                   className="btn btn-sm tableBtn-Gray"
                                   fdprocessedid="nnhqma"
                                   onClick={() => {
                                     setItemId(currentItem._id);
-                                    window.location.href = "/adge-question";
-                                  }}>
+                                    // window.location.href = "/adge-question";
+                                  }}
+                                >
                                   <FontAwesomeIcon icon={faEye} /> View
-                                </button>
+                                </Link>
                               </td>
                             </tr>
                           );
@@ -373,7 +464,8 @@ function Home() {
 
       <Link
         to="#"
-        className="back-to-top d-flex align-items-center justify-content-center">
+        className="back-to-top d-flex align-items-center justify-content-center"
+      >
         <i className="bi bi-arrow-up-short" />
       </Link>
 
@@ -397,7 +489,8 @@ function Home() {
                     id="floatingSelect1"
                     aria-label="Floating label select example"
                     defaultValue=" "
-                    onChange={(e) => setEntity(e.target.value)}>
+                    onChange={(e) => setEntity(e.target.value)}
+                  >
                     <option value="Adda">Adda</option>
                     <option value="ADNOC">ADNOC</option>
                     <option value="DMT">DMT</option>
@@ -439,7 +532,8 @@ function Home() {
 
               <form
                 className="form-design py-4 px-3 help-support-form row align-items-end justify-content-between"
-                action="">
+                action=""
+              >
                 <div className="form-group mb-0 col-6">
                   <label htmlFor="">From</label>
                   <input
@@ -466,7 +560,8 @@ function Home() {
                     id="floatingSelect1"
                     aria-label="Floating label select example"
                     defaultValue=" "
-                    onChange={(e) => setStatus(e.target.value)}>
+                    onChange={(e) => setStatus(e.target.value)}
+                  >
                     <option value="Active">Active</option>
                     <option value="Active">Active</option>
                     <option value="Active">Active</option>
@@ -482,7 +577,8 @@ function Home() {
                 type="button"
                 className="btn btn-primary"
                 data-bs-dismiss="modal"
-                onClick={handleSaveChanges5}>
+                onClick={handleSaveChanges5}
+              >
                 Schedule
               </button>
             </div>
@@ -507,7 +603,8 @@ function Home() {
                 <div className="row mb-3">
                   <label
                     htmlFor="inputEmail3"
-                    className="col-sm-3 col-form-label">
+                    className="col-sm-3 col-form-label"
+                  >
                     Title
                   </label>
                   <div className="col-sm-6">
@@ -543,13 +640,15 @@ function Home() {
               <button
                 type="button"
                 className="btn btn-secondary"
-                data-bs-dismiss="modal">
+                data-bs-dismiss="modal"
+              >
                 Close
               </button>
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={handleSaveChanges3}>
+                onClick={handleSaveChanges3}
+              >
                 Save changes
               </button>
             </div>
@@ -570,7 +669,8 @@ function Home() {
           left: "-100%",
           position: "absolute",
           opacity: 0,
-        }}>
+        }}
+      >
         <defs id="SvgjsDefs1002" />
         <polyline id="SvgjsPolyline1003" points="0,0" />
         <path id="SvgjsPath1004" d="M0 0 " />
@@ -582,7 +682,8 @@ function Home() {
         data-bs-keyboard="false"
         tabIndex="-1"
         aria-labelledby="staticBackdropLabel"
-        aria-hidden="true">
+        aria-hidden="true"
+      >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
@@ -593,12 +694,14 @@ function Home() {
                 type="button"
                 className="btn-close"
                 data-bs-dismiss="modal"
-                aria-label="Close"></button>
+                aria-label="Close"
+              ></button>
             </div>
             <div className="modal-body">
               <form
                 className="form-design p-3 help-support-form row align-items-end justify-content-center"
-                action="">
+                action=""
+              >
                 <div className="form-group col-12">
                   <label htmlFor="nameEn">Title</label>
                   <input
@@ -632,7 +735,8 @@ function Home() {
                         height: "40px",
                         backgroundColor: "#5058DD",
                       }}
-                      onClick={handleSaveChanges1}>
+                      onClick={handleSaveChanges1}
+                    >
                       Continue
                     </button>
                   </Link>

@@ -1,10 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import Header from "../Header";
 import Navbar from "../Navbar";
-
 import { useGetDashboardUserTotalQuery } from "../../services/Post";
 
 import {
@@ -115,8 +111,7 @@ function DashboardUser() {
      
     datasets: [
       {
-        
-        label: "Data",
+        label: "Score",
         data: [5, 3, 2],
         fill: true,
         backgroundColor: "rgba(125,132,248,1)",
@@ -159,7 +154,12 @@ function DashboardUser() {
       <div>
         <div className="container adda_main">
           <div className="pagetitle">
-            <h1 className="col-lg-2 float-start ps-3">Admin Dashboard</h1>
+            <h1
+              className="col-lg-2 float-start ps-3"
+              style={{ marginTop: "5px" }}
+            >
+              Admin Dashboard
+            </h1>
             <div className="col-md-2 float-start pe-2 pb-1">
               <select
                 className="form-select form-select-sm mb-1"
@@ -178,8 +178,8 @@ function DashboardUser() {
                 aria-label="Default select example"
                 style={{ zIndex: 9999 }}
               >
-                <option selected="">Year</option>
-                <option value={1}>202</option>
+                <option selected="">To</option>
+                <option value={1}>2021</option>
                 <option value={2}>2022</option>
                 <option value={3}>2023</option>
               </select>
@@ -190,7 +190,7 @@ function DashboardUser() {
                 aria-label="Default select example"
                 style={{ zIndex: 9999 }}
               >
-                <option selected="">Year</option>
+                <option selected="">From</option>
                 <option value={1}>202</option>
                 <option value={2}>2022</option>
                 <option value={3}>2023</option>
@@ -242,154 +242,174 @@ function DashboardUser() {
                                 </div>
                                 <div className="col-lg-9">
                                   <div className="row ps-1">
-                                    <div className="col-auto m-1 card AdminCustomCard">
-                                      <div className="card-body">
-                                        <h7 className="card-title">
-                                          Data Governance
-                                        </h7>
-                                        <p className="Number">17.5%</p>
-                                        <div className="Icon">
-                                          <img
-                                            src={require("../../assets/img/Group 1.png")}
-                                            alt=""
-                                            className="img-fluid"
-                                          />
+                                    <div className="col-4 ">
+                                      <div className="card AdminCustomCard">
+                                        <div className="card-body">
+                                          <h7 className="card-title">
+                                            Data Governance
+                                          </h7>
+                                          <p className="Number">17.5%</p>
+                                          <div className="Icon">
+                                            <img
+                                              src={require("../../assets/img/Group 1.png")}
+                                              alt=""
+                                              className="img-fluid"
+                                            />
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
-                                    <div className=" col-auto  m-1 card AdminCustomCard">
-                                      <div className="card-body">
-                                        <h7 className="card-title">
-                                          Data Management
-                                        </h7>
-                                        <p className="Number">27.5%</p>
-                                        <div className="Icon">
-                                          <img
-                                            src={require("../../assets/img/Group 3.png")}
-                                            alt=""
-                                            className="img-fluid"
-                                          />
+                                    <div className=" col-4 ">
+                                      <div className=" card AdminCustomCard">
+                                        <div className="card-body">
+                                          <h7 className="card-title">
+                                            Data Management
+                                          </h7>
+                                          <p className="Number">27.5%</p>
+                                          <div className="Icon">
+                                            <img
+                                              src={require("../../assets/img/Group 3.png")}
+                                              alt=""
+                                              className="img-fluid"
+                                            />
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="col-auto  m-1 card AdminCustomCard">
-                                      <div className="card-body">
-                                        <h7 className="card-title">
-                                          Data Categlogue
-                                        </h7>
-                                        <p className="Number">15.5%</p>
-                                        <div className="Icon">
-                                          <img
-                                            src={require("../../assets/img/Group 2.png")}
-                                            alt=""
-                                            className="img-fluid"
-                                          />
+                                    <div className="col-4 ">
+                                      <div className=" card AdminCustomCard">
+                                        <div className="card-body">
+                                          <h7 className="card-title">
+                                            Data Categlogue
+                                          </h7>
+                                          <p className="Number">15.5%</p>
+                                          <div className="Icon">
+                                            <img
+                                              src={require("../../assets/img/Group 2.png")}
+                                              alt=""
+                                              className="img-fluid"
+                                            />
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="col-auto m-1  card AdminCustomCard">
-                                      <div className="card-body">
-                                        <h7 className="card-title">
-                                          Open Data
-                                        </h7>
-                                        <p className="Number">43.5%</p>
-                                        <div className="Icon">
-                                          <img
-                                            src={require("../../assets/img/Group 4.png")}
-                                            alt=""
-                                            className="img-fluid"
-                                          />
+                                    <div className="col-4 ">
+                                      <div className=" card AdminCustomCard">
+                                        <div className="card-body">
+                                          <h7 className="card-title">
+                                            Open Data
+                                          </h7>
+                                          <p className="Number">43.5%</p>
+                                          <div className="Icon">
+                                            <img
+                                              src={require("../../assets/img/Group 4.png")}
+                                              alt=""
+                                              className="img-fluid"
+                                            />
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="col-auto m-1 card AdminCustomCard">
-                                      <div className="card-body">
-                                        <h7 className="card-title">
-                                          Data Modelling & Design
-                                        </h7>
-                                        <p className="Number">18.0%</p>
-                                        <div className="Icon">
-                                          <img
-                                            src={require("../../assets/img/Group 9.png")}
-                                            alt=""
-                                            className="img-fluid"
-                                          />
+                                    <div className="col-4 ">
+                                      <div className="card AdminCustomCard">
+                                        <div className="card-body">
+                                          <h7 className="card-title">
+                                            Data Modelling & Design
+                                          </h7>
+                                          <p className="Number">18.0%</p>
+                                          <div className="Icon">
+                                            <img
+                                              src={require("../../assets/img/Group 9.png")}
+                                              alt=""
+                                              className="img-fluid"
+                                            />
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="col-auto m-1  card AdminCustomCard">
-                                      <div className="card-body">
-                                        <h7 className="card-title">
-                                          Data Architecture
-                                        </h7>
-                                        <p className="Number">17.5%</p>
-                                        <div className="Icon">
-                                          <img
-                                            src={require("../../assets/img/Group 5.png")}
-                                            alt=""
-                                            className="img-fluid"
-                                          />
+                                    <div className="col-4 ">
+                                      <div className=" card AdminCustomCard">
+                                        <div className="card-body">
+                                          <h7 className="card-title">
+                                            Data Architecture
+                                          </h7>
+                                          <p className="Number">17.5%</p>
+                                          <div className="Icon">
+                                            <img
+                                              src={require("../../assets/img/Group 5.png")}
+                                              alt=""
+                                              className="img-fluid"
+                                            />
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="col-auto m-1  card AdminCustomCard">
-                                      <div className="card-body">
-                                        <h7 className="card-title">
-                                          Data Security & Privacy
-                                        </h7>
-                                        <p className="Number">34.5%</p>
-                                        <div className="Icon">
-                                          <img
-                                            src={require("../../assets/img/Group 10.png")}
-                                            alt=""
-                                            className="img-fluid"
-                                          />
+                                    <div className="col-4  ">
+                                      <div className="card AdminCustomCard">
+                                        <div className="card-body">
+                                          <h7 className="card-title">
+                                            Data Security & Privacy
+                                          </h7>
+                                          <p className="Number">34.5%</p>
+                                          <div className="Icon">
+                                            <img
+                                              src={require("../../assets/img/Group 10.png")}
+                                              alt=""
+                                              className="img-fluid"
+                                            />
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="col-auto m-1  card AdminCustomCard">
-                                      <div className="card-body">
-                                        <h7 className="card-title">
-                                          Data Storage
-                                        </h7>
-                                        <p className="Number">24.5%</p>
-                                        <div className="Icon">
-                                          <img
-                                            src={require("../../assets/img/Group 10.png")}
-                                            alt=""
-                                            className="img-fluid"
-                                          />
+                                    <div className="col-4 ">
+                                      <div className=" card AdminCustomCard">
+                                        <div className="card-body">
+                                          <h7 className="card-title">
+                                            Data Storage
+                                          </h7>
+                                          <p className="Number">24.5%</p>
+                                          <div className="Icon">
+                                            <img
+                                              src={require("../../assets/img/Group 10.png")}
+                                              alt=""
+                                              className="img-fluid"
+                                            />
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="col-auto m-1  card AdminCustomCard">
-                                      <div className="card-body">
-                                        <h7 className="card-title">
-                                          Data Integration & Interoperability
-                                        </h7>
-                                        <p className="Number">66.5%</p>
-                                        <div className="Icon">
-                                          <img
-                                            src={require("../../assets/img/Group 8.png")}
-                                            alt=""
-                                            className="img-fluid"
-                                          />
+                                    <div className="col-4">
+                                      <div className="  card AdminCustomCard">
+                                        <div className="card-body">
+                                          <h7 className="card-title">
+                                            Data Integration & Interoperability
+                                          </h7>
+                                          <p className="Number">66.5%</p>
+                                          <div className="Icon">
+                                            <img
+                                              src={require("../../assets/img/Group 8.png")}
+                                              alt=""
+                                              className="img-fluid"
+                                            />
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
 
-                                    <div className="col-auto m-1  card AdminCustomCard">
-                                      <div className="card-body">
-                                        <h7 className="card-title">
-                                          Data Quality
-                                        </h7>
-                                        <p className="Number">43.5%</p>
-                                        <div className="Icon">
-                                          <img
-                                            src={require("../../assets/img/Group 7.png")}
-                                            alt=""
-                                            className="img-fluid"
-                                          />
+                                    <div className="col-4 ">
+                                      <div className=" card AdminCustomCard">
+                                        <div className="card-body">
+                                          <h7 className="card-title">
+                                            Data Quality
+                                          </h7>
+                                          <p className="Number">43.5%</p>
+                                          <div className="Icon">
+                                            <img
+                                              src={require("../../assets/img/Group 7.png")}
+                                              alt=""
+                                              className="img-fluid"
+                                            />
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
@@ -405,10 +425,17 @@ function DashboardUser() {
                   {/* End Reports */}
                   <div className="col-lg-4">
                     <div className="card">
-                      <div className="card-body">
-                        <h5 className="card-title pb-3">
+                      <div className="card-body" style={{ height: "490px" }}>
+                        <h5
+                          className="card-title pb-3"
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                          }}
+                        >
                           Audit Summary
-                          <div className="float-end pe-0 pb-1">
+                          <div className="float-end pe-0">
                             <select
                               className="form-select form-select-sm "
                               aria-label="Default select example"
@@ -438,7 +465,7 @@ function DashboardUser() {
                         {/* End Radar CHart */}
                       </div>
                     </div>
-                    <div className="row">
+                    <div className="row" style={{ marginTop: "20px" }}>
                       <div className="col-lg-12 pe-0">
                         <div className="card ADGECustomCard">
                           <div className="card-body">

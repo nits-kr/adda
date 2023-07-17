@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink, faComment } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+
 import Header from "../Header";
 import Navbar from "../Navbar";
 import Swal from "sweetalert2";
@@ -16,6 +18,7 @@ function AuditorQuestions() {
   const [questionList, re] = useQuestionListMutation();
   const [generatedId, setGeneratedId] = useState("");
   const [activeStep, setActiveStep] = useState(1);
+  const [agentDetails, setAgentDetails] = useState("");
   console.log("question list", re?.data?.results?.listData);
   console.log("question list response", re);
 
@@ -32,6 +35,7 @@ function AuditorQuestions() {
       timer: 3000,
       timerProgressBar: true,
     });
+    window.location.href = "/home"
   };
   console.log(generatedId);
 
@@ -59,7 +63,8 @@ function AuditorQuestions() {
                 <div className="row mb-3">
                   <label
                     htmlFor="inputEmail3"
-                    className="col-sm-3 col-form-label">
+                    className="col-sm-3 col-form-label"
+                  >
                     Title
                   </label>
                   <div className="col-sm-6">
@@ -95,7 +100,8 @@ function AuditorQuestions() {
               <button
                 type="button"
                 className="btn btn-secondary"
-                data-bs-dismiss="modal">
+                data-bs-dismiss="modal"
+              >
                 Close
               </button>
               <button type="button" className="btn btn-primary">
@@ -132,39 +138,107 @@ function AuditorQuestions() {
             <div className="card-body">
               <div className="step-progress">
                 <div className="StepsHeader">
-
                   <div className="step-slider">
-
-                    <div data-id="step1" className={page === 1 ? "step-slider-item active" : "step-slider-item" }>
+                    <div
+                      data-id="step1"
+                      className={
+                        page >= 1
+                          ? "step-slider-item active"
+                          : "step-slider-item"
+                      }
+                    >
                       <div className="Title">Data Governance</div>
                     </div>
-                    <div data-id="step2"className={page === 2 ? "step-slider-item active" : "step-slider-item" }>
+                    <div
+                      data-id="step2"
+                      className={
+                        page >= 2
+                          ? "step-slider-item active"
+                          : "step-slider-item"
+                      }
+                    >
                       <div className="Title">Data Management </div>
                     </div>
-                    <div data-id="step3"className={page === 3 ? "step-slider-item active" : "step-slider-item" }>
+                    <div
+                      data-id="step3"
+                      className={
+                        page >= 3
+                          ? "step-slider-item active"
+                          : "step-slider-item"
+                      }
+                    >
                       <div className="Title">Data Catalogue</div>
                     </div>
-                    <div data-id="step4"className={page === 4 ? "step-slider-item active" : "step-slider-item" }>
+                    <div
+                      data-id="step4"
+                      className={
+                        page >= 4
+                          ? "step-slider-item active"
+                          : "step-slider-item"
+                      }
+                    >
                       <div className="Title">Data Modelling and Design</div>
                     </div>
-                    <div data-id="step5"className={page === 5 ? "step-slider-item active" : "step-slider-item" }>
+                    <div
+                      data-id="step5"
+                      className={
+                        page >= 5
+                          ? "step-slider-item active"
+                          : "step-slider-item"
+                      }
+                    >
                       <div className="Title">Data Architecture</div>
                     </div>
-                    <div data-id="step6"className={page === 6 ? "step-slider-item active" : "step-slider-item" }>
+                    <div
+                      data-id="step6"
+                      className={
+                        page >= 6
+                          ? "step-slider-item active"
+                          : "step-slider-item"
+                      }
+                    >
                       <div className="Title">Data Security and Privacy</div>
                     </div>
-                    <div data-id="step7"className={page === 7 ? "step-slider-item active" : "step-slider-item" }>
+                    <div
+                      data-id="step7"
+                      className={
+                        page >= 7
+                          ? "step-slider-item active"
+                          : "step-slider-item"
+                      }
+                    >
                       <div className="Title">Data Storage</div>
                     </div>
-                    <div data-id="step8"className={page === 8 ? "step-slider-item active" : "step-slider-item" }>
+                    <div
+                      data-id="step8"
+                      className={
+                        page >= 8
+                          ? "step-slider-item active"
+                          : "step-slider-item"
+                      }
+                    >
                       <div className="Title">
                         Data Integration and Interoperability
                       </div>
                     </div>
-                    <div data-id="step9"className={page === 9 ? "step-slider-item active" : "step-slider-item" }>
+                    <div
+                      data-id="step9"
+                      className={
+                        page >= 9
+                          ? "step-slider-item active"
+                          : "step-slider-item"
+                      }
+                    >
                       <div className="Title">Open Data</div>
                     </div>
-                    <div data-id="step10"className={page === 10 ? "step-slider-item active" : "step-slider-item" }>
+                    <div
+                      data-id="step10"
+                      className={
+                        page >= 10
+                          ? "step-slider-item active"
+                          : "step-slider-item"
+                      }
+                    >
                       <div className="Title">Data Quality</div>
                     </div>
                   </div>
@@ -213,13 +287,19 @@ function AuditorQuestions() {
                                   </div>
                                   <div
                                     className="row"
-                                    style={{ clear: "both" }}>
+                                    style={{ clear: "both" }}
+                                  >
                                     <div className="col-lg-2 mt-4 offset-1">
                                       <div
                                         className="btn-group CustomBtnGroup"
                                         role="group"
-                                        aria-label="Basic example">
-                                        <h4 className="text-success">YES</h4>
+                                        aria-label="Basic example"
+                                      >
+                                        <h4 className="text-success">
+                                          {agentDetails?.qstatus1
+                                            ? agentDetails.qstatus1
+                                            : "no"}
+                                        </h4>
                                       </div>
                                     </div>
                                     <div className="col-lg-6 mt-4">
@@ -227,10 +307,11 @@ function AuditorQuestions() {
                                       <Link
                                         className="AttachBut2"
                                         data-bs-toggle="collapse"
-                                        to="#collapseExample"
+                                        to="#collapseExample1"
                                         role="button"
                                         aria-expanded="false"
-                                        aria-controls="collapseExample">
+                                        aria-controls="collapseExample1"
+                                      >
                                         {" "}
                                         <FontAwesomeIcon
                                           icon={faLink}
@@ -244,10 +325,11 @@ function AuditorQuestions() {
                                       <Link
                                         className="AttachBut2"
                                         data-bs-toggle="collapse"
-                                        to="#collapseExample"
+                                        to="#collapseExample1"
                                         role="button"
                                         aria-expanded="false"
-                                        aria-controls="collapseExample">
+                                        aria-controls="collapseExample1"
+                                      >
                                         {" "}
                                         <FontAwesomeIcon
                                           icon={faComment}
@@ -262,15 +344,18 @@ function AuditorQuestions() {
                                       <div
                                         className="btn-group CustomBtnGroup2"
                                         role="group"
-                                        aria-label="Basic example">
+                                        aria-label="Basic example"
+                                      >
                                         <button
                                           type="button"
-                                          className="btn btn-primary">
+                                          className="btn btn-primary"
+                                        >
                                           Accept
                                         </button>
                                         <button
                                           type="button"
-                                          className="btn btn-danger">
+                                          className="btn btn-danger"
+                                        >
                                           Reject
                                         </button>
                                       </div>
@@ -278,12 +363,13 @@ function AuditorQuestions() {
                                   </div>
                                   <div
                                     className="collapse AttachDiv"
-                                    id="collapseExample">
+                                    id="collapseExample1"
+                                  >
                                     <form action="">
                                       <div className="form">
                                         <input
                                           name="file"
-                                          id="entry_value"
+                                          id="entry_value1"
                                           type="file"
                                         />
                                         <div>
@@ -300,8 +386,9 @@ function AuditorQuestions() {
                                           </button>
                                         </div>
                                         <span
-                                          id="fileName"
-                                          className="text-primary ">
+                                          id="fileName1"
+                                          className="text-primary "
+                                        >
                                           {" "}
                                         </span>{" "}
                                       </div>
@@ -359,7 +446,8 @@ function AuditorQuestions() {
                                                   <button
                                                     // onClick="submit_comment()"
                                                     type="button"
-                                                    value={1}>
+                                                    value={1}
+                                                  >
                                                     Post
                                                   </button>
                                                 </div>
@@ -369,25 +457,22 @@ function AuditorQuestions() {
                                           <div className="row">
                                             <ul
                                               id="list_comment"
-                                              className="col-md-12">
+                                              className="col-md-12"
+                                            >
                                               <li className="box_result row">
-                                                <div className="avatar_comment col-md-1">
+                                                {/* <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
                                                     src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
                                                     alt="avatar"
                                                   />{" "}
-                                                </div>
+                                                </div> */}
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  {/* <h4>Nath Ryuzaki</h4> */}
                                                   <p>
-                                                    Lorem Ipsum is simply dummy
-                                                    text of the printing and
-                                                    typesetting industry. Lorem
-                                                    Ipsum has been the
-                                                    industry's.
+                                                    {agentDetails?.qcomment1}
                                                   </p>
-                                                  <div className="tools_comment">
+                                                  {/* <div className="tools_comment">
                                                     {" "}
                                                     <Link
                                                       className="like"
@@ -469,11 +554,11 @@ function AuditorQuestions() {
                                                         <ul className="child_replay"></ul>
                                                       </div>
                                                     </li>
-                                                  </ul>
+                                                  </ul> */}
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -522,7 +607,7 @@ function AuditorQuestions() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
                                         </div>
@@ -566,13 +651,19 @@ function AuditorQuestions() {
                                   </div>
                                   <div
                                     className="row"
-                                    style={{ clear: "both" }}>
+                                    style={{ clear: "both" }}
+                                  >
                                     <div className="col-lg-2 mt-4 offset-1">
                                       <div
                                         className="btn-group CustomBtnGroup"
                                         role="group"
-                                        aria-label="Basic example">
-                                        <h4 className="text-danger">NO</h4>
+                                        aria-label="Basic example"
+                                      >
+                                        <h4 className="text-success">
+                                          {agentDetails?.qstatus2
+                                            ? agentDetails.qstatus2
+                                            : "no"}
+                                        </h4>
                                       </div>
                                     </div>
                                     <div className="col-lg-6 mt-4">
@@ -580,10 +671,11 @@ function AuditorQuestions() {
                                       <Link
                                         className="AttachBut2"
                                         data-bs-toggle="collapse"
-                                        to="#collapseExample"
+                                        to="#collapseExample2"
                                         role="button"
                                         aria-expanded="false"
-                                        aria-controls="collapseExample">
+                                        aria-controls="collapseExample2"
+                                      >
                                         {" "}
                                         <FontAwesomeIcon
                                           icon={faLink}
@@ -597,10 +689,11 @@ function AuditorQuestions() {
                                       <Link
                                         className="AttachBut2"
                                         data-bs-toggle="collapse"
-                                        to="#collapseExample"
+                                        to="#collapseExample2"
                                         role="button"
                                         aria-expanded="false"
-                                        aria-controls="collapseExample">
+                                        aria-controls="collapseExample2"
+                                      >
                                         {" "}
                                         <FontAwesomeIcon
                                           icon={faComment}
@@ -615,15 +708,18 @@ function AuditorQuestions() {
                                       <div
                                         className="btn-group CustomBtnGroup2"
                                         role="group"
-                                        aria-label="Basic example">
+                                        aria-label="Basic example"
+                                      >
                                         <button
                                           type="button"
-                                          className="btn btn-primary">
+                                          className="btn btn-primary"
+                                        >
                                           Accept
                                         </button>
                                         <button
                                           type="button"
-                                          className="btn btn-danger">
+                                          className="btn btn-danger"
+                                        >
                                           Reject
                                         </button>
                                       </div>
@@ -631,12 +727,13 @@ function AuditorQuestions() {
                                   </div>
                                   <div
                                     className="collapse AttachDiv"
-                                    id="collapseExample2">
+                                    id="collapseExample2"
+                                  >
                                     <form action="">
                                       <div className="form">
                                         <input
                                           name="file"
-                                          id="entry_value"
+                                          id="entry_value2"
                                           //   ref="fileInput"
                                           type="file"
                                           //   onchange="getFileName()"
@@ -645,18 +742,19 @@ function AuditorQuestions() {
                                           {" "}
                                           <img
                                             src="upload.png"
-                                            alt="upload"
+                                            alt=""
                                             width="4%"
                                             className=""
                                           />{" "}
                                           Upload your files here or
-                                          <button className="btn bg-color-dblue btn-primary">
+                                          <button className="btn bg-color-dblue btn-primary" style={{marginLeft:"5px"}}>
                                             Browse
                                           </button>
                                         </div>
                                         <span
-                                          id="fileName"
-                                          className="text-primary ">
+                                          id="fileName2"
+                                          className="text-primary "
+                                        >
                                           {" "}
                                         </span>{" "}
                                       </div>
@@ -715,7 +813,8 @@ function AuditorQuestions() {
                                                   <button
                                                     // onClick="submit_comment()"
                                                     type="button"
-                                                    value={1}>
+                                                    value={1}
+                                                  >
                                                     Post
                                                   </button>
                                                 </div>
@@ -725,29 +824,27 @@ function AuditorQuestions() {
                                           <div className="row">
                                             <ul
                                               id="list_comment"
-                                              className="col-md-12">
+                                              className="col-md-12"
+                                            >
                                               <li className="box_result row">
-                                                <div className="avatar_comment col-md-1">
+                                                {/* <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
                                                     src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
                                                     alt="avatar"
                                                   />{" "}
-                                                </div>
+                                                </div> */}
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  {/* <h4>Nath Ryuzaki</h4> */}
                                                   <p>
-                                                    Lorem Ipsum is simply dummy
-                                                    text of the printing and
-                                                    typesetting industry. Lorem
-                                                    Ipsum has been the
-                                                    industry's.
+                                                  {agentDetails?.qcomment2}
                                                   </p>
-                                                  <div className="tools_comment">
+                                                  {/* <div className="tools_comment">
                                                     {" "}
                                                     <Link
                                                       className="like"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Like
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -756,7 +853,8 @@ function AuditorQuestions() {
                                                     </span>{" "}
                                                     <Link
                                                       className="replay"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Reply
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -772,8 +870,8 @@ function AuditorQuestions() {
                                                       ·{" "}
                                                     </span>{" "}
                                                     <span>26m</span>{" "}
-                                                  </div>
-                                                  <ul className="child_replay">
+                                                  </div> */}
+                                                  {/* <ul className="child_replay">
                                                     <li className="box_reply row">
                                                       <div className="avatar_comment col-md-1">
                                                         {" "}
@@ -796,7 +894,8 @@ function AuditorQuestions() {
                                                           {" "}
                                                           <Link
                                                             className="like"
-                                                            to="#">
+                                                            to="#"
+                                                          >
                                                             Like
                                                           </Link>{" "}
                                                           <span aria-hidden="true">
@@ -805,7 +904,8 @@ function AuditorQuestions() {
                                                           </span>{" "}
                                                           <Link
                                                             className="replay"
-                                                            to="#">
+                                                            to="#"
+                                                          >
                                                             Reply
                                                           </Link>{" "}
                                                           <span aria-hidden="true">
@@ -825,11 +925,11 @@ function AuditorQuestions() {
                                                         <ul className="child_replay"></ul>
                                                       </div>
                                                     </li>
-                                                  </ul>
+                                                  </ul> */}
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -850,7 +950,8 @@ function AuditorQuestions() {
                                                     {" "}
                                                     <Link
                                                       className="like"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Like
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -859,7 +960,8 @@ function AuditorQuestions() {
                                                     </span>{" "}
                                                     <Link
                                                       className="replay"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Reply
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -878,7 +980,7 @@ function AuditorQuestions() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
                                         </div>
@@ -923,13 +1025,19 @@ function AuditorQuestions() {
                                   </div>
                                   <div
                                     className="row"
-                                    style={{ clear: "both" }}>
+                                    style={{ clear: "both" }}
+                                  >
                                     <div className="col-lg-2 mt-4 offset-1">
                                       <div
                                         className="btn-group CustomBtnGroup"
                                         role="group"
-                                        aria-label="Basic example">
-                                        <h4 className="text-success">YES</h4>
+                                        aria-label="Basic example"
+                                      >
+                                        <h4 className="text-success">
+                                          {agentDetails?.qstatus3
+                                            ? agentDetails.qstatus3
+                                            : "no"}
+                                        </h4>
                                       </div>
                                     </div>
                                     <div className="col-lg-6 mt-4">
@@ -937,10 +1045,11 @@ function AuditorQuestions() {
                                       <Link
                                         className="AttachBut2"
                                         data-bs-toggle="collapse"
-                                        to="#collapseExample"
+                                        to="#collapseExample3"
                                         role="button"
                                         aria-expanded="false"
-                                        aria-controls="collapseExample">
+                                        aria-controls="collapseExample3"
+                                      >
                                         {" "}
                                         <FontAwesomeIcon
                                           icon={faLink}
@@ -954,10 +1063,11 @@ function AuditorQuestions() {
                                       <Link
                                         className="AttachBut2"
                                         data-bs-toggle="collapse"
-                                        to="#collapseExample"
+                                        to="#collapseExample3"
                                         role="button"
                                         aria-expanded="false"
-                                        aria-controls="collapseExample">
+                                        aria-controls="collapseExample3"
+                                      >
                                         {" "}
                                         <FontAwesomeIcon
                                           icon={faComment}
@@ -972,15 +1082,18 @@ function AuditorQuestions() {
                                       <div
                                         className="btn-group CustomBtnGroup2"
                                         role="group"
-                                        aria-label="Basic example">
+                                        aria-label="Basic example"
+                                      >
                                         <button
                                           type="button"
-                                          className="btn btn-primary">
+                                          className="btn btn-primary"
+                                        >
                                           Accept
                                         </button>
                                         <button
                                           type="button"
-                                          className="btn btn-danger">
+                                          className="btn btn-danger"
+                                        >
                                           Reject
                                         </button>
                                       </div>
@@ -988,12 +1101,13 @@ function AuditorQuestions() {
                                   </div>
                                   <div
                                     className="collapse AttachDiv"
-                                    id="collapseExample3">
+                                    id="collapseExample3"
+                                  >
                                     <form action="">
                                       <div className="form">
                                         <input
                                           name="file"
-                                          id="entry_value"
+                                          id="entry_value3"
                                           //   ref="fileInput"
                                           type="file"
                                           //   onchange="getFileName()"
@@ -1002,18 +1116,19 @@ function AuditorQuestions() {
                                           {" "}
                                           <img
                                             src="upload.png"
-                                            alt="upload"
+                                            alt=""
                                             width="4%"
                                             className=""
                                           />{" "}
                                           Upload your files here or
-                                          <button className="btn bg-color-dblue btn-primary">
+                                          <button className="btn bg-color-dblue btn-primary" style={{marginLeft:"5px"}}>
                                             Browse
                                           </button>
                                         </div>
                                         <span
-                                          id="fileName"
-                                          className="text-primary ">
+                                          id="fileName3"
+                                          className="text-primary "
+                                        >
                                           {" "}
                                         </span>{" "}
                                       </div>
@@ -1072,7 +1187,8 @@ function AuditorQuestions() {
                                                   <button
                                                     // onClick="submit_comment()"
                                                     type="button"
-                                                    value={1}>
+                                                    value={1}
+                                                  >
                                                     Post
                                                   </button>
                                                 </div>
@@ -1082,29 +1198,27 @@ function AuditorQuestions() {
                                           <div className="row">
                                             <ul
                                               id="list_comment"
-                                              className="col-md-12">
+                                              className="col-md-12"
+                                            >
                                               <li className="box_result row">
-                                                <div className="avatar_comment col-md-1">
+                                                {/* <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
                                                     src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
                                                     alt="avatar"
                                                   />{" "}
-                                                </div>
+                                                </div> */}
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  {/* <h4>Nath Ryuzaki</h4> */}
                                                   <p>
-                                                    Lorem Ipsum is simply dummy
-                                                    text of the printing and
-                                                    typesetting industry. Lorem
-                                                    Ipsum has been the
-                                                    industry's.
+                                                  {agentDetails?.qcomment3}
                                                   </p>
-                                                  <div className="tools_comment">
+                                                  {/* <div className="tools_comment">
                                                     {" "}
                                                     <Link
                                                       className="like"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Like
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -1113,7 +1227,8 @@ function AuditorQuestions() {
                                                     </span>{" "}
                                                     <Link
                                                       className="replay"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Reply
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -1153,7 +1268,8 @@ function AuditorQuestions() {
                                                           {" "}
                                                           <Link
                                                             className="like"
-                                                            to="#">
+                                                            to="#"
+                                                          >
                                                             Like
                                                           </Link>{" "}
                                                           <span aria-hidden="true">
@@ -1162,7 +1278,8 @@ function AuditorQuestions() {
                                                           </span>{" "}
                                                           <Link
                                                             className="replay"
-                                                            to="#">
+                                                            to="#"
+                                                          >
                                                             Reply
                                                           </Link>{" "}
                                                           <span aria-hidden="true">
@@ -1182,11 +1299,11 @@ function AuditorQuestions() {
                                                         <ul className="child_replay"></ul>
                                                       </div>
                                                     </li>
-                                                  </ul>
+                                                  </ul> */}
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -1207,7 +1324,8 @@ function AuditorQuestions() {
                                                     {" "}
                                                     <Link
                                                       className="like"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Like
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -1216,7 +1334,8 @@ function AuditorQuestions() {
                                                     </span>{" "}
                                                     <Link
                                                       className="replay"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Reply
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -1235,7 +1354,7 @@ function AuditorQuestions() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
                                         </div>
@@ -1295,13 +1414,19 @@ function AuditorQuestions() {
                                   </div>
                                   <div
                                     className="row"
-                                    style={{ clear: "both" }}>
+                                    style={{ clear: "both" }}
+                                  >
                                     <div className="col-lg-2 mt-4 offset-1">
                                       <div
                                         className="btn-group CustomBtnGroup"
                                         role="group"
-                                        aria-label="Basic example">
-                                        <h4 className="text-success">YES</h4>
+                                        aria-label="Basic example"
+                                      >
+                                        <h4 className="text-success">
+                                          {agentDetails?.qstatus4
+                                            ? agentDetails.qstatus4
+                                            : "no"}
+                                        </h4>
                                       </div>
                                     </div>
                                     <div className="col-lg-6 mt-4">
@@ -1309,10 +1434,11 @@ function AuditorQuestions() {
                                       <Link
                                         className="AttachBut2"
                                         data-bs-toggle="collapse"
-                                        to="#collapseExample"
+                                        to="#collapseExample4"
                                         role="button"
                                         aria-expanded="false"
-                                        aria-controls="collapseExample">
+                                        aria-controls="collapseExample4"
+                                      >
                                         {" "}
                                         <FontAwesomeIcon
                                           icon={faLink}
@@ -1326,10 +1452,11 @@ function AuditorQuestions() {
                                       <Link
                                         className="AttachBut2"
                                         data-bs-toggle="collapse"
-                                        to="#collapseExample"
+                                        to="#collapseExample4"
                                         role="button"
                                         aria-expanded="false"
-                                        aria-controls="collapseExample">
+                                        aria-controls="collapseExample4"
+                                      >
                                         {" "}
                                         <FontAwesomeIcon
                                           icon={faComment}
@@ -1344,15 +1471,18 @@ function AuditorQuestions() {
                                       <div
                                         className="btn-group CustomBtnGroup2"
                                         role="group"
-                                        aria-label="Basic example">
+                                        aria-label="Basic example"
+                                      >
                                         <button
                                           type="button"
-                                          className="btn btn-primary">
+                                          className="btn btn-primary"
+                                        >
                                           Accept
                                         </button>
                                         <button
                                           type="button"
-                                          className="btn btn-danger">
+                                          className="btn btn-danger"
+                                        >
                                           Reject
                                         </button>
                                       </div>
@@ -1360,12 +1490,13 @@ function AuditorQuestions() {
                                   </div>
                                   <div
                                     className="collapse AttachDiv"
-                                    id="collapseExample4">
+                                    id="collapseExample4"
+                                  >
                                     <form action="">
                                       <div className="form">
                                         <input
                                           name="file"
-                                          id="entry_value"
+                                          id="entry_value4"
                                           //   ref="fileInput"
                                           type="file"
                                           //   onchange="getFileName()"
@@ -1374,18 +1505,19 @@ function AuditorQuestions() {
                                           {" "}
                                           <img
                                             src="upload.png"
-                                            alt="upload"
+                                            alt=""
                                             width="4%"
                                             className=""
                                           />{" "}
                                           Upload your files here or
-                                          <button className="btn bg-color-dblue btn-primary">
+                                          <button className="btn bg-color-dblue btn-primary" style={{marginLeft:"5px"}}>
                                             Browse
                                           </button>
                                         </div>
                                         <span
-                                          id="fileName"
-                                          className="text-primary ">
+                                          id="fileName4"
+                                          className="text-primary "
+                                        >
                                           {" "}
                                         </span>{" "}
                                       </div>
@@ -1444,7 +1576,8 @@ function AuditorQuestions() {
                                                   <button
                                                     // onClick="submit_comment()"
                                                     type="button"
-                                                    value={1}>
+                                                    value={1}
+                                                  >
                                                     Post
                                                   </button>
                                                 </div>
@@ -1454,29 +1587,27 @@ function AuditorQuestions() {
                                           <div className="row">
                                             <ul
                                               id="list_comment"
-                                              className="col-md-12">
+                                              className="col-md-12"
+                                            >
                                               <li className="box_result row">
-                                                <div className="avatar_comment col-md-1">
+                                                {/* <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
                                                     src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
                                                     alt="avatar"
                                                   />{" "}
-                                                </div>
+                                                </div> */}
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  {/* <h4>Nath Ryuzaki</h4> */}
                                                   <p>
-                                                    Lorem Ipsum is simply dummy
-                                                    text of the printing and
-                                                    typesetting industry. Lorem
-                                                    Ipsum has been the
-                                                    industry's.
+                                                  {agentDetails?.qcomment4}
                                                   </p>
-                                                  <div className="tools_comment">
+                                                  {/* <div className="tools_comment">
                                                     {" "}
                                                     <Link
                                                       className="like"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Like
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -1485,7 +1616,8 @@ function AuditorQuestions() {
                                                     </span>{" "}
                                                     <Link
                                                       className="replay"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Reply
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -1525,7 +1657,8 @@ function AuditorQuestions() {
                                                           {" "}
                                                           <Link
                                                             className="like"
-                                                            to="#">
+                                                            to="#"
+                                                          >
                                                             Like
                                                           </Link>{" "}
                                                           <span aria-hidden="true">
@@ -1534,7 +1667,8 @@ function AuditorQuestions() {
                                                           </span>{" "}
                                                           <Link
                                                             className="replay"
-                                                            to="#">
+                                                            to="#"
+                                                          >
                                                             Reply
                                                           </Link>{" "}
                                                           <span aria-hidden="true">
@@ -1554,11 +1688,11 @@ function AuditorQuestions() {
                                                         <ul className="child_replay"></ul>
                                                       </div>
                                                     </li>
-                                                  </ul>
+                                                  </ul> */}
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -1579,7 +1713,8 @@ function AuditorQuestions() {
                                                     {" "}
                                                     <Link
                                                       className="like"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Like
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -1588,7 +1723,8 @@ function AuditorQuestions() {
                                                     </span>{" "}
                                                     <Link
                                                       className="replay"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Reply
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -1607,7 +1743,7 @@ function AuditorQuestions() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
                                         </div>
@@ -1647,13 +1783,19 @@ function AuditorQuestions() {
                                   </div>
                                   <div
                                     className="row"
-                                    style={{ clear: "both" }}>
+                                    style={{ clear: "both" }}
+                                  >
                                     <div className="col-lg-2 mt-4 offset-1">
                                       <div
                                         className="btn-group CustomBtnGroup"
                                         role="group"
-                                        aria-label="Basic example">
-                                        <h4 className="text-danger">NO</h4>
+                                        aria-label="Basic example"
+                                      >
+                                        <h4 className="text-success">
+                                          {agentDetails?.qstatus5
+                                            ? agentDetails.qstatus5
+                                            : "no"}
+                                        </h4>
                                       </div>
                                     </div>
                                     <div className="col-lg-6 mt-4">
@@ -1661,10 +1803,11 @@ function AuditorQuestions() {
                                       <Link
                                         className="AttachBut2"
                                         data-bs-toggle="collapse"
-                                        to="#collapseExample"
+                                        to="#collapseExample5"
                                         role="button"
                                         aria-expanded="false"
-                                        aria-controls="collapseExample">
+                                        aria-controls="collapseExample5"
+                                      >
                                         {" "}
                                         <FontAwesomeIcon
                                           icon={faLink}
@@ -1678,10 +1821,11 @@ function AuditorQuestions() {
                                       <Link
                                         className="AttachBut2"
                                         data-bs-toggle="collapse"
-                                        to="#collapseExample"
+                                        to="#collapseExample5"
                                         role="button"
                                         aria-expanded="false"
-                                        aria-controls="collapseExample">
+                                        aria-controls="collapseExample5"
+                                      >
                                         {" "}
                                         <FontAwesomeIcon
                                           icon={faComment}
@@ -1696,15 +1840,18 @@ function AuditorQuestions() {
                                       <div
                                         className="btn-group CustomBtnGroup2"
                                         role="group"
-                                        aria-label="Basic example">
+                                        aria-label="Basic example"
+                                      >
                                         <button
                                           type="button"
-                                          className="btn btn-primary">
+                                          className="btn btn-primary"
+                                        >
                                           Accept
                                         </button>
                                         <button
                                           type="button"
-                                          className="btn btn-danger">
+                                          className="btn btn-danger"
+                                        >
                                           Reject
                                         </button>
                                       </div>
@@ -1712,12 +1859,13 @@ function AuditorQuestions() {
                                   </div>
                                   <div
                                     className="collapse AttachDiv"
-                                    id="collapseExample5">
+                                    id="collapseExample5"
+                                  >
                                     <form action="">
                                       <div className="form">
                                         <input
                                           name="file"
-                                          id="entry_value"
+                                          id="entry_value5"
                                           //   ref="fileInput"
                                           type="file"
                                           //   onchange="getFileName()"
@@ -1726,18 +1874,19 @@ function AuditorQuestions() {
                                           {" "}
                                           <img
                                             src="upload.png"
-                                            alt="upload"
+                                            alt=""
                                             width="4%"
                                             className=""
                                           />{" "}
                                           Upload your files here or
-                                          <button className="btn bg-color-dblue btn-primary">
+                                          <button className="btn bg-color-dblue btn-primary" style={{marginLeft:"5px"}}>
                                             Browse
                                           </button>
                                         </div>
                                         <span
-                                          id="fileName"
-                                          className="text-primary ">
+                                          id="fileName5"
+                                          className="text-primary "
+                                        >
                                           {" "}
                                         </span>{" "}
                                       </div>
@@ -1796,7 +1945,8 @@ function AuditorQuestions() {
                                                   <button
                                                     // onClick="submit_comment()"
                                                     type="button"
-                                                    value={1}>
+                                                    value={1}
+                                                  >
                                                     Post
                                                   </button>
                                                 </div>
@@ -1806,29 +1956,27 @@ function AuditorQuestions() {
                                           <div className="row">
                                             <ul
                                               id="list_comment"
-                                              className="col-md-12">
+                                              className="col-md-12"
+                                            >
                                               <li className="box_result row">
-                                                <div className="avatar_comment col-md-1">
+                                                {/* <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
                                                     src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
                                                     alt="avatar"
                                                   />{" "}
-                                                </div>
+                                                </div> */}
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  {/* <h4>Nath Ryuzaki</h4> */}
                                                   <p>
-                                                    Lorem Ipsum is simply dummy
-                                                    text of the printing and
-                                                    typesetting industry. Lorem
-                                                    Ipsum has been the
-                                                    industry's.
+                                                  {agentDetails?.qcomment5}
                                                   </p>
-                                                  <div className="tools_comment">
+                                                  {/* <div className="tools_comment">
                                                     {" "}
                                                     <Link
                                                       className="like"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Like
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -1837,7 +1985,8 @@ function AuditorQuestions() {
                                                     </span>{" "}
                                                     <Link
                                                       className="replay"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Reply
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -1877,7 +2026,8 @@ function AuditorQuestions() {
                                                           {" "}
                                                           <Link
                                                             className="like"
-                                                            to="#">
+                                                            to="#"
+                                                          >
                                                             Like
                                                           </Link>{" "}
                                                           <span aria-hidden="true">
@@ -1886,7 +2036,8 @@ function AuditorQuestions() {
                                                           </span>{" "}
                                                           <Link
                                                             className="replay"
-                                                            to="#">
+                                                            to="#"
+                                                          >
                                                             Reply
                                                           </Link>{" "}
                                                           <span aria-hidden="true">
@@ -1906,11 +2057,11 @@ function AuditorQuestions() {
                                                         <ul className="child_replay"></ul>
                                                       </div>
                                                     </li>
-                                                  </ul>
+                                                  </ul> */}
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -1931,7 +2082,8 @@ function AuditorQuestions() {
                                                     {" "}
                                                     <Link
                                                       className="like"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Like
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -1940,7 +2092,8 @@ function AuditorQuestions() {
                                                     </span>{" "}
                                                     <Link
                                                       className="replay"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Reply
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -1959,7 +2112,7 @@ function AuditorQuestions() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
                                         </div>
@@ -2003,13 +2156,19 @@ function AuditorQuestions() {
                                   </div>
                                   <div
                                     className="row"
-                                    style={{ clear: "both" }}>
+                                    style={{ clear: "both" }}
+                                  >
                                     <div className="col-lg-2 mt-4 offset-1">
                                       <div
                                         className="btn-group CustomBtnGroup"
                                         role="group"
-                                        aria-label="Basic example">
-                                        <h4 className="text-success">YES</h4>
+                                        aria-label="Basic example"
+                                      >
+                                        <h4 className="text-success">
+                                          {agentDetails?.qstatus6
+                                            ? agentDetails.qstatus6
+                                            : "no"}
+                                        </h4>
                                       </div>
                                     </div>
                                     <div className="col-lg-6 mt-4">
@@ -2017,10 +2176,11 @@ function AuditorQuestions() {
                                       <Link
                                         className="AttachBut2"
                                         data-bs-toggle="collapse"
-                                        to="#collapseExample"
+                                        to="#collapseExample6"
                                         role="button"
                                         aria-expanded="false"
-                                        aria-controls="collapseExample">
+                                        aria-controls="collapseExample6"
+                                      >
                                         {" "}
                                         <FontAwesomeIcon
                                           icon={faLink}
@@ -2034,10 +2194,11 @@ function AuditorQuestions() {
                                       <Link
                                         className="AttachBut2"
                                         data-bs-toggle="collapse"
-                                        to="#collapseExample"
+                                        to="#collapseExample6"
                                         role="button"
                                         aria-expanded="false"
-                                        aria-controls="collapseExample">
+                                        aria-controls="collapseExample6"
+                                      >
                                         {" "}
                                         <FontAwesomeIcon
                                           icon={faComment}
@@ -2052,15 +2213,18 @@ function AuditorQuestions() {
                                       <div
                                         className="btn-group CustomBtnGroup2"
                                         role="group"
-                                        aria-label="Basic example">
+                                        aria-label="Basic example"
+                                      >
                                         <button
                                           type="button"
-                                          className="btn btn-primary">
+                                          className="btn btn-primary"
+                                        >
                                           Accept
                                         </button>
                                         <button
                                           type="button"
-                                          className="btn btn-danger">
+                                          className="btn btn-danger"
+                                        >
                                           Reject
                                         </button>
                                       </div>
@@ -2068,12 +2232,13 @@ function AuditorQuestions() {
                                   </div>
                                   <div
                                     className="collapse AttachDiv"
-                                    id="collapseExample6">
+                                    id="collapseExample6"
+                                  >
                                     <form action="">
                                       <div className="form">
                                         <input
                                           name="file"
-                                          id="entry_value"
+                                          id="entry_value6"
                                           //   ref="fileInput"
                                           type="file"
                                           //   onchange="getFileName()"
@@ -2082,18 +2247,19 @@ function AuditorQuestions() {
                                           {" "}
                                           <img
                                             src="upload.png"
-                                            alt="upload"
+                                            alt=""
                                             width="4%"
                                             className=""
                                           />{" "}
                                           Upload your files here or
-                                          <button className="btn bg-color-dblue btn-primary">
+                                          <button className="btn bg-color-dblue btn-primary" style={{marginLeft:"5px"}}>
                                             Browse
                                           </button>
                                         </div>
                                         <span
-                                          id="fileName"
-                                          className="text-primary ">
+                                          id="fileName6"
+                                          className="text-primary "
+                                        >
                                           {" "}
                                         </span>{" "}
                                       </div>
@@ -2152,7 +2318,8 @@ function AuditorQuestions() {
                                                   <button
                                                     // onClick="submit_comment()"
                                                     type="button"
-                                                    value={1}>
+                                                    value={1}
+                                                  >
                                                     Post
                                                   </button>
                                                 </div>
@@ -2162,29 +2329,27 @@ function AuditorQuestions() {
                                           <div className="row">
                                             <ul
                                               id="list_comment"
-                                              className="col-md-12">
+                                              className="col-md-12"
+                                            >
                                               <li className="box_result row">
-                                                <div className="avatar_comment col-md-1">
+                                                {/* <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
                                                     src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
                                                     alt="avatar"
                                                   />{" "}
-                                                </div>
+                                                </div> */}
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  {/* <h4>Nath Ryuzaki</h4> */}
                                                   <p>
-                                                    Lorem Ipsum is simply dummy
-                                                    text of the printing and
-                                                    typesetting industry. Lorem
-                                                    Ipsum has been the
-                                                    industry's.
+                                                  {agentDetails?.qcomment6}
                                                   </p>
-                                                  <div className="tools_comment">
+                                                  {/* <div className="tools_comment">
                                                     {" "}
                                                     <Link
                                                       className="like"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Like
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -2193,7 +2358,8 @@ function AuditorQuestions() {
                                                     </span>{" "}
                                                     <Link
                                                       className="replay"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Reply
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -2233,7 +2399,8 @@ function AuditorQuestions() {
                                                           {" "}
                                                           <Link
                                                             className="like"
-                                                            to="#">
+                                                            to="#"
+                                                          >
                                                             Like
                                                           </Link>{" "}
                                                           <span aria-hidden="true">
@@ -2242,7 +2409,8 @@ function AuditorQuestions() {
                                                           </span>{" "}
                                                           <Link
                                                             className="replay"
-                                                            to="#">
+                                                            to="#"
+                                                          >
                                                             Reply
                                                           </Link>{" "}
                                                           <span aria-hidden="true">
@@ -2262,11 +2430,11 @@ function AuditorQuestions() {
                                                         <ul className="child_replay"></ul>
                                                       </div>
                                                     </li>
-                                                  </ul>
+                                                  </ul> */}
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -2287,7 +2455,8 @@ function AuditorQuestions() {
                                                     {" "}
                                                     <Link
                                                       className="like"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Like
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -2296,7 +2465,8 @@ function AuditorQuestions() {
                                                     </span>{" "}
                                                     <Link
                                                       className="replay"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Reply
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -2315,7 +2485,7 @@ function AuditorQuestions() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
                                         </div>
@@ -2357,13 +2527,19 @@ function AuditorQuestions() {
                                   </div>
                                   <div
                                     className="row"
-                                    style={{ clear: "both" }}>
+                                    style={{ clear: "both" }}
+                                  >
                                     <div className="col-lg-2 mt-4 offset-1">
                                       <div
                                         className="btn-group CustomBtnGroup"
                                         role="group"
-                                        aria-label="Basic example">
-                                        <h4 className="text-success">YES</h4>
+                                        aria-label="Basic example"
+                                      >
+                                        <h4 className="text-success">
+                                          {agentDetails?.qstatus7
+                                            ? agentDetails.qstatus7
+                                            : "no"}
+                                        </h4>
                                       </div>
                                     </div>
                                     <div className="col-lg-6 mt-4">
@@ -2371,10 +2547,11 @@ function AuditorQuestions() {
                                       <Link
                                         className="AttachBut2"
                                         data-bs-toggle="collapse"
-                                        to="#collapseExample"
+                                        to="#collapseExample7"
                                         role="button"
                                         aria-expanded="false"
-                                        aria-controls="collapseExample">
+                                        aria-controls="collapseExample7"
+                                      >
                                         {" "}
                                         <FontAwesomeIcon
                                           icon={faLink}
@@ -2388,10 +2565,11 @@ function AuditorQuestions() {
                                       <Link
                                         className="AttachBut2"
                                         data-bs-toggle="collapse"
-                                        to="#collapseExample"
+                                        to="#collapseExample7"
                                         role="button"
                                         aria-expanded="false"
-                                        aria-controls="collapseExample">
+                                        aria-controls="collapseExample7"
+                                      >
                                         {" "}
                                         <FontAwesomeIcon
                                           icon={faComment}
@@ -2406,15 +2584,18 @@ function AuditorQuestions() {
                                       <div
                                         className="btn-group CustomBtnGroup2"
                                         role="group"
-                                        aria-label="Basic example">
+                                        aria-label="Basic example"
+                                      >
                                         <button
                                           type="button"
-                                          className="btn btn-primary">
+                                          className="btn btn-primary"
+                                        >
                                           Accept
                                         </button>
                                         <button
                                           type="button"
-                                          className="btn btn-danger">
+                                          className="btn btn-danger"
+                                        >
                                           Reject
                                         </button>
                                       </div>
@@ -2422,12 +2603,13 @@ function AuditorQuestions() {
                                   </div>
                                   <div
                                     className="collapse AttachDiv"
-                                    id="collapseExample7">
+                                    id="collapseExample7"
+                                  >
                                     <form action="">
                                       <div className="form">
                                         <input
                                           name="file"
-                                          id="entry_value"
+                                          id="entry_value7"
                                           //   ref="fileInput"
                                           type="file"
                                           //   onchange="getFileName()"
@@ -2436,18 +2618,19 @@ function AuditorQuestions() {
                                           {" "}
                                           <img
                                             src="upload.png"
-                                            alt="upload"
+                                            alt=""
                                             width="4%"
                                             className=""
                                           />{" "}
                                           Upload your files here or
-                                          <button className="btn bg-color-dblue btn-primary">
+                                          <button className="btn bg-color-dblue btn-primary" style={{marginLeft:"5px"}}>
                                             Browse
                                           </button>
                                         </div>
                                         <span
-                                          id="fileName"
-                                          className="text-primary ">
+                                          id="fileName7"
+                                          className="text-primary "
+                                        >
                                           {" "}
                                         </span>{" "}
                                       </div>
@@ -2506,7 +2689,8 @@ function AuditorQuestions() {
                                                   <button
                                                     // onClick="submit_comment()"
                                                     type="button"
-                                                    value={1}>
+                                                    value={1}
+                                                  >
                                                     Post
                                                   </button>
                                                 </div>
@@ -2516,7 +2700,8 @@ function AuditorQuestions() {
                                           <div className="row">
                                             <ul
                                               id="list_comment"
-                                              className="col-md-12">
+                                              className="col-md-12"
+                                            >
                                               <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
@@ -2526,19 +2711,16 @@ function AuditorQuestions() {
                                                   />{" "}
                                                 </div>
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  {/* <h4>Nath Ryuzaki</h4> */}
                                                   <p>
-                                                    Lorem Ipsum is simply dummy
-                                                    text of the printing and
-                                                    typesetting industry. Lorem
-                                                    Ipsum has been the
-                                                    industry's.
+                                                  {agentDetails?.qcomment7}
                                                   </p>
-                                                  <div className="tools_comment">
+                                                  {/* <div className="tools_comment">
                                                     {" "}
                                                     <Link
                                                       className="like"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Like
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -2547,7 +2729,8 @@ function AuditorQuestions() {
                                                     </span>{" "}
                                                     <Link
                                                       className="replay"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Reply
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -2587,7 +2770,8 @@ function AuditorQuestions() {
                                                           {" "}
                                                           <Link
                                                             className="like"
-                                                            to="#">
+                                                            to="#"
+                                                          >
                                                             Like
                                                           </Link>{" "}
                                                           <span aria-hidden="true">
@@ -2596,7 +2780,8 @@ function AuditorQuestions() {
                                                           </span>{" "}
                                                           <Link
                                                             className="replay"
-                                                            to="#">
+                                                            to="#"
+                                                          >
                                                             Reply
                                                           </Link>{" "}
                                                           <span aria-hidden="true">
@@ -2616,11 +2801,11 @@ function AuditorQuestions() {
                                                         <ul className="child_replay"></ul>
                                                       </div>
                                                     </li>
-                                                  </ul>
+                                                  </ul> */}
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -2641,7 +2826,8 @@ function AuditorQuestions() {
                                                     {" "}
                                                     <Link
                                                       className="like"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Like
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -2650,7 +2836,8 @@ function AuditorQuestions() {
                                                     </span>{" "}
                                                     <Link
                                                       className="replay"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Reply
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -2669,7 +2856,7 @@ function AuditorQuestions() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
                                         </div>
@@ -2896,15 +3083,18 @@ function AuditorQuestions() {
                               <div
                                 className="btn-group CustomBtnGroup"
                                 role="group"
-                                aria-label="Basic example">
+                                aria-label="Basic example"
+                              >
                                 <button
                                   type="button"
-                                  className="btn btn-primary">
+                                  className="btn btn-primary"
+                                >
                                   Yes
                                 </button>
                                 <button
                                   type="button"
-                                  className="btn btn-primary">
+                                  className="btn btn-primary"
+                                >
                                   No
                                 </button>
                               </div>
@@ -2917,7 +3107,8 @@ function AuditorQuestions() {
                                 to="#collapseExample"
                                 role="button"
                                 aria-expanded="false"
-                                aria-controls="collapseExample">
+                                aria-controls="collapseExample"
+                              >
                                 {" "}
                                 <i className="fa-solid fa-arrow-up-from-bracket" />{" "}
                                 Upload Evidence{" "}
@@ -2930,7 +3121,8 @@ function AuditorQuestions() {
                           </div>
                           <div
                             className="collapse AttachDiv"
-                            id="collapseExample">
+                            id="collapseExample"
+                          >
                             <form action="">
                               <div className="form">
                                 <input
@@ -3012,7 +3204,8 @@ function AuditorQuestions() {
                                           <button
                                             // onClick="submit_comment()"
                                             type="button"
-                                            value={1}>
+                                            value={1}
+                                          >
                                             Post
                                           </button>
                                         </div>
@@ -3080,7 +3273,8 @@ function AuditorQuestions() {
                                                   </span>{" "}
                                                   <Link
                                                     className="replay"
-                                                    to="#">
+                                                    to="#"
+                                                  >
                                                     Reply
                                                   </Link>{" "}
                                                   <span aria-hidden="true">
@@ -3243,15 +3437,18 @@ function AuditorQuestions() {
                               <div
                                 className="btn-group CustomBtnGroup"
                                 role="group"
-                                aria-label="Basic example">
+                                aria-label="Basic example"
+                              >
                                 <button
                                   type="button"
-                                  className="btn btn-primary">
+                                  className="btn btn-primary"
+                                >
                                   Yes
                                 </button>
                                 <button
                                   type="button"
-                                  className="btn btn-primary">
+                                  className="btn btn-primary"
+                                >
                                   No
                                 </button>
                               </div>
@@ -3264,7 +3461,8 @@ function AuditorQuestions() {
                                 to="#collapseExample2"
                                 role="button"
                                 aria-expanded="false"
-                                aria-controls="collapseExample">
+                                aria-controls="collapseExample"
+                              >
                                 {" "}
                                 <i className="fa-solid fa-arrow-up-from-bracket" />{" "}
                                 Upload Evidence{" "}
@@ -3277,7 +3475,8 @@ function AuditorQuestions() {
                           </div>
                           <div
                             className="collapse AttachDiv"
-                            id="collapseExample">
+                            id="collapseExample"
+                          >
                             <form action="">
                               <div className="form">
                                 <input
@@ -3359,7 +3558,8 @@ function AuditorQuestions() {
                                           <button
                                             // onClick="submit_comment()"
                                             type="button"
-                                            value={1}>
+                                            value={1}
+                                          >
                                             Post
                                           </button>
                                         </div>
@@ -3427,7 +3627,8 @@ function AuditorQuestions() {
                                                   </span>{" "}
                                                   <Link
                                                     className="replay"
-                                                    to="#">
+                                                    to="#"
+                                                  >
                                                     Reply
                                                   </Link>{" "}
                                                   <span aria-hidden="true">
@@ -3526,15 +3727,18 @@ function AuditorQuestions() {
                               <div
                                 className="btn-group CustomBtnGroup"
                                 role="group"
-                                aria-label="Basic example">
+                                aria-label="Basic example"
+                              >
                                 <button
                                   type="button"
-                                  className="btn btn-primary">
+                                  className="btn btn-primary"
+                                >
                                   Yes
                                 </button>
                                 <button
                                   type="button"
-                                  className="btn btn-primary">
+                                  className="btn btn-primary"
+                                >
                                   No
                                 </button>
                               </div>
@@ -3547,7 +3751,8 @@ function AuditorQuestions() {
                                 to="#collapseExample3"
                                 role="button"
                                 aria-expanded="false"
-                                aria-controls="collapseExample">
+                                aria-controls="collapseExample"
+                              >
                                 {" "}
                                 <i className="fa-solid fa-arrow-up-from-bracket" />{" "}
                                 Upload Evidence{" "}
@@ -3560,7 +3765,8 @@ function AuditorQuestions() {
                           </div>
                           <div
                             className="collapse AttachDiv"
-                            id="collapseExample3">
+                            id="collapseExample3"
+                          >
                             <form action="">
                               <div className="form">
                                 <input
@@ -3642,7 +3848,8 @@ function AuditorQuestions() {
                                           <button
                                             // onClick="submit_comment()"
                                             type="button"
-                                            value={1}>
+                                            value={1}
+                                          >
                                             Post
                                           </button>
                                         </div>
@@ -3710,7 +3917,8 @@ function AuditorQuestions() {
                                                   </span>{" "}
                                                   <Link
                                                     className="replay"
-                                                    to="#">
+                                                    to="#"
+                                                  >
                                                     Reply
                                                   </Link>{" "}
                                                   <span aria-hidden="true">
@@ -3819,15 +4027,18 @@ function AuditorQuestions() {
                               <div
                                 className="btn-group CustomBtnGroup"
                                 role="group"
-                                aria-label="Basic example">
+                                aria-label="Basic example"
+                              >
                                 <button
                                   type="button"
-                                  className="btn btn-primary">
+                                  className="btn btn-primary"
+                                >
                                   Yes
                                 </button>
                                 <button
                                   type="button"
-                                  className="btn btn-primary">
+                                  className="btn btn-primary"
+                                >
                                   No
                                 </button>
                               </div>
@@ -3840,7 +4051,8 @@ function AuditorQuestions() {
                                 to="#collapseExample4"
                                 role="button"
                                 aria-expanded="false"
-                                aria-controls="collapseExample">
+                                aria-controls="collapseExample"
+                              >
                                 {" "}
                                 <i className="fa-solid fa-arrow-up-from-bracket" />{" "}
                                 Upload Evidence{" "}
@@ -3853,7 +4065,8 @@ function AuditorQuestions() {
                           </div>
                           <div
                             className="collapse AttachDiv"
-                            id="collapseExample4">
+                            id="collapseExample4"
+                          >
                             <form action="">
                               <div className="form">
                                 <input
@@ -3935,7 +4148,8 @@ function AuditorQuestions() {
                                           <button
                                             // onClick="submit_comment()"
                                             type="button"
-                                            value={1}>
+                                            value={1}
+                                          >
                                             Post
                                           </button>
                                         </div>
@@ -4003,7 +4217,8 @@ function AuditorQuestions() {
                                                   </span>{" "}
                                                   <Link
                                                     className="replay"
-                                                    to="#">
+                                                    to="#"
+                                                  >
                                                     Reply
                                                   </Link>{" "}
                                                   <span aria-hidden="true">
@@ -4098,15 +4313,18 @@ function AuditorQuestions() {
                               <div
                                 className="btn-group CustomBtnGroup"
                                 role="group"
-                                aria-label="Basic example">
+                                aria-label="Basic example"
+                              >
                                 <button
                                   type="button"
-                                  className="btn btn-primary">
+                                  className="btn btn-primary"
+                                >
                                   Yes
                                 </button>
                                 <button
                                   type="button"
-                                  className="btn btn-primary">
+                                  className="btn btn-primary"
+                                >
                                   No
                                 </button>
                               </div>
@@ -4119,7 +4337,8 @@ function AuditorQuestions() {
                                 to="#collapseExample5"
                                 role="button"
                                 aria-expanded="false"
-                                aria-controls="collapseExample">
+                                aria-controls="collapseExample"
+                              >
                                 {" "}
                                 <i className="fa-solid fa-arrow-up-from-bracket" />{" "}
                                 Upload Evidence{" "}
@@ -4132,7 +4351,8 @@ function AuditorQuestions() {
                           </div>
                           <div
                             className="collapse AttachDiv"
-                            id="collapseExample5">
+                            id="collapseExample5"
+                          >
                             <form action="">
                               <div className="form">
                                 <input
@@ -4214,7 +4434,8 @@ function AuditorQuestions() {
                                           <button
                                             // onClick="submit_comment()"
                                             type="button"
-                                            value={1}>
+                                            value={1}
+                                          >
                                             Post
                                           </button>
                                         </div>
@@ -4282,7 +4503,8 @@ function AuditorQuestions() {
                                                   </span>{" "}
                                                   <Link
                                                     className="replay"
-                                                    to="#">
+                                                    to="#"
+                                                  >
                                                     Reply
                                                   </Link>{" "}
                                                   <span aria-hidden="true">
@@ -4384,15 +4606,18 @@ function AuditorQuestions() {
                               <div
                                 className="btn-group CustomBtnGroup"
                                 role="group"
-                                aria-label="Basic example">
+                                aria-label="Basic example"
+                              >
                                 <button
                                   type="button"
-                                  className="btn btn-primary">
+                                  className="btn btn-primary"
+                                >
                                   Yes
                                 </button>
                                 <button
                                   type="button"
-                                  className="btn btn-primary">
+                                  className="btn btn-primary"
+                                >
                                   No
                                 </button>
                               </div>
@@ -4405,7 +4630,8 @@ function AuditorQuestions() {
                                 to="#collapseExample6"
                                 role="button"
                                 aria-expanded="false"
-                                aria-controls="collapseExample">
+                                aria-controls="collapseExample"
+                              >
                                 {" "}
                                 <i className="fa-solid fa-arrow-up-from-bracket" />{" "}
                                 Upload Evidence{" "}
@@ -4418,7 +4644,8 @@ function AuditorQuestions() {
                           </div>
                           <div
                             className="collapse AttachDiv"
-                            id="collapseExample6">
+                            id="collapseExample6"
+                          >
                             <form action="">
                               <div className="form">
                                 <input
@@ -4500,7 +4727,8 @@ function AuditorQuestions() {
                                           <button
                                             // onClick="submit_comment()"
                                             type="button"
-                                            value={1}>
+                                            value={1}
+                                          >
                                             Post
                                           </button>
                                         </div>
@@ -4568,7 +4796,8 @@ function AuditorQuestions() {
                                                   </span>{" "}
                                                   <Link
                                                     className="replay"
-                                                    to="#">
+                                                    to="#"
+                                                  >
                                                     Reply
                                                   </Link>{" "}
                                                   <span aria-hidden="true">
@@ -4662,15 +4891,18 @@ function AuditorQuestions() {
                               <div
                                 className="btn-group CustomBtnGroup"
                                 role="group"
-                                aria-label="Basic example">
+                                aria-label="Basic example"
+                              >
                                 <button
                                   type="button"
-                                  className="btn btn-primary">
+                                  className="btn btn-primary"
+                                >
                                   Yes
                                 </button>
                                 <button
                                   type="button"
-                                  className="btn btn-primary">
+                                  className="btn btn-primary"
+                                >
                                   No
                                 </button>
                               </div>
@@ -4683,7 +4915,8 @@ function AuditorQuestions() {
                                 to="#collapseExample7"
                                 role="button"
                                 aria-expanded="false"
-                                aria-controls="collapseExample">
+                                aria-controls="collapseExample"
+                              >
                                 {" "}
                                 <i className="fa-solid fa-arrow-up-from-bracket" />{" "}
                                 Upload Evidence{" "}
@@ -4696,7 +4929,8 @@ function AuditorQuestions() {
                           </div>
                           <div
                             className="collapse AttachDiv"
-                            id="collapseExample7">
+                            id="collapseExample7"
+                          >
                             <form action="">
                               <div className="form">
                                 <input
@@ -4778,7 +5012,8 @@ function AuditorQuestions() {
                                           <button
                                             // onClick="submit_comment()"
                                             type="button"
-                                            value={1}>
+                                            value={1}
+                                          >
                                             Post
                                           </button>
                                         </div>
@@ -4846,7 +5081,8 @@ function AuditorQuestions() {
                                                   </span>{" "}
                                                   <Link
                                                     className="replay"
-                                                    to="#">
+                                                    to="#"
+                                                  >
                                                     Reply
                                                   </Link>{" "}
                                                   <span aria-hidden="true">
@@ -4918,48 +5154,47 @@ function AuditorQuestions() {
                     <button
                       type="button "
                       className="float-start active"
-                      onClick={()=>{
-                        page <= 1
-                        ? setPage(1)
-                        : setPage(page - 1);
+                      onClick={() => {
+                        page <= 1 ? setPage(1) : setPage(page - 1);
                       }}
-                      name="prev">
+                      name="prev"
+                    >
                       Prev
                     </button>
-                    {
-                      page === 10 ?
+                    {page === 10 ? (
                       <button
-                      type="button"
-                      className="active"
-                      name="next"
-                      onClick={()=>{
-                        page === 10
-                        ? setPage(10)
-                        : setPage(page + 1);
-                        handleSaveChanges2()}}>
-                       Submit
-                    </button>
-                    :
-                    <button
-                      type="button"
-                      className="active"
-                      name="next"
-                      onClick={()=>{
-                        page === 10
-                        ? setPage(10)
-                        : setPage(page + 1);
-                        handleSaveChanges2()}}>
-                       Next
-                    </button>
-                    }
-                   
+                        type="button"
+                        className="active"
+                        name="next"
+                        onClick={() => {
+                          page === 10 ? setPage(10) : setPage(page + 1);
+                          handleSaveChanges2();
+                        }}
+                      >
+                        Submit
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        className="active"
+                        name="next"
+                        onClick={() => {
+                          page === 10 ? setPage(10) : setPage(page + 1);
+                          // handleSaveChanges2();
+                        }}
+                      >
+                        Next
+                      </button>
+                    )}
+
                     <button type="button" className="active out" name="finish">
                       Submit
                     </button>
                     <button
                       type="button"
                       className="active out bg-danger"
-                      name="finish">
+                      name="finish"
+                    >
                       Reject
                     </button>
                   </div>
@@ -4972,7 +5207,8 @@ function AuditorQuestions() {
 
       <Link
         to="#"
-        className="back-to-top d-flex align-items-center justify-content-center">
+        className="back-to-top d-flex align-items-center justify-content-center"
+      >
         <i className="bi bi-arrow-up-short" />
       </Link>
     </>
