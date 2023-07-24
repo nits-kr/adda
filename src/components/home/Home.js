@@ -324,7 +324,7 @@ function Home() {
                                 ) : (
                                   <Link
                                     type="button"
-                                    to="question3.html"
+                                    to="#"
                                     className="btn btn-sm tableBtn-blue mx-1"
                                     data-bs-toggle="modal"
                                     data-bs-target="#ExtralargeModal2"
@@ -451,7 +451,7 @@ function Home() {
                               </td>
                               <td style={{ textAlign: "end" }}>
                                 <Link
-                                  to="/auditior-question/:id"
+                                   to={`/auditior-question/${currentItem._id}`}
                                   className="btn btn-sm tableBtn-Gray"
                                   fdprocessedid="nnhqma"
                                   onClick={() => {
@@ -482,7 +482,6 @@ function Home() {
       >
         <i className="bi bi-arrow-up-short" />
       </Link>
-
       <div className="modal fade" id="ExtralargeModal2" tabIndex={-1}>
         <div className="modal-dialog modal-xl modal-dialog-centered">
           <div className="modal-content">
@@ -577,10 +576,7 @@ function Home() {
                     onChange={(e) => setStatus(e.target.value)}
                   >
                     <option value="Active">Active</option>
-                    <option value="Active">Active</option>
-                    <option value="Active">Active</option>
-                    <option value="Active">Active</option>
-                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
                   </select>
                   <label htmlFor="floatingSelect">Status</label>
                 </div>

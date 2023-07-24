@@ -11,6 +11,7 @@ import Header from "./components/Header";
 import AuditReport from "./report/AuditReport";
 import Rles from "./components/role/Rles";
 import User from "./components/users/User";
+import AuditorQuestions2 from "./components/auditorQuestion/AuditorQuestion2";
 
 function App() {
   return (
@@ -40,8 +41,9 @@ function App() {
             exact
             className="active"
             path="/auditior-question/:id"
-            element={<AuditorQuestions />}
+            element={<AuditorQuestions2 />}
           />
+          {/* <AuditorQuestions2/> */}
           <Route
             exact
             className="active"
