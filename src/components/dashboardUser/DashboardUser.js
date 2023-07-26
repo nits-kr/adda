@@ -16,6 +16,7 @@ import { Radar, Bar, getElementsAtEvent } from "react-chartjs-2";
 function DashboardUser() {
   const dashBoardTotal = useGetDashboardUserTotalQuery();
   console.log("useGetDashboardUserTotalQuery", dashBoardTotal);
+  const [dataChart, setDataChart] = useState();
   var pdata = [
     {
       name: "Car",
@@ -76,11 +77,11 @@ function DashboardUser() {
     setInfoBar(false);
   };
   const data = {
-    labels: ["DS", "DM", "DC", "DS&P", "DA", "DM$D", "DG"],
+    labels: ["DG", "DM", "DC", "OD", "DM&D", "DA", "DS&P", "DS", "DI", "DQ"],
     datasets: [
       {
         label: "2022",
-        data: [65, 59, 90, 81, 56, 55, 40],
+        data: [17.5, 27.5, 15.5, 43.5, 18.0, 17.5, 34.5, 24.5, 66.5, 43.5],
         fill: true,
         backgroundColor: "rgba(255, 99, 132, 0.2)",
         borderColor: "rgb(255, 99, 132)",
@@ -91,7 +92,7 @@ function DashboardUser() {
       },
       {
         label: "2023",
-        data: [28, 48, 40, 19, 96, 27, 100],
+        data: [25.5, 55.5, 12.5, 40.5, 15.0, 18.5, 89.5, 28.5, 68.5, 93.5],
         fill: true,
         backgroundColor: "rgba(54, 162, 235, 0.2)",
         borderColor: "rgb(54, 162, 235)",
@@ -102,13 +103,42 @@ function DashboardUser() {
       },
     ],
   };
+
+  const dataGovernance = {
+    labels: ["AS", "DM", "DC", "DS&P"],
+    datasets: [
+      {
+        label: "2022",
+        data: [65, 59, 90, 81],
+        fill: true,
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        borderColor: "rgb(255, 99, 132)",
+        pointBackgroundColor: "rgb(255, 99, 132)",
+        pointBorderColor: "#fff",
+        pointHoverBackgroundColor: "#fff",
+        pointHoverBorderColor: "rgb(255, 99, 132)",
+      },
+      {
+        label: "2023",
+        data: [28, 48, 40, 100],
+        fill: true,
+        backgroundColor: "rgba(54, 162, 235, 0.2)",
+        borderColor: "rgb(54, 162, 235)",
+        pointBackgroundColor: "rgb(54, 162, 235)",
+        pointBorderColor: "#fff",
+        pointHoverBackgroundColor: "#fff",
+        pointHoverBorderColor: "rgb(54, 162, 235)",
+      },
+    ],
+  };
+
   const dataBar = {
     labels: [
       "Abu Dhabi Housing Authority",
       "Family Care Authority",
       "Family Development Foundation",
     ],
-     
+
     datasets: [
       {
         label: "Score",
@@ -126,9 +156,10 @@ function DashboardUser() {
   const dataBarInfo = {
     labels: ["2019", "2020", "2021", "2022", "2023", "2024"],
     options: {
-    legend: {
-    	display: false
-    }},
+      legend: {
+        display: false,
+      },
+    },
     datasets: [
       {
         label: "Data",
@@ -141,9 +172,7 @@ function DashboardUser() {
         pointHoverBackgroundColor: "#fff",
         pointHoverBorderColor: "rgb(255, 99, 132)",
       },
-      
     ],
-    
   };
 
   return (
@@ -241,12 +270,15 @@ function DashboardUser() {
                                   </div>
                                 </div>
                                 <div className="col-lg-9">
-                                  <div className="row ps-1">
+                                  <div className="row" style={{
+                                      display: "flex",
+                                      justifyContent: "space-around",
+                                    }}>
                                     <div className="col-2 m-1 ">
                                       <div className="card AdminCustomCard">
                                         <div className="card-body p-1">
                                           <h7 className="card-title mb-0">
-                                            Data <br/> Governance
+                                            Data <br /> Governance
                                           </h7>
                                           <p className="Number ">17.5%</p>
                                           {/* <div className="Icon">
@@ -261,9 +293,9 @@ function DashboardUser() {
                                     </div>
                                     <div className=" col-2 m-1 ">
                                       <div className=" card AdminCustomCard">
-                                        <div className="card-body p-1" >
+                                        <div className="card-body p-1">
                                           <h7 className="card-title mb-0">
-                                            Data <br/> Management
+                                            Data <br /> Management
                                           </h7>
                                           <p className="Number">27.5%</p>
                                           {/* <div className="Icon">
@@ -280,7 +312,7 @@ function DashboardUser() {
                                       <div className=" card AdminCustomCard">
                                         <div className="card-body p-1">
                                           <h7 className="card-title mb-0">
-                                            Data <br/> Categlogue
+                                            Data <br /> Categlogue
                                           </h7>
                                           <p className="Number">15.5%</p>
                                           {/* <div className="Icon">
@@ -297,7 +329,7 @@ function DashboardUser() {
                                       <div className=" card AdminCustomCard">
                                         <div className="card-body p-1">
                                           <h7 className="card-title mb-0">
-                                            Open <br/> Data
+                                            Open <br /> Data
                                           </h7>
                                           <p className="Number">43.5%</p>
                                           {/* <div className="Icon">
@@ -332,7 +364,7 @@ function DashboardUser() {
                                       <div className=" card AdminCustomCard">
                                         <div className="card-body p-1">
                                           <h7 className="card-title mb-0">
-                                            Data <br/> Architecture
+                                            Data <br /> Architecture
                                           </h7>
                                           <p className="Number">17.5%</p>
                                           {/* <div className="Icon">
@@ -366,7 +398,8 @@ function DashboardUser() {
                                       <div className=" card AdminCustomCard">
                                         <div className="card-body p-1">
                                           <h7 className="card-title mb-0">
-                                            Data <br/>Storage
+                                            Data <br />
+                                            Storage
                                           </h7>
                                           <p className="Number">24.5%</p>
                                           {/* <div className="Icon">
@@ -383,7 +416,7 @@ function DashboardUser() {
                                       <div className="  card AdminCustomCard">
                                         <div className="card-body p-1">
                                           <h7 className="card-title mb-0">
-                                            Data <br/> Integration
+                                            Data <br /> Integration
                                           </h7>
                                           <p className="Number mb-0">66.5%</p>
                                           {/* <div className="Icon">
@@ -441,6 +474,7 @@ function DashboardUser() {
                               className="form-select form-select-sm "
                               aria-label="Default select example"
                               style={{ zIndex: 9999 }}
+                              onChange={(e) => setDataChart(e.target.value)}
                             >
                               <option selected="">Selct Domain</option>
                               <option value={1}>Data Governance</option>
@@ -450,7 +484,10 @@ function DashboardUser() {
                           </div>
                         </h5>
                         {/* Radar Chart */}
-                        <Radar data={data} />
+                        <Radar
+                          key={dataChart}
+                          data={dataChart == 1 ? dataGovernance : data}
+                        />
                         {/* <canvas
                   id="radarChart"
                   style={{

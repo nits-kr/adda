@@ -39,8 +39,8 @@ function AuditReport() {
           "#884EA0",
           "#D35400",
           "#27BE70",
-          "#87AL50",
-          "#FFAW60",
+          "#03fcf4",
+          "#03b1fc",
           "#E2AE60",
         ],
       },
@@ -285,7 +285,7 @@ function AuditReport() {
                                                 style={{
                                                   backgroundColor: "#F6F7FF",
                                                 }}>
-                                                <div className="card-body">
+                                                <div className="card-body" style={{height: "386px"}}>
                                                   <div className="card-title">
                                                     Observations
                                                   </div>
@@ -345,7 +345,7 @@ function AuditReport() {
                                         </div>
                                         <div className="col-lg-3">
                                           <div className="card rec-bg">
-                                            <div className="card-body">
+                                            <div className="card-body" style={{height: "688px"}}>
                                               <div className="card-title">
                                                 Recommendations
                                               </div>
