@@ -380,7 +380,23 @@ function AuditorQuestions2() {
       timerProgressBar: true,
     });
     // window.location.href = "/adge/home";
-    navigate("/adge/home");
+    navigate("/home");
+  };
+  const handleSaveChanges5 = () => {
+    const editAddress = {
+      id: id,
+    };
+    approveIn(editAddress);
+
+    // Swal.fire({
+    //   icon: "success",
+    //   title: "Approved",
+    //   text: "Your have been Approved In.",
+    //   timer: 3000,
+    //   timerProgressBar: true,
+    // });
+    // window.location.href = "/adge/home";
+    // navigate("/adge/home");
   };
   console.log(generatedId);
 
@@ -8005,9 +8021,9 @@ function AuditorQuestions2() {
                           name="next"
                           onClick={() => {
                             page === 10 ? setPage(10) : setPage(page + 1);
-                            // handleSaveChanges2();
+                            handleSaveChanges2();
                             // handleSaveChanges3();
-                            handleOnSave1();
+                            // handleOnSave1();
                           }}
                         >
                           Submit
@@ -8031,8 +8047,8 @@ function AuditorQuestions2() {
                         name="next"
                         onClick={() => {
                           page === 10 ? setPage(10) : setPage(page + 1);
-                          // handleSaveChanges3();
-                          handleOnSave();
+                          handleSaveChanges5();
+                          // handleOnSave();
                         }}
                       >
                         Next
