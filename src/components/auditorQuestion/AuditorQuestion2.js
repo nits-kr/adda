@@ -379,7 +379,6 @@ function AuditorQuestions2() {
       timer: 3000,
       timerProgressBar: true,
     });
-    // window.location.href = "/adge/home";
     navigate("/home");
   };
   const handleSaveChanges5 = () => {
@@ -387,16 +386,6 @@ function AuditorQuestions2() {
       id: id,
     };
     approveIn(editAddress);
-
-    // Swal.fire({
-    //   icon: "success",
-    //   title: "Approved",
-    //   text: "Your have been Approved In.",
-    //   timer: 3000,
-    //   timerProgressBar: true,
-    // });
-    // window.location.href = "/adge/home";
-    // navigate("/adge/home");
   };
   console.log(generatedId);
 
