@@ -1098,7 +1098,11 @@ function AuditorQuestions2() {
                                             : agentDetails.doc1} </p>
                                           <Link
                                             to={agentDetails.doc1}
-                                            className="mx-3 "
+                                            className={agentDetails &&
+                                              (agentDetails.doc1 === "" ||
+                                                agentDetails.doc1 === "undefined")
+                                                ? "d-none"
+                                                : "mx-2"} 
                                             target="_blank"
                                             rel="noopener noreferrer"
                                           >
