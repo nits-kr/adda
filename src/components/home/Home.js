@@ -510,8 +510,9 @@ function Home() {
             </div>
             <div className="modal-body">
               <form>
-                <div className="form-floating theme-form-floating">
-                  <select
+                <div className="form-floating theme-form-floating mb-2">
+                  Entity Name : ADDA
+                  {/* <select
                     className="form-select"
                     id="floatingSelect1"
                     aria-label="Floating label select example"
@@ -519,12 +520,8 @@ function Home() {
                     onChange={(e) => setEntity(e.target.value)}
                   >
                     <option value="Adda">Adda</option>
-                    {/* <option value="ADNOC">ADNOC</option>
-                    <option value="DMT">DMT</option>
-                    <option value="SSL">SSL</option>
-                    <option value="Tabreed">Tabreed</option> */}
-                  </select>
-                  <label htmlFor="floatingSelect">Select Entity Name</label>
+                  </select> */}
+                  {/* <label htmlFor="floatingSelect">Select Entity Name</label> */}
                 </div>
                 <legend className="col-form-label col-sm-1 pt-0">
                   External
