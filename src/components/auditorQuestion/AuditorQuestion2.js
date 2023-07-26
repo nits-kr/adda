@@ -1090,7 +1090,12 @@ function AuditorQuestions2() {
                                       {agentDetails?.doc1 ||
                                       formData?.file1?.length ? (
                                         <div className="d-flex justify-content-center">
-                                          <p> {agentDetails.doc1} </p>
+                                          {/* <p> {agentDetails.doc1} </p> */}
+                                          <p> {agentDetails &&
+                                          (agentDetails.doc1 === "" ||
+                                            agentDetails.doc1 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.doc1} </p>
                                           <Link
                                             to={agentDetails.doc1}
                                             className="mx-3 "
@@ -1154,7 +1159,11 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                                {agentDetails?.comment1}
+                                              {agentDetails &&
+                                          (agentDetails.comment1 === "" ||
+                                            agentDetails.comment1 === "undefined")
+                                            ? "No comment"
+                                            : agentDetails.comment1}
                                               </span>{" "}
                                             </div>
                                             <div className="float-end">
@@ -1880,7 +1889,11 @@ function AuditorQuestions2() {
                                           />{" "} */}
                                       {agentDetails?.doc2 || formData?.file2 ? (
                                         <div className="d-flex justify-content-center">
-                                          <p> {agentDetails?.doc2} </p>
+                                          <p> {agentDetails &&
+                                          (agentDetails.doc2 === "" ||
+                                            agentDetails.doc2 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.doc2} </p>
                                           <Link
                                             to={agentDetails?.doc2}
                                             className="mx-3 "
@@ -1915,7 +1928,11 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                                {agentDetails?.comment2}
+                                              {agentDetails &&
+                                          (agentDetails.comment2 === "" ||
+                                            agentDetails.comment2 === "undefined")
+                                            ? "No Comments"
+                                            : agentDetails.comment2}
                                               </span>{" "}
                                             </div>
                                             <div className="float-end">
@@ -2342,7 +2359,11 @@ function AuditorQuestions2() {
                                           {agentDetails?.doc3 ||
                                           formData?.file3 ? (
                                             <div className="d-flex justify-content-center">
-                                              <p> {agentDetails.doc3} </p>
+                                              <p> {agentDetails &&
+                                          (agentDetails.doc3 === "" ||
+                                            agentDetails.doc3 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.doc3} </p>
                                               <Link
                                                 to={agentDetails.doc3}
                                                 className="mx-3 "
@@ -2385,7 +2406,11 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                                {agentDetails?.comment3}
+                                              {agentDetails &&
+                                          (agentDetails.comment3 === "" ||
+                                            agentDetails.comment3 === "undefined")
+                                            ? "No Comments"
+                                            : agentDetails.comment3}
                                               </span>{" "}
                                             </div>
                                             <div className="float-end">
@@ -2829,7 +2854,11 @@ function AuditorQuestions2() {
                                           {agentDetails?.doc4 ||
                                           formData?.file4 ? (
                                             <div className="d-flex justify-content-center">
-                                              <p> {agentDetails.doc4} </p>
+                                              <p> {agentDetails &&
+                                          (agentDetails.doc4 === "" ||
+                                            agentDetails.doc4 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.doc4} </p>
                                               <Link
                                                 to={agentDetails.doc4}
                                                 className="mx-3 "
@@ -2872,7 +2901,11 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                                {agentDetails?.comment4}
+                                              {agentDetails &&
+                                          (agentDetails.comment4 === "" ||
+                                            agentDetails.comment4 === "undefined")
+                                            ? "No Comments"
+                                            : agentDetails.comment4}
                                               </span>{" "}
                                             </div>
                                             <div className="float-end">
@@ -3295,7 +3328,11 @@ function AuditorQuestions2() {
                                           {agentDetails?.doc5 ||
                                           formData?.file5 ? (
                                             <div className="d-flex justify-content-center">
-                                              <p> {agentDetails.doc5} </p>
+                                              <p> {agentDetails &&
+                                          (agentDetails.doc5 === "" ||
+                                            agentDetails.doc5 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.doc5} </p>
                                               <Link
                                                 to={agentDetails.doc5}
                                                 className="mx-3 "
@@ -3338,7 +3375,11 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                                {agentDetails?.comment5}
+                                              {agentDetails &&
+                                          (agentDetails.comment5 === "" ||
+                                            agentDetails.comment5 === "undefined")
+                                            ? "No Comments"
+                                            : agentDetails.comment5}
                                               </span>{" "}
                                             </div>
                                             <div className="float-end">
@@ -3765,7 +3806,11 @@ function AuditorQuestions2() {
                                           {agentDetails?.doc6 ||
                                           formData?.file6 ? (
                                             <div className="d-flex justify-content-center">
-                                              <p> {agentDetails.doc6} </p>
+                                              <p> {agentDetails &&
+                                          (agentDetails.doc6 === "" ||
+                                            agentDetails.doc6 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.doc6} </p>
                                               <Link
                                                 to={agentDetails.doc6}
                                                 className="mx-3 "
@@ -3808,7 +3853,11 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                                {agentDetails?.comment6}
+                                              {agentDetails &&
+                                          (agentDetails.comment6 === "" ||
+                                            agentDetails.comment6 === "undefined")
+                                            ? "No Comments"
+                                            : agentDetails.comment6}
                                               </span>{" "}
                                             </div>
                                             <div className="float-end">
@@ -4233,7 +4282,11 @@ function AuditorQuestions2() {
                                           {agentDetails?.doc7 ||
                                           formData?.file7 ? (
                                             <div className="d-flex justify-content-center">
-                                              <p> {agentDetails.doc7} </p>
+                                              <p> {agentDetails &&
+                                          (agentDetails.doc7 === "" ||
+                                            agentDetails.doc7 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.doc7} </p>
                                               <Link
                                                 to={agentDetails.doc7}
                                                 className="mx-3 "
@@ -4276,7 +4329,11 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                                {agentDetails?.comment7}
+                                              {agentDetails &&
+                                          (agentDetails.comment7 === "" ||
+                                            agentDetails.comment7 === "undefined")
+                                            ? "No Comments"
+                                            : agentDetails.comment7}
                                               </span>{" "}
                                             </div>
                                             <div className="float-end">
@@ -4821,7 +4878,11 @@ function AuditorQuestions2() {
                                           {agentDetails?.qdoc1 ||
                                           formData?.qfile1 ? (
                                             <div className="d-flex justify-content-center">
-                                              <p> {agentDetails.qdoc1} </p>
+                                              <p> {agentDetails &&
+                                          (agentDetails.qdoc1 === "" ||
+                                            agentDetails.qdoc1 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.qdoc1} </p>
                                               <Link
                                                 to={agentDetails.qdoc1}
                                                 className="mx-3 "
@@ -4863,7 +4924,11 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                                {agentDetails?.qcomment1}
+                                              {agentDetails &&
+                                          (agentDetails.qcomment1 === "" ||
+                                            agentDetails.qcomment1 === "undefined")
+                                            ? "No Comments"
+                                            : agentDetails.qcomment1}
                                               </span>{" "}
                                             </div>
                                             <div className="float-end">
@@ -5357,7 +5422,11 @@ function AuditorQuestions2() {
                                           {agentDetails?.qdoc2 ||
                                           formData?.qfile2 ? (
                                             <div className="d-flex justify-content-center">
-                                              <p> {agentDetails.qdoc2} </p>
+                                              <p> {agentDetails &&
+                                          (agentDetails.qdoc2 === "" ||
+                                            agentDetails.qdoc2 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.qdoc2} </p>
                                               <Link
                                                 to={agentDetails.qdoc2}
                                                 className="mx-3 "
@@ -5401,7 +5470,11 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                                {agentDetails?.qcomment2}
+                                              {agentDetails &&
+                                          (agentDetails.qcomment1 === "" ||
+                                            agentDetails.qcomment1 === "undefined")
+                                            ? "No Comments"
+                                            : agentDetails.qcomment1}
                                               </span>{" "}
                                             </div>
                                             <div className="float-end">
@@ -5828,9 +5901,13 @@ function AuditorQuestions2() {
                                           {agentDetails?.doc3 ||
                                           formData?.qfile3 ? (
                                             <div className="d-flex justify-content-center">
-                                              <p> {agentDetails.doc3} </p>
+                                              <p> {agentDetails &&
+                                          (agentDetails.qdoc3 === "" ||
+                                            agentDetails.qdoc3 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.qdoc3} </p>
                                               <Link
-                                                to={agentDetails.doc3}
+                                                to={agentDetails.qdoc3}
                                                 className="mx-3 "
                                                 target="_blank"
                                                 rel="noopener noreferrer"
@@ -5871,7 +5948,11 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                                {agentDetails?.qcomment3}
+                                              {agentDetails &&
+                                          (agentDetails.qcomment3 === "" ||
+                                            agentDetails.qcomment3 === "undefined")
+                                            ? "No Comments"
+                                            : agentDetails.qcomment3}
                                               </span>{" "}
                                             </div>
                                             <div className="float-end">
@@ -6313,9 +6394,13 @@ function AuditorQuestions2() {
                                           {agentDetails?.doc4 ||
                                           formData?.qfile4 ? (
                                             <div className="d-flex justify-content-center">
-                                              <p> {agentDetails.doc4} </p>
+                                              <p> {agentDetails &&
+                                          (agentDetails.qdoc4 === "" ||
+                                            agentDetails.qdoc4 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.qdoc4} </p>
                                               <Link
-                                                to={agentDetails.doc4}
+                                                to={agentDetails.qdoc4}
                                                 className="mx-3 "
                                                 target="_blank"
                                                 rel="noopener noreferrer"
@@ -6356,7 +6441,11 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                                {agentDetails?.qcomment4}
+                                              {agentDetails &&
+                                          (agentDetails.qcomment4 === "" ||
+                                            agentDetails.qcomment4 === "undefined")
+                                            ? "No Comments"
+                                            : agentDetails.qcomment4}
                                               </span>{" "}
                                             </div>
                                             <div className="float-end">
@@ -6777,9 +6866,13 @@ function AuditorQuestions2() {
                                           {agentDetails?.doc5 ||
                                           formData?.qfile5 ? (
                                             <div className="d-flex justify-content-center">
-                                              <p> {agentDetails.doc5} </p>
+                                              <p> {agentDetails &&
+                                          (agentDetails.qdoc5 === "" ||
+                                            agentDetails.qdoc5 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.qdoc5} </p>
                                               <Link
-                                                to={agentDetails.doc5}
+                                                to={agentDetails.qdoc5}
                                                 className="mx-3 "
                                                 target="_blank"
                                                 rel="noopener noreferrer"
@@ -6820,7 +6913,11 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                                {agentDetails?.qcomment5}
+                                              {agentDetails &&
+                                          (agentDetails.qcomment5 === "" ||
+                                            agentDetails.qcomment5 === "undefined")
+                                            ? "No Comments"
+                                            : agentDetails.qcomment5}
                                               </span>{" "}
                                             </div>
                                             <div className="float-end">
@@ -7246,9 +7343,13 @@ function AuditorQuestions2() {
                                           {agentDetails?.doc6 ||
                                           formData?.qfile6 ? (
                                             <div className="d-flex justify-content-center">
-                                              <p> {agentDetails.doc6} </p>
+                                              <p> {agentDetails &&
+                                          (agentDetails.qdoc6 === "" ||
+                                            agentDetails.qdoc6 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.qdoc6} </p>
                                               <Link
-                                                to={agentDetails.doc6}
+                                                to={agentDetails.qdoc6}
                                                 className="mx-3 "
                                                 target="_blank"
                                                 rel="noopener noreferrer"
@@ -7289,7 +7390,11 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                                {agentDetails?.qcomment6}
+                                              {agentDetails &&
+                                          (agentDetails.qcomment6 === "" ||
+                                            agentDetails.qcomment6 === "undefined")
+                                            ? "No Comments"
+                                            : agentDetails.qcomment6}
                                               </span>{" "}
                                             </div>
                                             <div className="float-end">
@@ -7712,9 +7817,13 @@ function AuditorQuestions2() {
                                           {agentDetails?.doc7 ||
                                           formData?.qfile7 ? (
                                             <div className="d-flex justify-content-center">
-                                              <p> {agentDetails.doc7} </p>
+                                              <p> {agentDetails &&
+                                          (agentDetails.qdoc7 === "" ||
+                                            agentDetails.qdoc7 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.qdoc7} </p>
                                               <Link
-                                                to={agentDetails.doc7}
+                                                to={agentDetails.qdoc7}
                                                 className="mx-3 "
                                                 target="_blank"
                                                 rel="noopener noreferrer"
@@ -7755,7 +7864,11 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                                {agentDetails?.qcomment7}
+                                              {agentDetails &&
+                                          (agentDetails.qcomment7 === "" ||
+                                            agentDetails.qcomment7 === "undefined")
+                                            ? "No Comments"
+                                            : agentDetails.qcomment7}
                                               </span>{" "}
                                             </div>
                                             <div className="float-end">
