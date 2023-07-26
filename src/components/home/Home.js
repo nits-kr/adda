@@ -125,6 +125,7 @@ function Home() {
       title: title2,
     };
     updateDuplicate(editDuplicate);
+   
   };
 
   const handleSaveChanges5 = () => {
@@ -140,6 +141,7 @@ function Home() {
     };
 
     schedule(editDuplicate);
+    window.location.reload();
     !responseSchedule?.isError && setScheduledList(blog?.data?.results);
     console.log(responseSchedule?.isError, "ress");
   };
@@ -268,8 +270,8 @@ function Home() {
                               <td style={{ textAlign: "center" }}>
                                 {item?.userName}
                               </td>
-                              <td></td>
-                              <td></td>
+                              <td style={{ textAlign: "center" }}>{item?.score} </td>
+                              <td style={{ textAlign: "center" }}> </td>
                               <td style={{ textAlign: "center" }}>
                                 <div className="nav-item dropdown pe-3">
                                   <Link
@@ -277,7 +279,12 @@ function Home() {
                                     to="#"
                                     data-bs-toggle="dropdown"
                                   >
-                                    {" "}
+                                    {item.to && item.from
+                                      ? `${item.to.slice(
+                                          0,
+                                          10
+                                        )} to ${item.from.slice(0, 10)}`
+                                      : ""}
                                   </Link>
 
                                   <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile text-start">
@@ -291,7 +298,15 @@ function Home() {
                                       <div className="form-group text-start">
                                         <small>Scheduled date</small>
                                         <h6 className="text-black">
-                                          25-06-2023 to 30-06-2023
+                                          {item.from && item.to
+                                            ? `${item.from.slice(
+                                                0,
+                                                10
+                                              )} to ${item.to.slice(
+                                                0,
+                                                10
+                                              )}`
+                                            : ""}
                                         </h6>
                                       </div>
                                       <div className="form-group text-start">
@@ -382,7 +397,7 @@ function Home() {
                           const currentItem = item;
                           return (
                             <tr key={index}>
-                              <th scope="row">AUD45461</th>
+                              <th scope="row"> {currentItem?.uniQ_Id} </th>
                               <td>{currentItem.title}</td>
                               <td style={{ textAlign: "center" }}>
                                 {currentItem.createdAt?.slice(0, 10)}
@@ -457,7 +472,6 @@ function Home() {
                                   onClick={() => {
                                     setItemId(currentItem._id);
                                     handleViewClick(currentItem._id);
-                                    // window.location.href = "/adge-question";
                                   }}
                                 >
                                   <FontAwesomeIcon icon={faEye} /> View
@@ -505,10 +519,10 @@ function Home() {
                     onChange={(e) => setEntity(e.target.value)}
                   >
                     <option value="Adda">Adda</option>
-                    <option value="ADNOC">ADNOC</option>
+                    {/* <option value="ADNOC">ADNOC</option>
                     <option value="DMT">DMT</option>
                     <option value="SSL">SSL</option>
-                    <option value="Tabreed">Tabreed</option>
+                    <option value="Tabreed">Tabreed</option> */}
                   </select>
                   <label htmlFor="floatingSelect">Select Entity Name</label>
                 </div>
