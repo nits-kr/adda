@@ -1674,12 +1674,12 @@ h6 {
 
 .table-striped > tbody > tr:nth-of-type(odd) > * {
   /* background-color: #ffffff; */
-  background: #fff7cc !important;
+  background: #ffffff !important;
   -bs-table-bg-type: none !important;
 }
 
 .table-striped > tbody > tr:nth-of-type(even) > * {
-  background-color: #fff7cc !important;
+  background-color: #dcdcdc !important;
   -bs-table-bg-type: none !important;
 }
 

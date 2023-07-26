@@ -1041,7 +1041,7 @@ function AuditorQuestions2() {
                                             colorChange2 ||
                                             agentDetails?.accept1 ===
                                               "Rejected"
-                                              ? "btn btn-primary"
+                                              ? "btn btn-danger"
                                               : "btn btn-secondary"
                                           }
                                           // onClick={() => {
@@ -1827,7 +1827,7 @@ function AuditorQuestions2() {
                                             colorChange4 ||
                                                     agentDetails?.accept2 ===
                                                       "Rejected"
-                                                      ? "btn btn-primary"
+                                                      ? "btn btn-danger"
                                                       : "btn btn-secondary"
                                           }
                                           // onClick={() => {
@@ -2302,7 +2302,7 @@ function AuditorQuestions2() {
                                             colorChange6 ||
                                                     agentDetails?.accept3 ===
                                                       "Rejected"
-                                                      ? "btn btn-primary"
+                                                      ? "btn btn-danger"
                                                       : "btn btn-secondary"
                                           }
                                           // onClick={() => {
@@ -2787,7 +2787,7 @@ function AuditorQuestions2() {
                                             colorChange8 ||
                                                     agentDetails?.accept4 ===
                                                       "Rejected"
-                                                      ? "btn btn-primary"
+                                                      ? "btn btn-danger"
                                                       : "btn btn-secondary"
                                           }
                                           // onClick={() => {
@@ -3254,7 +3254,7 @@ function AuditorQuestions2() {
                                             colorChange10 ||
                                                     agentDetails?.accept5 ===
                                                       "Rejected"
-                                                      ? "btn btn-primary"
+                                                      ? "btn btn-danger"
                                                       : "btn btn-secondary"
                                           }
                                           // onClick={() => {
@@ -3724,7 +3724,7 @@ function AuditorQuestions2() {
                                             colorChange12 ||
                                             agentDetails?.accept6 ===
                                               "Rejected"
-                                              ? "btn btn-primary"
+                                              ? "btn btn-danger"
                                               : "btn btn-secondary"
                                           }
                                           // onClick={() => {
@@ -4192,7 +4192,7 @@ function AuditorQuestions2() {
                                             colorChange14 ||
                                                     agentDetails?.accept7 ===
                                                       "Rejected"
-                                                      ? "btn btn-primary"
+                                                      ? "btn btn-danger"
                                                       : "btn btn-secondary"
                                           }
                                           // onClick={() => {
@@ -4782,7 +4782,7 @@ function AuditorQuestions2() {
                                             qcolorChange2 ||
                                                     agentDetails?.qaccept1 ===
                                                       "Rejected"
-                                                      ? "btn btn-primary"
+                                                      ? "btn btn-danger"
                                                       : "btn btn-secondary"
                                           }
                                           // onClick={() => {
@@ -5317,7 +5317,7 @@ function AuditorQuestions2() {
                                             qcolorChange4 ||
                                             agentDetails2?.qaccept2 ===
                                               "Rejected"
-                                              ? "btn btn-primary"
+                                              ? "btn btn-danger"
                                               : "btn btn-secondary"
                                           }
                                           // onClick={() => {
@@ -5788,7 +5788,7 @@ function AuditorQuestions2() {
                                             qcolorChange6 ||
                                             agentDetails?.qaccept3 ===
                                               "Rejected"
-                                              ? "btn btn-primary"
+                                              ? "btn btn-danger"
                                               : "btn btn-secondary"
                                           }
                                           // onClick={() => {
@@ -6273,7 +6273,7 @@ function AuditorQuestions2() {
                                             qcolorChange8 ||
                                                     agentDetails2?.qaccept4 ===
                                                       "Rejected"
-                                                      ? "btn btn-primary"
+                                                      ? "btn btn-danger"
                                                       : "btn btn-secondary"
                                           }
                                           // onClick={() => {
@@ -6738,7 +6738,7 @@ function AuditorQuestions2() {
                                             qcolorChange10 ||
                                                     agentDetails?.qaccept5 ===
                                                       "Rejected"
-                                                      ? "btn btn-primary"
+                                                      ? "btn btn-danger"
                                                       : "btn btn-secondary"
                                           }
                                           // onClick={() => {
@@ -7206,7 +7206,7 @@ function AuditorQuestions2() {
                                             qcolorChange12 ||
                                                     agentDetails?.qaccept6 ===
                                                       "Rejected"
-                                                      ? "btn btn-primary"
+                                                      ? "btn btn-danger"
                                                       : "btn btn-secondary"
                                           }
                                           // onClick={() => {
@@ -7672,7 +7672,7 @@ function AuditorQuestions2() {
                                             qcolorChange14 ||
                                                     agentDetails?.qaccept7 ===
                                                       "Rejected"
-                                                      ? "btn btn-primary"
+                                                      ? "btn btn-danger"
                                                       : "btn btn-secondary"
                                           }
                                           // onClick={() => {
@@ -8015,7 +8015,7 @@ function AuditorQuestions2() {
                             // handleOnSave1();
                           }}
                         >
-                          Submit
+                          Approve
                         </button>
                         <button
                           type="button"
