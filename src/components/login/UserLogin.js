@@ -9,6 +9,8 @@ function UserLogin() {
   console.log("response", res);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [userNameError, setUserNameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,13 +27,61 @@ function UserLogin() {
     }
   }, [res, navigate]);
 
-  const handleSaveChanges = (e) => {
+  // const handleSaveChanges = (e) => {
+  //   e.preventDefault();
+  //   const newAddress = {
+  //     userName: userName,
+  //     password: password,
+  //   };
+  //   loginData(newAddress);
+  // };
+  const handleSaveChanges = async (e) => {
     e.preventDefault();
-    const newAddress = {
-      userName: userName,
-      password: password,
-    };
-    loginData(newAddress);
+    setUserNameError("");
+    setPasswordError("");
+
+    if (userName.trim() === "") {
+      setUserNameError("Username is required.");
+      return;
+    }
+
+    if (password.trim() === "") {
+      setPasswordError("Password is required.");
+      return;
+    }
+
+    try {
+      const response = await loginData({
+        userName: userName,
+        password: password,
+      });
+      console.log("response login", response);
+      if (response?.data?.error) {
+        Swal.fire({
+          title: "Incorrect Password!",
+          icon: "error",
+          text: response?.data?.message || "Unknown error occurred.",
+        });
+      } else {
+        Swal.fire({
+          title: "Login Successful!",
+          icon: "success",
+          text: "You have successfully logged in.",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate("/adge/home");
+          }
+        });
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      // Show a generic error message if something goes wrong
+      Swal.fire({
+        title: "Login Failed!",
+        icon: "error",
+        text: "An error occurred during login.",
+      });
+    }
   };
   return (
     <>
@@ -52,6 +102,11 @@ function UserLogin() {
                   value={userName}
                   onChange={(e) => setUserName(e.target.value)}
                 />
+                {userNameError && (
+                  <span className="error-message text-danger">
+                    {userNameError}
+                  </span>
+                )}
                 <label for="userName">User Name</label>
               </div>
               <div class="form-floating mb-4" >
@@ -63,6 +118,11 @@ function UserLogin() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                {passwordError && (
+                  <span className="error-message text-danger">
+                    {passwordError}
+                  </span>
+                )}
                 <label for="floatingPassword">Password</label>
               </div>
            
