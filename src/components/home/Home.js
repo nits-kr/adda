@@ -141,7 +141,9 @@ function Home() {
     };
 
     schedule(editDuplicate);
-    window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
     !responseSchedule?.isError && setScheduledList(blog?.data?.results);
     console.log(responseSchedule?.isError, "ress");
   };
@@ -586,6 +588,7 @@ function Home() {
                     defaultValue=" "
                     onChange={(e) => setStatus(e.target.value)}
                   >
+                    <option value="Active">Select Status</option>
                     <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
                   </select>
