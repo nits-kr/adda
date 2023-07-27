@@ -29,11 +29,17 @@ function User() {
   const [name, setName] = useState("");
   const [userName, setUserName] = useState("");
   const [entity1, setEntity1] = useState("");
+  const [entity3, setEntity3] = useState("");
   const [deleteUser, r] = useDeleteUserMutation();
   const [itemId, setItemId] = useState("");
   const [updateUser, response] = useUpdateUserMutation();
   const [selectedRoleId, setSelectedRoleId] = useState("");
   const [status, setStatus] = useState("");
+  const [username, setUsername] = useState("");
+  const [name2, setName2] = useState("");
+  console.log("name2", name2);
+  const [entity, setEntity] = useState("");
+
   const user = useUserListQuery();
   useEffect(() => {
     if (user?.data?.results) {
@@ -43,7 +49,14 @@ function User() {
       setUserList(user?.data?.results);
     }
   }, [user]);
-  console.log("user list", userList?.ListData);
+  const handleEdit = (item) => {
+    setName2(item?.name || "");
+    setUsername(item?.userName || "");
+    setEntity(item?.entity || "");
+    // setSelectedRoleId(item?.role_Id?._id || "");
+    // setStatus(item?.status || "");
+  };
+  // console.log("user list", username, name2, entity);
   const role = useRolesListQuery();
   console.log("role", role);
   useEffect(() => {
@@ -87,6 +100,7 @@ function User() {
       id: itemId,
       userName: userName1,
       name: name,
+      entity:entity3
     };
     updateUser(editAddress).then(() => {
       document.getElementById("modalTwo").click()
@@ -258,7 +272,10 @@ function User() {
                                 data-bs-target="#staticBackdrop5"
                                 className="comman_btn2 table_viewbtn"
                                 to=""
-                                onClick={() => setItemId(item?._id)}
+                                onClick={() => {
+                                  setItemId(item?._id);
+                                  handleEdit(item);
+                                }}
                               >
                                 <FontAwesomeIcon icon={faPenToSquare} />{" "}
                               </Link>
@@ -434,8 +451,8 @@ function User() {
                     className="form-control mt-2"
                     name="titleEdit"
                     id="titleE"
-                    defaultValue="Testuser"
-                    // onChange={(e) => setName1(e.target.value)}
+                    defaultValue={name2}
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </div>
                 <div className="form-group col-12 my-2">
@@ -445,8 +462,8 @@ function User() {
                     className="form-control mt-2"
                     name="userName"
                     id="userName"
-                    defaultValue={"TestName"}
-                    // onChange={(e) => setUserName(e.target.value)}
+                    defaultValue={username}
+                    onChange={(e) => setUserName1(e.target.value)}
                   />
                 </div>
                 <div className="form-group col-12 my-2">
@@ -460,8 +477,8 @@ function User() {
                     name="entity1"
                     id="entity1"
 
-                    defaultValue={"TestEntity"}
-                    // onChange={(e) => setEntity1(e.target.value)}
+                    defaultValue={entity}
+                    onChange={(e) => setEntity3(e.target.value)}
                   />
                 </div>
                 <div className="form-group col-12 my-2">
