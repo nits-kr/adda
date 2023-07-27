@@ -384,8 +384,9 @@ function User() {
                     style={{ marginTop: "15px" }}
                     onChange={(e) => setStatus(e.target.value)}
                   >
+                    <option value="Active">Select Option</option>
                     <option value="Active">Active</option>
-                    <option value="Active">De-active</option>
+                    <option value="In-Active">De-active</option>
                   </select>
                   <label
                     htmlFor="floatingSelect1"
