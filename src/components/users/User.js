@@ -39,6 +39,7 @@ function User() {
   const [name2, setName2] = useState("");
   console.log("name2", name2);
   const [entity, setEntity] = useState("");
+  const [selectedRoleId1, setSelectedRoleId1] = useState("");
 
   const user = useUserListQuery();
   useEffect(() => {
@@ -53,7 +54,7 @@ function User() {
     setName2(item?.name || "");
     setUsername(item?.userName || "");
     setEntity(item?.entity || "");
-    // setSelectedRoleId(item?.role_Id?._id || "");
+    setSelectedRoleId1(item?.role_Id?._id || "");
     // setStatus(item?.status || "");
   };
   // console.log("user list", username, name2, entity);
@@ -486,7 +487,7 @@ function User() {
                   <select
                     className="form-select mt-2"
                     id="floatingSelect"
-                    defaultValue=""
+                    defaultValue={selectedRoleId1}
                   >
                    <option selected=""> 
                           ADGE 
