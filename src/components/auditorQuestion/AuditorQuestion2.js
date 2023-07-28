@@ -1061,7 +1061,7 @@ function AuditorQuestions2() {
                                     id="collapseExample1"
                                   >
                                     <form action="">
-                                      <div className="form">
+                                      {/* <div className="form">
                                         <input
                                           name="file"
                                           id="entry_value1"
@@ -1077,7 +1077,7 @@ function AuditorQuestions2() {
                                         >
                                           {" "}
                                         </span>{" "}
-                                      </div>
+                                      </div> */}
                                     </form>
                                     <div>
                                       {" "}
@@ -1134,7 +1134,7 @@ function AuditorQuestions2() {
                                           // }
                                           
                                         /> */}
-                                          <div>
+                                          {/* <div>
                                             {selectedImage?.file1 &&
                                               (selectedImage?.file1
                                                 ? "File Uploaded Successfully!"
@@ -1150,7 +1150,7 @@ function AuditorQuestions2() {
                                           <span
                                             id="fileName"
                                             className="text-primary "
-                                          ></span>
+                                          ></span> */}
                                         </div>
                                         // </form>
                                       )}
@@ -1380,72 +1380,6 @@ function AuditorQuestions2() {
                                       </div>
                                     </div>
                                   </div>
-                                  <div
-                                    className="collapse AttachDiv"
-                                    id="collapseExample2"
-                                  >
-                                    <form action="">
-                                      <div className="form">
-                                        <input
-                                          name="file"
-                                          id="entry_value2"
-                                          style={{
-                                            width: "10rem",
-                                            backgroundColor: "black",
-                                          }}
-                                          //   ref="fileInput"
-                                          type="file"
-                                          //   onchange="getFileName()"
-                                          onChange={
-                                            (e) => handleFileChange(e, "file2")
-                                            // alert("file")
-                                          }
-                                        />
-                                        <span
-                                          id="fileName2"
-                                          className="text-primary "
-                                        >
-                                          {" "}
-                                        </span>{" "}
-                                      </div>
-                                    </form>
-                                    <div>
-                                      {" "}
-                                      {/* <img
-                                            src={agentDetails?.doc1}
-                                            alt="Not Uploaded..."
-                                            width="4%"
-                                            className=""
-                                          />{" "} */}
-                                      {agentDetails?.doc2 || formData?.file2 ? (
-                                        <div className="d-flex justify-content-center">
-                                          <p> {agentDetails?.doc2} </p>
-                                          <Link
-                                            to={agentDetails?.doc2}
-                                            className="mx-3 "
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                          >
-                                            View Document
-                                          </Link>
-                                        </div>
-                                      ) : (
-                                        <div>
-                                          {selectedImage?.file2 &&
-                                            (selectedImage?.file2
-                                              ? "File Uploaded Successfully!"
-                                              : " Upload your files here..")}
-
-                                          <button
-                                            className="btn bg-color-dblue btn-primary"
-                                            style={{ marginLeft: "5px" }}
-                                          >
-                                            Browse
-                                          </button>
-                                        </div>
-                                      )}
-                                    </div>
-                                  </div>
                                 </div>
                               </div>
                               <div className="QuestionDiv">
@@ -1632,7 +1566,7 @@ function AuditorQuestions2() {
                                     id="collapseExample2"
                                   >
                                     <form action="">
-                                      <div className="form">
+                                      {/* <div className="form">
                                         <input
                                           name="file"
                                           id="entry_value2"
@@ -1654,7 +1588,7 @@ function AuditorQuestions2() {
                                         >
                                           {" "}
                                         </span>{" "}
-                                      </div>
+                                      </div> */}
                                     </form>
                                     <div>
                                       {" "}
@@ -1672,8 +1606,12 @@ function AuditorQuestions2() {
                                             ? "File Not Uploaded"
                                             : agentDetails.doc2} </p>
                                           <Link
-                                            to={agentDetails?.doc2}
-                                            className="mx-3 "
+                                            to={agentDetails.doc2}
+                                            className={agentDetails &&
+                                              (agentDetails.doc2 === "" ||
+                                                agentDetails.doc2 === "undefined")
+                                                ? "d-none"
+                                                : "mx-2"} 
                                             target="_blank"
                                             rel="noopener noreferrer"
                                           >
@@ -1682,7 +1620,7 @@ function AuditorQuestions2() {
                                         </div>
                                       ) : (
                                         <div>
-                                          {selectedImage?.file2 &&
+                                          {/* {selectedImage?.file2 &&
                                             (selectedImage?.file2
                                               ? "File Uploaded Successfully!"
                                               : " Upload your files here..")}
@@ -1692,7 +1630,7 @@ function AuditorQuestions2() {
                                             style={{ marginLeft: "5px" }}
                                           >
                                             Browse
-                                          </button>
+                                          </button> */}
                                         </div>
                                       )}
                                     </div>
@@ -2114,66 +2052,75 @@ function AuditorQuestions2() {
                                     className="collapse AttachDiv"
                                     id="collapseExample3"
                                   >
-                                    <form action="">
-                                      <div className="form">
+                                     <form action="">
+                                      {/* <div className="form">
                                         <input
                                           name="file"
-                                          id="entry_value3"
+                                          id="entry_value2"
+                                          style={{
+                                            width: "10rem",
+                                            backgroundColor: "black",
+                                          }}
                                           //   ref="fileInput"
                                           type="file"
-                                          onChange={(e) =>
-                                            handleFileChange(e, "file3")
+                                          //   onchange="getFileName()"
+                                          onChange={
+                                            (e) => handleFileChange(e, "file2")
+                                            // alert("file")
                                           }
                                         />
-                                        <div>
+                                        <span
+                                          id="fileName2"
+                                          className="text-primary "
+                                        >
                                           {" "}
-                                          {/* <img
+                                        </span>{" "}
+                                      </div> */}
+                                    </form>
+                                    <div>
+                                      {" "}
+                                      {/* <img
                                             src={agentDetails?.doc1}
                                             alt="Not Uploaded..."
                                             width="4%"
                                             className=""
                                           />{" "} */}
-                                          {agentDetails?.doc3 ||
-                                          formData?.file3 ? (
-                                            <div className="d-flex justify-content-center">
-                                              <p> {agentDetails &&
+                                      {agentDetails?.doc3 || formData?.file3 ? (
+                                        <div className="d-flex justify-content-center">
+                                          <p> {agentDetails &&
                                           (agentDetails.doc3 === "" ||
                                             agentDetails.doc3 === "undefined")
                                             ? "File Not Uploaded"
                                             : agentDetails.doc3} </p>
-                                              <Link
-                                                to={agentDetails.doc3}
-                                                className="mx-3 "
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                              >
-                                                View Document
-                                              </Link>
-                                            </div>
-                                          ) : (
-                                            <div>
-                                              {selectedImage?.file3 &&
-                                                (selectedImage?.file3
-                                                  ? "File Uploaded Successfully!"
-                                                  : " Upload your files here..")}
-
-                                              <button
-                                                className="btn bg-color-dblue btn-primary"
-                                                style={{ marginLeft: "5px" }}
-                                              >
-                                                Browse
-                                              </button>
-                                            </div>
-                                          )}
+                                          <Link
+                                            to={agentDetails.doc3}
+                                            className={agentDetails &&
+                                              (agentDetails.doc3 === "" ||
+                                                agentDetails.doc3 === "undefined")
+                                                ? "d-none"
+                                                : "mx-2"} 
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                          >
+                                            View Document
+                                          </Link>
                                         </div>
-                                        <span
-                                          id="fileName3"
-                                          className="text-primary "
-                                        >
-                                          {" "}
-                                        </span>{" "}
-                                      </div>
-                                    </form>
+                                      ) : (
+                                        <div>
+                                          {/* {selectedImage?.file2 &&
+                                            (selectedImage?.file2
+                                              ? "File Uploaded Successfully!"
+                                              : " Upload your files here..")}
+
+                                          <button
+                                            className="btn bg-color-dblue btn-primary"
+                                            style={{ marginLeft: "5px" }}
+                                          >
+                                            Browse
+                                          </button> */}
+                                        </div>
+                                      )}
+                                    </div>
                                     <div className="SmallHead">Comments</div>
 
                                     <div className="container">
@@ -2608,67 +2555,52 @@ function AuditorQuestions2() {
                                     id="collapseExample4"
                                   >
                                     <form action="">
-                                      <div className="form">
-                                        <input
-                                          name="file"
-                                          id="entry_value4"
-                                          //   ref="fileInput"
-                                          type="file"
-                                          //   onchange="getFileName()"
-                                          onChange={
-                                            (e) => handleFileChange(e, "file4")
-                                            // alert("file")
-                                          }
-                                        />
-                                        <div>
-                                          {" "}
-                                          {/* <img
+                                      
+                                    </form>
+                                    <div>
+                                      {" "}
+                                      {/* <img
                                             src={agentDetails?.doc1}
                                             alt="Not Uploaded..."
                                             width="4%"
                                             className=""
                                           />{" "} */}
-                                          {agentDetails?.doc4 ||
-                                          formData?.file4 ? (
-                                            <div className="d-flex justify-content-center">
-                                              <p> {agentDetails &&
+                                      {agentDetails?.doc4 || formData?.file4 ? (
+                                        <div className="d-flex justify-content-center">
+                                          <p> {agentDetails &&
                                           (agentDetails.doc4 === "" ||
                                             agentDetails.doc4 === "undefined")
                                             ? "File Not Uploaded"
                                             : agentDetails.doc4} </p>
-                                              <Link
-                                                to={agentDetails.doc4}
-                                                className="mx-3 "
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                              >
-                                                View Document
-                                              </Link>
-                                            </div>
-                                          ) : (
-                                            <div>
-                                              {selectedImage?.file4 &&
-                                                (selectedImage?.file4
-                                                  ? "File Uploaded Successfully!"
-                                                  : " Upload your files here..")}
-
-                                              <button
-                                                className="btn bg-color-dblue btn-primary"
-                                                style={{ marginLeft: "5px" }}
-                                              >
-                                                Browse
-                                              </button>
-                                            </div>
-                                          )}
+                                          <Link
+                                            to={agentDetails.doc4}
+                                            className={agentDetails &&
+                                              (agentDetails.doc4 === "" ||
+                                                agentDetails.doc4 === "undefined")
+                                                ? "d-none"
+                                                : "mx-2"} 
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                          >
+                                            View Document
+                                          </Link>
                                         </div>
-                                        <span
-                                          id="fileName4"
-                                          className="text-primary "
-                                        >
-                                          {" "}
-                                        </span>{" "}
-                                      </div>
-                                    </form>
+                                      ) : (
+                                        <div>
+                                          {/* {selectedImage?.file2 &&
+                                            (selectedImage?.file2
+                                              ? "File Uploaded Successfully!"
+                                              : " Upload your files here..")}
+
+                                          <button
+                                            className="btn bg-color-dblue btn-primary"
+                                            style={{ marginLeft: "5px" }}
+                                          >
+                                            Browse
+                                          </button> */}
+                                        </div>
+                                      )}
+                                    </div>
                                     <div className="SmallHead">Comments</div>
 
                                     <div className="container">
@@ -3083,66 +3015,52 @@ function AuditorQuestions2() {
                                     id="collapseExample5"
                                   >
                                     <form action="">
-                                      <div className="form">
-                                        <input
-                                          name="file"
-                                          id="entry_value5"
-                                          //   ref="fileInput"
-                                          type="file"
-                                          onChange={
-                                            (e) => handleFileChange(e, "file5")
-                                            // alert("file")
-                                          }
-                                        />
-                                        <div>
-                                          {" "}
-                                          {/* <img
+                                      
+                                    </form>
+                                    <div>
+                                      {" "}
+                                      {/* <img
                                             src={agentDetails?.doc1}
                                             alt="Not Uploaded..."
                                             width="4%"
                                             className=""
                                           />{" "} */}
-                                          {agentDetails?.doc5 ||
-                                          formData?.file5 ? (
-                                            <div className="d-flex justify-content-center">
-                                              <p> {agentDetails &&
+                                      {agentDetails?.doc5 || formData?.file5 ? (
+                                        <div className="d-flex justify-content-center">
+                                          <p> {agentDetails &&
                                           (agentDetails.doc5 === "" ||
                                             agentDetails.doc5 === "undefined")
                                             ? "File Not Uploaded"
                                             : agentDetails.doc5} </p>
-                                              <Link
-                                                to={agentDetails.doc5}
-                                                className="mx-3 "
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                              >
-                                                View Document
-                                              </Link>
-                                            </div>
-                                          ) : (
-                                            <div>
-                                              {selectedImage?.file5 &&
-                                                (selectedImage?.file5
-                                                  ? "File Uploaded Successfully!"
-                                                  : " Upload your files here..")}
-
-                                              <button
-                                                className="btn bg-color-dblue btn-primary"
-                                                style={{ marginLeft: "5px" }}
-                                              >
-                                                Browse
-                                              </button>
-                                            </div>
-                                          )}
+                                          <Link
+                                            to={agentDetails.doc5}
+                                            className={agentDetails &&
+                                              (agentDetails.doc5 === "" ||
+                                                agentDetails.doc5 === "undefined")
+                                                ? "d-none"
+                                                : "mx-2"} 
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                          >
+                                            View Document
+                                          </Link>
                                         </div>
-                                        <span
-                                          id="fileName5"
-                                          className="text-primary "
-                                        >
-                                          {" "}
-                                        </span>{" "}
-                                      </div>
-                                    </form>
+                                      ) : (
+                                        <div>
+                                          {/* {selectedImage?.file2 &&
+                                            (selectedImage?.file2
+                                              ? "File Uploaded Successfully!"
+                                              : " Upload your files here..")}
+
+                                          <button
+                                            className="btn bg-color-dblue btn-primary"
+                                            style={{ marginLeft: "5px" }}
+                                          >
+                                            Browse
+                                          </button> */}
+                                        </div>
+                                      )}
+                                    </div>
                                     <div className="SmallHead">Comments</div>
 
                                     <div className="container">
@@ -3561,7 +3479,7 @@ function AuditorQuestions2() {
                                     id="collapseExample6"
                                   >
                                     <form action="">
-                                      <div className="form">
+                                      {/* <div className="form">
                                         <input
                                           name="file"
                                           id="entry_value6"
@@ -3574,12 +3492,12 @@ function AuditorQuestions2() {
                                         />
                                         <div>
                                           {" "}
-                                          {/* <img
+                                          <img
                                             src={agentDetails?.doc1}
                                             alt="Not Uploaded..."
                                             width="4%"
                                             className=""
-                                          />{" "} */}
+                                          />{" "}
                                           {agentDetails?.doc6 ||
                                           formData?.file6 ? (
                                             <div className="d-flex justify-content-center">
@@ -3619,8 +3537,52 @@ function AuditorQuestions2() {
                                         >
                                           {" "}
                                         </span>{" "}
-                                      </div>
+                                      </div> */}
                                     </form>
+                                    <div>
+                                      {" "}
+                                      {/* <img
+                                            src={agentDetails?.doc1}
+                                            alt="Not Uploaded..."
+                                            width="4%"
+                                            className=""
+                                          />{" "} */}
+                                      {agentDetails?.doc6 || formData?.file6 ? (
+                                        <div className="d-flex justify-content-center">
+                                          <p> {agentDetails &&
+                                          (agentDetails.doc6 === "" ||
+                                            agentDetails.doc6 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.doc6} </p>
+                                          <Link
+                                            to={agentDetails.doc6}
+                                            className={agentDetails &&
+                                              (agentDetails.doc6 === "" ||
+                                                agentDetails.doc6 === "undefined")
+                                                ? "d-none"
+                                                : "mx-2"} 
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                          >
+                                            View Document
+                                          </Link>
+                                        </div>
+                                      ) : (
+                                        <div>
+                                          {/* {selectedImage?.file2 &&
+                                            (selectedImage?.file2
+                                              ? "File Uploaded Successfully!"
+                                              : " Upload your files here..")}
+
+                                          <button
+                                            className="btn bg-color-dblue btn-primary"
+                                            style={{ marginLeft: "5px" }}
+                                          >
+                                            Browse
+                                          </button> */}
+                                        </div>
+                                      )}
+                                    </div>
                                     <div className="SmallHead">Comments</div>
 
                                     <div className="container">
@@ -4037,7 +3999,7 @@ function AuditorQuestions2() {
                                     id="collapseExample7"
                                   >
                                     <form action="">
-                                      <div className="form">
+                                      {/* <div className="form">
                                         <input
                                           name="file"
                                           id="entry_value7"
@@ -4050,12 +4012,12 @@ function AuditorQuestions2() {
                                         />
                                         <div>
                                           {" "}
-                                          {/* <img
+                                          <img
                                             src={agentDetails?.doc1}
                                             alt="Not Uploaded..."
                                             width="4%"
                                             className=""
-                                          />{" "} */}
+                                          />{" "}
                                           {agentDetails?.doc7 ||
                                           formData?.file7 ? (
                                             <div className="d-flex justify-content-center">
@@ -4095,7 +4057,51 @@ function AuditorQuestions2() {
                                         >
                                           {" "}
                                         </span>{" "}
-                                      </div>
+                                      </div> */}
+                                      <div>
+                                      {" "}
+                                      {/* <img
+                                            src={agentDetails?.doc1}
+                                            alt="Not Uploaded..."
+                                            width="4%"
+                                            className=""
+                                          />{" "} */}
+                                      {agentDetails?.doc7 || formData?.file7 ? (
+                                        <div className="d-flex justify-content-center">
+                                          <p> {agentDetails &&
+                                          (agentDetails.doc7 === "" ||
+                                            agentDetails.doc7 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.doc7} </p>
+                                          <Link
+                                            to={agentDetails.doc7}
+                                            className={agentDetails &&
+                                              (agentDetails.doc7 === "" ||
+                                                agentDetails.doc7 === "undefined")
+                                                ? "d-none"
+                                                : "mx-2"} 
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                          >
+                                            View Document
+                                          </Link>
+                                        </div>
+                                      ) : (
+                                        <div>
+                                          {/* {selectedImage?.file2 &&
+                                            (selectedImage?.file2
+                                              ? "File Uploaded Successfully!"
+                                              : " Upload your files here..")}
+
+                                          <button
+                                            className="btn bg-color-dblue btn-primary"
+                                            style={{ marginLeft: "5px" }}
+                                          >
+                                            Browse
+                                          </button> */}
+                                        </div>
+                                      )}
+                                    </div>
                                     </form>
                                     <div className="SmallHead">Comments</div>
 
@@ -4635,7 +4641,7 @@ function AuditorQuestions2() {
                                     id="collapseExample1"
                                   >
                                     <form action="">
-                                      <div className="form">
+                                      {/* <div className="form">
                                         <input
                                           name="file"
                                           id="entry_value1"
@@ -4646,12 +4652,12 @@ function AuditorQuestions2() {
                                         />
                                         <div>
                                           {" "}
-                                          {/* <img
+                                          <img
                                             src={agentDetails?.doc1}
                                             alt="Not Uploaded..."
                                             width="4%"
                                             className=""
-                                          />{" "} */}
+                                          />{" "}
                                           {agentDetails?.qdoc1 ||
                                           formData?.qfile1 ? (
                                             <div className="d-flex justify-content-center">
@@ -4691,8 +4697,52 @@ function AuditorQuestions2() {
                                         >
                                           {" "}
                                         </span>{" "}
-                                      </div>
+                                      </div> */}
                                     </form>
+                                    <div>
+                                      {" "}
+                                      {/* <img
+                                            src={agentDetails?.doc1}
+                                            alt="Not Uploaded..."
+                                            width="4%"
+                                            className=""
+                                          />{" "} */}
+                                      {agentDetails?.qdoc1 || formData?.qfile1 ? (
+                                        <div className="d-flex justify-content-center">
+                                          <p> {agentDetails &&
+                                          (agentDetails.qdoc1 === "" ||
+                                            agentDetails.qdoc1 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.qdoc1} </p>
+                                          <Link
+                                            to={agentDetails.qdoc1}
+                                            className={agentDetails &&
+                                              (agentDetails.qdoc1 === "" ||
+                                                agentDetails.qdoc1 === "undefined")
+                                                ? "d-none"
+                                                : "mx-2"} 
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                          >
+                                            View Document
+                                          </Link>
+                                        </div>
+                                      ) : (
+                                        <div>
+                                          {/* {selectedImage?.file2 &&
+                                            (selectedImage?.file2
+                                              ? "File Uploaded Successfully!"
+                                              : " Upload your files here..")}
+
+                                          <button
+                                            className="btn bg-color-dblue btn-primary"
+                                            style={{ marginLeft: "5px" }}
+                                          >
+                                            Browse
+                                          </button> */}
+                                        </div>
+                                      )}
+                                    </div>
                                     <div className="SmallHead">Comments</div>
                                     <div className="container">
                                       <div className="col-md-12" id="fbcomment">
@@ -5178,7 +5228,7 @@ function AuditorQuestions2() {
                                     id="collapseExample2"
                                   >
                                     <form action="">
-                                      <div className="form">
+                                      {/* <div className="form">
                                         <input
                                           name="file"
                                           id="entry_value2"
@@ -5190,12 +5240,12 @@ function AuditorQuestions2() {
                                         />
                                         <div>
                                           {" "}
-                                          {/* <img
+                                          <img
                                             src={agentDetails?.doc1}
                                             alt="Not Uploaded..."
                                             width="4%"
                                             className=""
-                                          />{" "} */}
+                                          />{" "}
                                           {agentDetails?.qdoc2 ||
                                           formData?.qfile2 ? (
                                             <div className="d-flex justify-content-center">
@@ -5236,8 +5286,52 @@ function AuditorQuestions2() {
                                         >
                                           {" "}
                                         </span>{" "}
-                                      </div>
+                                      </div> */}
                                     </form>
+                                    <div>
+                                      {" "}
+                                      {/* <img
+                                            src={agentDetails?.doc1}
+                                            alt="Not Uploaded..."
+                                            width="4%"
+                                            className=""
+                                          />{" "} */}
+                                      {agentDetails?.qdoc2 || formData?.qfile2 ? (
+                                        <div className="d-flex justify-content-center">
+                                          <p> {agentDetails &&
+                                          (agentDetails.qdoc2 === "" ||
+                                            agentDetails.qdoc2 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.qdoc2} </p>
+                                          <Link
+                                            to={agentDetails.qdoc2}
+                                            className={agentDetails &&
+                                              (agentDetails.qdoc2 === "" ||
+                                                agentDetails.qdoc2 === "undefined")
+                                                ? "d-none"
+                                                : "mx-2"} 
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                          >
+                                            View Document
+                                          </Link>
+                                        </div>
+                                      ) : (
+                                        <div>
+                                          {/* {selectedImage?.file2 &&
+                                            (selectedImage?.file2
+                                              ? "File Uploaded Successfully!"
+                                              : " Upload your files here..")}
+
+                                          <button
+                                            className="btn bg-color-dblue btn-primary"
+                                            style={{ marginLeft: "5px" }}
+                                          >
+                                            Browse
+                                          </button> */}
+                                        </div>
+                                      )}
+                                    </div>
                                     <div className="SmallHead">Comments</div>
 
                                     <div className="container">
@@ -5657,7 +5751,7 @@ function AuditorQuestions2() {
                                     id="collapseExample3"
                                   >
                                     <form action="">
-                                      <div className="form">
+                                      {/* <div className="form">
                                         <input
                                           name="file"
                                           id="entry_value3"
@@ -5669,12 +5763,12 @@ function AuditorQuestions2() {
                                         />
                                         <div>
                                           {" "}
-                                          {/* <img
+                                          <img
                                             src={agentDetails?.doc1}
                                             alt="Not Uploaded..."
                                             width="4%"
                                             className=""
-                                          />{" "} */}
+                                          />{" "}
                                           {agentDetails?.doc3 ||
                                           formData?.qfile3 ? (
                                             <div className="d-flex justify-content-center">
@@ -5714,8 +5808,52 @@ function AuditorQuestions2() {
                                         >
                                           {" "}
                                         </span>{" "}
-                                      </div>
+                                      </div> */}
                                     </form>
+                                    <div>
+                                      {" "}
+                                      {/* <img
+                                            src={agentDetails?.doc1}
+                                            alt="Not Uploaded..."
+                                            width="4%"
+                                            className=""
+                                          />{" "} */}
+                                      {agentDetails?.qdoc3 || formData?.qfile3 ? (
+                                        <div className="d-flex justify-content-center">
+                                          <p> {agentDetails &&
+                                          (agentDetails.qdoc3 === "" ||
+                                            agentDetails.qdoc3 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.qdoc3} </p>
+                                          <Link
+                                            to={agentDetails.qdoc3}
+                                            className={agentDetails &&
+                                              (agentDetails.qdoc3 === "" ||
+                                                agentDetails.qdoc3 === "undefined")
+                                                ? "d-none"
+                                                : "mx-2"} 
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                          >
+                                            View Document
+                                          </Link>
+                                        </div>
+                                      ) : (
+                                        <div>
+                                          {/* {selectedImage?.file2 &&
+                                            (selectedImage?.file2
+                                              ? "File Uploaded Successfully!"
+                                              : " Upload your files here..")}
+
+                                          <button
+                                            className="btn bg-color-dblue btn-primary"
+                                            style={{ marginLeft: "5px" }}
+                                          >
+                                            Browse
+                                          </button> */}
+                                        </div>
+                                      )}
+                                    </div>
                                     <div className="SmallHead">Comments</div>
 
                                     <div className="container">
@@ -6150,7 +6288,7 @@ function AuditorQuestions2() {
                                     id="collapseExample4"
                                   >
                                     <form action="">
-                                      <div className="form">
+                                      {/* <div className="form">
                                         <input
                                           name="file"
                                           id="entry_value4"
@@ -6162,12 +6300,12 @@ function AuditorQuestions2() {
                                         />
                                         <div>
                                           {" "}
-                                          {/* <img
+                                          <img
                                             src={agentDetails?.doc1}
                                             alt="Not Uploaded..."
                                             width="4%"
                                             className=""
-                                          />{" "} */}
+                                          />{" "}
                                           {agentDetails?.doc4 ||
                                           formData?.qfile4 ? (
                                             <div className="d-flex justify-content-center">
@@ -6207,8 +6345,52 @@ function AuditorQuestions2() {
                                         >
                                           {" "}
                                         </span>{" "}
-                                      </div>
+                                      </div> */}
                                     </form>
+                                    <div>
+                                      {" "}
+                                      {/* <img
+                                            src={agentDetails?.doc1}
+                                            alt="Not Uploaded..."
+                                            width="4%"
+                                            className=""
+                                          />{" "} */}
+                                      {agentDetails?.qdoc4 || formData?.qfile4 ? (
+                                        <div className="d-flex justify-content-center">
+                                          <p> {agentDetails &&
+                                          (agentDetails.qdoc4 === "" ||
+                                            agentDetails.qdoc4 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.qdoc4} </p>
+                                          <Link
+                                            to={agentDetails.qdoc4}
+                                            className={agentDetails &&
+                                              (agentDetails.qdoc4 === "" ||
+                                                agentDetails.qdoc4 === "undefined")
+                                                ? "d-none"
+                                                : "mx-2"} 
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                          >
+                                            View Document
+                                          </Link>
+                                        </div>
+                                      ) : (
+                                        <div>
+                                          {/* {selectedImage?.file2 &&
+                                            (selectedImage?.file2
+                                              ? "File Uploaded Successfully!"
+                                              : " Upload your files here..")}
+
+                                          <button
+                                            className="btn bg-color-dblue btn-primary"
+                                            style={{ marginLeft: "5px" }}
+                                          >
+                                            Browse
+                                          </button> */}
+                                        </div>
+                                      )}
+                                    </div>
                                     <div className="SmallHead">Comments</div>
 
                                     <div className="container">
@@ -6622,7 +6804,7 @@ function AuditorQuestions2() {
                                     id="collapseExample5"
                                   >
                                     <form action="">
-                                      <div className="form">
+                                      {/* <div className="form">
                                         <input
                                           name="file"
                                           id="entry_value5"
@@ -6634,12 +6816,12 @@ function AuditorQuestions2() {
                                         />
                                         <div>
                                           {" "}
-                                          {/* <img
+                                          <img
                                             src={agentDetails?.doc1}
                                             alt="Not Uploaded..."
                                             width="4%"
                                             className=""
-                                          />{" "} */}
+                                          />{" "}
                                           {agentDetails?.doc5 ||
                                           formData?.qfile5 ? (
                                             <div className="d-flex justify-content-center">
@@ -6679,8 +6861,52 @@ function AuditorQuestions2() {
                                         >
                                           {" "}
                                         </span>{" "}
-                                      </div>
+                                      </div> */}
                                     </form>
+                                    <div>
+                                      {" "}
+                                      {/* <img
+                                            src={agentDetails?.doc1}
+                                            alt="Not Uploaded..."
+                                            width="4%"
+                                            className=""
+                                          />{" "} */}
+                                      {agentDetails?.qdoc5 || formData?.qfile5 ? (
+                                        <div className="d-flex justify-content-center">
+                                          <p> {agentDetails &&
+                                          (agentDetails.qdoc5 === "" ||
+                                            agentDetails.qdoc5 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.qdoc5} </p>
+                                          <Link
+                                            to={agentDetails.qdoc5}
+                                            className={agentDetails &&
+                                              (agentDetails.qdoc5 === "" ||
+                                                agentDetails.qdoc5 === "undefined")
+                                                ? "d-none"
+                                                : "mx-2"} 
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                          >
+                                            View Document
+                                          </Link>
+                                        </div>
+                                      ) : (
+                                        <div>
+                                          {/* {selectedImage?.file2 &&
+                                            (selectedImage?.file2
+                                              ? "File Uploaded Successfully!"
+                                              : " Upload your files here..")}
+
+                                          <button
+                                            className="btn bg-color-dblue btn-primary"
+                                            style={{ marginLeft: "5px" }}
+                                          >
+                                            Browse
+                                          </button> */}
+                                        </div>
+                                      )}
+                                    </div>
                                     <div className="SmallHead">Comments</div>
 
                                     <div className="container">
@@ -7099,7 +7325,7 @@ function AuditorQuestions2() {
                                     id="collapseExample6"
                                   >
                                     <form action="">
-                                      <div className="form">
+                                      {/* <div className="form">
                                         <input
                                           name="file"
                                           id="entry_value6"
@@ -7111,12 +7337,12 @@ function AuditorQuestions2() {
                                         />
                                         <div>
                                           {" "}
-                                          {/* <img
+                                          <img
                                             src={agentDetails?.doc1}
                                             alt="Not Uploaded..."
                                             width="4%"
                                             className=""
-                                          />{" "} */}
+                                          />{" "}
                                           {agentDetails?.doc6 ||
                                           formData?.qfile6 ? (
                                             <div className="d-flex justify-content-center">
@@ -7156,8 +7382,52 @@ function AuditorQuestions2() {
                                         >
                                           {" "}
                                         </span>{" "}
-                                      </div>
+                                      </div> */}
                                     </form>
+                                    <div>
+                                      {" "}
+                                      {/* <img
+                                            src={agentDetails?.doc1}
+                                            alt="Not Uploaded..."
+                                            width="4%"
+                                            className=""
+                                          />{" "} */}
+                                      {agentDetails?.qdoc6 || formData?.qfile6 ? (
+                                        <div className="d-flex justify-content-center">
+                                          <p> {agentDetails &&
+                                          (agentDetails.qdoc6 === "" ||
+                                            agentDetails.qdoc6 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.qdoc6} </p>
+                                          <Link
+                                            to={agentDetails.qdoc6}
+                                            className={agentDetails &&
+                                              (agentDetails.qdoc6 === "" ||
+                                                agentDetails.qdoc6 === "undefined")
+                                                ? "d-none"
+                                                : "mx-2"} 
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                          >
+                                            View Document
+                                          </Link>
+                                        </div>
+                                      ) : (
+                                        <div>
+                                          {/* {selectedImage?.file2 &&
+                                            (selectedImage?.file2
+                                              ? "File Uploaded Successfully!"
+                                              : " Upload your files here..")}
+
+                                          <button
+                                            className="btn bg-color-dblue btn-primary"
+                                            style={{ marginLeft: "5px" }}
+                                          >
+                                            Browse
+                                          </button> */}
+                                        </div>
+                                      )}
+                                    </div>
                                     <div className="SmallHead">Comments</div>
 
                                     <div className="container">
@@ -7573,7 +7843,7 @@ function AuditorQuestions2() {
                                     id="collapseExample7"
                                   >
                                     <form action="">
-                                      <div className="form">
+                                      {/* <div className="form">
                                         <input
                                           name="file"
                                           id="entry_value7"
@@ -7585,12 +7855,12 @@ function AuditorQuestions2() {
                                         />
                                         <div>
                                           {" "}
-                                          {/* <img
+                                          <img
                                             src={agentDetails?.doc1}
                                             alt="Not Uploaded..."
                                             width="4%"
                                             className=""
-                                          />{" "} */}
+                                          />{" "}
                                           {agentDetails?.doc7 ||
                                           formData?.qfile7 ? (
                                             <div className="d-flex justify-content-center">
@@ -7630,8 +7900,52 @@ function AuditorQuestions2() {
                                         >
                                           {" "}
                                         </span>{" "}
-                                      </div>
+                                      </div> */}
                                     </form>
+                                    <div>
+                                      {" "}
+                                      {/* <img
+                                            src={agentDetails?.doc1}
+                                            alt="Not Uploaded..."
+                                            width="4%"
+                                            className=""
+                                          />{" "} */}
+                                      {agentDetails?.qdoc7 || formData?.qfile7 ? (
+                                        <div className="d-flex justify-content-center">
+                                          <p> {agentDetails &&
+                                          (agentDetails.qdoc7 === "" ||
+                                            agentDetails.qdoc7 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails.qdoc7} </p>
+                                          <Link
+                                            to={agentDetails.qdoc7}
+                                            className={agentDetails &&
+                                              (agentDetails.qdoc7 === "" ||
+                                                agentDetails.qdoc7 === "undefined")
+                                                ? "d-none"
+                                                : "mx-2"} 
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                          >
+                                            View Document
+                                          </Link>
+                                        </div>
+                                      ) : (
+                                        <div>
+                                          {/* {selectedImage?.file2 &&
+                                            (selectedImage?.file2
+                                              ? "File Uploaded Successfully!"
+                                              : " Upload your files here..")}
+
+                                          <button
+                                            className="btn bg-color-dblue btn-primary"
+                                            style={{ marginLeft: "5px" }}
+                                          >
+                                            Browse
+                                          </button> */}
+                                        </div>
+                                      )}
+                                    </div>
                                     <div className="SmallHead">Comments</div>
 
                                     <div className="container">
