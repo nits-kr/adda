@@ -7,8 +7,6 @@ import Navbar from "../Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload, faComment } from "@fortawesome/free-solid-svg-icons";
 import { useGetAllPostGovernerQuery } from "../../services/Post";
-import ProgressBar from "../ProgressBar";
-
 function AdgeQuestions() {
   const [yesbutton1, setYesbutton1] = useState();
   const [yesbutton2, setYesbutton2] = useState();
@@ -257,7 +255,7 @@ function AdgeQuestions() {
         <div className="container-fluid">
           <div className="card  StaticCard">
             <div className="card-body">
-              <ProgressBar />
+              {/* <ProgressBar /> */}
             </div>
           </div>
         </div>
