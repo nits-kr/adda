@@ -6,7 +6,7 @@ import Home from "./components/home/Home";
 import DashboardUser from "./components/dashboardUser/DashboardUser";
 import DasboardReviewer from "./components/dashboardReviewer/DasboardReviewer";
 import AuditorQuestions from "./components/auditorQuestion/AuditorQuestions";
-import AdgeQuestions from "./components/adgeQustion/AdgeQuestions";
+// import AdgeQuestions from "./components/adgeQustion/AdgeQuestions";
 import Header from "./components/Header";
 import AuditReport from "./report/AuditReport";
 import Rles from "./components/role/Rles";
@@ -44,12 +44,12 @@ function App() {
             element={<AuditorQuestions2 />}
           />
           {/* <AuditorQuestions2/> */}
-          <Route
+          {/* <Route
             exact
             className="active"
             path="/adge-question"
             element={<AdgeQuestions />}
-          />
+          /> */}
           <Route
             exact
             className="active"
