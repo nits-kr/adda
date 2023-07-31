@@ -217,6 +217,18 @@ export const PostApi = createApi({
         };
       },
     }),
+    AddCommentsAdda: builder.mutation({
+      query: (body) => {
+        console.log("update address", body);
+        const { id, ...data } = body;
+        console.log("update address body data", data);
+        return {
+          url: `/adda/add-comment/${id}`,
+          method: "post",
+          body: data,
+        };
+      },
+    }),
   }),
 });
 
@@ -244,4 +256,5 @@ export const {
   useAddApproveMutation,
   useQuestionListMutation,
   useUpdateQuestionListMutation,
+  useAddCommentsAddaMutation,
 } = PostApi;

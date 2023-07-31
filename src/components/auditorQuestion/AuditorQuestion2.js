@@ -8,14 +8,13 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-
 import Header from "../Header";
 import Navbar from "../Navbar";
 import Swal from "sweetalert2";
-
 import { useAddApproveMutation } from "../../services/Post";
 import { useQuestionListMutation } from "../../services/Post";
 import { useUpdateQuestionListMutation } from "../../services/Post";
+import { useAddCommentsAddaMutation } from "../../services/Post";
 function AuditorQuestions2() {
   const { id } = useParams();
   console.log("id 5667", id);
@@ -27,6 +26,7 @@ function AuditorQuestions2() {
 
   const [approveIn, response] = useAddApproveMutation();
   const [updateQuestion, resInfo] = useUpdateQuestionListMutation();
+  const [addComment, res] = useUpdateQuestionListMutation();
   const [questionList, re] = useQuestionListMutation();
   const [generatedId, setGeneratedId] = useState("");
   const [activeStep, setActiveStep] = useState(1);
@@ -92,6 +92,7 @@ function AuditorQuestions2() {
   const [qyesbuttonValue5, qsetYesbuttonValue5] = useState("");
   const [qyesbuttonValue6, qsetYesbuttonValue6] = useState("");
   const [qyesbuttonValue7, qsetYesbuttonValue7] = useState("");
+  const [comments11, setComments11] = useState([]);
   const [formData, setFormData] = useState([]);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -112,6 +113,12 @@ function AuditorQuestions2() {
   // const [blogList, setBlogList] = useState();
   // console.log("blog list", blogList);
   console.log("form data new", formData);
+  const handlePostComment1 = () => {
+    if (formData.comment1) {
+      setComments11([...comments11, formData.comment1]);
+      // setFormData({ ...formData, comment5: '' });
+    }
+  };
   const handlecolorchange2 = () => {
     setColorChange1(false);
     setColorChange2(true);
@@ -419,7 +426,10 @@ function AuditorQuestions2() {
       `http://ec2-65-2-108-172.ap-south-1.compute.amazonaws.com:5000/adda/update-question/${id}`
     );
     setAgentDetails2(data?.results?.updateData);
-    console.log(" auditor question Question Details", data?.results?.updateData);
+    console.log(
+      " auditor question Question Details",
+      data?.results?.updateData
+    );
   };
 
   const handleSetData = async (data) => {
@@ -430,240 +440,75 @@ function AuditorQuestions2() {
     }
   };
   const handleOnSave = () => {
-    const data = new FormData();
-    data.append("doc1", formData?.file1);
-    data.append(
-      "status1",
-      yesbuttonValue1 ? yesbuttonValue1 : agentDetails?.status1
-    );
-    data.append("comment1", formData?.comment1);
-    data.append("doc2", formData?.file2);
-    data.append(
-      "status2",
-      yesbuttonValue2 ? yesbuttonValue2 : agentDetails?.status2
-    );
-    data.append("comment2", formData?.comment2);
-    data.append("doc3", formData?.file3);
-    data.append(
-      "status3",
-      yesbuttonValue3 ? yesbuttonValue3 : agentDetails?.status3
-    );
-    data.append("comment3", formData?.comment3);
-    data.append("doc4", formData?.file4);
-    data.append(
-      "status4",
-      yesbuttonValue4 ? yesbuttonValue4 : agentDetails?.status4
-    );
-    data.append("comment4", formData?.comment4);
-    data.append("doc5", formData?.file5);
-    data.append(
-      "status5",
-      yesbuttonValue5 ? yesbuttonValue5 : agentDetails?.status5
-    );
-    data.append("comment5", formData?.comment5);
-    data.append("doc6", formData?.file6);
-    data.append(
-      "status6",
-      yesbuttonValue6 ? yesbuttonValue6 : agentDetails?.status6
-    );
-    data.append("comment6", formData?.comment6);
-    data.append("doc7", formData?.file7);
-    data.append(
-      "status7",
-      yesbuttonValue7 ? yesbuttonValue7 : agentDetails?.status7
-    );
-    data.append("comment7", formData?.comment7);
-    data.append("qdoc1", formData?.qfile1);
-    data.append(
-      "qstatus1",
-      qyesbuttonValue1 ? qyesbuttonValue1 : agentDetails?.qstatus1
-    );
-    data.append("qcomment1", formData?.qcomment1);
-    data.append("qdoc2", formData?.qfile2);
-    data.append(
-      "qstatus2",
-      qyesbuttonValue2 ? qyesbuttonValue2 : agentDetails?.qstatus2
-    );
-    data.append("qcomment2", formData?.qcomment2);
-    data.append("qdoc3", formData?.qfile3);
-    data.append(
-      "qstatus3",
-      qyesbuttonValue3 ? qyesbuttonValue3 : agentDetails?.qstatus3
-    );
-    data.append("qcomment3", formData?.qcomment3);
-    data.append("qdoc4", formData?.qfile4);
-    data.append(
-      "qstatus4",
-      qyesbuttonValue4 ? qyesbuttonValue4 : agentDetails?.qstatus4
-    );
-    data.append("qcomment4", formData?.qcomment4);
-    data.append("qdoc5", formData?.qfile5);
-    data.append(
-      "qstatus5",
-      qyesbuttonValue5 ? qyesbuttonValue5 : agentDetails?.qstatus5
-    );
-    data.append("qcomment5", formData?.qcomment5);
-    data.append("qdoc6", formData?.qfile6);
-    data.append(
-      "qstatus6",
-      qyesbuttonValue6 ? qyesbuttonValue6 : agentDetails?.qstatus6
-    );
-    data.append("qcomment6", formData?.qcomment6);
-    data.append("qdoc7", formData?.qfile7);
-    data.append(
-      "qstatus7",
-      qyesbuttonValue7 ? qyesbuttonValue7 : agentDetails?.qstatus7
-    );
-    data.append("qcomment7", formData?.qcomment7);
-    // data.append("adge_Id", generatedId);
+    const data = {
+      addaComment1: formData?.comment1,
+      addaComment2: formData?.comment2,
+      addaComment3: formData?.comment3,
+      addaComment4: formData?.comment4,
+      addaComment5: formData?.comment5,
+      addaComment6: formData?.comment6,
+      addaComment7: formData?.comment7,
+      addaComment8: formData?.comment8,
+      addaComment9: formData?.comment9,
+      addaComment10: formData?.comment10,
+      addaComment11: formData?.comment11,
+      addaComment12: formData?.comment12,
+      addaComment13: formData?.comment13,
+      addaComment14: formData?.comment14,
+    };
+    console.log("adda data 4567", data);
     axios
       .post(
-        `http://ec2-65-2-108-172.ap-south-1.compute.amazonaws.com:5000/adda/submit-data/${id}`,
+        `http://ec2-65-2-108-172.ap-south-1.compute.amazonaws.com:5000/adda/add-comment/${id}`,
         data
       )
       .then(async (response) => {
-        setFormData(response?.data?.results?.data);
-        await handleSetData(response?.data?.results?.data);
-        console.log(response?.data?.results?.data);
+        setFormData(response?.data?.results?.updatedata);
+        await handleSetData(response?.data?.results?.updatedata);
+        console.log(
+          "response?.data?.results?.updatedata",
+          response?.data?.results?.updatedata
+        );
       })
       .catch((error) => {
         console.log(error.response.data);
       });
   };
-  const handleOnSave1 = () => {
-    const data = new FormData();
-    data.append("doc1", formData?.file1 ? formData?.file1 : agentDetails?.doc1);
-    data.append(
-      "status1",
-      yesbuttonValue1 ? yesbuttonValue1 : agentDetails?.status1
-    );
-    data.append("comment1", formData?.comment1);
-    data.append("doc2", formData?.file2 ? formData?.file2 : agentDetails?.doc2);
-    data.append(
-      "status2",
-      yesbuttonValue2 ? yesbuttonValue2 : agentDetails?.status2
-    );
-    data.append("comment2", formData?.comment2);
-    data.append("doc3", formData?.file3 ? formData?.file3 : agentDetails?.doc3);
-    data.append(
-      "status3",
-      yesbuttonValue3 ? yesbuttonValue3 : agentDetails?.status3
-    );
-    data.append("comment3", formData?.comment3);
-    data.append("doc4", formData?.file4 ? formData?.file4 : agentDetails?.doc4);
-    data.append(
-      "status4",
-      yesbuttonValue4 ? yesbuttonValue4 : agentDetails?.status4
-    );
-    data.append("comment4", formData?.comment4);
-    data.append("doc5", formData?.file5 ? formData?.file5 : agentDetails?.doc5);
-    data.append(
-      "status5",
-      yesbuttonValue5 ? yesbuttonValue5 : agentDetails?.status5
-    );
-    data.append("comment5", formData?.comment5);
-    data.append("doc6", formData?.file6 ? formData?.file6 : agentDetails?.doc6);
-    data.append(
-      "status6",
-      yesbuttonValue6 ? yesbuttonValue6 : agentDetails?.status6
-    );
-    data.append("comment6", formData?.comment6);
-    data.append("doc7", formData?.file7 ? formData?.file7 : agentDetails?.doc7);
-    data.append(
-      "status7",
-      yesbuttonValue7 ? yesbuttonValue7 : agentDetails?.status7
-    );
-    data.append("comment7", formData?.comment7);
-    data.append(
-      "qdoc1",
-      formData?.qfile1 ? formData?.qfile1 : agentDetails?.qdoc1
-    );
-    data.append(
-      "qstatus1",
-      qyesbuttonValue1 ? qyesbuttonValue1 : agentDetails?.qstatus1
-    );
-    data.append("qcomment1", formData?.qcomment1);
-    data.append(
-      "qdoc2",
-      formData?.qfile2 ? formData?.qfile2 : agentDetails?.qdoc2
-    );
-    data.append(
-      "qstatus2",
-      qyesbuttonValue2 ? qyesbuttonValue2 : agentDetails?.qstatus2
-    );
-    data.append("qcomment2", formData?.qcomment2);
-    data.append(
-      "qdoc3",
-      formData?.qfile3 ? formData?.qfile3 : agentDetails?.qdoc3
-    );
-    data.append(
-      "qstatus3",
-      qyesbuttonValue3 ? qyesbuttonValue3 : agentDetails?.qstatus3
-    );
-    data.append("qcomment3", formData?.qcomment3);
-    data.append(
-      "qdoc4",
-      formData?.qfile4 ? formData?.qfile4 : agentDetails?.qdoc4
-    );
-    data.append(
-      "qstatus4",
-      qyesbuttonValue4 ? qyesbuttonValue4 : agentDetails?.qstatus4
-    );
-    data.append("qcomment4", formData?.qcomment4);
-    data.append(
-      "qdoc5",
-      formData?.qfile5 ? formData?.qfile5 : agentDetails?.qdoc5
-    );
-    data.append(
-      "qstatus5",
-      qyesbuttonValue5 ? qyesbuttonValue5 : agentDetails?.qstatus5
-    );
-    data.append("qcomment5", formData?.qcomment5);
-    data.append(
-      "qdoc6",
-      formData?.qfile6 ? formData?.qfile6 : agentDetails?.qdoc6
-    );
-    data.append(
-      "qstatus6",
-      qyesbuttonValue6 ? qyesbuttonValue6 : agentDetails?.qstatus6
-    );
-    data.append("qcomment6", formData?.qcomment6);
-    data.append(
-      "qdoc7",
-      formData?.qfile7 ? formData?.qfile7 : agentDetails?.qdoc7
-    );
-    data.append(
-      "qstatus7",
-      qyesbuttonValue7 ? qyesbuttonValue7 : agentDetails?.qstatus7
-    );
-    data.append("qcomment7", formData?.qcomment7);
-    axios
-      .post(
-        `http://ec2-65-2-108-172.ap-south-1.compute.amazonaws.com:5000/adda/submit-data/${id}`,
-        data
-      )
-      .then(async (response) => {
-        setFormData(response?.data?.results?.data);
-        await handleSetData(response?.data?.results?.data);
-        console.log(response?.data?.results?.data);
-        Swal.fire({
-          title: "Question Saved!",
-          text: "Your question has been created successfully.",
-          icon: "success",
-          confirmButtonColor: "#3085d6",
-          confirmButtonText: "OK",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            // window.location.reload(); // refresh the page after success message is closed
-            navigate("/home");
-          }
-        });
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-      });
-  };
-
+  // const handleSaveChanges4 = async () => {
+  //   // const acceptValue = acceptbutton1 ? "Rejected" : "Accepted";
+  //   console.log("handleSaveChanges1", itemId);
+  //   const editAddress = {
+  //     id: id,
+  //     addaComment1: formData?.comment1,
+  //     addaComment2: formData?.comment2,
+  //     addaComment3: formData?.comment3,
+  //     addaComment4: formData?.comment4,
+  //     addaComment5: formData?.comment5,
+  //     addaComment6: formData?.comment6,
+  //     addaComment7: formData?.comment7,
+  //     addaComment8: formData?.comment8,
+  //     addaComment9: formData?.comment9,
+  //     addaComment10: formData?.comment10,
+  //     addaComment11: formData?.comment11,
+  //     addaComment12: formData?.comment12,
+  //     addaComment13: formData?.comment13,
+  //     addaComment14: formData?.comment14,
+  //   };
+  //   await updateQuestion(editAddress).then(() => {
+  //     Swal.fire({
+  //       title: "Accepted!",
+  //       text: " Question Accepted.",
+  //       icon: "success",
+  //       showCancelButton: false,
+  //       confirmButtonColor: "#3085d6",
+  //       confirmButtonText: "OK",
+  //     }).then((result) => {
+  //       if (result.isConfirmed) {
+  //         window.location.href = "/home";
+  //       }
+  //     });
+  //   });
+  // };
   return (
     <>
       <Header />
@@ -1021,10 +866,9 @@ function AuditorQuestions2() {
                                           type="button"
                                           className={
                                             colorChange1 ||
-                                                    agentDetails?.accept1 ===
-                                                      "Accepted"
-                                                      ? "btn btn-primary"
-                                                      : "btn btn-secondary"
+                                            agentDetails?.accept1 === "Accepted"
+                                              ? "btn btn-primary"
+                                              : "btn btn-secondary"
                                           }
                                           // onClick={() => {
                                           //   setAcceptbutton1(true);
@@ -1032,16 +876,21 @@ function AuditorQuestions2() {
                                           //   // handleSaveChanges3();
                                           // }}
                                         >
-                                          {agentDetails?.accept1 === "Accepted" ? <><FontAwesomeIcon icon={faCheck} />
-                                          Accept </> : "Accept"}
-                                          
+                                          {agentDetails?.accept1 ===
+                                          "Accepted" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faCheck} />
+                                              Accept{" "}
+                                            </>
+                                          ) : (
+                                            "Accept"
+                                          )}
                                         </button>
                                         <button
                                           type="button"
                                           className={
                                             colorChange2 ||
-                                            agentDetails?.accept1 ===
-                                              "Rejected"
+                                            agentDetails?.accept1 === "Rejected"
                                               ? "btn btn-danger"
                                               : "btn btn-secondary"
                                           }
@@ -1051,8 +900,15 @@ function AuditorQuestions2() {
                                           //   // handleSaveChanges3();
                                           // }}
                                         >
-                                          {agentDetails?.accept1 === "Rejected" ? <><FontAwesomeIcon icon={faXmark} />
-                                          Reject </> : "Reject"}
+                                          {agentDetails?.accept1 ===
+                                          "Rejected" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faXmark} />
+                                              Reject{" "}
+                                            </>
+                                          ) : (
+                                            "Reject"
+                                          )}
                                         </button>
                                       </div>
                                     </div>
@@ -1067,15 +923,12 @@ function AuditorQuestions2() {
                                         <p className="w-100">
                                           {agentDetails &&
                                           (agentDetails.doc1 === "" ||
-                                            agentDetails.doc1 ===
-                                              "undefined") ? (
-                                            "File Not Uploaded"
-                                          ) : (
-                                            agentDetails?.doc1 ||
-                                            (formData?.file1?.length
-                                              ? ""
-                                              : "No document uploaded.")
-                                          )}
+                                            agentDetails.doc1 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails?.doc1 ||
+                                              (formData?.file1?.length
+                                                ? ""
+                                                : "No document uploaded.")}
                                           <Link
                                             to={agentDetails?.doc1 || "#"} // Replace "#" with the default link if needed.
                                             className={
@@ -1102,11 +955,12 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                              {agentDetails &&
-                                          (agentDetails.comment1 === "" ||
-                                            agentDetails.comment1 === "undefined")
-                                            ? "No comment"
-                                            : agentDetails.comment1}
+                                                {agentDetails &&
+                                                (agentDetails.comment1 === "" ||
+                                                  agentDetails.comment1 ===
+                                                    "undefined")
+                                                  ? "No comment"
+                                                  : agentDetails.comment1}
                                               </span>{" "}
                                             </div>
                                             {/* <div className="float-end">
@@ -1122,7 +976,7 @@ function AuditorQuestions2() {
                                             </div> */}
                                           </div>
                                         </div>
-                                        {/* <div className="body_comment">
+                                        <div className="body_comment">
                                           <div className="row">
                                             <div className="avatar_comment col-md-1">
                                               {" "}
@@ -1135,7 +989,10 @@ function AuditorQuestions2() {
                                               <textarea
                                                 className="commentar"
                                                 placeholder="Add a comment..."
-                                                defaultValue={""}
+                                                name="comment1"
+                                                // defaultValue={""}
+                                                value={formData?.comment1}
+                                                onChange={handleInputChange}
                                               />
                                               <div className="box_post">
                                                 <div className="pull-right">
@@ -1149,9 +1006,11 @@ function AuditorQuestions2() {
                                                     <i className="fa fa-caret-down" />{" "}
                                                   </span>
                                                   <button
-                                                    
                                                     type="button"
                                                     value={1}
+                                                    onClick={
+                                                      handlePostComment1
+                                                    }
                                                   >
                                                     Post
                                                   </button>
@@ -1173,15 +1032,24 @@ function AuditorQuestions2() {
                                                   />{" "}
                                                 </div>
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  <h4>
+                                                    ADGE
+                                                  </h4>
                                                   <p>
-                                                    {agentDetails?.comment1}
+                                                    {agentDetails &&
+                                                    (agentDetails?.comment1 ===
+                                                      "" ||
+                                                      agentDetails?.comment1 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.comment1}
                                                   </p>
                                                   <div className="tools_comment">
                                                     {" "}
                                                     <Link
                                                       className="like"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Like
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -1190,7 +1058,8 @@ function AuditorQuestions2() {
                                                     </span>{" "}
                                                     <Link
                                                       className="replay"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Reply
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -1217,20 +1086,32 @@ function AuditorQuestions2() {
                                                         />{" "}
                                                       </div>
                                                       <div className="result_comment col-md-11">
-                                                        <h4>Sugito</h4>
+                                                        <h4>ADDA</h4>
                                                         <p>
-                                                          Lorem Ipsum is simply
-                                                          dummy text of the
-                                                          printing and
-                                                          typesetting industry.
-                                                          Lorem Ipsum has been
-                                                          the industry's.
+                                                        {/* {comments11.length}{" "} */}
+                                                            {/* {comments11.length ===
+                                                            1
+                                                              ? "comment"
+                                                              : "comments"} */}
+                                                          <ul>
+                                                            {comments11.map(
+                                                              (
+                                                                comment,
+                                                                index
+                                                              ) => (
+                                                                <li key={index}>
+                                                                  {comment}
+                                                                </li>
+                                                              )
+                                                            )}
+                                                          </ul>
                                                         </p>
                                                         <div className="tools_comment">
                                                           {" "}
                                                           <Link
                                                             className="like"
-                                                            to="#">
+                                                            to="#"
+                                                          >
                                                             Like
                                                           </Link>{" "}
                                                           <span aria-hidden="true">
@@ -1239,7 +1120,74 @@ function AuditorQuestions2() {
                                                           </span>{" "}
                                                           <Link
                                                             className="replay"
-                                                            to="#">
+                                                            to="#"
+                                                          >
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                  </ul>
+                                                  <ul className="child_replay">
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>Auditor</h4>
+                                                        <p>
+                                                        {/* {comments11.length}{" "} */}
+                                                            {/* {comments11.length ===
+                                                            1
+                                                              ? "comment"
+                                                              : "comments"} */}
+                                                          <ul>
+                                                            {comments11.map(
+                                                              (
+                                                                comment,
+                                                                index
+                                                              ) => (
+                                                                <li key={index}>
+                                                                  {comment}
+                                                                </li>
+                                                              )
+                                                            )}
+                                                          </ul>
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#"
+                                                          >
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#"
+                                                          >
                                                             Reply
                                                           </Link>{" "}
                                                           <span aria-hidden="true">
@@ -1263,7 +1211,7 @@ function AuditorQuestions2() {
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -1272,7 +1220,7 @@ function AuditorQuestions2() {
                                                   />{" "}
                                                 </div>
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Gung Wah</h4>
+                                                  <h4>Auditor</h4>
                                                   <p>
                                                     Lorem Ipsum is simply dummy
                                                     text of the printing and
@@ -1284,7 +1232,8 @@ function AuditorQuestions2() {
                                                     {" "}
                                                     <Link
                                                       className="like"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Like
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -1293,7 +1242,8 @@ function AuditorQuestions2() {
                                                     </span>{" "}
                                                     <Link
                                                       className="replay"
-                                                      to="#">
+                                                      to="#"
+                                                    >
                                                       Reply
                                                     </Link>{" "}
                                                     <span aria-hidden="true">
@@ -1312,10 +1262,10 @@ function AuditorQuestions2() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
-                                        </div> */}
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -1467,8 +1417,7 @@ function AuditorQuestions2() {
                                           type="button"
                                           className={
                                             colorChange3 ||
-                                            agentDetails?.accept2 ===
-                                              "Accepted"
+                                            agentDetails?.accept2 === "Accepted"
                                               ? "btn btn-primary"
                                               : "btn btn-secondary"
                                           }
@@ -1477,25 +1426,38 @@ function AuditorQuestions2() {
                                           //   handlecolorchange3();
                                           // }}
                                         >
-                                          {agentDetails?.accept2 === "Accepted" ? <><FontAwesomeIcon icon={faCheck} />
-                                          Accept </> : "Accept"}
+                                          {agentDetails?.accept2 ===
+                                          "Accepted" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faCheck} />
+                                              Accept{" "}
+                                            </>
+                                          ) : (
+                                            "Accept"
+                                          )}
                                         </button>
                                         <button
                                           type="button"
                                           className={
                                             colorChange4 ||
-                                                    agentDetails?.accept2 ===
-                                                      "Rejected"
-                                                      ? "btn btn-danger"
-                                                      : "btn btn-secondary"
+                                            agentDetails?.accept2 === "Rejected"
+                                              ? "btn btn-danger"
+                                              : "btn btn-secondary"
                                           }
                                           // onClick={() => {
                                           //   // setAcceptbutton2(false);
                                           //   handlecolorchange4();
                                           // }}
                                         >
-                                          {agentDetails?.accept2 === "Rejected" ? <><FontAwesomeIcon icon={faXmark} />
-                                          Reject </> : "Reject"}
+                                          {agentDetails?.accept2 ===
+                                          "Rejected" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faXmark} />
+                                              Reject{" "}
+                                            </>
+                                          ) : (
+                                            "Reject"
+                                          )}
                                         </button>
                                       </div>
                                     </div>
@@ -1510,15 +1472,12 @@ function AuditorQuestions2() {
                                         <p className="w-100">
                                           {agentDetails &&
                                           (agentDetails.doc2 === "" ||
-                                            agentDetails.doc2 ===
-                                              "undefined") ? (
-                                            "File Not Uploaded"
-                                          ) : (
-                                            agentDetails?.doc2 ||
-                                            (formData?.file2?.length
-                                              ? ""
-                                              : "No document uploaded.")
-                                          )}
+                                            agentDetails.doc2 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails?.doc2 ||
+                                              (formData?.file2?.length
+                                                ? ""
+                                                : "No document uploaded.")}
                                           <Link
                                             to={agentDetails?.doc2 || "#"} // Replace "#" with the default link if needed.
                                             className={
@@ -1546,11 +1505,12 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                              {agentDetails &&
-                                          (agentDetails.comment2 === "" ||
-                                            agentDetails.comment2 === "undefined")
-                                            ? "No Comments"
-                                            : agentDetails.comment2}
+                                                {agentDetails &&
+                                                (agentDetails.comment2 === "" ||
+                                                  agentDetails.comment2 ===
+                                                    "undefined")
+                                                  ? "No Comments"
+                                                  : agentDetails.comment2}
                                               </span>{" "}
                                             </div>
                                             {/* <div className="float-end">
@@ -1579,7 +1539,8 @@ function AuditorQuestions2() {
                                               <textarea
                                                 className="commentar"
                                                 placeholder="Add a comment..."
-                                                defaultValue={""}
+                                                value={formData?.comment2}
+                                                onChange={handleInputChange}
                                               />
                                               <div className="box_post">
                                                 <div className="pull-right">
@@ -1593,7 +1554,6 @@ function AuditorQuestions2() {
                                                     <i className="fa fa-caret-down" />{" "}
                                                   </span>
                                                   <button
-                                                    
                                                     type="button"
                                                     value={1}
                                                   >
@@ -1918,8 +1878,7 @@ function AuditorQuestions2() {
                                           type="button"
                                           className={
                                             colorChange5 ||
-                                            agentDetails?.accept3 ===
-                                              "Accepted"
+                                            agentDetails?.accept3 === "Accepted"
                                               ? "btn btn-primary"
                                               : "btn btn-secondary"
                                           }
@@ -1928,25 +1887,38 @@ function AuditorQuestions2() {
                                           //   handlecolorchange5();
                                           // }}
                                         >
-                                          {agentDetails?.accept3 === "Accepted" ? <><FontAwesomeIcon icon={faCheck} />
-                                          Accept </> : "Accept"}
+                                          {agentDetails?.accept3 ===
+                                          "Accepted" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faCheck} />
+                                              Accept{" "}
+                                            </>
+                                          ) : (
+                                            "Accept"
+                                          )}
                                         </button>
                                         <button
                                           type="button"
                                           className={
                                             colorChange6 ||
-                                                    agentDetails?.accept3 ===
-                                                      "Rejected"
-                                                      ? "btn btn-danger"
-                                                      : "btn btn-secondary"
+                                            agentDetails?.accept3 === "Rejected"
+                                              ? "btn btn-danger"
+                                              : "btn btn-secondary"
                                           }
                                           // onClick={() => {
                                           //   // setAcceptbutton3(false);
                                           //   handlecolorchange6();
                                           // }}
                                         >
-                                          {agentDetails?.accept3 === "Rejected" ? <><FontAwesomeIcon icon={faXmark} />
-                                          Reject </> : "Reject"}
+                                          {agentDetails?.accept3 ===
+                                          "Rejected" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faXmark} />
+                                              Reject{" "}
+                                            </>
+                                          ) : (
+                                            "Reject"
+                                          )}
                                         </button>
                                       </div>
                                     </div>
@@ -1955,21 +1927,18 @@ function AuditorQuestions2() {
                                     className="collapse AttachDiv"
                                     id="collapseExample3"
                                   >
-                                   <div>
+                                    <div>
                                       {" "}
                                       <div className="d-flex justify-content-center w-100">
                                         <p className="w-100">
                                           {agentDetails &&
                                           (agentDetails.doc3 === "" ||
-                                            agentDetails.doc3 ===
-                                              "undefined") ? (
-                                            "File Not Uploaded"
-                                          ) : (
-                                            agentDetails?.doc3 ||
-                                            (formData?.file3?.length
-                                              ? ""
-                                              : "No document uploaded.")
-                                          )}
+                                            agentDetails.doc3 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails?.doc3 ||
+                                              (formData?.file3?.length
+                                                ? ""
+                                                : "No document uploaded.")}
                                           <Link
                                             to={agentDetails?.doc3 || "#"} // Replace "#" with the default link if needed.
                                             className={
@@ -1997,11 +1966,12 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                              {agentDetails &&
-                                          (agentDetails.comment3 === "" ||
-                                            agentDetails.comment3 === "undefined")
-                                            ? "No Comments"
-                                            : agentDetails.comment3}
+                                                {agentDetails &&
+                                                (agentDetails.comment3 === "" ||
+                                                  agentDetails.comment3 ===
+                                                    "undefined")
+                                                  ? "No Comments"
+                                                  : agentDetails.comment3}
                                               </span>{" "}
                                             </div>
                                             {/* <div className="float-end">
@@ -2384,35 +2354,47 @@ function AuditorQuestions2() {
                                           type="button"
                                           className={
                                             colorChange7 ||
-                                                    agentDetails?.accept4 ===
-                                                      "Accepted"
-                                                      ? "btn btn-primary"
-                                                      : "btn btn-secondary"
+                                            agentDetails?.accept4 === "Accepted"
+                                              ? "btn btn-primary"
+                                              : "btn btn-secondary"
                                           }
                                           // onClick={() => {
                                           //   // setAcceptbutton4(true);
                                           //   handlecolorchange7();
                                           // }}
                                         >
-                                          {agentDetails?.accept4 === "Accepted" ? <><FontAwesomeIcon icon={faCheck} />
-                                          Accept </> : "Accept"}
+                                          {agentDetails?.accept4 ===
+                                          "Accepted" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faCheck} />
+                                              Accept{" "}
+                                            </>
+                                          ) : (
+                                            "Accept"
+                                          )}
                                         </button>
                                         <button
                                           type="button"
                                           className={
                                             colorChange8 ||
-                                                    agentDetails?.accept4 ===
-                                                      "Rejected"
-                                                      ? "btn btn-danger"
-                                                      : "btn btn-secondary"
+                                            agentDetails?.accept4 === "Rejected"
+                                              ? "btn btn-danger"
+                                              : "btn btn-secondary"
                                           }
                                           // onClick={() => {
                                           //   // setAcceptbutton4(false);
                                           //   handlecolorchange8();
                                           // }}
                                         >
-                                          {agentDetails?.accept4 === "Rejected" ? <><FontAwesomeIcon icon={faXmark} />
-                                          Reject </> : "Reject"}
+                                          {agentDetails?.accept4 ===
+                                          "Rejected" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faXmark} />
+                                              Reject{" "}
+                                            </>
+                                          ) : (
+                                            "Reject"
+                                          )}
                                         </button>
                                       </div>
                                     </div>
@@ -2427,15 +2409,12 @@ function AuditorQuestions2() {
                                         <p className="w-100">
                                           {agentDetails &&
                                           (agentDetails.doc4 === "" ||
-                                            agentDetails.doc4 ===
-                                              "undefined") ? (
-                                            "File Not Uploaded"
-                                          ) : (
-                                            agentDetails?.doc4 ||
-                                            (formData?.file4?.length
-                                              ? ""
-                                              : "No document uploaded.")
-                                          )}
+                                            agentDetails.doc4 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails?.doc4 ||
+                                              (formData?.file4?.length
+                                                ? ""
+                                                : "No document uploaded.")}
                                           <Link
                                             to={agentDetails?.doc4 || "#"} // Replace "#" with the default link if needed.
                                             className={
@@ -2463,11 +2442,12 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                              {agentDetails &&
-                                          (agentDetails.comment4 === "" ||
-                                            agentDetails.comment4 === "undefined")
-                                            ? "No Comments"
-                                            : agentDetails.comment4}
+                                                {agentDetails &&
+                                                (agentDetails.comment4 === "" ||
+                                                  agentDetails.comment4 ===
+                                                    "undefined")
+                                                  ? "No Comments"
+                                                  : agentDetails.comment4}
                                               </span>{" "}
                                             </div>
                                             {/* <div className="float-end">
@@ -2830,8 +2810,7 @@ function AuditorQuestions2() {
                                           type="button"
                                           className={
                                             colorChange9 ||
-                                            agentDetails?.accept5 ===
-                                              "Accepted"
+                                            agentDetails?.accept5 === "Accepted"
                                               ? "btn btn-primary"
                                               : "btn btn-secondary"
                                           }
@@ -2840,25 +2819,38 @@ function AuditorQuestions2() {
                                           //   handlecolorchange9();
                                           // }}
                                         >
-                                          {agentDetails?.accept5 === "Accepted" ? <><FontAwesomeIcon icon={faCheck} />
-                                          Accept </> : "Accept"}
+                                          {agentDetails?.accept5 ===
+                                          "Accepted" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faCheck} />
+                                              Accept{" "}
+                                            </>
+                                          ) : (
+                                            "Accept"
+                                          )}
                                         </button>
                                         <button
                                           type="button"
                                           className={
                                             colorChange10 ||
-                                                    agentDetails?.accept5 ===
-                                                      "Rejected"
-                                                      ? "btn btn-danger"
-                                                      : "btn btn-secondary"
+                                            agentDetails?.accept5 === "Rejected"
+                                              ? "btn btn-danger"
+                                              : "btn btn-secondary"
                                           }
                                           // onClick={() => {
                                           //   // setAcceptbutton5(false);
                                           //   handlecolorchange10();
                                           // }}
                                         >
-                                          {agentDetails?.accept5 === "Rejected" ? <><FontAwesomeIcon icon={faXmark} />
-                                          Reject </> : "Reject"}
+                                          {agentDetails?.accept5 ===
+                                          "Rejected" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faXmark} />
+                                              Reject{" "}
+                                            </>
+                                          ) : (
+                                            "Reject"
+                                          )}
                                         </button>
                                       </div>
                                     </div>
@@ -2873,15 +2865,12 @@ function AuditorQuestions2() {
                                         <p className="w-100">
                                           {agentDetails &&
                                           (agentDetails.doc5 === "" ||
-                                            agentDetails.doc5 ===
-                                              "undefined") ? (
-                                            "File Not Uploaded"
-                                          ) : (
-                                            agentDetails?.doc5 ||
-                                            (formData?.file5?.length
-                                              ? ""
-                                              : "No document uploaded.")
-                                          )}
+                                            agentDetails.doc5 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails?.doc5 ||
+                                              (formData?.file5?.length
+                                                ? ""
+                                                : "No document uploaded.")}
                                           <Link
                                             to={agentDetails?.doc5 || "#"} // Replace "#" with the default link if needed.
                                             className={
@@ -2909,11 +2898,12 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                              {agentDetails &&
-                                          (agentDetails.comment5 === "" ||
-                                            agentDetails.comment5 === "undefined")
-                                            ? "No Comments"
-                                            : agentDetails.comment5}
+                                                {agentDetails &&
+                                                (agentDetails.comment5 === "" ||
+                                                  agentDetails.comment5 ===
+                                                    "undefined")
+                                                  ? "No Comments"
+                                                  : agentDetails.comment5}
                                               </span>{" "}
                                             </div>
                                             {/* <div className="float-end">
@@ -3280,25 +3270,30 @@ function AuditorQuestions2() {
                                           type="button"
                                           className={
                                             colorChange11 ||
-                                                    agentDetails?.accept6 ===
-                                                      "Accepted"
-                                                      ? "btn btn-primary"
-                                                      : "btn btn-secondary"
+                                            agentDetails?.accept6 === "Accepted"
+                                              ? "btn btn-primary"
+                                              : "btn btn-secondary"
                                           }
                                           // onClick={() => {
                                           //   // setAcceptbutton6(true);
                                           //   handlecolorchange11();
                                           // }}
                                         >
-                                          {agentDetails?.accept6 === "Accepted" ? <><FontAwesomeIcon icon={faCheck} />
-                                          Accept </> : "Accept"}
+                                          {agentDetails?.accept6 ===
+                                          "Accepted" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faCheck} />
+                                              Accept{" "}
+                                            </>
+                                          ) : (
+                                            "Accept"
+                                          )}
                                         </button>
                                         <button
                                           type="button"
                                           className={
                                             colorChange12 ||
-                                            agentDetails?.accept6 ===
-                                              "Rejected"
+                                            agentDetails?.accept6 === "Rejected"
                                               ? "btn btn-danger"
                                               : "btn btn-secondary"
                                           }
@@ -3307,8 +3302,15 @@ function AuditorQuestions2() {
                                           //   handlecolorchange12();
                                           // }}
                                         >
-                                          {agentDetails?.accept6 === "Rejected" ? <><FontAwesomeIcon icon={faXmark} />
-                                          Reject </> : "Reject"}
+                                          {agentDetails?.accept6 ===
+                                          "Rejected" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faXmark} />
+                                              Reject{" "}
+                                            </>
+                                          ) : (
+                                            "Reject"
+                                          )}
                                         </button>
                                       </div>
                                     </div>
@@ -3323,15 +3325,12 @@ function AuditorQuestions2() {
                                         <p className="w-100">
                                           {agentDetails &&
                                           (agentDetails.doc6 === "" ||
-                                            agentDetails.doc6 ===
-                                              "undefined") ? (
-                                            "File Not Uploaded"
-                                          ) : (
-                                            agentDetails?.doc6 ||
-                                            (formData?.file6?.length
-                                              ? ""
-                                              : "No document uploaded.")
-                                          )}
+                                            agentDetails.doc6 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails?.doc6 ||
+                                              (formData?.file6?.length
+                                                ? ""
+                                                : "No document uploaded.")}
                                           <Link
                                             to={agentDetails?.doc6 || "#"} // Replace "#" with the default link if needed.
                                             className={
@@ -3359,11 +3358,12 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                              {agentDetails &&
-                                          (agentDetails.comment6 === "" ||
-                                            agentDetails.comment6 === "undefined")
-                                            ? "No Comments"
-                                            : agentDetails.comment6}
+                                                {agentDetails &&
+                                                (agentDetails.comment6 === "" ||
+                                                  agentDetails.comment6 ===
+                                                    "undefined")
+                                                  ? "No Comments"
+                                                  : agentDetails.comment6}
                                               </span>{" "}
                                             </div>
                                             {/* <div className="float-end">
@@ -3728,8 +3728,7 @@ function AuditorQuestions2() {
                                           type="button"
                                           className={
                                             colorChange13 ||
-                                            agentDetails?.accept7 ===
-                                              "Accepted"
+                                            agentDetails?.accept7 === "Accepted"
                                               ? "btn btn-primary"
                                               : "btn btn-secondary"
                                           }
@@ -3738,25 +3737,38 @@ function AuditorQuestions2() {
                                           //   handlecolorchange13();
                                           // }}
                                         >
-                                          {agentDetails?.accept7 === "Accepted" ? <><FontAwesomeIcon icon={faCheck} />
-                                          Accept </> : "Accept"}
+                                          {agentDetails?.accept7 ===
+                                          "Accepted" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faCheck} />
+                                              Accept{" "}
+                                            </>
+                                          ) : (
+                                            "Accept"
+                                          )}
                                         </button>
                                         <button
                                           type="button"
                                           className={
                                             colorChange14 ||
-                                                    agentDetails?.accept7 ===
-                                                      "Rejected"
-                                                      ? "btn btn-danger"
-                                                      : "btn btn-secondary"
+                                            agentDetails?.accept7 === "Rejected"
+                                              ? "btn btn-danger"
+                                              : "btn btn-secondary"
                                           }
                                           // onClick={() => {
                                           //   // setAcceptbutton7(false);
                                           //   handlecolorchange14();
                                           // }}
                                         >
-                                          {agentDetails?.accept7 === "Rejected" ? <><FontAwesomeIcon icon={faXmark} />
-                                          Reject </> : "Reject"}
+                                          {agentDetails?.accept7 ===
+                                          "Rejected" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faXmark} />
+                                              Reject{" "}
+                                            </>
+                                          ) : (
+                                            "Reject"
+                                          )}
                                         </button>
                                       </div>
                                     </div>
@@ -3771,15 +3783,12 @@ function AuditorQuestions2() {
                                         <p className="w-100">
                                           {agentDetails &&
                                           (agentDetails.doc7 === "" ||
-                                            agentDetails.doc7 ===
-                                              "undefined") ? (
-                                            "File Not Uploaded"
-                                          ) : (
-                                            agentDetails?.doc7 ||
-                                            (formData?.file7?.length
-                                              ? ""
-                                              : "No document uploaded.")
-                                          )}
+                                            agentDetails.doc7 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails?.doc7 ||
+                                              (formData?.file7?.length
+                                                ? ""
+                                                : "No document uploaded.")}
                                           <Link
                                             to={agentDetails?.doc7 || "#"} // Replace "#" with the default link if needed.
                                             className={
@@ -3807,11 +3816,12 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                              {agentDetails &&
-                                          (agentDetails.comment7 === "" ||
-                                            agentDetails.comment7 === "undefined")
-                                            ? "No Comments"
-                                            : agentDetails.comment7}
+                                                {agentDetails &&
+                                                (agentDetails.comment7 === "" ||
+                                                  agentDetails.comment7 ===
+                                                    "undefined")
+                                                  ? "No Comments"
+                                                  : agentDetails.comment7}
                                               </span>{" "}
                                             </div>
                                             {/* <div className="float-end">
@@ -4298,35 +4308,49 @@ function AuditorQuestions2() {
                                           type="button"
                                           className={
                                             qcolorChange1 ||
-                                                    agentDetails?.qaccept1 ===
-                                                      "Accepted"
-                                                      ? "btn btn-primary"
-                                                      : "btn btn-secondary"
+                                            agentDetails?.qaccept1 ===
+                                              "Accepted"
+                                              ? "btn btn-primary"
+                                              : "btn btn-secondary"
                                           }
                                           // onClick={() => {
                                           //   // qsetAcceptbutton1(true);
                                           //   qhandlecolorchange1();
                                           // }}
                                         >
-                                          {agentDetails?.qaccept1 === "Accepted" ? <><FontAwesomeIcon icon={faCheck} />
-                                          Accept </> : "Accept"}
+                                          {agentDetails?.qaccept1 ===
+                                          "Accepted" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faCheck} />
+                                              Accept{" "}
+                                            </>
+                                          ) : (
+                                            "Accept"
+                                          )}
                                         </button>
                                         <button
                                           type="button"
                                           className={
                                             qcolorChange2 ||
-                                                    agentDetails?.qaccept1 ===
-                                                      "Rejected"
-                                                      ? "btn btn-danger"
-                                                      : "btn btn-secondary"
+                                            agentDetails?.qaccept1 ===
+                                              "Rejected"
+                                              ? "btn btn-danger"
+                                              : "btn btn-secondary"
                                           }
                                           // onClick={() => {
                                           //   // qsetAcceptbutton1(false);
                                           //   qhandlecolorchange2();
                                           // }}
                                         >
-                                          {agentDetails?.qaccept1 === "Rejected" ? <><FontAwesomeIcon icon={faXmark} />
-                                          Reject </> : "Reject"}
+                                          {agentDetails?.qaccept1 ===
+                                          "Rejected" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faXmark} />
+                                              Reject{" "}
+                                            </>
+                                          ) : (
+                                            "Reject"
+                                          )}
                                         </button>
                                       </div>
                                     </div>
@@ -4341,15 +4365,12 @@ function AuditorQuestions2() {
                                         <p className="w-100">
                                           {agentDetails &&
                                           (agentDetails.qdoc1 === "" ||
-                                            agentDetails.qdoc1 ===
-                                              "undefined") ? (
-                                            "File Not Uploaded"
-                                          ) : (
-                                            agentDetails?.qdoc1 ||
-                                            (formData?.qfile1?.length
-                                              ? ""
-                                              : "No document uploaded.")
-                                          )}
+                                            agentDetails.qdoc1 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails?.qdoc1 ||
+                                              (formData?.qfile1?.length
+                                                ? ""
+                                                : "No document uploaded.")}
                                           <Link
                                             to={agentDetails?.qdoc1 || "#"} // Replace "#" with the default link if needed.
                                             className={
@@ -4376,11 +4397,13 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                              {agentDetails &&
-                                          (agentDetails.qcomment1 === "" ||
-                                            agentDetails.qcomment1 === "undefined")
-                                            ? "No Comments"
-                                            : agentDetails.qcomment1}
+                                                {agentDetails &&
+                                                (agentDetails.qcomment1 ===
+                                                  "" ||
+                                                  agentDetails.qcomment1 ===
+                                                    "undefined")
+                                                  ? "No Comments"
+                                                  : agentDetails.qcomment1}
                                               </span>{" "}
                                             </div>
                                             {/* <div className="float-end">
@@ -4815,18 +4838,25 @@ function AuditorQuestions2() {
                                           type="button"
                                           className={
                                             qcolorChange3 ||
-                                                    agentDetails?.qaccept2 ===
-                                                      "Accepted"
-                                                      ? "btn btn-primary"
-                                                      : "btn btn-secondary"
+                                            agentDetails?.qaccept2 ===
+                                              "Accepted"
+                                              ? "btn btn-primary"
+                                              : "btn btn-secondary"
                                           }
                                           // onClick={() => {
                                           //   // qsetAcceptbutton2(true);
                                           //   qhandlecolorchange3();
                                           // }}
                                         >
-                                          {agentDetails?.qaccept2 === "Accepted" ? <><FontAwesomeIcon icon={faCheck} />
-                                          Accept </> : "Accept"}
+                                          {agentDetails?.qaccept2 ===
+                                          "Accepted" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faCheck} />
+                                              Accept{" "}
+                                            </>
+                                          ) : (
+                                            "Accept"
+                                          )}
                                         </button>
                                         <button
                                           type="button"
@@ -4842,8 +4872,15 @@ function AuditorQuestions2() {
                                           //   qhandlecolorchange4();
                                           // }}
                                         >
-                                          {agentDetails?.qaccept2 === "Rejected" ? <><FontAwesomeIcon icon={faXmark} />
-                                          Reject </> : "Reject"}
+                                          {agentDetails?.qaccept2 ===
+                                          "Rejected" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faXmark} />
+                                              Reject{" "}
+                                            </>
+                                          ) : (
+                                            "Reject"
+                                          )}
                                         </button>
                                       </div>
                                     </div>
@@ -4858,15 +4895,12 @@ function AuditorQuestions2() {
                                         <p className="w-100">
                                           {agentDetails &&
                                           (agentDetails.qdoc2 === "" ||
-                                            agentDetails.qdoc2 ===
-                                              "undefined") ? (
-                                            "File Not Uploaded"
-                                          ) : (
-                                            agentDetails?.qdoc2 ||
-                                            (formData?.qfile2?.length
-                                              ? ""
-                                              : "No document uploaded.")
-                                          )}
+                                            agentDetails.qdoc2 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails?.qdoc2 ||
+                                              (formData?.qfile2?.length
+                                                ? ""
+                                                : "No document uploaded.")}
                                           <Link
                                             to={agentDetails?.qdoc2 || "#"} // Replace "#" with the default link if needed.
                                             className={
@@ -4894,11 +4928,13 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                              {agentDetails &&
-                                          (agentDetails.qcomment1 === "" ||
-                                            agentDetails.qcomment1 === "undefined")
-                                            ? "No Comments"
-                                            : agentDetails.qcomment1}
+                                                {agentDetails &&
+                                                (agentDetails.qcomment1 ===
+                                                  "" ||
+                                                  agentDetails.qcomment1 ===
+                                                    "undefined")
+                                                  ? "No Comments"
+                                                  : agentDetails.qcomment1}
                                               </span>{" "}
                                             </div>
                                             {/* <div className="float-end">
@@ -5266,18 +5302,25 @@ function AuditorQuestions2() {
                                           type="button"
                                           className={
                                             qcolorChange5 ||
-                                                    agentDetails?.qaccept3 ===
-                                                      "Accepted"
-                                                      ? "btn btn-primary"
-                                                      : "btn btn-secondary"
+                                            agentDetails?.qaccept3 ===
+                                              "Accepted"
+                                              ? "btn btn-primary"
+                                              : "btn btn-secondary"
                                           }
                                           // onClick={() => {
                                           //   // qsetAcceptbutton3(true);
                                           //   qhandlecolorchange5();
                                           // }}
                                         >
-                                          {agentDetails?.qaccept3 === "Accepted" ? <><FontAwesomeIcon icon={faCheck} />
-                                          Accept </> : "Accept"}
+                                          {agentDetails?.qaccept3 ===
+                                          "Accepted" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faCheck} />
+                                              Accept{" "}
+                                            </>
+                                          ) : (
+                                            "Accept"
+                                          )}
                                         </button>
                                         <button
                                           type="button"
@@ -5293,8 +5336,15 @@ function AuditorQuestions2() {
                                           //   qhandlecolorchange6();
                                           // }}
                                         >
-                                          {agentDetails?.qaccept3 === "Rejected" ? <><FontAwesomeIcon icon={faXmark} />
-                                          Reject </> : "Reject"}
+                                          {agentDetails?.qaccept3 ===
+                                          "Rejected" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faXmark} />
+                                              Reject{" "}
+                                            </>
+                                          ) : (
+                                            "Reject"
+                                          )}
                                         </button>
                                       </div>
                                     </div>
@@ -5309,15 +5359,12 @@ function AuditorQuestions2() {
                                         <p className="w-100">
                                           {agentDetails &&
                                           (agentDetails.qdoc3 === "" ||
-                                            agentDetails.qdoc3 ===
-                                              "undefined") ? (
-                                            "File Not Uploaded"
-                                          ) : (
-                                            agentDetails?.qdoc3 ||
-                                            (formData?.qfile3?.length
-                                              ? ""
-                                              : "No document uploaded.")
-                                          )}
+                                            agentDetails.qdoc3 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails?.qdoc3 ||
+                                              (formData?.qfile3?.length
+                                                ? ""
+                                                : "No document uploaded.")}
                                           <Link
                                             to={agentDetails?.qdoc3 || "#"} // Replace "#" with the default link if needed.
                                             className={
@@ -5345,11 +5392,13 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                              {agentDetails &&
-                                          (agentDetails.qcomment3 === "" ||
-                                            agentDetails.qcomment3 === "undefined")
-                                            ? "No Comments"
-                                            : agentDetails.qcomment3}
+                                                {agentDetails &&
+                                                (agentDetails.qcomment3 ===
+                                                  "" ||
+                                                  agentDetails.qcomment3 ===
+                                                    "undefined")
+                                                  ? "No Comments"
+                                                  : agentDetails.qcomment3}
                                               </span>{" "}
                                             </div>
                                             {/* <div className="float-end">
@@ -5732,35 +5781,49 @@ function AuditorQuestions2() {
                                           type="button"
                                           className={
                                             qcolorChange7 ||
-                                                    agentDetails?.qaccept4 ===
-                                                      "Accepted"
-                                                      ? "btn btn-primary"
-                                                      : "btn btn-secondary"
+                                            agentDetails?.qaccept4 ===
+                                              "Accepted"
+                                              ? "btn btn-primary"
+                                              : "btn btn-secondary"
                                           }
                                           // onClick={() => {
                                           //   // qsetAcceptbutton4(true);
                                           //   qhandlecolorchange7();
                                           // }}
                                         >
-                                          {agentDetails?.qaccept4 === "Accepted" ? <><FontAwesomeIcon icon={faCheck} />
-                                          Accept </> : "Accept"}
+                                          {agentDetails?.qaccept4 ===
+                                          "Accepted" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faCheck} />
+                                              Accept{" "}
+                                            </>
+                                          ) : (
+                                            "Accept"
+                                          )}
                                         </button>
                                         <button
                                           type="button"
                                           className={
                                             qcolorChange8 ||
-                                                    agentDetails2?.qaccept4 ===
-                                                      "Rejected"
-                                                      ? "btn btn-danger"
-                                                      : "btn btn-secondary"
+                                            agentDetails2?.qaccept4 ===
+                                              "Rejected"
+                                              ? "btn btn-danger"
+                                              : "btn btn-secondary"
                                           }
                                           // onClick={() => {
                                           //   // qsetAcceptbutton4(false);
                                           //   qhandlecolorchange8();
                                           // }}
                                         >
-                                          {agentDetails?.qaccept4 === "Rejected" ? <><FontAwesomeIcon icon={faXmark} />
-                                          Reject </> : "Reject"}
+                                          {agentDetails?.qaccept4 ===
+                                          "Rejected" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faXmark} />
+                                              Reject{" "}
+                                            </>
+                                          ) : (
+                                            "Reject"
+                                          )}
                                         </button>
                                       </div>
                                     </div>
@@ -5775,15 +5838,12 @@ function AuditorQuestions2() {
                                         <p className="w-100">
                                           {agentDetails &&
                                           (agentDetails.qdoc4 === "" ||
-                                            agentDetails.qdoc4 ===
-                                              "undefined") ? (
-                                            "File Not Uploaded"
-                                          ) : (
-                                            agentDetails?.qdoc4 ||
-                                            (formData?.qfile4?.length
-                                              ? ""
-                                              : "No document uploaded.")
-                                          )}
+                                            agentDetails.qdoc4 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails?.qdoc4 ||
+                                              (formData?.qfile4?.length
+                                                ? ""
+                                                : "No document uploaded.")}
                                           <Link
                                             to={agentDetails?.qdoc4 || "#"} // Replace "#" with the default link if needed.
                                             className={
@@ -5811,11 +5871,13 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                              {agentDetails &&
-                                          (agentDetails.qcomment4 === "" ||
-                                            agentDetails.qcomment4 === "undefined")
-                                            ? "No Comments"
-                                            : agentDetails.qcomment4}
+                                                {agentDetails &&
+                                                (agentDetails.qcomment4 ===
+                                                  "" ||
+                                                  agentDetails.qcomment4 ===
+                                                    "undefined")
+                                                  ? "No Comments"
+                                                  : agentDetails.qcomment4}
                                               </span>{" "}
                                             </div>
                                             {/* <div className="float-end">
@@ -6178,35 +6240,49 @@ function AuditorQuestions2() {
                                           type="button"
                                           className={
                                             qcolorChange9 ||
-                                                    agentDetails?.qaccept5 ===
-                                                      "Accepted"
-                                                      ? "btn btn-primary"
-                                                      : "btn btn-secondary"
+                                            agentDetails?.qaccept5 ===
+                                              "Accepted"
+                                              ? "btn btn-primary"
+                                              : "btn btn-secondary"
                                           }
                                           // onClick={() => {
                                           //   // qsetAcceptbutton5(true);
                                           //   qhandlecolorchange9();
                                           // }}
                                         >
-                                          {agentDetails?.qaccept5 === "Accepted" ? <><FontAwesomeIcon icon={faCheck} />
-                                          Accept </> : "Accept"}
+                                          {agentDetails?.qaccept5 ===
+                                          "Accepted" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faCheck} />
+                                              Accept{" "}
+                                            </>
+                                          ) : (
+                                            "Accept"
+                                          )}
                                         </button>
                                         <button
                                           type="button"
                                           className={
                                             qcolorChange10 ||
-                                                    agentDetails?.qaccept5 ===
-                                                      "Rejected"
-                                                      ? "btn btn-danger"
-                                                      : "btn btn-secondary"
+                                            agentDetails?.qaccept5 ===
+                                              "Rejected"
+                                              ? "btn btn-danger"
+                                              : "btn btn-secondary"
                                           }
                                           // onClick={() => {
                                           //   // qsetAcceptbutton5(false);
                                           //   qhandlecolorchange10();
                                           // }}
                                         >
-                                          {agentDetails?.qaccept5 === "Rejected" ? <><FontAwesomeIcon icon={faXmark} />
-                                          Reject </> : "Reject"}
+                                          {agentDetails?.qaccept5 ===
+                                          "Rejected" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faXmark} />
+                                              Reject{" "}
+                                            </>
+                                          ) : (
+                                            "Reject"
+                                          )}
                                         </button>
                                       </div>
                                     </div>
@@ -6221,15 +6297,12 @@ function AuditorQuestions2() {
                                         <p className="w-100">
                                           {agentDetails &&
                                           (agentDetails.qdoc5 === "" ||
-                                            agentDetails.qdoc5 ===
-                                              "undefined") ? (
-                                            "File Not Uploaded"
-                                          ) : (
-                                            agentDetails?.qdoc5 ||
-                                            (formData?.qfile5?.length
-                                              ? ""
-                                              : "No document uploaded.")
-                                          )}
+                                            agentDetails.qdoc5 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails?.qdoc5 ||
+                                              (formData?.qfile5?.length
+                                                ? ""
+                                                : "No document uploaded.")}
                                           <Link
                                             to={agentDetails?.qdoc5 || "#"} // Replace "#" with the default link if needed.
                                             className={
@@ -6257,11 +6330,13 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                              {agentDetails &&
-                                          (agentDetails.qcomment5 === "" ||
-                                            agentDetails.qcomment5 === "undefined")
-                                            ? "No Comments"
-                                            : agentDetails.qcomment5}
+                                                {agentDetails &&
+                                                (agentDetails.qcomment5 ===
+                                                  "" ||
+                                                  agentDetails.qcomment5 ===
+                                                    "undefined")
+                                                  ? "No Comments"
+                                                  : agentDetails.qcomment5}
                                               </span>{" "}
                                             </div>
                                             {/* <div className="float-end">
@@ -6628,35 +6703,49 @@ function AuditorQuestions2() {
                                           type="button"
                                           className={
                                             qcolorChange11 ||
-                                                    agentDetails?.qaccept6 ===
-                                                      "Accepted"
-                                                      ? "btn btn-primary"
-                                                      : "btn btn-secondary"
+                                            agentDetails?.qaccept6 ===
+                                              "Accepted"
+                                              ? "btn btn-primary"
+                                              : "btn btn-secondary"
                                           }
                                           // onClick={() => {
                                           //   // qsetAcceptbutton6(true);
                                           //   qhandlecolorchange11();
                                           // }}
                                         >
-                                          {agentDetails?.qaccept6 === "Accepted" ? <><FontAwesomeIcon icon={faCheck} />
-                                          Accept </> : "Accept"}
+                                          {agentDetails?.qaccept6 ===
+                                          "Accepted" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faCheck} />
+                                              Accept{" "}
+                                            </>
+                                          ) : (
+                                            "Accept"
+                                          )}
                                         </button>
                                         <button
                                           type="button"
                                           className={
                                             qcolorChange12 ||
-                                                    agentDetails?.qaccept6 ===
-                                                      "Rejected"
-                                                      ? "btn btn-danger"
-                                                      : "btn btn-secondary"
+                                            agentDetails?.qaccept6 ===
+                                              "Rejected"
+                                              ? "btn btn-danger"
+                                              : "btn btn-secondary"
                                           }
                                           // onClick={() => {
                                           //   // qsetAcceptbutton6(false);
                                           //   qhandlecolorchange12();
                                           // }}
                                         >
-                                          {agentDetails?.qaccept6 === "Rejected" ? <><FontAwesomeIcon icon={faXmark} />
-                                          Reject </> : "Reject"}
+                                          {agentDetails?.qaccept6 ===
+                                          "Rejected" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faXmark} />
+                                              Reject{" "}
+                                            </>
+                                          ) : (
+                                            "Reject"
+                                          )}
                                         </button>
                                       </div>
                                     </div>
@@ -6671,15 +6760,12 @@ function AuditorQuestions2() {
                                         <p className="w-100">
                                           {agentDetails &&
                                           (agentDetails.qdoc6 === "" ||
-                                            agentDetails.qdoc6 ===
-                                              "undefined") ? (
-                                            "File Not Uploaded"
-                                          ) : (
-                                            agentDetails?.qdoc6 ||
-                                            (formData?.qfile6?.length
-                                              ? ""
-                                              : "No document uploaded.")
-                                          )}
+                                            agentDetails.qdoc6 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails?.qdoc6 ||
+                                              (formData?.qfile6?.length
+                                                ? ""
+                                                : "No document uploaded.")}
                                           <Link
                                             to={agentDetails?.qdoc6 || "#"} // Replace "#" with the default link if needed.
                                             className={
@@ -6707,11 +6793,13 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                              {agentDetails &&
-                                          (agentDetails.qcomment6 === "" ||
-                                            agentDetails.qcomment6 === "undefined")
-                                            ? "No Comments"
-                                            : agentDetails.qcomment6}
+                                                {agentDetails &&
+                                                (agentDetails.qcomment6 ===
+                                                  "" ||
+                                                  agentDetails.qcomment6 ===
+                                                    "undefined")
+                                                  ? "No Comments"
+                                                  : agentDetails.qcomment6}
                                               </span>{" "}
                                             </div>
                                             {/* <div className="float-end">
@@ -7076,35 +7164,49 @@ function AuditorQuestions2() {
                                           type="button"
                                           className={
                                             qcolorChange13 ||
-                                                    agentDetails?.qaccept7 ===
-                                                      "Accepted"
-                                                      ? "btn btn-primary"
-                                                      : "btn btn-secondary"
+                                            agentDetails?.qaccept7 ===
+                                              "Accepted"
+                                              ? "btn btn-primary"
+                                              : "btn btn-secondary"
                                           }
                                           // onClick={() => {
                                           //   // qsetAcceptbutton7(true);
                                           //   qhandlecolorchange13();
                                           // }}
                                         >
-                                          {agentDetails?.qaccept7 === "Accepted" ? <><FontAwesomeIcon icon={faCheck} />
-                                          Accept </> : "Accept"}
+                                          {agentDetails?.qaccept7 ===
+                                          "Accepted" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faCheck} />
+                                              Accept{" "}
+                                            </>
+                                          ) : (
+                                            "Accept"
+                                          )}
                                         </button>
                                         <button
                                           type="button"
                                           className={
                                             qcolorChange14 ||
-                                                    agentDetails?.qaccept7 ===
-                                                      "Rejected"
-                                                      ? "btn btn-danger"
-                                                      : "btn btn-secondary"
+                                            agentDetails?.qaccept7 ===
+                                              "Rejected"
+                                              ? "btn btn-danger"
+                                              : "btn btn-secondary"
                                           }
                                           // onClick={() => {
                                           //   // qsetAcceptbutton7(false);
                                           //   qhandlecolorchange14();
                                           // }}
                                         >
-                                          {agentDetails?.qaccept7 === "Rejected" ? <><FontAwesomeIcon icon={faXmark} />
-                                          Reject </> : "Reject"}
+                                          {agentDetails?.qaccept7 ===
+                                          "Rejected" ? (
+                                            <>
+                                              <FontAwesomeIcon icon={faXmark} />
+                                              Reject{" "}
+                                            </>
+                                          ) : (
+                                            "Reject"
+                                          )}
                                         </button>
                                       </div>
                                     </div>
@@ -7119,15 +7221,12 @@ function AuditorQuestions2() {
                                         <p className="w-100">
                                           {agentDetails &&
                                           (agentDetails.qdoc7 === "" ||
-                                            agentDetails.qdoc7 ===
-                                              "undefined") ? (
-                                            "File Not Uploaded"
-                                          ) : (
-                                            agentDetails?.qdoc7 ||
-                                            (formData?.qfile7?.length
-                                              ? ""
-                                              : "No document uploaded.")
-                                          )}
+                                            agentDetails.qdoc7 === "undefined")
+                                            ? "File Not Uploaded"
+                                            : agentDetails?.qdoc7 ||
+                                              (formData?.qfile7?.length
+                                                ? ""
+                                                : "No document uploaded.")}
                                           <Link
                                             to={agentDetails?.qdoc7 || "#"} // Replace "#" with the default link if needed.
                                             className={
@@ -7155,11 +7254,13 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
-                                              {agentDetails &&
-                                          (agentDetails.qcomment7 === "" ||
-                                            agentDetails.qcomment7 === "undefined")
-                                            ? "No Comments"
-                                            : agentDetails.qcomment7}
+                                                {agentDetails &&
+                                                (agentDetails.qcomment7 ===
+                                                  "" ||
+                                                  agentDetails.qcomment7 ===
+                                                    "undefined")
+                                                  ? "No Comments"
+                                                  : agentDetails.qcomment7}
                                               </span>{" "}
                                             </div>
                                             {/* <div className="float-end">
@@ -7415,8 +7516,7 @@ function AuditorQuestions2() {
                           onClick={() => {
                             page === 10 ? setPage(10) : setPage(page + 1);
                             handleSaveChanges2();
-                            // handleSaveChanges3();
-                            // handleOnSave1();
+                            handleOnSave();
                           }}
                         >
                           Approve
@@ -7427,7 +7527,6 @@ function AuditorQuestions2() {
                           name="next"
                           onClick={() => {
                             page === 10 ? setPage(10) : setPage(page + 1);
-                            // handleSaveChanges2();
                           }}
                         >
                           Reject
@@ -7441,7 +7540,6 @@ function AuditorQuestions2() {
                         onClick={() => {
                           page === 10 ? setPage(10) : setPage(page + 1);
                           handleSaveChanges5();
-                          // handleOnSave();
                         }}
                       >
                         Next
