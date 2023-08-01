@@ -387,6 +387,9 @@ function AuditorQuestions2() {
       timerProgressBar: true,
     });
     navigate("/home");
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   };
   const handleSaveChanges5 = () => {
     const editAddress = {
@@ -509,6 +512,17 @@ function AuditorQuestions2() {
   //     });
   //   });
   // };
+  const usersData = [
+    {
+      id: 1,
+      comment: '',
+    },
+    {
+      id: 2,
+      comment: '',
+    },
+  ];
+  
   return (
     <>
       <Header />
