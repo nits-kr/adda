@@ -93,6 +93,20 @@ function AuditorQuestions2() {
   const [qyesbuttonValue6, qsetYesbuttonValue6] = useState("");
   const [qyesbuttonValue7, qsetYesbuttonValue7] = useState("");
   const [comments11, setComments11] = useState([]);
+  const [comments12, setComments12] = useState([]);
+  const [comments13, setComments13] = useState([]);
+  const [comments14, setComments14] = useState([]);
+  const [comments15, setComments15] = useState([]);
+  const [comments16, setComments16] = useState([]);
+  const [comments17, setComments17] = useState([]);
+
+  const [qcomments11, qsetComments11] = useState([]);
+  const [qcomments12, qsetComments12] = useState([]);
+  const [qcomments13, qsetComments13] = useState([]);
+  const [qcomments14, qsetComments14] = useState([]);
+  const [qcomments15, qsetComments15] = useState([]);
+  const [qcomments16, qsetComments16] = useState([]);
+  const [qcomments17, qsetComments17] = useState([]);
   const [formData, setFormData] = useState([]);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -116,6 +130,85 @@ function AuditorQuestions2() {
   const handlePostComment1 = () => {
     if (formData.comment1) {
       setComments11([...comments11, formData.comment1]);
+      // setFormData({ ...formData, comment5: '' });
+    }
+  };
+  const handlePostComment2 = () => {
+    if (formData.comment2) {
+      setComments12([...comments12, formData.comment2]);
+      // setFormData({ ...formData, comment5: '' });
+    }
+  };
+  const handlePostComment3 = () => {
+    if (formData.comment3) {
+      setComments13([...comments13, formData.comment3]);
+      // setFormData({ ...formData, comment5: '' });
+    }
+  };
+  const handlePostComment4 = () => {
+    if (formData.comment4) {
+      setComments14([...comments14, formData.comment4]);
+      // setFormData({ ...formData, comment5: '' });
+    }
+  };
+  const handlePostComment5 = () => {
+    if (formData.comment5) {
+      setComments15([...comments15, formData.comment5]);
+      // setFormData({ ...formData, comment5: '' });
+    }
+  };
+  const handlePostComment6 = () => {
+    if (formData.comment6) {
+      setComments16([...comments16, formData.comment6]);
+      // setFormData({ ...formData, comment5: '' });
+    }
+  };
+  const handlePostComment7 = () => {
+    if (formData.comment7) {
+      setComments17([...comments17, formData.comment7]);
+      // setFormData({ ...formData, comment5: '' });
+    }
+  };
+  const qhandlePostComment1 = () => {
+    if (formData.qcomment1) {
+      console.log("formData.qcomment1", formData.qcomment1);
+      qsetComments11([...qcomments11, formData.qcomment1]);
+      // setFormData({ ...formData, comment5: '' });
+    }
+  };
+  const qhandlePostComment2 = () => {
+    if (formData.qcomment2) {
+      qsetComments12([...qcomments12, formData.qcomment2]);
+      // setFormData({ ...formData, comment5: '' });
+    }
+  };
+  const qhandlePostComment3 = () => {
+    if (formData.qcomment3) {
+      qsetComments13([...qcomments13, formData.qcomment3]);
+      // setFormData({ ...formData, comment5: '' });
+    }
+  };
+  const qhandlePostComment4 = () => {
+    if (formData.qcomment4) {
+      qsetComments14([...qcomments14, formData.qcomment4]);
+      // setFormData({ ...formData, comment5: '' });
+    }
+  };
+  const qhandlePostComment5 = () => {
+    if (formData.qcomment5) {
+      qsetComments15([...qcomments15, formData.qcomment5]);
+      // setFormData({ ...formData, comment5: '' });
+    }
+  };
+  const qhandlePostComment6 = () => {
+    if (formData.qcomment6) {
+      qsetComments16([...qcomments16, formData.qcomment6]);
+      // setFormData({ ...formData, comment5: '' });
+    }
+  };
+  const qhandlePostComment7 = () => {
+    if (formData.qcomment7) {
+      qsetComments17([...qcomments17, formData.qcomment7]);
       // setFormData({ ...formData, comment5: '' });
     }
   };
@@ -450,14 +543,14 @@ function AuditorQuestions2() {
       addaComment4: formData?.comment4,
       addaComment5: formData?.comment5,
       addaComment6: formData?.comment6,
-      addaComment7: formData?.comment7,
-      addaComment8: formData?.comment8,
-      addaComment9: formData?.comment9,
-      addaComment10: formData?.comment10,
-      addaComment11: formData?.comment11,
-      addaComment12: formData?.comment12,
-      addaComment13: formData?.comment13,
-      addaComment14: formData?.comment14,
+      addaComment7: formData?.qcomment7,
+      addaComment8: formData?.qcomment1,
+      addaComment9: formData?.qcomment2,
+      addaComment10: formData?.qcomment3,
+      addaComment11: formData?.qcomment4,
+      addaComment12: formData?.qcomment5,
+      addaComment13: formData?.qcomment6,
+      addaComment14: formData?.qcomment7,
     };
     console.log("adda data 4567", data);
     axios
@@ -512,16 +605,7 @@ function AuditorQuestions2() {
   //     });
   //   });
   // };
-  const usersData = [
-    {
-      id: 1,
-      comment: '',
-    },
-    {
-      id: 2,
-      comment: '',
-    },
-  ];
+
   
   return (
     <>
@@ -969,6 +1053,7 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
+<span style={{color:"#5058dd"}}>ADGE: {" "} </span>
                                                 {agentDetails &&
                                                 (agentDetails.comment1 === "" ||
                                                   agentDetails.comment1 ===
@@ -1004,7 +1089,6 @@ function AuditorQuestions2() {
                                                 className="commentar"
                                                 placeholder="Add a comment..."
                                                 name="comment1"
-                                                // defaultValue={""}
                                                 value={formData?.comment1}
                                                 onChange={handleInputChange}
                                               />
@@ -1091,7 +1175,7 @@ function AuditorQuestions2() {
                                                     <span>26m</span>{" "}
                                                   </div>
                                                   <ul className="child_replay">
-                                                    <li className="box_reply row">
+                                                  <li className="box_reply row">
                                                       <div className="avatar_comment col-md-1">
                                                         {" "}
                                                         <img
@@ -1100,25 +1184,15 @@ function AuditorQuestions2() {
                                                         />{" "}
                                                       </div>
                                                       <div className="result_comment col-md-11">
-                                                        <h4>ADDA</h4>
+                                                        <h4>Auditor</h4>
                                                         <p>
-                                                        {/* {comments11.length}{" "} */}
-                                                            {/* {comments11.length ===
-                                                            1
-                                                              ? "comment"
-                                                              : "comments"} */}
-                                                          <ul>
-                                                            {comments11.map(
-                                                              (
-                                                                comment,
-                                                                index
-                                                              ) => (
-                                                                <li key={index}>
-                                                                  {comment}
-                                                                </li>
-                                                              )
-                                                            )}
-                                                          </ul>
+                                                        {agentDetails &&
+                                                    (agentDetails?.auditorComment1 ===
+                                                      "" ||
+                                                      agentDetails?.auditorComment1 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.auditorComment1}
                                                         </p>
                                                         <div className="tools_comment">
                                                           {" "}
@@ -1155,8 +1229,6 @@ function AuditorQuestions2() {
                                                         <ul className="child_replay"></ul>
                                                       </div>
                                                     </li>
-                                                  </ul>
-                                                  <ul className="child_replay">
                                                     <li className="box_reply row">
                                                       <div className="avatar_comment col-md-1">
                                                         {" "}
@@ -1166,7 +1238,7 @@ function AuditorQuestions2() {
                                                         />{" "}
                                                       </div>
                                                       <div className="result_comment col-md-11">
-                                                        <h4>Auditor</h4>
+                                                        <h4>ADDA</h4>
                                                         <p>
                                                         {/* {comments11.length}{" "} */}
                                                             {/* {comments11.length ===
@@ -1519,6 +1591,7 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
+<span style={{color:"#5058dd"}}>ADGE: {" "} </span>
                                                 {agentDetails &&
                                                 (agentDetails.comment2 === "" ||
                                                   agentDetails.comment2 ===
@@ -1540,7 +1613,7 @@ function AuditorQuestions2() {
                                             </div> */}
                                           </div>
                                         </div>
-                                        {/* <div className="body_comment">
+                                        <div className="body_comment">
                                           <div className="row">
                                             <div className="avatar_comment col-md-1">
                                               {" "}
@@ -1553,6 +1626,7 @@ function AuditorQuestions2() {
                                               <textarea
                                                 className="commentar"
                                                 placeholder="Add a comment..."
+                                                name="comment2"
                                                 value={formData?.comment2}
                                                 onChange={handleInputChange}
                                               />
@@ -1569,7 +1643,10 @@ function AuditorQuestions2() {
                                                   </span>
                                                   <button
                                                     type="button"
-                                                    value={1}
+                                                    value={2}
+                                                    onClick={
+                                                      handlePostComment2
+                                                    }
                                                   >
                                                     Post
                                                   </button>
@@ -1591,9 +1668,15 @@ function AuditorQuestions2() {
                                                   />{" "}
                                                 </div>
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  <h4>ADGE</h4>
                                                   <p>
-                                                    {agentDetails?.comment2}
+                                                  {agentDetails &&
+                                                    (agentDetails?.comment2 ===
+                                                      "" ||
+                                                      agentDetails?.comment2 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.comment2}
                                                   </p>
                                                   <div className="tools_comment">
                                                     {" "}
@@ -1637,14 +1720,74 @@ function AuditorQuestions2() {
                                                         />{" "}
                                                       </div>
                                                       <div className="result_comment col-md-11">
-                                                        <h4>Sugito</h4>
+                                                        <h4>Auditor</h4>
                                                         <p>
-                                                          Lorem Ipsum is simply
-                                                          dummy text of the
-                                                          printing and
-                                                          typesetting industry.
-                                                          Lorem Ipsum has been
-                                                          the industry's.
+                                                        {agentDetails &&
+                                                    (agentDetails?.auditorComment2 ===
+                                                      "" ||
+                                                      agentDetails?.auditorComment2 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.auditorComment2}
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#"
+                                                          >
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#"
+                                                          >
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>ADDA</h4>
+                                                        <p>
+                                                        <ul>
+                                                            {comments12.map(
+                                                              (
+                                                                comment,
+                                                                index
+                                                              ) => (
+                                                                <li key={index}>
+                                                                  {comment}
+                                                                </li>
+                                                              )
+                                                            )}
+                                                          </ul>
                                                         </p>
                                                         <div className="tools_comment">
                                                           {" "}
@@ -1685,7 +1828,7 @@ function AuditorQuestions2() {
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -1736,10 +1879,10 @@ function AuditorQuestions2() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
-                                        </div> */}
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -1980,6 +2123,7 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
+<span style={{color:"#5058dd"}}>ADGE: {" "} </span>
                                                 {agentDetails &&
                                                 (agentDetails.comment3 === "" ||
                                                   agentDetails.comment3 ===
@@ -2001,7 +2145,7 @@ function AuditorQuestions2() {
                                             </div> */}
                                           </div>
                                         </div>
-                                        {/* <div className="body_comment">
+                                        <div className="body_comment">
                                           <div className="row">
                                             <div className="avatar_comment col-md-1">
                                               {" "}
@@ -2014,7 +2158,9 @@ function AuditorQuestions2() {
                                               <textarea
                                                 className="commentar"
                                                 placeholder="Add a comment..."
-                                                defaultValue={""}
+                                                name="comment3"
+                                                value={formData?.comment3}
+                                                onChange={handleInputChange}
                                               />
                                               <div className="box_post">
                                                 <div className="pull-right">
@@ -2030,7 +2176,10 @@ function AuditorQuestions2() {
                                                   <button
                                                    
                                                     type="button"
-                                                    value={1}
+                                                    value={3}
+                                                    onClick={
+                                                      handlePostComment3
+                                                    }
                                                   >
                                                     Post
                                                   </button>
@@ -2052,9 +2201,15 @@ function AuditorQuestions2() {
                                                   />{" "}
                                                 </div>
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  <h4>ADGE</h4>
                                                   <p>
-                                                    {agentDetails?.qcomment3}
+                                                  {agentDetails &&
+                                                    (agentDetails?.comment3 ===
+                                                      "" ||
+                                                      agentDetails?.comment3 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.comment3}
                                                   </p>
                                                   <div className="tools_comment">
                                                     {" "}
@@ -2098,14 +2253,74 @@ function AuditorQuestions2() {
                                                         />{" "}
                                                       </div>
                                                       <div className="result_comment col-md-11">
-                                                        <h4>Sugito</h4>
+                                                        <h4>Auditor</h4>
                                                         <p>
-                                                          Lorem Ipsum is simply
-                                                          dummy text of the
-                                                          printing and
-                                                          typesetting industry.
-                                                          Lorem Ipsum has been
-                                                          the industry's.
+                                                        {agentDetails &&
+                                                    (agentDetails?.auditorComment3 ===
+                                                      "" ||
+                                                      agentDetails?.auditorComment3 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.auditorComment3}
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#"
+                                                          >
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#"
+                                                          >
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>ADDA</h4>
+                                                        <p>
+                                                        <ul>
+                                                            {comments13.map(
+                                                              (
+                                                                comment,
+                                                                index
+                                                              ) => (
+                                                                <li key={index}>
+                                                                  {comment}
+                                                                </li>
+                                                              )
+                                                            )}
+                                                          </ul>
                                                         </p>
                                                         <div className="tools_comment">
                                                           {" "}
@@ -2146,7 +2361,7 @@ function AuditorQuestions2() {
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -2197,10 +2412,10 @@ function AuditorQuestions2() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
-                                        </div> */}
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -2456,6 +2671,7 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
+<span style={{color:"#5058dd"}}>ADGE: {" "} </span>
                                                 {agentDetails &&
                                                 (agentDetails.comment4 === "" ||
                                                   agentDetails.comment4 ===
@@ -2477,7 +2693,7 @@ function AuditorQuestions2() {
                                             </div> */}
                                           </div>
                                         </div>
-                                        {/* <div className="body_comment">
+                                        <div className="body_comment">
                                           <div className="row">
                                             <div className="avatar_comment col-md-1">
                                               {" "}
@@ -2490,7 +2706,9 @@ function AuditorQuestions2() {
                                               <textarea
                                                 className="commentar"
                                                 placeholder="Add a comment..."
-                                                defaultValue={""}
+                                                name="comment4"
+                                                value={formData?.comment4}
+                                                onChange={handleInputChange}
                                               />
                                               <div className="box_post">
                                                 <div className="pull-right">
@@ -2504,9 +2722,12 @@ function AuditorQuestions2() {
                                                     <i className="fa fa-caret-down" />{" "}
                                                   </span>
                                                   <button
-                                                    onClick="submit_comment()"
+                                                    // onClick="submit_comment()"
                                                     type="button"
-                                                    value={1}
+                                                    value={4}
+                                                    onClick={
+                                                      handlePostComment4
+                                                    }
                                                   >
                                                     Post
                                                   </button>
@@ -2528,9 +2749,15 @@ function AuditorQuestions2() {
                                                   />{" "}
                                                 </div>
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  <h4>ADGE</h4>
                                                   <p>
-                                                    {agentDetails?.qcomment4}
+                                                  {agentDetails &&
+                                                    (agentDetails?.comment4 ===
+                                                      "" ||
+                                                      agentDetails?.comment4 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.comment4}
                                                   </p>
                                                   <div className="tools_comment">
                                                     {" "}
@@ -2574,14 +2801,74 @@ function AuditorQuestions2() {
                                                         />{" "}
                                                       </div>
                                                       <div className="result_comment col-md-11">
-                                                        <h4>Sugito</h4>
+                                                        <h4>Auditor</h4>
                                                         <p>
-                                                          Lorem Ipsum is simply
-                                                          dummy text of the
-                                                          printing and
-                                                          typesetting industry.
-                                                          Lorem Ipsum has been
-                                                          the industry's.
+                                                        {agentDetails &&
+                                                    (agentDetails?.auditorComment4 ===
+                                                      "" ||
+                                                      agentDetails?.auditorComment4 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.auditorComment4}
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#"
+                                                          >
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#"
+                                                          >
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>ADDA</h4>
+                                                        <p>
+                                                        <ul>
+                                                            {comments14.map(
+                                                              (
+                                                                comment,
+                                                                index
+                                                              ) => (
+                                                                <li key={index}>
+                                                                  {comment}
+                                                                </li>
+                                                              )
+                                                            )}
+                                                          </ul>
                                                         </p>
                                                         <div className="tools_comment">
                                                           {" "}
@@ -2622,7 +2909,7 @@ function AuditorQuestions2() {
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -2673,10 +2960,10 @@ function AuditorQuestions2() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
-                                        </div> */}
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -2912,6 +3199,7 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
+<span style={{color:"#5058dd"}}>ADGE: {" "} </span>
                                                 {agentDetails &&
                                                 (agentDetails.comment5 === "" ||
                                                   agentDetails.comment5 ===
@@ -2933,7 +3221,7 @@ function AuditorQuestions2() {
                                             </div> */}
                                           </div>
                                         </div>
-                                        {/* <div className="body_comment">
+                                        <div className="body_comment">
                                           <div className="row">
                                             <div className="avatar_comment col-md-1">
                                               {" "}
@@ -2946,7 +3234,9 @@ function AuditorQuestions2() {
                                               <textarea
                                                 className="commentar"
                                                 placeholder="Add a comment..."
-                                                defaultValue={""}
+                                                name="comment5"
+                                                value={formData?.comment5}
+                                                onChange={handleInputChange}
                                               />
                                               <div className="box_post">
                                                 <div className="pull-right">
@@ -2960,9 +3250,12 @@ function AuditorQuestions2() {
                                                     <i className="fa fa-caret-down" />{" "}
                                                   </span>
                                                   <button
-                                                    onClick="submit_comment()"
+                                                    // onClick="submit_comment()"
                                                     type="button"
-                                                    value={1}
+                                                    value={5}
+                                                    onClick={
+                                                      handlePostComment5
+                                                    }
                                                   >
                                                     Post
                                                   </button>
@@ -2984,9 +3277,15 @@ function AuditorQuestions2() {
                                                   />{" "}
                                                 </div>
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  <h4>ADGE</h4>
                                                   <p>
-                                                    {agentDetails?.qcomment5}
+                                                  {agentDetails &&
+                                                    (agentDetails?.omment5 ===
+                                                      "" ||
+                                                      agentDetails?.omment5 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.omment5}
                                                   </p>
                                                   <div className="tools_comment">
                                                     {" "}
@@ -3030,14 +3329,74 @@ function AuditorQuestions2() {
                                                         />{" "}
                                                       </div>
                                                       <div className="result_comment col-md-11">
-                                                        <h4>Sugito</h4>
+                                                        <h4>Auditor</h4>
                                                         <p>
-                                                          Lorem Ipsum is simply
-                                                          dummy text of the
-                                                          printing and
-                                                          typesetting industry.
-                                                          Lorem Ipsum has been
-                                                          the industry's.
+                                                        {agentDetails &&
+                                                    (agentDetails?.auditorComment5 ===
+                                                      "" ||
+                                                      agentDetails?.auditorComment5 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.auditorComment5}
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#"
+                                                          >
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#"
+                                                          >
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>ADDA</h4>
+                                                        <p>
+                                                        <ul>
+                                                            {comments15.map(
+                                                              (
+                                                                comment,
+                                                                index
+                                                              ) => (
+                                                                <li key={index}>
+                                                                  {comment}
+                                                                </li>
+                                                              )
+                                                            )}
+                                                          </ul>
                                                         </p>
                                                         <div className="tools_comment">
                                                           {" "}
@@ -3078,7 +3437,7 @@ function AuditorQuestions2() {
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -3129,10 +3488,10 @@ function AuditorQuestions2() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
-                                        </div> */}
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -3372,6 +3731,7 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
+<span style={{color:"#5058dd"}}>ADGE: {" "} </span>
                                                 {agentDetails &&
                                                 (agentDetails.comment6 === "" ||
                                                   agentDetails.comment6 ===
@@ -3393,7 +3753,7 @@ function AuditorQuestions2() {
                                             </div> */}
                                           </div>
                                         </div>
-                                        {/* <div className="body_comment">
+                                        <div className="body_comment">
                                           <div className="row">
                                             <div className="avatar_comment col-md-1">
                                               {" "}
@@ -3406,7 +3766,9 @@ function AuditorQuestions2() {
                                               <textarea
                                                 className="commentar"
                                                 placeholder="Add a comment..."
-                                                defaultValue={""}
+                                                name="comment6"
+                                                value={formData?.comment6}
+                                                onChange={handleInputChange}
                                               />
                                               <div className="box_post">
                                                 <div className="pull-right">
@@ -3420,9 +3782,12 @@ function AuditorQuestions2() {
                                                     <i className="fa fa-caret-down" />{" "}
                                                   </span>
                                                   <button
-                                                    onClick="submit_comment()"
+                                                    // onClick="submit_comment()"
                                                     type="button"
-                                                    value={1}
+                                                    value={6}
+                                                    onClick={
+                                                      handlePostComment6
+                                                    }
                                                   >
                                                     Post
                                                   </button>
@@ -3444,9 +3809,15 @@ function AuditorQuestions2() {
                                                   />{" "}
                                                 </div>
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  <h4>ADGE</h4>
                                                   <p>
-                                                    {agentDetails?.qcomment6}
+                                                  {agentDetails &&
+                                                    (agentDetails?.comment6 ===
+                                                      "" ||
+                                                      agentDetails?.comment6 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.comment6}
                                                   </p>
                                                   <div className="tools_comment">
                                                     {" "}
@@ -3490,14 +3861,74 @@ function AuditorQuestions2() {
                                                         />{" "}
                                                       </div>
                                                       <div className="result_comment col-md-11">
-                                                        <h4>Sugito</h4>
+                                                        <h4>Auditor</h4>
                                                         <p>
-                                                          Lorem Ipsum is simply
-                                                          dummy text of the
-                                                          printing and
-                                                          typesetting industry.
-                                                          Lorem Ipsum has been
-                                                          the industry's.
+                                                        {agentDetails &&
+                                                    (agentDetails?.auditorComment6 ===
+                                                      "" ||
+                                                      agentDetails?.auditorComment6 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.auditorComment6}
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#"
+                                                          >
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#"
+                                                          >
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>ADDA</h4>
+                                                        <p>
+                                                        <ul>
+                                                            {comments16.map(
+                                                              (
+                                                                comment,
+                                                                index
+                                                              ) => (
+                                                                <li key={index}>
+                                                                  {comment}
+                                                                </li>
+                                                              )
+                                                            )}
+                                                          </ul>
                                                         </p>
                                                         <div className="tools_comment">
                                                           {" "}
@@ -3538,7 +3969,7 @@ function AuditorQuestions2() {
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -3589,10 +4020,10 @@ function AuditorQuestions2() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
-                                        </div> */}
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -3830,6 +4261,7 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
+<span style={{color:"#5058dd"}}>ADGE: {" "} </span>
                                                 {agentDetails &&
                                                 (agentDetails.comment7 === "" ||
                                                   agentDetails.comment7 ===
@@ -3851,7 +4283,7 @@ function AuditorQuestions2() {
                                             </div> */}
                                           </div>
                                         </div>
-                                        {/* <div className="body_comment">
+                                        <div className="body_comment">
                                           <div className="row">
                                             <div className="avatar_comment col-md-1">
                                               {" "}
@@ -3864,7 +4296,9 @@ function AuditorQuestions2() {
                                               <textarea
                                                 className="commentar"
                                                 placeholder="Add a comment..."
-                                                defaultValue={""}
+                                                name="comment7"
+                                                value={formData?.comment7}
+                                                onChange={handleInputChange}
                                               />
                                               <div className="box_post">
                                                 <div className="pull-right">
@@ -3878,9 +4312,12 @@ function AuditorQuestions2() {
                                                     <i className="fa fa-caret-down" />{" "}
                                                   </span>
                                                   <button
-                                                    onClick="submit_comment()"
+                                                    // onClick="submit_comment()"
                                                     type="button"
-                                                    value={1}
+                                                    value={7}
+                                                    onClick={
+                                                      handlePostComment7
+                                                    }
                                                   >
                                                     Post
                                                   </button>
@@ -3902,9 +4339,15 @@ function AuditorQuestions2() {
                                                   />{" "}
                                                 </div>
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  <h4>ADGE</h4>
                                                   <p>
-                                                    {agentDetails?.qcomment7}
+                                                  {agentDetails &&
+                                                    (agentDetails?.comment7 ===
+                                                      "" ||
+                                                      agentDetails?.comment7 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.comment7}
                                                   </p>
                                                   <div className="tools_comment">
                                                     {" "}
@@ -3948,14 +4391,74 @@ function AuditorQuestions2() {
                                                         />{" "}
                                                       </div>
                                                       <div className="result_comment col-md-11">
-                                                        <h4>Sugito</h4>
+                                                        <h4>Auditor</h4>
                                                         <p>
-                                                          Lorem Ipsum is simply
-                                                          dummy text of the
-                                                          printing and
-                                                          typesetting industry.
-                                                          Lorem Ipsum has been
-                                                          the industry's.
+                                                        {agentDetails &&
+                                                    (agentDetails?.auditorComment7 ===
+                                                      "" ||
+                                                      agentDetails?.auditorComment7 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.auditorComment7}
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#"
+                                                          >
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#"
+                                                          >
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>ADDA</h4>
+                                                        <p>
+                                                        <ul>
+                                                            {comments17.map(
+                                                              (
+                                                                comment,
+                                                                index
+                                                              ) => (
+                                                                <li key={index}>
+                                                                  {comment}
+                                                                </li>
+                                                              )
+                                                            )}
+                                                          </ul>
                                                         </p>
                                                         <div className="tools_comment">
                                                           {" "}
@@ -3996,7 +4499,7 @@ function AuditorQuestions2() {
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -4047,10 +4550,10 @@ function AuditorQuestions2() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
-                                        </div> */}
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -4411,6 +4914,7 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
+<span style={{color:"#5058dd"}}>ADGE: {" "} </span>
                                                 {agentDetails &&
                                                 (agentDetails.qcomment1 ===
                                                   "" ||
@@ -4433,7 +4937,7 @@ function AuditorQuestions2() {
                                             </div> */}
                                           </div>
                                         </div>
-                                        {/* <div className="body_comment">
+                                        <div className="body_comment">
                                           <div className="row">
                                             <div className="avatar_comment col-md-1">
                                               {" "}
@@ -4446,7 +4950,9 @@ function AuditorQuestions2() {
                                               <textarea
                                                 className="commentar"
                                                 placeholder="Add a comment..."
-                                                defaultValue={""}
+                                                name="qcomment1"
+                                                value={formData?.qcomment1}
+                                                onChange={handleInputChange}
                                               />
                                               <div className="box_post">
                                                 <div className="pull-right">
@@ -4460,9 +4966,12 @@ function AuditorQuestions2() {
                                                     <i className="fa fa-caret-down" />{" "}
                                                   </span>
                                                   <button
-                                                    onClick="submit_comment()"
+                                                    // onClick="submit_comment()"
                                                     type="button"
-                                                    value={1}
+                                                    value={8}
+                                                    onClick={
+                                                      qhandlePostComment1
+                                                    }
                                                   >
                                                     Post
                                                   </button>
@@ -4484,9 +4993,15 @@ function AuditorQuestions2() {
                                                   />{" "}
                                                 </div>
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  <h4>ADGE</h4>
                                                   <p>
-                                                    {agentDetails?.qcomment1}
+                                                  {agentDetails &&
+                                                    (agentDetails?.qcomment1 ===
+                                                      "" ||
+                                                      agentDetails?.qcomment1 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.qcomment1}
                                                   </p>
                                                   <div className="tools_comment">
                                                     {" "}
@@ -4528,14 +5043,72 @@ function AuditorQuestions2() {
                                                         />{" "}
                                                       </div>
                                                       <div className="result_comment col-md-11">
-                                                        <h4>Sugito</h4>
+                                                        <h4>Auditor</h4>
                                                         <p>
-                                                          Lorem Ipsum is simply
-                                                          dummy text of the
-                                                          printing and
-                                                          typesetting industry.
-                                                          Lorem Ipsum has been
-                                                          the industry's.
+                                                        {agentDetails &&
+                                                    (agentDetails?.auditorComment8 ===
+                                                      "" ||
+                                                      agentDetails?.auditorComment8 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.auditorComment8}
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#">
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#">
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>ADDA</h4>
+                                                        <p>
+                                                        <ul>
+                                                            {qcomments11.map(
+                                                              (
+                                                                comment,
+                                                                index
+                                                              ) => (
+                                                                <li key={index}>
+                                                                  {comment}
+                                                                </li>
+                                                              )
+                                                            )}
+                                                          </ul>
                                                         </p>
                                                         <div className="tools_comment">
                                                           {" "}
@@ -4574,7 +5147,7 @@ function AuditorQuestions2() {
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -4623,10 +5196,10 @@ function AuditorQuestions2() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
-                                        </div> */}
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -4942,6 +5515,7 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
+<span style={{color:"#5058dd"}}>ADGE: {" "} </span>
                                                 {agentDetails &&
                                                 (agentDetails.qcomment1 ===
                                                   "" ||
@@ -4964,7 +5538,7 @@ function AuditorQuestions2() {
                                             </div> */}
                                           </div>
                                         </div>
-                                        {/* <div className="body_comment">
+                                        <div className="body_comment">
                                           <div className="row">
                                             <div className="avatar_comment col-md-1">
                                               {" "}
@@ -4977,7 +5551,9 @@ function AuditorQuestions2() {
                                               <textarea
                                                 className="commentar"
                                                 placeholder="Add a comment..."
-                                                defaultValue={""}
+                                                name="qcomment2"
+                                                value={formData?.qcomment2}
+                                                onChange={handleInputChange}
                                               />
                                               <div className="box_post">
                                                 <div className="pull-right">
@@ -4991,9 +5567,12 @@ function AuditorQuestions2() {
                                                     <i className="fa fa-caret-down" />{" "}
                                                   </span>
                                                   <button
-                                                    onClick="submit_comment()"
+                                                    // onClick="submit_comment()"
                                                     type="button"
-                                                    value={1}
+                                                    value={9}
+                                                    onClick={
+                                                      qhandlePostComment2
+                                                    }
                                                   >
                                                     Post
                                                   </button>
@@ -5015,9 +5594,15 @@ function AuditorQuestions2() {
                                                   />{" "}
                                                 </div>
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  <h4>ADGE</h4>
                                                   <p>
-                                                    {agentDetails?.qcomment2}
+                                                  {agentDetails &&
+                                                    (agentDetails?.qcomment2 ===
+                                                      "" ||
+                                                      agentDetails?.qcomment2 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.qcomment2}
                                                   </p>
                                                   <div className="tools_comment">
                                                     {" "}
@@ -5061,14 +5646,74 @@ function AuditorQuestions2() {
                                                         />{" "}
                                                       </div>
                                                       <div className="result_comment col-md-11">
-                                                        <h4>Sugito</h4>
+                                                        <h4>Auditor</h4>
                                                         <p>
-                                                          Lorem Ipsum is simply
-                                                          dummy text of the
-                                                          printing and
-                                                          typesetting industry.
-                                                          Lorem Ipsum has been
-                                                          the industry's.
+                                                        {agentDetails &&
+                                                    (agentDetails?.auditorComment9 ===
+                                                      "" ||
+                                                      agentDetails?.auditorComment9 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.auditorComment9}
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#"
+                                                          >
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#"
+                                                          >
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>ADDA</h4>
+                                                        <p>
+                                                        <ul>
+                                                            {qcomments12.map(
+                                                              (
+                                                                comment,
+                                                                index
+                                                              ) => (
+                                                                <li key={index}>
+                                                                  {comment}
+                                                                </li>
+                                                              )
+                                                            )}
+                                                          </ul>
                                                         </p>
                                                         <div className="tools_comment">
                                                           {" "}
@@ -5109,7 +5754,7 @@ function AuditorQuestions2() {
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -5160,10 +5805,10 @@ function AuditorQuestions2() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
-                                        </div> */}
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -5406,6 +6051,7 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
+<span style={{color:"#5058dd"}}>ADGE: {" "} </span>
                                                 {agentDetails &&
                                                 (agentDetails.qcomment3 ===
                                                   "" ||
@@ -5428,7 +6074,7 @@ function AuditorQuestions2() {
                                             </div> */}
                                           </div>
                                         </div>
-                                        {/* <div className="body_comment">
+                                        <div className="body_comment">
                                           <div className="row">
                                             <div className="avatar_comment col-md-1">
                                               {" "}
@@ -5441,7 +6087,9 @@ function AuditorQuestions2() {
                                               <textarea
                                                 className="commentar"
                                                 placeholder="Add a comment..."
-                                                defaultValue={""}
+                                                name="qcomment3"
+                                                value={formData?.qcomment3}
+                                                onChange={handleInputChange}
                                               />
                                               <div className="box_post">
                                                 <div className="pull-right">
@@ -5455,9 +6103,12 @@ function AuditorQuestions2() {
                                                     <i className="fa fa-caret-down" />{" "}
                                                   </span>
                                                   <button
-                                                    onClick="submit_comment()"
+                                                    // onClick="submit_comment()"
                                                     type="button"
-                                                    value={1}
+                                                    value={10}
+                                                    onClick={
+                                                      qhandlePostComment3
+                                                    }
                                                   >
                                                     Post
                                                   </button>
@@ -5479,9 +6130,15 @@ function AuditorQuestions2() {
                                                   />{" "}
                                                 </div>
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  <h4>ADGE</h4>
                                                   <p>
-                                                    {agentDetails?.qcomment3}
+                                                  {agentDetails &&
+                                                    (agentDetails?.qomment3 ===
+                                                      "" ||
+                                                      agentDetails?.qomment3 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.qomment3}
                                                   </p>
                                                   <div className="tools_comment">
                                                     {" "}
@@ -5525,14 +6182,74 @@ function AuditorQuestions2() {
                                                         />{" "}
                                                       </div>
                                                       <div className="result_comment col-md-11">
-                                                        <h4>Sugito</h4>
+                                                        <h4>Auditor</h4>
                                                         <p>
-                                                          Lorem Ipsum is simply
-                                                          dummy text of the
-                                                          printing and
-                                                          typesetting industry.
-                                                          Lorem Ipsum has been
-                                                          the industry's.
+                                                        {agentDetails &&
+                                                    (agentDetails?.auditorComment10 ===
+                                                      "" ||
+                                                      agentDetails?.auditorComment10 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.auditorComment10}
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#"
+                                                          >
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#"
+                                                          >
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>ADDA</h4>
+                                                        <p>
+                                                        <ul>
+                                                            {qcomments13.map(
+                                                              (
+                                                                comment,
+                                                                index
+                                                              ) => (
+                                                                <li key={index}>
+                                                                  {comment}
+                                                                </li>
+                                                              )
+                                                            )}
+                                                          </ul>
                                                         </p>
                                                         <div className="tools_comment">
                                                           {" "}
@@ -5573,7 +6290,7 @@ function AuditorQuestions2() {
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -5624,10 +6341,10 @@ function AuditorQuestions2() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
-                                        </div> */}
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -5885,6 +6602,7 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
+<span style={{color:"#5058dd"}}>ADGE: {" "} </span>
                                                 {agentDetails &&
                                                 (agentDetails.qcomment4 ===
                                                   "" ||
@@ -5907,7 +6625,7 @@ function AuditorQuestions2() {
                                             </div> */}
                                           </div>
                                         </div>
-                                        {/* <div className="body_comment">
+                                        <div className="body_comment">
                                           <div className="row">
                                             <div className="avatar_comment col-md-1">
                                               {" "}
@@ -5920,7 +6638,9 @@ function AuditorQuestions2() {
                                               <textarea
                                                 className="commentar"
                                                 placeholder="Add a comment..."
-                                                defaultValue={""}
+                                                name="qcomment4"
+                                                value={formData?.qcomment4}
+                                                onChange={handleInputChange}
                                               />
                                               <div className="box_post">
                                                 <div className="pull-right">
@@ -5934,9 +6654,12 @@ function AuditorQuestions2() {
                                                     <i className="fa fa-caret-down" />{" "}
                                                   </span>
                                                   <button
-                                                    onClick="submit_comment()"
+                                                    // onClick="submit_comment()"
                                                     type="button"
-                                                    value={1}
+                                                    value={11}
+                                                    onClick={
+                                                      qhandlePostComment4
+                                                    }
                                                   >
                                                     Post
                                                   </button>
@@ -5958,9 +6681,15 @@ function AuditorQuestions2() {
                                                   />{" "}
                                                 </div>
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  <h4>ADGE</h4>
                                                   <p>
-                                                    {agentDetails?.qcomment4}
+                                                  {agentDetails &&
+                                                    (agentDetails?.qcomment4 ===
+                                                      "" ||
+                                                      agentDetails?.qcomment4 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.qcomment4}
                                                   </p>
                                                   <div className="tools_comment">
                                                     {" "}
@@ -6004,14 +6733,74 @@ function AuditorQuestions2() {
                                                         />{" "}
                                                       </div>
                                                       <div className="result_comment col-md-11">
-                                                        <h4>Sugito</h4>
+                                                        <h4>Auditor</h4>
                                                         <p>
-                                                          Lorem Ipsum is simply
-                                                          dummy text of the
-                                                          printing and
-                                                          typesetting industry.
-                                                          Lorem Ipsum has been
-                                                          the industry's.
+                                                        {agentDetails &&
+                                                    (agentDetails?.auditorComment11 ===
+                                                      "" ||
+                                                      agentDetails?.auditorComment11 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.auditorComment11}
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#"
+                                                          >
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#"
+                                                          >
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>ADDA</h4>
+                                                        <p>
+                                                        <ul>
+                                                            {qcomments14.map(
+                                                              (
+                                                                comment,
+                                                                index
+                                                              ) => (
+                                                                <li key={index}>
+                                                                  {comment}
+                                                                </li>
+                                                              )
+                                                            )}
+                                                          </ul>
                                                         </p>
                                                         <div className="tools_comment">
                                                           {" "}
@@ -6052,7 +6841,7 @@ function AuditorQuestions2() {
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -6103,10 +6892,10 @@ function AuditorQuestions2() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
-                                        </div> */}
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -6344,6 +7133,7 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
+<span style={{color:"#5058dd"}}>ADGE: {" "} </span>
                                                 {agentDetails &&
                                                 (agentDetails.qcomment5 ===
                                                   "" ||
@@ -6366,7 +7156,7 @@ function AuditorQuestions2() {
                                             </div> */}
                                           </div>
                                         </div>
-                                        {/* <div className="body_comment">
+                                        <div className="body_comment">
                                           <div className="row">
                                             <div className="avatar_comment col-md-1">
                                               {" "}
@@ -6379,7 +7169,9 @@ function AuditorQuestions2() {
                                               <textarea
                                                 className="commentar"
                                                 placeholder="Add a comment..."
-                                                defaultValue={""}
+                                                name="qcomment5"
+                                                value={formData?.qcomment5}
+                                                onChange={handleInputChange}
                                               />
                                               <div className="box_post">
                                                 <div className="pull-right">
@@ -6393,9 +7185,12 @@ function AuditorQuestions2() {
                                                     <i className="fa fa-caret-down" />{" "}
                                                   </span>
                                                   <button
-                                                    onClick="submit_comment()"
+                                                    // onClick="submit_comment()"
                                                     type="button"
-                                                    value={1}
+                                                    value={12}
+                                                    onClick={
+                                                      qhandlePostComment5
+                                                    }
                                                   >
                                                     Post
                                                   </button>
@@ -6417,9 +7212,15 @@ function AuditorQuestions2() {
                                                   />{" "}
                                                 </div>
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  <h4>ADGE</h4>
                                                   <p>
-                                                    {agentDetails?.qcomment5}
+                                                  {agentDetails &&
+                                                    (agentDetails?.qcomment5 ===
+                                                      "" ||
+                                                      agentDetails?.qcomment5 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.qcomment5}
                                                   </p>
                                                   <div className="tools_comment">
                                                     {" "}
@@ -6463,14 +7264,74 @@ function AuditorQuestions2() {
                                                         />{" "}
                                                       </div>
                                                       <div className="result_comment col-md-11">
-                                                        <h4>Sugito</h4>
+                                                        <h4>Auditor</h4>
                                                         <p>
-                                                          Lorem Ipsum is simply
-                                                          dummy text of the
-                                                          printing and
-                                                          typesetting industry.
-                                                          Lorem Ipsum has been
-                                                          the industry's.
+                                                        {agentDetails &&
+                                                    (agentDetails?.auditorComment12 ===
+                                                      "" ||
+                                                      agentDetails?.auditorComment12 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.auditorComment12}
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#"
+                                                          >
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#"
+                                                          >
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>ADDA</h4>
+                                                        <p>
+                                                        <ul>
+                                                            {qcomments15.map(
+                                                              (
+                                                                comment,
+                                                                index
+                                                              ) => (
+                                                                <li key={index}>
+                                                                  {comment}
+                                                                </li>
+                                                              )
+                                                            )}
+                                                          </ul>
                                                         </p>
                                                         <div className="tools_comment">
                                                           {" "}
@@ -6511,7 +7372,7 @@ function AuditorQuestions2() {
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -6562,10 +7423,10 @@ function AuditorQuestions2() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
-                                        </div> */}
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -6807,6 +7668,7 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
+<span style={{color:"#5058dd"}}>ADGE: {" "} </span>
                                                 {agentDetails &&
                                                 (agentDetails.qcomment6 ===
                                                   "" ||
@@ -6829,7 +7691,7 @@ function AuditorQuestions2() {
                                             </div> */}
                                           </div>
                                         </div>
-                                        {/* <div className="body_comment">
+                                        <div className="body_comment">
                                           <div className="row">
                                             <div className="avatar_comment col-md-1">
                                               {" "}
@@ -6842,7 +7704,9 @@ function AuditorQuestions2() {
                                               <textarea
                                                 className="commentar"
                                                 placeholder="Add a comment..."
-                                                defaultValue={""}
+                                                name="qcomment6"
+                                                value={formData?.qcomment6}
+                                                onChange={handleInputChange}
                                               />
                                               <div className="box_post">
                                                 <div className="pull-right">
@@ -6856,9 +7720,12 @@ function AuditorQuestions2() {
                                                     <i className="fa fa-caret-down" />{" "}
                                                   </span>
                                                   <button
-                                                    onClick="submit_comment()"
+                                                    // onClick="submit_comment()"
                                                     type="button"
-                                                    value={1}
+                                                    value={13}
+                                                    onClick={
+                                                      qhandlePostComment6
+                                                    }
                                                   >
                                                     Post
                                                   </button>
@@ -6880,9 +7747,15 @@ function AuditorQuestions2() {
                                                   />{" "}
                                                 </div>
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  <h4>ADGE</h4>
                                                   <p>
-                                                    {agentDetails?.qcomment6}
+                                                  {agentDetails &&
+                                                    (agentDetails?.qcomment6 ===
+                                                      "" ||
+                                                      agentDetails?.qcomment6 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.qcomment6}
                                                   </p>
                                                   <div className="tools_comment">
                                                     {" "}
@@ -6926,14 +7799,74 @@ function AuditorQuestions2() {
                                                         />{" "}
                                                       </div>
                                                       <div className="result_comment col-md-11">
-                                                        <h4>Sugito</h4>
+                                                        <h4>Auditor</h4>
                                                         <p>
-                                                          Lorem Ipsum is simply
-                                                          dummy text of the
-                                                          printing and
-                                                          typesetting industry.
-                                                          Lorem Ipsum has been
-                                                          the industry's.
+                                                        {agentDetails &&
+                                                    (agentDetails?.auditorComment13 ===
+                                                      "" ||
+                                                      agentDetails?.auditorComment13 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.auditorComment13}
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#"
+                                                          >
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#"
+                                                          >
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>ADDA</h4>
+                                                        <p>
+                                                        <ul>
+                                                            {qcomments16.map(
+                                                              (
+                                                                comment,
+                                                                index
+                                                              ) => (
+                                                                <li key={index}>
+                                                                  {comment}
+                                                                </li>
+                                                              )
+                                                            )}
+                                                          </ul>
                                                         </p>
                                                         <div className="tools_comment">
                                                           {" "}
@@ -6974,7 +7907,7 @@ function AuditorQuestions2() {
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -7025,10 +7958,10 @@ function AuditorQuestions2() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
-                                        </div> */}
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -7268,6 +8201,7 @@ function AuditorQuestions2() {
                                             <div className="float-start">
                                               {" "}
                                               <span className="count_comment">
+<span style={{color:"#5058dd"}}>ADGE: {" "} </span>
                                                 {agentDetails &&
                                                 (agentDetails.qcomment7 ===
                                                   "" ||
@@ -7290,7 +8224,7 @@ function AuditorQuestions2() {
                                             </div> */}
                                           </div>
                                         </div>
-                                        {/* <div className="body_comment">
+                                        <div className="body_comment">
                                           <div className="row">
                                             <div className="avatar_comment col-md-1">
                                               {" "}
@@ -7303,7 +8237,9 @@ function AuditorQuestions2() {
                                               <textarea
                                                 className="commentar"
                                                 placeholder="Add a comment..."
-                                                defaultValue={""}
+                                                name="qcomment7"
+                                                value={formData?.qcomment7}
+                                                onChange={handleInputChange}
                                               />
                                               <div className="box_post">
                                                 <div className="pull-right">
@@ -7317,9 +8253,12 @@ function AuditorQuestions2() {
                                                     <i className="fa fa-caret-down" />{" "}
                                                   </span>
                                                   <button
-                                                    onClick="submit_comment()"
+                                                    // onClick="submit_comment()"
                                                     type="button"
-                                                    value={1}
+                                                    value={14}
+                                                    onClick={
+                                                      qhandlePostComment7
+                                                    }
                                                   >
                                                     Post
                                                   </button>
@@ -7341,9 +8280,15 @@ function AuditorQuestions2() {
                                                   />{" "}
                                                 </div>
                                                 <div className="result_comment col-md-11">
-                                                  <h4>Nath Ryuzaki</h4>
+                                                  <h4>ADGE</h4>
                                                   <p>
-                                                    {agentDetails?.qcomment7}
+                                                  {agentDetails &&
+                                                    (agentDetails?.qcomment7 ===
+                                                      "" ||
+                                                      agentDetails?.qcomment7 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.qcomment7}
                                                   </p>
                                                   <div className="tools_comment">
                                                     {" "}
@@ -7387,14 +8332,74 @@ function AuditorQuestions2() {
                                                         />{" "}
                                                       </div>
                                                       <div className="result_comment col-md-11">
-                                                        <h4>Sugito</h4>
+                                                        <h4>Auditor</h4>
                                                         <p>
-                                                          Lorem Ipsum is simply
-                                                          dummy text of the
-                                                          printing and
-                                                          typesetting industry.
-                                                          Lorem Ipsum has been
-                                                          the industry's.
+                                                        {agentDetails &&
+                                                    (agentDetails?.auditorComment14 ===
+                                                      "" ||
+                                                      agentDetails?.auditorComment14 ===
+                                                        "undefined")
+                                                      ? "No comment"
+                                                      : agentDetails?.auditorComment14}
+                                                        </p>
+                                                        <div className="tools_comment">
+                                                          {" "}
+                                                          <Link
+                                                            className="like"
+                                                            to="#"
+                                                          >
+                                                            Like
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <Link
+                                                            className="replay"
+                                                            to="#"
+                                                          >
+                                                            Reply
+                                                          </Link>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <i className="fa fa-thumbs-o-up" />{" "}
+                                                          <span className="count">
+                                                            1
+                                                          </span>{" "}
+                                                          <span aria-hidden="true">
+                                                            {" "}
+                                                            ·{" "}
+                                                          </span>{" "}
+                                                          <span>26m</span>{" "}
+                                                        </div>
+                                                        <ul className="child_replay"></ul>
+                                                      </div>
+                                                    </li>
+                                                    <li className="box_reply row">
+                                                      <div className="avatar_comment col-md-1">
+                                                        {" "}
+                                                        <img
+                                                          src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg"
+                                                          alt="avatar"
+                                                        />{" "}
+                                                      </div>
+                                                      <div className="result_comment col-md-11">
+                                                        <h4>ADDA</h4>
+                                                        <p>
+                                                        <ul>
+                                                            {qcomments17.map(
+                                                              (
+                                                                comment,
+                                                                index
+                                                              ) => (
+                                                                <li key={index}>
+                                                                  {comment}
+                                                                </li>
+                                                              )
+                                                            )}
+                                                          </ul>
                                                         </p>
                                                         <div className="tools_comment">
                                                           {" "}
@@ -7435,7 +8440,7 @@ function AuditorQuestions2() {
                                                 </div>
                                               </li>
 
-                                              <li className="box_result row">
+                                              {/* <li className="box_result row">
                                                 <div className="avatar_comment col-md-1">
                                                   {" "}
                                                   <img
@@ -7486,10 +8491,10 @@ function AuditorQuestions2() {
                                                   </div>
                                                   <ul className="child_replay"></ul>
                                                 </div>
-                                              </li>
+                                              </li> */}
                                             </ul>
                                           </div>
-                                        </div> */}
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
